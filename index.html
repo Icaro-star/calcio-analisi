@@ -264,6 +264,7 @@
   </div>
 </div>
 </div>
+<div class="match-content" id="match-filtered" style="display:none"></div>
 <div class="match-content" id="match-heidenheim_osnabruck" style="display:none"><div style="background:#1a3a1a;border:2px solid #27ae60;border-radius:8px;padding:12px;margin-bottom:12px;text-align:center"><div style="font-size:1.1em;font-weight:bold;color:#27ae60">⚽ RISULTATO FINALE</div><div style="font-size:1.8em;font-weight:bold;color:#ecf0f1;margin:4px 0">FC Heidenheim 4-3 VfL Osnabrück</div><div style="color:#95a5a6;font-size:.82em">Analisi pre-partita mostrata a scopo comparativo</div></div>
 <div class="match-header">
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
@@ -1519,7 +1520,16 @@ function toggleNotif(id) {
       setNotifPref(id, true); updateBellUI(id, true);
       scheduleNotifications();
       var m = MATCH_SCHEDULE.find(function(x){ return x.id===id; });
-      showToast('🔔 Notifica attivata' + (m ? ' — ' + m.title + ' ore ' + m.time : ''), true);
+      var label = m ? m.title + ' ore ' + m.time : id;
+      showToast('🔔 Notifica attivata — ' + label, true);
+      // Test notification immediata
+      try {
+        var tn = new Notification('🔔 Notifica attivata!', {
+          body: label + ' — riceverai avviso 5min prima e all'inizio',
+          tag: 'test-' + id, icon: ''
+        });
+        setTimeout(function(){ tn.close(); }, 4000);
+      } catch(e) {}
     };
     if (Notification.permission === 'granted') { doEnable(); }
     else {
@@ -1542,12 +1552,85 @@ function initBells() {
 
 // ── Legenda ───────────────────────────────────────────────────────────────────
 function openLegend() {
-  document.getElementById('legend-modal').style.display = 'block';
-  window.scrollTo({top:0});
+  var m = document.getElementById('legend-modal');
+  m.style.display = 'block';
+  m.scrollTop = 0;
 }
 
-// ── Filtri sidebar ────────────────────────────────────────────────────────────
+// ── MATCH DATA (per filtered view) ───────────────────────────────────────────
+const MATCH_DATA = [{"id": "heidenheim_osnabruck", "time": "13:00", "league": "2. Bundesliga 2026-27", "home": "FC Heidenheim", "away": "VfL Osnabr\u00fcck", "cat": "FACILE", "catCol": "#27ae60", "ev": "+14.5%", "pD": "27.3%", "played": true}, {"id": "wolfsburg_kaiserslautern", "time": "20:30", "league": "2. Bundesliga 2026-27", "home": "VfL Wolfsburg", "away": "1. FC Kaiserslautern", "cat": "MEDIA", "catCol": "#f39c12", "ev": "+11.5%", "pD": "25.1%", "played": false}, {"id": "valerenga_bodo", "time": "14:00", "league": "Eliteserien 2026", "home": "V\u00e5lerenga IF", "away": "FK Bod\u00f8/Glimt", "cat": "FACILE", "catCol": "#27ae60", "ev": "+40.2%", "pD": "26.7%", "played": false}, {"id": "aarhus_koge", "time": "14:00", "league": "1. Division Danimarca 2026", "home": "Aarhus Fremad", "away": "HB K\u00f8ge", "cat": "DIFFICILE", "catCol": "#e74c3c", "ev": "-0.3%", "pD": "24.7%", "played": false}, {"id": "burnley_notts", "time": "16:00", "league": "EFL Cup 2026-27", "home": "Burnley FC", "away": "Notts County", "cat": "FACILE", "catCol": "#27ae60", "ev": "+35.6%", "pD": "32.3%", "played": false}, {"id": "start_fredrikstad", "time": "18:00", "league": "Eliteserien 2026", "home": "IK Start", "away": "Fredrikstad FK", "cat": "FACILE", "catCol": "#27ae60", "ev": "+6.4%", "pD": "31.3%", "played": false}, {"id": "guimaraes_arouca", "time": "19:00", "league": "Liga Portugal 2026-27", "home": "Vit\u00f3ria Guimar\u00e3es", "away": "FC Arouca", "cat": "FACILE", "catCol": "#27ae60", "ev": "+17.3%", "pD": "30.9%", "played": false}, {"id": "struiden_lommel", "time": "20:45", "league": "Jupiler Pro League 2026-27", "home": "Sint-Truiden VV", "away": "Lommel SK", "cat": "DIFFICILE", "catCol": "#e74c3c", "ev": "-11.8%", "pD": "23.5%", "played": false}];
+
+// ── LIVE helper ───────────────────────────────────────────────────────────────
+function isLiveNow(timeStr, played) {
+  if (played) return false;
+  var now = new Date();
+  var nowMin = now.getHours() * 60 + now.getMinutes();
+  var parts = timeStr.split(':');
+  var start = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+  return nowMin >= start && nowMin < start + 95;
+}
+
+// ── LIVE badges in sidebar ────────────────────────────────────────────────────
+function updateLiveBadges() {
+  MATCH_DATA.forEach(function(m) {
+    var navEl = document.getElementById('nav-' + m.id);
+    if (!navEl) return;
+    var existing = navEl.querySelector('.live-badge');
+    var live = isLiveNow(m.time, m.played);
+    navEl.classList.toggle('sidebar-live', live);
+    if (live && !existing) {
+      var b = document.createElement('span');
+      b.className = 'live-badge'; b.textContent = '● LIVE';
+      navEl.insertBefore(b, navEl.firstChild);
+    } else if (!live && existing) {
+      existing.remove();
+    }
+  });
+}
+
+// ── Filtered results view ─────────────────────────────────────────────────────
+function renderFilteredView(list) {
+  var catLabel = _fCat === 'tutti' ? 'Tutte le difficoltà' : _fCat;
+  var timeLabel = _fTime === 'tutti' ? 'Tutti gli orari' : 'ore ' + _fTime;
+  var header = '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px">'
+    + '<div><h2 style="color:#3498db;font-size:1.1em;margin:0">🎯 ' + catLabel + ' · ' + timeLabel + '</h2>'
+    + '<div style="color:#7f8c8d;font-size:.8em;margin-top:2px">' + list.length + ' partite trovate</div></div>'
+    + '<button onclick="_resetFilters()" style="background:#2c3e50;color:#ecf0f1;border:none;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.82em">✕ Rimuovi filtri</button>'
+    + '</div>';
+  if (list.length === 0) {
+    document.getElementById('match-filtered').innerHTML = header
+      + '<div class="card" style="text-align:center;padding:32px;color:#7f8c8d">Nessuna partita con questi filtri.</div>';
+    return;
+  }
+  var cards = list.map(function(m) {
+    var live = isLiveNow(m.time, m.played);
+    var liveBadge = live ? '<span class="live-badge" style="margin-right:8px;vertical-align:middle">● LIVE</span>' : '';
+    return '<div class="card" onclick="showMatch('' + m.id + '')" '
+      + 'style="cursor:pointer;margin-bottom:10px;transition:.15s;border-color:' + (live ? '#e74c3c' : '#1e2d3d') + '" '
+      + 'onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='' + (live?'#e74c3c':'#1e2d3d') + ''">'
+      + '<div style="font-size:.78em;color:#7f8c8d;margin-bottom:4px">' + liveBadge + '🕐 ' + m.time + ' · ' + m.league + '</div>'
+      + '<div style="font-size:1.05em;font-weight:bold;color:#ecf0f1;margin-bottom:8px">'
+      + m.home + ' <span style="color:#7f8c8d">vs</span> ' + m.away + '</div>'
+      + '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'
+      + '<span style="background:' + m.catCol + ';color:#fff;padding:2px 12px;border-radius:12px;font-size:.78em;font-weight:bold">' + m.cat + '</span>'
+      + '<span style="color:#f39c12;font-weight:bold;font-size:.9em">EV adj: ' + m.ev + '</span>'
+      + '<span style="color:#95a5a6;font-size:.82em">pX adj: ' + m.pD + '</span>'
+      + '<span style="color:#7f8c8d;font-size:.78em;margin-left:auto">Tocca per l'analisi →</span>'
+      + '</div></div>';
+  }).join('');
+  document.getElementById('match-filtered').innerHTML = header + cards;
+}
+
+// ── Filtri ────────────────────────────────────────────────────────────────────
 var _fCat = 'tutti', _fTime = 'tutti';
+
+function _resetFilters() {
+  _fCat = 'tutti'; _fTime = 'tutti';
+  document.querySelectorAll('.filter-chip').forEach(function(b) {
+    b.classList.toggle('on', b.dataset.val === 'tutti');
+  });
+  applyFilters(true);
+}
 
 function setFilter(type, btn) {
   var val = btn.dataset.val;
@@ -1558,38 +1641,26 @@ function setFilter(type, btn) {
   applyFilters();
 }
 
-function applyFilters() {
+function applyFilters(reset) {
+  // 1. update sidebar visibility
   document.querySelectorAll('.sidebar-item[data-cat]').forEach(function(el) {
     var show = (_fCat === 'tutti' || el.dataset.cat === _fCat) &&
                (_fTime === 'tutti' || el.dataset.time === _fTime);
     el.style.display = show ? '' : 'none';
   });
-}
-
-// ── LIVE detection ────────────────────────────────────────────────────────────
-function updateLiveBadges() {
-  var now = new Date();
-  var nowMin = now.getHours() * 60 + now.getMinutes();
-  MATCH_SCHEDULE.forEach(function(m) {
-    var navEl = document.getElementById('nav-' + m.id);
-    if (!navEl) return;
-    var existing = navEl.querySelector('.live-badge');
-    var parts = m.time.split(':');
-    var startMin = parseInt(parts[0]) * 60 + parseInt(parts[1]);
-    var isLive = !m.played && nowMin >= startMin && nowMin < startMin + 95;
-    if (isLive) {
-      navEl.classList.add('sidebar-live');
-      if (!existing) {
-        var badge = document.createElement('span');
-        badge.className = 'live-badge';
-        badge.textContent = '● LIVE';
-        navEl.insertBefore(badge, navEl.firstChild);
-      }
-    } else {
-      navEl.classList.remove('sidebar-live');
-      if (existing) existing.remove();
-    }
-  });
+  // 2. if any filter active → show filtered results view
+  if (!reset && (_fCat !== 'tutti' || _fTime !== 'tutti')) {
+    var list = MATCH_DATA.filter(function(m) {
+      return (_fCat === 'tutti' || m.cat === _fCat) && (_fTime === 'tutti' || m.time === _fTime);
+    });
+    renderFilteredView(list);
+    // switch main to filtered view (without updating sidebar active)
+    document.querySelectorAll('.match-content').forEach(function(e){ e.style.display='none'; });
+    document.getElementById('match-filtered').style.display = 'block';
+    document.querySelectorAll('.sidebar-item').forEach(function(e){ e.classList.remove('active'); });
+  } else if (reset) {
+    showMatch('dashboard');
+  }
 }
 
 function doLogin() {
