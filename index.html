@@ -1274,6 +1274,61 @@ function showTab(tabId,btn){
   if(btn){ btn.style.background='#1a4a7a'; btn.style.color='#3498db'; btn.style.borderColor='#3498db'; }
 }
 showMatch('dashboard');
+
+// ── Login gate ──────────────────────────────────────────────────────────────
+const AUTH_USER = "Zingabet";
+const AUTH_HASH = "76acce7f71fa5356fef655d49dea3b14714971cda52314b2999de21b4a5a5f7b";
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+
+async function doLogin() {
+  const u = document.getElementById("lg-user").value.trim();
+  const p = document.getElementById("lg-pass").value;
+  const h = await sha256(p);
+  if (u === AUTH_USER && h === AUTH_HASH) {
+    sessionStorage.setItem("zb_auth","1");
+    document.getElementById("login-overlay").style.display="none";
+  } else {
+    const err = document.getElementById("lg-err");
+    err.style.display="block";
+    document.getElementById("lg-pass").value="";
+    document.getElementById("lg-pass").focus();
+    setTimeout(()=>err.style.display="none", 2500);
+  }
+}
+
+document.getElementById("lg-form").addEventListener("submit", e=>{ e.preventDefault(); doLogin(); });
+
+if (sessionStorage.getItem("zb_auth")==="1") {
+  document.getElementById("login-overlay").style.display="none";
+}
 </script>
+
+<div id="login-overlay" style="position:fixed;inset:0;background:#0a1220;z-index:9999;display:flex;align-items:center;justify-content:center">
+  <div style="background:#131f2e;border:1px solid #1e2d3d;border-radius:12px;padding:36px 32px;width:320px;max-width:90vw;text-align:center">
+    <div style="font-size:2em;margin-bottom:8px">⚽</div>
+    <div style="font-size:1.2em;font-weight:bold;color:#ecf0f1;margin-bottom:4px">Calcio Analisi</div>
+    <div style="font-size:.8em;color:#7f8c8d;margin-bottom:24px">Accesso riservato</div>
+    <form id="lg-form">
+      <input id="lg-user" type="text" placeholder="Username" autocomplete="username"
+        style="width:100%;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:10px 14px;color:#ecf0f1;font-size:.95em;margin-bottom:10px;outline:none;box-sizing:border-box"
+        onfocus="this.style.borderColor='#3498db'" onblur="this.style.borderColor='#2c3e50'">
+      <input id="lg-pass" type="password" placeholder="Password" autocomplete="current-password"
+        style="width:100%;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:10px 14px;color:#ecf0f1;font-size:.95em;margin-bottom:16px;outline:none;box-sizing:border-box"
+        onfocus="this.style.borderColor='#3498db'" onblur="this.style.borderColor='#2c3e50'">
+      <div id="lg-err" style="display:none;background:#2c1010;color:#e74c3c;border-radius:4px;padding:7px;font-size:.82em;margin-bottom:12px">
+        Credenziali non valide
+      </div>
+      <button type="submit"
+        style="width:100%;background:#2980b9;color:#fff;border:none;border-radius:6px;padding:11px;font-size:.95em;font-weight:bold;cursor:pointer"
+        onmouseover="this.style.background='#3498db'" onmouseout="this.style.background='#2980b9'">
+        Accedi
+      </button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
