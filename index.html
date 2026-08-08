@@ -171,6 +171,7 @@
 <div class="sidebar-item" data-time="19:00" data-cat="FACILE" onclick="showMatch('guimaraes_arouca')" id="nav-guimaraes_arouca"><div style="font-size:.7em;color:#7f8c8d">19:00 · Liga Portugal 2026-27</div><div style="font-weight:bold;font-size:.85em;color:#ecf0f1;line-height:1.2;margin:2px 0">Vitória Guimarães<br><span style="color:#7f8c8d">vs</span> FC Arouca</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.7em">FACILE</span><div style="display:flex;align-items:center;gap:4px"><span style="color:#f39c12;font-size:.75em;font-weight:bold">+17.3%</span><span id="sb-bell-guimaraes_arouca" onclick="event.stopPropagation();toggleNotif('guimaraes_arouca')" title="Attiva notifica" style="cursor:pointer;font-size:.8em;padding:1px 4px;border-radius:8px;background:#1a2634;border:1px solid #2c3e50;color:#7f8c8d">🔕</span></div></div></div>
 <div class="sidebar-item" data-time="20:45" data-cat="DIFFICILE" onclick="showMatch('struiden_lommel')" id="nav-struiden_lommel"><div style="font-size:.7em;color:#7f8c8d">20:45 · Jupiler Pro League 2026-27</div><div style="font-weight:bold;font-size:.85em;color:#ecf0f1;line-height:1.2;margin:2px 0">Sint-Truiden VV<br><span style="color:#7f8c8d">vs</span> Lommel SK</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.7em">DIFFICILE</span><div style="display:flex;align-items:center;gap:4px"><span style="color:#f39c12;font-size:.75em;font-weight:bold">-11.8%</span><span id="sb-bell-struiden_lommel" onclick="event.stopPropagation();toggleNotif('struiden_lommel')" title="Attiva notifica" style="cursor:pointer;font-size:.8em;padding:1px 4px;border-radius:8px;background:#1a2634;border:1px solid #2c3e50;color:#7f8c8d">🔕</span></div></div></div>
 <div class="sidebar-item" onclick="showMatch('panoramica')" id="nav-panoramica"><div style="font-size:.7em;color:#7f8c8d">16:00 · NL / EFL Cup / Scot / AMI</div><div style="font-weight:bold;font-size:.85em;color:#ecf0f1;margin:2px 0">📋 Panoramica<br><span style="color:#7f8c8d">13 partite minori</span></div><div style="margin-top:3px"><span style="background:#95a5a6;color:#fff;padding:1px 7px;border-radius:10px;font-size:.7em">OVERVIEW</span></div></div>
+<div class="sidebar-item" onclick="showMatch('betmonitor');bm_render()" id="nav-betmonitor"><div style="font-size:.7em;color:#27ae60;font-weight:bold">💰 BETMONITOR</div><div style="font-weight:bold;font-size:.85em;color:#ecf0f1;margin:2px 0">Tracker scommesse</div><div style="margin-top:3px"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.7em">NUOVO</span></div></div>
   </div>
   <div class="main">
     <div class="mob-filters"><span style="font-size:.65em;color:#7f8c8d;font-weight:bold;margin-right:2px">🎯</span><button class="filter-chip on" data-ftype="cat" data-val="tutti" onclick="setFilter('cat',this)">Tutti</button><button class="filter-chip" data-ftype="cat" data-val="FACILE" onclick="setFilter('cat',this)" style="color:#27ae60">FACILE</button><button class="filter-chip" data-ftype="cat" data-val="MEDIA" onclick="setFilter('cat',this)" style="color:#f39c12">MEDIA</button><button class="filter-chip" data-ftype="cat" data-val="DIFFICILE" onclick="setFilter('cat',this)" style="color:#e74c3c">DIFFICILE</button><span style="color:#2c3e50;margin:0 3px;font-size:.8em">│</span><span style="font-size:.65em;color:#7f8c8d;font-weight:bold;margin-right:2px">🕐</span><button class="filter-chip on" data-ftype="time" data-val="tutti" onclick="setFilter('time',this)">Tutti</button><button class="filter-chip" data-ftype="time" data-val="13:00" onclick="setFilter('time',this)">13:00</button><button class="filter-chip" data-ftype="time" data-val="14:00" onclick="setFilter('time',this)">14:00</button><button class="filter-chip" data-ftype="time" data-val="16:00" onclick="setFilter('time',this)">16:00</button><button class="filter-chip" data-ftype="time" data-val="18:00" onclick="setFilter('time',this)">18:00</button><button class="filter-chip" data-ftype="time" data-val="19:00" onclick="setFilter('time',this)">19:00</button><button class="filter-chip" data-ftype="time" data-val="20:30" onclick="setFilter('time',this)">20:30</button><button class="filter-chip" data-ftype="time" data-val="20:45" onclick="setFilter('time',this)">20:45</button></div>
@@ -265,6 +266,7 @@
 </div>
 </div>
 <div class="match-content" id="match-filtered" style="display:none"></div>
+<div class="match-content" id="match-betmonitor" style="display:none"><div id="bm-root" style="padding:4px 0"></div></div>
 <div class="match-content" id="match-heidenheim_osnabruck" style="display:none"><div style="background:#1a3a1a;border:2px solid #27ae60;border-radius:8px;padding:12px;margin-bottom:12px;text-align:center"><div style="font-size:1.1em;font-weight:bold;color:#27ae60">⚽ RISULTATO FINALE</div><div style="font-size:1.8em;font-weight:bold;color:#ecf0f1;margin:4px 0">FC Heidenheim 4-3 VfL Osnabrück</div><div style="color:#95a5a6;font-size:.82em">Analisi pre-partita mostrata a scopo comparativo</div></div>
 <div class="match-header">
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
@@ -1691,5 +1693,176 @@ function doLogin() {
   }
 })();
 </script>
+
+<script>
+var BM_KEY='zb_bm';
+function bm_load(){try{return JSON.parse(localStorage.getItem(BM_KEY))||{budget:500,dailyTarget:50,bets:[]};}catch(e){return{budget:500,dailyTarget:50,bets:[]};}}
+function bm_save(d){localStorage.setItem(BM_KEY,JSON.stringify(d));}
+function bm_uid(){return Date.now().toString(36)+Math.random().toString(36).substr(2,5);}
+function bm_today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function bm_fmtDate(s){var p=s.split('-');return p[2]+'/'+p[1];}
+function bm_col(v){return v>=0?'#27ae60':'#e74c3c';}
+function bm_pnl(v){return (v>=0?'+':'')+'€'+Math.abs(v).toFixed(2);}
+function bm_inp(id,val,type,ph,w,extra){
+  return '<input id="'+id+'" type="'+type+'" value="'+val+'" placeholder="'+ph+'" '+(extra||'')+' '
+    +'style="width:'+w+';background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:7px 10px;color:#ecf0f1;font-size:.88em;outline:none">';
+}
+function bm_addBet(){
+  var match=(document.getElementById('bm-match').value||'').trim();
+  var odds=parseFloat(document.getElementById('bm-odds').value);
+  var amt=parseFloat(document.getElementById('bm-amount').value);
+  if(!match||isNaN(odds)||isNaN(amt)||odds<1.01||amt<=0){showToast('❌ Compila tutti i campi correttamente',false);return;}
+  var d=bm_load();
+  d.bets.push({id:bm_uid(),date:bm_today(),match:match,odds:odds,amount:amt,status:'pending'});
+  bm_save(d);
+  document.getElementById('bm-match').value='';
+  document.getElementById('bm-odds').value='';
+  document.getElementById('bm-amount').value='';
+  bm_render();
+  showToast('✅ Scommessa aggiunta — segna il risultato quando disponibile',true);
+}
+function bm_setStatus(id,status){
+  var d=bm_load();
+  d.bets=d.bets.map(function(b){if(b.id===id)b.status=status;return b;});
+  bm_save(d);bm_render();
+  if(status==='won') showToast('✅ Vincita registrata!',true);
+  if(status==='lost') showToast('❌ Perdita registrata',false);
+}
+function bm_delete(id){
+  var d=bm_load();
+  d.bets=d.bets.filter(function(b){return b.id!==id;});
+  bm_save(d);bm_render();
+}
+function bm_saveCfg(){
+  var budget=parseFloat(document.getElementById('bm-budget-inp').value);
+  var target=parseFloat(document.getElementById('bm-target-inp').value);
+  if(isNaN(budget)||isNaN(target)||budget<=0||target<=0){showToast('❌ Valori non validi',false);return;}
+  var d=bm_load();d.budget=budget;d.dailyTarget=target;
+  bm_save(d);bm_render();showToast('✅ Configurazione salvata',true);
+}
+function bm_render(){
+  var root=document.getElementById('bm-root');
+  if(!root)return;
+  var data=bm_load();
+  var today=bm_today();
+  var totalWon=0,totalLost=0,todayWon=0,todayLost=0,totalStaked=0;
+  data.bets.forEach(function(b){
+    if(b.status==='won'){var p=b.amount*(b.odds-1);totalWon+=p;if(b.date===today)todayWon+=p;totalStaked+=b.amount;}
+    if(b.status==='lost'){totalLost+=b.amount;if(b.date===today)todayLost+=b.amount;totalStaked+=b.amount;}
+  });
+  var balance=data.budget+totalWon-totalLost;
+  var pnlToday=todayWon-todayLost;
+  var pnlTotal=totalWon-totalLost;
+  var roi=totalStaked>0?(pnlTotal/totalStaked*100):0;
+  var winCount=data.bets.filter(function(b){return b.status==='won';}).length;
+  var lostCount=data.bets.filter(function(b){return b.status==='lost';}).length;
+  var pendCount=data.bets.filter(function(b){return b.status==='pending';}).length;
+
+  /* Header */
+  var hdr='<div class="match-header" style="margin-bottom:12px">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
+    +'<div><div style="color:#95a5a6;font-size:.85em">Gestione scommesse · '+today.split('-').reverse().join('/')+'</div>'
+    +'<h2 style="margin:4px 0;color:#ecf0f1">💰 BetMonitor</h2></div>'
+    +'<div style="text-align:right;font-size:.82em;color:#7f8c8d">✅ '+winCount+' &nbsp;❌ '+lostCount+' &nbsp;⏳ '+pendCount+'</div>'
+    +'</div></div>';
+
+  /* Stats */
+  var stats='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:12px">'
+    +'<div class="card" style="text-align:center;padding:12px"><div style="font-size:.68em;color:#7f8c8d;text-transform:uppercase;margin-bottom:4px">Saldo</div>'
+    +'<div style="font-size:1.45em;font-weight:bold;color:'+bm_col(balance-data.budget)+'">€'+balance.toFixed(2)+'</div>'
+    +'<div style="font-size:.7em;color:#7f8c8d;margin-top:2px">Budget: €'+data.budget.toFixed(0)+'</div></div>'
+    +'<div class="card" style="text-align:center;padding:12px"><div style="font-size:.68em;color:#7f8c8d;text-transform:uppercase;margin-bottom:4px">P&L Oggi</div>'
+    +'<div style="font-size:1.45em;font-weight:bold;color:'+bm_col(pnlToday)+'">'+(pnlToday>=0?'+':'')+'€'+Math.abs(pnlToday).toFixed(2)+'</div>'
+    +'<div style="font-size:.7em;color:#7f8c8d;margin-top:2px">Target: +€'+data.dailyTarget.toFixed(0)+'</div></div>'
+    +'<div class="card" style="text-align:center;padding:12px"><div style="font-size:.68em;color:#7f8c8d;text-transform:uppercase;margin-bottom:4px">P&L Totale</div>'
+    +'<div style="font-size:1.45em;font-weight:bold;color:'+bm_col(pnlTotal)+'">'+(pnlTotal>=0?'+':'')+'€'+Math.abs(pnlTotal).toFixed(2)+'</div></div>'
+    +'<div class="card" style="text-align:center;padding:12px"><div style="font-size:.68em;color:#7f8c8d;text-transform:uppercase;margin-bottom:4px">ROI</div>'
+    +'<div style="font-size:1.45em;font-weight:bold;color:'+bm_col(roi)+'">'+(roi>=0?'+':'')+roi.toFixed(1)+'%</div>'
+    +'<div style="font-size:.7em;color:#7f8c8d;margin-top:2px">su €'+totalStaked.toFixed(0)+' puntati</div></div>'
+    +'</div>';
+
+  /* Config */
+  var cfg='<div class="card" style="margin-bottom:12px"><h3>⚙️ Configurazione</h3>'
+    +'<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">'
+    +'<div><div style="font-size:.78em;color:#7f8c8d;margin-bottom:4px">Budget iniziale (€)</div>'
+    +bm_inp('bm-budget-inp',data.budget,'number','500','110px','min="1" step="10"')+'</div>'
+    +'<div><div style="font-size:.78em;color:#7f8c8d;margin-bottom:4px">Obiettivo giornaliero (€)</div>'
+    +bm_inp('bm-target-inp',data.dailyTarget,'number','50','110px','min="1" step="5"')+'</div>'
+    +'<button onclick="bm_saveCfg()" style="background:#2980b9;color:#fff;border:none;border-radius:6px;padding:8px 18px;cursor:pointer;font-weight:bold;min-height:38px">💾 Salva</button>'
+    +'</div></div>';
+
+  /* Add bet form */
+  var addForm='<div class="card" style="margin-bottom:12px"><h3>➕ Nuova Scommessa</h3>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">'
+    +'<div style="flex:2;min-width:140px"><div style="font-size:.78em;color:#7f8c8d;margin-bottom:4px">Partita / Evento</div>'
+    +'<input id="bm-match" type="text" placeholder="Es: Wolfsburg vs Kaiserslautern X" onkeydown="if(event.key===\'Enter\')bm_addBet()" '
+    +'style="width:100%;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:7px 10px;color:#ecf0f1;font-size:.88em;outline:none"></div>'
+    +'<div style="min-width:75px"><div style="font-size:.78em;color:#7f8c8d;margin-bottom:4px">Quota</div>'
+    +'<input id="bm-odds" type="number" step="0.01" min="1.01" placeholder="2.10" onkeydown="if(event.key===\'Enter\')bm_addBet()" '
+    +'style="width:75px;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:7px 10px;color:#ecf0f1;font-size:.88em;outline:none"></div>'
+    +'<div style="min-width:85px"><div style="font-size:.78em;color:#7f8c8d;margin-bottom:4px">Importo (€)</div>'
+    +'<input id="bm-amount" type="number" step="0.5" min="0.5" placeholder="20" onkeydown="if(event.key===\'Enter\')bm_addBet()" '
+    +'style="width:85px;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:7px 10px;color:#ecf0f1;font-size:.88em;outline:none"></div>'
+    +'<button onclick="bm_addBet()" style="background:#27ae60;color:#fff;border:none;border-radius:6px;padding:8px 18px;cursor:pointer;font-weight:bold;min-height:38px;white-space:nowrap">➕ Aggiungi</button>'
+    +'</div></div>';
+
+  /* Bets table */
+  var sorted=data.bets.slice().sort(function(a,b){return b.date.localeCompare(a.date)||b.id.localeCompare(a.id);});
+  var rows=sorted.length===0
+    ?'<tr><td colspan="7" style="color:#7f8c8d;text-align:center;padding:28px;font-size:.9em">Nessuna scommessa — aggiungi la prima con il form sopra!</td></tr>'
+    :sorted.map(function(b){
+      var profit=b.status==='won'?+(b.amount*(b.odds-1)).toFixed(2):(b.status==='lost'?-b.amount:null);
+      var plCell=profit===null?'<span style="color:#7f8c8d;font-size:.8em">⏳</span>'
+        :'<span style="color:'+bm_col(profit)+';font-weight:bold">'+(profit>=0?'+':'')+'€'+Math.abs(profit).toFixed(2)+'</span>';
+      var btns=b.status==='pending'
+        ?'<button onclick="bm_setStatus(\''+b.id+'\',\'won\')" style="background:#1a3a26;color:#2ecc71;border:1px solid #27ae60;border-radius:4px;padding:3px 8px;cursor:pointer;font-size:.72em;margin-right:3px;min-height:28px">✅ Vinta</button>'
+         +'<button onclick="bm_setStatus(\''+b.id+'\',\'lost\')" style="background:#2c1010;color:#e74c3c;border:1px solid #c0392b;border-radius:4px;padding:3px 8px;cursor:pointer;font-size:.72em;min-height:28px">❌ Persa</button>'
+        :'<span style="font-size:.76em;padding:3px 8px;border-radius:4px;'+(b.status==='won'?'background:#1a3a26;color:#2ecc71':'background:#2c1010;color:#e74c3c')+'">'
+         +(b.status==='won'?'✅ Vinta':'❌ Persa')+'</span>'
+         +' <button onclick="bm_setStatus(\''+b.id+'\',\'pending\')" title="Reimposta a In corso" style="background:#1e2d3d;color:#7f8c8d;border:1px solid #2c3e50;border-radius:4px;padding:2px 6px;cursor:pointer;font-size:.68em">↩</button>';
+      return '<tr>'
+        +'<td style="color:#95a5a6;white-space:nowrap;font-size:.82em">'+bm_fmtDate(b.date)+'</td>'
+        +'<td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+b.match+'">'+b.match+'</td>'
+        +'<td style="color:#f39c12;text-align:center;font-weight:bold">'+b.odds.toFixed(2)+'</td>'
+        +'<td style="text-align:right;font-weight:bold">€'+b.amount.toFixed(2)+'</td>'
+        +'<td style="white-space:nowrap">'+btns+'</td>'
+        +'<td style="text-align:right">'+plCell+'</td>'
+        +'<td><button onclick="bm_delete(\''+b.id+'\')" style="background:none;color:#555;border:none;cursor:pointer;padding:2px 6px;font-size:.9em" title="Elimina">🗑</button></td>'
+        +'</tr>';
+    }).join('');
+  var tbl='<div class="card" style="margin-bottom:12px"><h3>🎯 Registro Scommesse</h3>'
+    +'<div class="tbl-wrap"><table style="width:100%;font-size:.84em">'
+    +'<tr style="color:#7f8c8d;font-size:.74em;border-bottom:2px solid #2c3e50">'
+    +'<th style="text-align:left;padding:5px 4px">Data</th><th style="text-align:left">Partita</th>'
+    +'<th style="text-align:center">Quota</th><th style="text-align:right">€</th>'
+    +'<th style="text-align:left;padding:0 8px">Stato</th><th style="text-align:right">P&L</th><th></th></tr>'
+    +rows+'</table></div></div>';
+
+  /* 30gg projection */
+  var projRows='';
+  for(var i=1;i<=30;i++){
+    var pd=new Date();pd.setDate(pd.getDate()+i);
+    var lbl=String(pd.getDate()).padStart(2,'0')+'/'+String(pd.getMonth()+1).padStart(2,'0');
+    var tgt=balance+data.dailyTarget*i;
+    var gain=data.dailyTarget*i;
+    var bg=i%7===0?'background:#1a2634;':''
+    projRows+='<tr style="'+bg+'"><td style="color:#95a5a6;font-size:.8em">+'+i+' ('+lbl+')</td>'
+      +'<td style="color:#27ae60;font-weight:bold">€'+tgt.toFixed(0)+'</td>'
+      +'<td style="color:#f39c12">+€'+gain.toFixed(0)+'</td></tr>';
+  }
+  var proj='<div class="card"><h3>📈 Proiezione 30 Giorni · +€'+data.dailyTarget+'/giorno</h3>'
+    +'<div style="background:#1a2634;border-radius:6px;padding:10px;margin-bottom:8px;font-size:.82em;color:#bdc3c7">'
+    +'Saldo attuale: <strong style="color:#3498db">€'+balance.toFixed(2)+'</strong> &nbsp;·&nbsp; '
+    +'Obiettivo a 30gg: <strong style="color:#27ae60">€'+(balance+data.dailyTarget*30).toFixed(2)+'</strong> &nbsp;·&nbsp; '
+    +'Rendimento necessario: <strong style="color:#f39c12">€'+data.dailyTarget.toFixed(0)+'/giorno</strong></div>'
+    +'<div class="tbl-wrap" style="max-height:240px;overflow-y:auto">'
+    +'<table style="width:100%;font-size:.82em">'
+    +'<tr style="color:#7f8c8d;font-size:.74em;position:sticky;top:0;background:#131f2e"><th style="text-align:left;padding:4px">Giorno</th><th style="text-align:left">Saldo target</th><th style="text-align:left">Guadagno cumulato</th></tr>'
+    +projRows+'</table></div></div>';
+
+  root.innerHTML=hdr+stats+cfg+addForm+tbl+proj;
+}
+</script>
+
 </body>
 </html>
