@@ -1660,9 +1660,9 @@ function renderFilteredView(list) {
   var cards = list.map(function(m) {
     var live = isLiveNow(m.time, m.played);
     var liveBadge = live ? '<span class="live-badge" style="margin-right:8px;vertical-align:middle">● LIVE</span>' : '';
-    return '<div class="card" onclick="showMatch('' + m.id + '')" '
-      + 'style="cursor:pointer;margin-bottom:10px;transition:.15s;border-color:' + (live ? '#e74c3c' : '#1e2d3d') + '" '
-      + 'onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='' + (live?'#e74c3c':'#1e2d3d') + ''">'
+    var bc = live ? '#e74c3c' : '#1e2d3d';
+    return '<div class="card" data-mid="' + m.id + '" onclick="showMatch(this.dataset.mid)" '
+      + 'style="cursor:pointer;margin-bottom:10px;transition:.15s;border-color:' + bc + '">'
       + '<div style="font-size:.78em;color:#7f8c8d;margin-bottom:4px">' + liveBadge + '🕐 ' + m.time + ' · ' + m.league + '</div>'
       + '<div style="font-size:1.05em;font-weight:bold;color:#ecf0f1;margin-bottom:8px">'
       + m.home + ' <span style="color:#7f8c8d">vs</span> ' + m.away + '</div>'
@@ -1670,7 +1670,7 @@ function renderFilteredView(list) {
       + '<span style="background:' + m.catCol + ';color:#fff;padding:2px 12px;border-radius:12px;font-size:.78em;font-weight:bold">' + m.cat + '</span>'
       + '<span style="color:#f39c12;font-weight:bold;font-size:.9em">EV adj: ' + m.ev + '</span>'
       + '<span style="color:#95a5a6;font-size:.82em">pX adj: ' + m.pD + '</span>'
-      + '<span style="color:#7f8c8d;font-size:.78em;margin-left:auto">Apri analisi →</span>'
+      + '<span style="color:#7f8c8d;font-size:.78em;margin-left:auto">Apri analisi</span>'
       + '</div></div>';
   }).join('');
   document.getElementById('match-filtered').innerHTML = header + cards;
