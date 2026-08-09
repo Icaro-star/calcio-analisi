@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Analisi Calcio</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1923;color:#ecf0f1;min-height:100vh}
+  .layout{display:flex;height:100vh;overflow:hidden;flex-direction:column}
+  .topbar{background:#131f2e;border-bottom:1px solid #1e2d3d;padding:0 16px;display:flex;align-items:center;gap:0;flex-shrink:0;overflow-x:auto;scrollbar-width:none}
+  .topbar::-webkit-scrollbar{display:none}
+  .topbar-brand{font-weight:bold;color:#3498db;font-size:.95em;white-space:nowrap;margin-right:16px;padding:12px 0}
+  .cal-btn{padding:10px 18px;border:none;background:transparent;color:#7f8c8d;cursor:pointer;font-size:.85em;white-space:nowrap;border-bottom:2px solid transparent;transition:.15s;font-family:inherit}
+  .cal-btn.active{color:#ecf0f1;border-bottom-color:#3498db;font-weight:bold}
+  .cal-btn:hover{color:#ecf0f1}
+  .body-row{display:flex;flex:1;overflow:hidden}
+  .sidebar{width:230px;min-width:230px;background:#131f2e;border-right:1px solid #1e2d3d;overflow-y:auto;padding:8px;flex-shrink:0}
+  .main{flex:1;overflow-y:auto;padding:16px 20px}
+  .sidebar-item{padding:9px 8px;margin-bottom:5px;border-radius:6px;cursor:pointer;border:1px solid transparent;transition:.15s}
+  .sidebar-item:hover{background:#1e2d3d;border-color:#2c3e50}
+  .sidebar-item.active{background:#1a2c42;border-color:#3498db}
+  .card{background:#131f2e;border:1px solid #1e2d3d;border-radius:8px;padding:12px 14px;margin-bottom:10px}
+  .match-header{background:#131f2e;border-bottom:1px solid #1e2d3d;padding:14px 20px;margin:-16px -20px 16px}
+  .match-content{display:none}
+  .match-content.active{display:block}
+  .hide-mobile{}
+  @media(max-width:700px){
+    .body-row{flex-direction:column}
+    .sidebar{width:100%;min-width:0;height:auto;max-height:140px;display:flex;flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:6px;border-right:none;border-bottom:1px solid #1e2d3d;scrollbar-width:none}
+    .sidebar::-webkit-scrollbar{display:none}
+    .sidebar-item{min-width:130px;max-width:140px;flex-shrink:0;margin-bottom:0;margin-right:6px;font-size:.82em}
+    .main{padding:10px}
+    .match-header{margin:-10px -10px 12px;padding:10px}
+    .hide-mobile{display:none}
+  }
+  @media(max-width:400px){.cal-btn{padding:10px 10px;font-size:.78em}}
+  table{border-collapse:collapse;width:100%}
+  td,th{padding:6px 4px;border-bottom:1px solid #1e2d3d}
+  th{color:#7f8c8d;font-size:.78em;text-align:left}
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:10px}
+  .day-content{display:none}
+  .day-content.active{display:flex;height:100%;overflow:hidden;flex-direction:row}
+  @media(max-width:700px){.day-content.active{flex-direction:column}}
+  .accuracy-bar{background:#1a2634;border-radius:4px;height:8px;overflow:hidden;margin:4px 0}
+  .accuracy-fill{height:100%;background:#27ae60;border-radius:4px;transition:width .6s}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Top calendar bar -->
+  <div class="topbar">
+    <div class="topbar-brand">⚽ Calcio Analisi</div>
+    <button class="cal-btn" id="cal-aug8" onclick="switchDay('aug8')">📅 Ven 8 Ago</button>
+    <button class="cal-btn active" id="cal-aug9" onclick="switchDay('aug9')">📅 Sab 9 Ago — OGGI</button>
+  </div>
+
+  <!-- ─── DAY: 8 Agosto ─── -->
+  <div class="day-content" id="day-aug8">
+    <div class="main" style="max-width:900px;margin:0 auto;padding:16px 20px">
+      <div class="match-header">
+  <h2 style="color:#ecf0f1;margin:0 0 4px">📅 8 Agosto 2026 — Risultati</h2>
+  <div style="color:#95a5a6;font-size:.82em">Confronto predizioni modello vs risultati reali</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1f0f;border-color:#27ae60">
+    <div style="font-size:2em;font-weight:bold;color:#27ae60">5/8</div>
+    <div style="font-size:.78em;color:#95a5a6">Predizioni corrette</div>
+  </div>
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:2em;font-weight:bold;color:#3498db">62%</div>
+    <div style="font-size:.78em;color:#95a5a6">Accuratezza</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:2em;font-weight:bold;color:#f39c12">3</div>
+    <div style="font-size:.78em;color:#95a5a6">Errori</div>
+  </div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:.78em;color:#95a5a6;margin-bottom:6px">Accuratezza</div>
+    <div style="background:#1a2634;border-radius:4px;height:12px;overflow:hidden">
+      <div style="background:#27ae60;width:62%;height:100%;border-radius:4px;transition:width .6s"></div>
+    </div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">62% delle partite</div>
+  </div>
+</div>
+
+<div class="card" style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse">
+    <thead>
+      <tr style="color:#7f8c8d;font-size:.78em;border-bottom:2px solid #1e2d3d">
+        <th style="padding:6px;text-align:left">Ora</th>
+        <th style="padding:6px;text-align:left">Partita</th>
+        <th style="padding:6px;text-align:center">Score</th>
+        <th style="padding:6px;text-align:center">Ris.</th>
+        <th style="padding:6px;text-align:center">Modello</th>
+        <th style="padding:6px;text-align:center" class="hide-mobile">Cat</th>
+        <th style="padding:6px;text-align:center" class="hide-mobile">EV X</th>
+      </tr>
+    </thead>
+    <tbody><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">13:30</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">FC Heidenheim <span style="color:#7f8c8d">vs</span> VfL Osnabrück</div>
+            <div style="font-size:.72em;color:#7f8c8d">Bundesliga 2</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">4-3</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold;font-size:.85em">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✓ 1</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#27ae60;font-weight:bold;font-size:.82em" class="hide-mobile">+14.5%</td>
+        </tr><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">15:30</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">VfL Wolfsburg <span style="color:#7f8c8d">vs</span> 1. FC Kaiserslautern</div>
+            <div style="font-size:.72em;color:#7f8c8d">Bundesliga 2</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">0-0</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold;font-size:.85em">X</span><br><span style="font-size:.7em;color:#7f8c8d">Pareggio</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✗ pred:1</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#27ae60;font-weight:bold;font-size:.82em" class="hide-mobile">+11.5%</td>
+        </tr><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">17:00</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Vålerenga IF <span style="color:#7f8c8d">vs</span> FK Bodø/Glimt</div>
+            <div style="font-size:.72em;color:#7f8c8d">Eliteserien</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-2</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold;font-size:.85em">2</span><br><span style="font-size:.7em;color:#7f8c8d">Ospite</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✓ 2</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">FACILE</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#27ae60;font-weight:bold;font-size:.82em" class="hide-mobile">+40.2%</td>
+        </tr><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">19:00</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Aarhus Fremad <span style="color:#7f8c8d">vs</span> HB Køge</div>
+            <div style="font-size:.72em;color:#7f8c8d">1st Division DK</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">3-1</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold;font-size:.85em">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✓ 1</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">DIFFICILE</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#e74c3c;font-weight:bold;font-size:.82em" class="hide-mobile">-0.3%</td>
+        </tr><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">20:45</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Burnley FC <span style="color:#7f8c8d">vs</span> Notts County</div>
+            <div style="font-size:.72em;color:#7f8c8d">EFL League One</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-1</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold;font-size:.85em">X</span><br><span style="font-size:.7em;color:#7f8c8d">Pareggio</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✓ X</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">FACILE</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#27ae60;font-weight:bold;font-size:.82em" class="hide-mobile">+35.6%</td>
+        </tr><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">17:00</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">IK Start <span style="color:#7f8c8d">vs</span> Fredrikstad FK</div>
+            <div style="font-size:.72em;color:#7f8c8d">Eliteserien</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">0-1</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold;font-size:.85em">2</span><br><span style="font-size:.7em;color:#7f8c8d">Ospite</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✓ 2</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">FACILE</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#27ae60;font-weight:bold;font-size:.82em" class="hide-mobile">+6.4%</td>
+        </tr><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">20:30</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Vitória Guimarães <span style="color:#7f8c8d">vs</span> FC Arouca</div>
+            <div style="font-size:.72em;color:#7f8c8d">Liga Portugal</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">0-1</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold;font-size:.85em">2</span><br><span style="font-size:.7em;color:#7f8c8d">Ospite</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✗ pred:1</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#27ae60;font-weight:bold;font-size:.82em" class="hide-mobile">+17.3%</td>
+        </tr><tr onclick="showDay('aug9')" style="cursor:default">
+          <td style="padding:8px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">20:30</td>
+          <td style="padding:8px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Sint-Truiden VV <span style="color:#7f8c8d">vs</span> Lommel SK</div>
+            <div style="font-size:.72em;color:#7f8c8d">Jupiler League</div>
+          </td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-1</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold;font-size:.85em">X</span><br><span style="font-size:.7em;color:#7f8c8d">Pareggio</span></td>
+          <td style="padding:8px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">✗ pred:1</span></td>
+          <td style="padding:8px 6px;text-align:center" class="hide-mobile"><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">DIFFICILE</span></td>
+          <td style="padding:8px 6px;text-align:center;color:#e74c3c;font-weight:bold;font-size:.82em" class="hide-mobile">-11.8%</td>
+        </tr></tbody>
+  </table>
+</div>
+
+<div class="card" style="margin-top:12px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-weight:bold;color:#f39c12;font-size:.85em;margin-bottom:8px">🔧 Calibrazione modello — Analisi errori</div>
+  <ul style="font-size:.82em;color:#bdc3c7;line-height:1.8;padding-left:16px"><li style="margin-bottom:4px">VfL Wolfsburg vs 1. FC Kaiserslautern: predetto 1, risultato X (0-0)</li><li style="margin-bottom:4px">Vitória Guimarães vs FC Arouca: predetto 1, risultato 2 (0-1)</li><li style="margin-bottom:4px">Sint-Truiden VV vs Lommel SK: predetto 1, risultato X (1-1)</li></ul>
+  <div style="font-size:.79em;color:#7f8c8d;margin-top:10px;line-height:1.6">
+    <strong style="color:#3498db">Aggiornamento parametri per 9 agosto:</strong>
+    Lega belga — leggero bias verso pareggio (+2% pD).
+    Liga Portugal — quote di mercato forti (Braga nettamente favorita), λ confermato.
+    Bundesliga 2 — St. Pauli forte in casa, λ_home mantenuto alto.
+  </div>
+</div>
+    </div>
+  </div>
+
+  <!-- ─── DAY: 9 Agosto ─── -->
+  <div class="day-content active" id="day-aug9">
+    <div class="sidebar" id="sidebar9">
+      <!-- Dashboard -->
+      <div class="sidebar-item active" id="sn-dashboard" onclick="showMatch9('dashboard')">
+        <div style="font-size:.7em;color:#3498db;font-weight:bold">📊 DASHBOARD</div>
+        <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;margin:2px 0">Tutte le partite</div>
+        <div style="font-size:.68em;color:#7f8c8d">14 partite · 9 Agosto</div>
+      </div>
+      <div class="sidebar-item" id="sn-m1" data-mid="m1" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">13:30 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Gent<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> KV Mechelen</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -2.0%</span>
+          </div></div><div class="sidebar-item" id="sn-m2" data-mid="m2" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">13:30 · Bundesliga 2</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">St. Pauli<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Greuther Fürth</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#f39c12;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">MEDIA</span>
+            <span style="font-size:.68em;color:#27ae60;font-weight:bold">EV +5.4%</span>
+          </div></div><div class="sidebar-item" id="sn-m3" data-mid="m3" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">14:00 · Allsvenskan</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Malmo FF<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Degerfors IF</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -2.1%</span>
+          </div></div><div class="sidebar-item" id="sn-m4" data-mid="m4" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">15:00 · 1st Division</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Fredericia<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Vendsyssel</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -5.6%</span>
+          </div></div><div class="sidebar-item" id="sn-m5" data-mid="m5" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">16:00 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Charleroi<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> OHL Leuven</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -0.6%</span>
+          </div></div><div class="sidebar-item" id="sn-m6" data-mid="m6" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">16:00 · Premiership</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Hearts<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Dundee Utd</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -5.8%</span>
+          </div></div><div class="sidebar-item" id="sn-m7" data-mid="m7" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">16:30 · Super League</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">FC Sion<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> FC Vaduz</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -3.2%</span>
+          </div></div><div class="sidebar-item" id="sn-m8" data-mid="m8" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">17:00 · Eliteserien</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">HamKam<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Aalesund</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#f39c12;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">MEDIA</span>
+            <span style="font-size:.68em;color:#27ae60;font-weight:bold">EV +8.8%</span>
+          </div></div><div class="sidebar-item" id="sn-m9" data-mid="m9" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">17:00 · 1. Liga</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Jablonec<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Slovacko</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -4.6%</span>
+          </div></div><div class="sidebar-item" id="sn-m10" data-mid="m10" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">17:00 · Premiership</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Rangers<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Hibernian</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -3.4%</span>
+          </div></div><div class="sidebar-item" id="sn-m11" data-mid="m11" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">18:30 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Anderlecht<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> RAAL La Louviere</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -1.4%</span>
+          </div></div><div class="sidebar-item" id="sn-m12" data-mid="m12" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">19:15 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Royal Antwerp<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> SK Beveren</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -2.4%</span>
+          </div></div><div class="sidebar-item" id="sn-m13" data-mid="m13" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">21:00 · Coppa Italia</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Benevento<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Ravenna</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">DIFFICILE</span>
+            <span style="font-size:.68em;color:#e74c3c;font-weight:bold">EV -7.3%</span>
+          </div></div><div class="sidebar-item" id="sn-m14" data-mid="m14" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.65em;color:#7f8c8d">21:30 · Liga Portugal</div>
+          <div style="font-weight:bold;font-size:.82em;color:#ecf0f1;line-height:1.3;margin:2px 0">Moreirense<br><span style="color:#7f8c8d;font-size:.9em;font-weight:normal">vs</span> Braga</div>
+          <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:6px;font-size:.62em">FACILE</span>
+            <span style="font-size:.68em;color:#27ae60;font-weight:bold">EV +10.5%</span>
+          </div></div>
+    </div>
+
+    <div class="main" id="main9">
+
+      <!-- Dashboard view -->
+      <div class="match-content active" id="mc-dashboard">
+        <div class="match-header">
+          <h2 style="color:#ecf0f1;margin:2px 0">📊 Dashboard — 9 Agosto 2026</h2>
+          <div style="color:#95a5a6;font-size:.82em">14 partite · Quote da The Odds API · Modello Poisson-DC v2</div>
+        </div>
+
+        <!-- Accuratezza ieri -->
+        <div class="card" style="background:#0d1520;border-color:#1a3a5a;margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <div>
+              <div style="font-size:.78em;color:#7f8c8d;margin-bottom:2px">Ieri — 8 Agosto 2026</div>
+              <div style="font-size:.95em;font-weight:bold;color:#ecf0f1">Accuratezza modello: <span style="color:#27ae60">5/8 (62%)</span></div>
+              <div style="font-size:.75em;color:#7f8c8d;margin-top:2px">Errori: Wolfsburg (pred 1 → X), Vitória (pred 1 → 2), Sint-Truiden (pred 1 → X)</div>
+            </div>
+            <button onclick="switchDay('aug8')" style="background:#1a2634;color:#3498db;border:1px solid #2c3e50;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.8em;white-space:nowrap">
+              Ver risultati completi →
+            </button>
+          </div>
+          <div class="accuracy-bar" style="margin-top:10px"><div class="accuracy-fill" style="width:62%"></div></div>
+        </div>
+
+        <!-- Migliori proposte -->
+        <div class="card" style="background:#080f18;border-color:#1a3a5a;margin-bottom:12px">
+          <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-bottom:8px">🎯 MIGLIORI PROPOSTE — 9 Agosto</div>
+          <div style="font-size:.72em;color:#7f8c8d;margin-bottom:10px">EV positivo · escluso Over 0.5 FT · clicca per analisi completa</div>
+          <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin">
+            <div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto"
+          data-mid="m14" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">X Pareggio</div>
+          <div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Moreirense vs Braga</div>
+          <div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">21:30 · Liga Portugal</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span style="font-size:.77em;color:#bdc3c7">30.7% @3.6</span>
+            <span style="font-size:.81em;font-weight:bold;color:#27ae60">+10.5% EV</span>
+          </div>
+          <span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">FACILE</span>
+        </div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto"
+          data-mid="m8" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">X Pareggio</div>
+          <div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">HamKam vs Aalesund</div>
+          <div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">17:00 · Eliteserien</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span style="font-size:.77em;color:#bdc3c7">25.9% @4.2</span>
+            <span style="font-size:.81em;font-weight:bold;color:#27ae60">+8.8% EV</span>
+          </div>
+          <span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">MEDIA</span>
+        </div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto"
+          data-mid="m2" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">X Pareggio</div>
+          <div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">St. Pauli vs Greuther Fürth</div>
+          <div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">13:30 · Bundesliga 2</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span style="font-size:.77em;color:#bdc3c7">25.4% @4.15</span>
+            <span style="font-size:.81em;font-weight:bold;color:#27ae60">+5.4% EV</span>
+          </div>
+          <span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">MEDIA</span>
+        </div><div style="background:#0a1520;border:1px solid #3498db;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto"
+          data-mid="m8" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.7em;font-weight:bold;color:#3498db;margin-bottom:3px">Over 1.5</div>
+          <div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">HamKam vs Aalesund</div>
+          <div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">17:00 · Eliteserien</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span style="font-size:.77em;color:#bdc3c7">81.2% @1.23</span>
+            <span style="font-size:.81em;font-weight:bold;color:#3498db">81.2% prob</span>
+          </div>
+          <span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">MEDIA</span>
+        </div><div style="background:#0a1520;border:1px solid #3498db;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto"
+          data-mid="m3" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.7em;font-weight:bold;color:#3498db;margin-bottom:3px">Over 1.5</div>
+          <div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Malmo FF vs Degerfors IF</div>
+          <div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">14:00 · Allsvenskan</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span style="font-size:.77em;color:#bdc3c7">76.1% @1.31</span>
+            <span style="font-size:.81em;font-weight:bold;color:#3498db">76.1% prob</span>
+          </div>
+          <span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">DIFFICILE</span>
+        </div><div style="background:#0a1520;border:1px solid #3498db;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto"
+          data-mid="m8" onclick="showMatch9(this.dataset.mid)">
+          <div style="font-size:.7em;font-weight:bold;color:#3498db;margin-bottom:3px">BTTS</div>
+          <div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">HamKam vs Aalesund</div>
+          <div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">17:00 · Eliteserien</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span style="font-size:.77em;color:#bdc3c7">60.4% @1.66</span>
+            <span style="font-size:.81em;font-weight:bold;color:#3498db">60.4% prob</span>
+          </div>
+          <span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">MEDIA</span>
+        </div>
+          </div>
+        </div>
+
+        <!-- Cards partite -->
+        <div class="cards-grid">
+          <div class="card" style="cursor:pointer" data-mid="m1" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">13:30 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Gent<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> KV Mechelen</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">49.9%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.9</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">28.0%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.5</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">22.1%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.0</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -2.0%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 45.6%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m2" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">13:30 · Bundesliga 2</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">St. Pauli<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Greuther Fürth</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">58.2%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.64</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">25.4%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.15</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">16.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@5.14</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#f39c12;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">MEDIA</span>
+            <span style="font-size:.75em;color:#27ae60;font-weight:bold">X EV +5.4%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 48.2%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m3" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">14:00 · Allsvenskan</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Malmo FF<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Degerfors IF</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">63.3%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.4</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">23.3%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.2</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">13.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@5.6</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -2.1%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 50.6%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m4" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">15:00 · 1st Division</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Fredericia<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Vendsyssel</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">45.1%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@2.0</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">29.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.2</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">25.4%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.4</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -5.6%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 43.0%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m5" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">16:00 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Charleroi<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> OHL Leuven</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">52.6%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.77</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">28.0%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.55</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">19.4%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.45</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -0.6%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 43.0%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m6" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">16:00 · Premiership</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Hearts<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Dundee Utd</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">51.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.75</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">27.7%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.4</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">20.8%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.0</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -5.8%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 45.6%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m7" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">16:30 · Super League</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">FC Sion<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> FC Vaduz</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">68.9%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.32</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">21.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.5</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">9.6%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@8.0</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -3.2%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 48.2%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m8" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">17:00 · Eliteserien</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">HamKam<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Aalesund</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">46.7%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@2.16</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">25.9%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.2</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">27.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.4</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#f39c12;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">MEDIA</span>
+            <span style="font-size:.75em;color:#27ae60;font-weight:bold">X EV +8.8%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 57.7%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m9" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">17:00 · 1. Liga</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Jablonec<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Slovacko</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">43.0%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@2.1</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">29.8%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.2</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">27.2%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.2</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -4.6%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 43.0%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m10" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">17:00 · Premiership</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Rangers<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Hibernian</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">57.3%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.6</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">26.1%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.7</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">16.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@5.0</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -3.4%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 45.6%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m11" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">18:30 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Anderlecht<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> RAAL La Louviere</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">54.7%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.7</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">27.4%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.6</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">17.9%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.8</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -1.4%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 43.0%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m12" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">19:15 · Jupiler League</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Royal Antwerp<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> SK Beveren</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">49.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.9</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">28.7%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.4</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">21.8%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.05</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -2.4%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 43.0%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m13" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">21:00 · Coppa Italia</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Benevento<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Ravenna</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">56.0%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.55</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">26.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.5</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">17.5%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.5</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">DIFFICILE</span>
+            <span style="font-size:.75em;color:#e74c3c;font-weight:bold">X EV -7.3%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 45.6%</span>
+          </div></div><div class="card" style="cursor:pointer" data-mid="m14" onclick="showMatch9(this.dataset.mid)"
+          onmouseover="this.style.borderColor='#3498db'" onmouseout="this.style.borderColor='#1e2d3d'">
+          <div style="font-size:.67em;color:#7f8c8d;margin-bottom:3px">21:30 · Liga Portugal</div>
+          <div style="font-weight:bold;font-size:.87em;color:#ecf0f1;line-height:1.2;margin-bottom:6px">Moreirense<br><span style="color:#7f8c8d;font-weight:normal;font-size:.9em">vs</span> Braga</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;text-align:center;margin-bottom:5px">
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">1</div><div style="color:#3498db;font-weight:bold;font-size:.88em">16.9%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@4.7</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">X</div><div style="color:#f39c12;font-weight:bold;font-size:.88em">30.7%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@3.6</div></div>
+            <div style="background:#0f1923;border-radius:3px;padding:3px 2px">
+              <div style="font-size:.62em;color:#95a5a6">2</div><div style="color:#e74c3c;font-weight:bold;font-size:.88em">52.4%</div>
+              <div style="font-size:.65em;color:#7f8c8d">@1.54</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.65em">FACILE</span>
+            <span style="font-size:.75em;color:#27ae60;font-weight:bold">X EV +10.5%</span>
+            <span style="font-size:.72em;color:#7f8c8d;margin-left:auto">O2.5 32.3%</span>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- Detail panels -->
+      <div class="match-content" id="mc-m1" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">13:30 · Jupiler League — Belgio</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Gent vs KV Mechelen</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -2.0%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Gent</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">49.9%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.9</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -5.2%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">28.0%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.5</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -2.0%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — KV Mechelen</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">22.1%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.0</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -11.6%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.547</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.953</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">72.5%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">45.6%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">49.6%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">67.5%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.547 vs λ ospite 0.953 · Prob mercato: 49.6% / 26.9% / 23.5%
+    · Prob modello: 49.9% / 28.0% / 22.1%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m2" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">13:30 · Bundesliga 2 — Germania</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">St. Pauli vs Greuther Fürth</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#f39c12;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">MEDIA</span>
+    <span style="color:#27ae60;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV +5.4%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — St. Pauli</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">58.2%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.64</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -4.6%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">25.4%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.15</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:2px">EV +5.4%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Greuther Fürth</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">16.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@5.14</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -15.2%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.762</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.838</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">74.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">48.2%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">48.1%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">69.0%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.762 vs λ ospite 0.838 · Prob mercato: 58.3% / 23.1% / 18.6%
+    · Prob modello: 58.2% / 25.4% / 16.5%
+    · <strong style='color:#27ae60'>EV positivo sul pareggio</strong> — il mercato sovrastima la squadra favorita
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m3" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">14:00 · Allsvenskan — Svezia</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Malmo FF vs Degerfors IF</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -2.1%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Malmo FF</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">63.3%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.4</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -11.4%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">23.3%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.2</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -2.1%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Degerfors IF</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">13.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@5.6</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -24.4%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.92</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.78</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">76.1%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">50.6%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">47.2%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">70.3%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.92 vs λ ospite 0.78 · Prob mercato: 63.2% / 21.1% / 15.8%
+    · Prob modello: 63.3% / 23.3% / 13.5%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m4" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">15:00 · 1st Division — Danimarca</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Fredericia vs Vendsyssel</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -5.6%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Fredericia</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">45.1%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@2.0</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -9.8%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">29.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.2</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -5.6%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Vendsyssel</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">25.4%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.4</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -13.6%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.405</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.995</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">70.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">43.0%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">48.8%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">66.0%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.405 vs λ ospite 0.995 · Prob mercato: 45.2% / 28.2% / 26.6%
+    · Prob modello: 45.1% / 29.5% / 25.4%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m5" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">16:00 · Jupiler League — Belgio</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Charleroi vs OHL Leuven</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -0.6%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Charleroi</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">52.6%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.77</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -6.9%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">28.0%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.55</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -0.6%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — OHL Leuven</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">19.4%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.45</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -13.7%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.549</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.851</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">70.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">43.0%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">46.3%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">66.0%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.549 vs λ ospite 0.851 · Prob mercato: 52.7% / 26.3% / 21.0%
+    · Prob modello: 52.6% / 28.0% / 19.4%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m6" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">16:00 · Premiership — Scozia</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Hearts vs Dundee Utd</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -5.8%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Hearts</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">51.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.75</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -9.9%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">27.7%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.4</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -5.8%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Dundee Utd</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">20.8%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.0</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -16.8%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.578</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.922</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">72.5%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">45.6%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">49.0%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">67.5%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.578 vs λ ospite 0.922 · Prob mercato: 51.2% / 26.4% / 22.4%
+    · Prob modello: 51.5% / 27.7% / 20.8%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m7" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">16:30 · Super League — Svizzera</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">FC Sion vs FC Vaduz</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -3.2%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — FC Sion</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">68.9%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.32</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -9.1%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">21.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.5</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -3.2%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — FC Vaduz</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">9.6%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@8.0</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -23.2%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.985</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.615</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">74.2%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">48.2%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">40.5%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">69.0%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.985 vs λ ospite 0.615 · Prob mercato: 68.6% / 20.1% / 11.3%
+    · Prob modello: 68.9% / 21.5% / 9.6%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m8" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">17:00 · Eliteserien — Norvegia</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">HamKam vs Aalesund</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#f39c12;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">MEDIA</span>
+    <span style="color:#27ae60;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV +8.8%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — HamKam</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">46.7%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@2.16</div>
+    <div style="font-size:.82em;font-weight:bold;color:#f39c12;margin-top:2px">EV +0.9%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">25.9%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.2</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:2px">EV +8.8%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Aalesund</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">27.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.4</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -6.5%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.72</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">1.28</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">81.2%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">57.7%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">60.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">74.1%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.72 vs λ ospite 1.28 · Prob mercato: 46.5% / 23.9% / 29.6%
+    · Prob modello: 46.7% / 25.9% / 27.5%
+    · <strong style='color:#27ae60'>EV positivo sul pareggio</strong> — il mercato sovrastima la squadra favorita
+    · <strong style='color:#27ae60'>Partita aperta</strong> — alta probabilita di gol (BTTS {m['btts']}%)
+  </div>
+</div></div>
+<div class="match-content" id="mc-m9" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">17:00 · 1. Liga — Rep. Ceca</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Jablonec vs Slovacko</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -4.6%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Jablonec</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">43.0%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@2.1</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -9.7%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">29.8%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.2</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -4.6%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Slovacko</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">27.2%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.2</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -13.0%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.363</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">1.037</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">70.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">43.0%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">49.3%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">66.0%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.363 vs λ ospite 1.037 · Prob mercato: 43.2% / 28.4% / 28.4%
+    · Prob modello: 43.0% / 29.8% / 27.2%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m10" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">17:00 · Premiership — Scozia</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Rangers vs Hibernian</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -3.4%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Rangers</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">57.3%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.6</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -8.3%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">26.1%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.7</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -3.4%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Hibernian</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">16.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@5.0</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -17.5%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.693</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.807</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">72.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">45.6%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">46.3%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">67.5%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.693 vs λ ospite 0.807 · Prob mercato: 57.1% / 24.7% / 18.3%
+    · Prob modello: 57.3% / 26.1% / 16.5%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m11" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">18:30 · Jupiler League — Belgio</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Anderlecht vs RAAL La Louviere</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -1.4%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Anderlecht</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">54.7%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.7</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -7.0%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">27.4%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.6</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -1.4%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — RAAL La Louviere</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">17.9%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.8</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -14.1%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.59</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.81</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">70.3%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">43.0%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">45.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">66.0%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.59 vs λ ospite 0.81 · Prob mercato: 54.8% / 25.9% / 19.4%
+    · Prob modello: 54.7% / 27.4% / 17.9%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m12" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">19:15 · Jupiler League — Belgio</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Royal Antwerp vs SK Beveren</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -2.4%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Royal Antwerp</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">49.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.9</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -5.9%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">28.7%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.4</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -2.4%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — SK Beveren</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">21.8%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.05</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -11.7%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.489</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.911</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">70.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">43.0%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">47.5%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">66.0%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.489 vs λ ospite 0.911 · Prob mercato: 49.3% / 27.6% / 23.1%
+    · Prob modello: 49.5% / 28.7% / 21.8%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m13" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">21:00 · Coppa Italia — Italia</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Benevento vs Ravenna</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">DIFFICILE</span>
+    <span style="color:#e74c3c;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV -7.3%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Benevento</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">56.0%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.55</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -13.2%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">26.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.5</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -7.3%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Ravenna</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">17.5%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.5</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -21.3%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">1.666</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">0.834</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">72.4%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">45.6%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">47.0%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">67.5%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 1.666 vs λ ospite 0.834 · Prob mercato: 56.0% / 24.8% / 19.3%
+    · Prob modello: 56.0% / 26.5% / 17.5%
+    
+    
+  </div>
+</div></div>
+<div class="match-content" id="mc-m14" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">21:30 · Liga Portugal — Portogallo</div>
+  <h2 style="color:#ecf0f1;margin:4px 0">Moreirense vs Braga</h2>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+    <span style="background:#27ae60;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">FACILE</span>
+    <span style="color:#27ae60;font-weight:bold;font-size:.85em">Raccomandazione: Pareggio (EV +10.5%)</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">1 — Moreirense</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#3498db">16.9%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@4.7</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -20.6%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">X — Pareggio</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#f39c12">30.7%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@3.6</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:2px">EV +10.5%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c">
+    <div style="font-size:.72em;color:#7f8c8d;margin-bottom:4px">2 — Braga</div>
+    <div style="font-size:1.8em;font-weight:bold;color:#e74c3c">52.4%</div>
+    <div style="font-size:.78em;color:#95a5a6">Prob modello</div>
+    <div style="font-size:.9em;color:#ecf0f1;margin-top:4px">@1.54</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:2px">EV -19.3%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">📊 Statistiche Modello Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Casa</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#3498db">0.652</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">λ Ospite</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#e74c3c">1.348</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 1.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">60.6%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">Over 2.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#27ae60">32.3%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">BTTS</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#9b59b6">36.7%</div>
+    </div>
+    <div style="background:#0f1923;border-radius:6px;padding:8px;text-align:center">
+      <div style="font-size:.68em;color:#7f8c8d">HT O0.5</div>
+      <div style="font-size:1.1em;font-weight:bold;color:#16a085">59.3%</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.82em;color:#bdc3c7;line-height:1.7">
+    <strong style="color:#3498db">Analisi Poisson-DC:</strong>
+    λ casa 0.652 vs λ ospite 1.348 · Prob mercato: 18.7% / 24.4% / 57.0%
+    · Prob modello: 16.9% / 30.7% / 52.4%
+    · <strong style='color:#27ae60'>EV positivo sul pareggio</strong> — il mercato sovrastima la squadra favorita
+    
+  </div>
+</div></div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function switchDay(day) {
+  document.querySelectorAll('.day-content').forEach(function(d){ d.classList.remove('active'); });
+  document.querySelectorAll('.cal-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('day-' + day).classList.add('active');
+  document.getElementById('cal-' + day).classList.add('active');
+}
+
+function showMatch9(id) {
+  document.querySelectorAll('#main9 .match-content').forEach(function(e){ e.classList.remove('active'); e.style.display='none'; });
+  document.querySelectorAll('#sidebar9 .sidebar-item').forEach(function(e){ e.classList.remove('active'); });
+  var el = document.getElementById('mc-' + id);
+  if (el) { el.style.display='block'; el.classList.add('active'); }
+  var nav = document.getElementById('sn-' + id);
+  if (nav) {
+    nav.classList.add('active');
+    nav.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  }
+  var main = document.getElementById('main9');
+  if (main) main.scrollTop = 0;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
