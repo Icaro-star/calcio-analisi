@@ -92,13 +92,41 @@
 </head>
 <body>
 
-<!-- ── Login overlay (DEVE essere PRIMA dello script) ── -->
+<!-- ── Login script: definito PRIMA dell'overlay, dipendenze zero ── -->
+<script>
+window.onerror = function(msg,src,line) {
+  var d=document.getElementById('lg-err');
+  if(d){ d.textContent='⚠️ JS Error L'+line+': '+msg; d.style.display='block'; }
+  return true;
+};
+function doLogin() {
+  var u=(document.getElementById('lg-user').value||'').trim();
+  var p=document.getElementById('lg-pass').value||'';
+  var ok=false;
+  try { ok = u==='Zingabet' && p===atob('c2JhbmNhdG90YWxlOTYh'); } catch(e) {}
+  if (ok) {
+    try { localStorage.setItem('zb_auth','1'); } catch(e) {}
+    try {
+      var r=document.getElementById('lg-remember');
+      if(r&&r.checked){ localStorage.setItem('zb_su',u); localStorage.setItem('zb_sp',p); }
+    } catch(e) {}
+    document.getElementById('login-overlay').style.display='none';
+  } else {
+    var er=document.getElementById('lg-err');
+    if(er){ er.textContent='❌ Credenziali non valide — usa 👁 per verificare'; er.style.display='block'; setTimeout(function(){ er.style.display='none'; },3000); }
+    var pw=document.getElementById('lg-pass');
+    if(pw){ pw.value=''; pw.focus(); }
+  }
+}
+</script>
+
+<!-- ── Login overlay ── -->
 <div id="login-overlay" style="position:fixed;inset:0;background:#0a1220;z-index:9999;display:flex;align-items:center;justify-content:center">
   <div style="background:#131f2e;border:1px solid #1e2d3d;border-radius:12px;padding:36px 32px;width:320px;max-width:90vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.8)">
     <div style="font-size:2.5em;margin-bottom:8px">⚽</div>
     <div style="font-size:1.2em;font-weight:bold;color:#ecf0f1;margin-bottom:4px">Calcio Analisi</div>
     <div style="font-size:.8em;color:#7f8c8d;margin-bottom:24px">Accesso riservato</div>
-    <form id="lg-form">
+    <form id="lg-form" onsubmit="return false">
       <input id="lg-user" type="text" placeholder="Username" autocomplete="username"
         style="width:100%;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:10px 14px;color:#ecf0f1;font-size:.95em;margin-bottom:10px;outline:none;box-sizing:border-box"
         onfocus="this.style.borderColor='#3498db'" onblur="this.style.borderColor='#2c3e50'"
@@ -210,6 +238,18 @@
         <div style="font-size:.7em;color:#95a5a6">DIFFICILE</div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:14px;background:#080f18;border-color:#1a3a5a">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px">
+    <div>
+      <div style="font-size:.82em;font-weight:bold;color:#27ae60">🎯 MIGLIORI PROPOSTE MODELLO</div>
+      <div style="font-size:.72em;color:#7f8c8d;margin-top:2px">Poisson-DC adj · EV positivo · escluso Over 0.5 FT · clicca per analisi completa</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;scrollbar-color:#1e2d3d transparent">
+    <div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('valerenga_bodo')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">🤝 X Pareggio</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Vålerenga IF vs FK Bodø/Glimt</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">14:00 · Eliteserien 2026</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">26.7% · @5.25</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+40.2% EV</span></div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">FACILE</span></div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('burnley_notts')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">✈️ 2 Trasferta</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Burnley FC vs Notts County</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">16:00 · EFL Cup 2026-27</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">23.8% · @5.8</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+38.0% EV</span></div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">FACILE</span></div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('burnley_notts')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">🤝 X Pareggio</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Burnley FC vs Notts County</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">16:00 · EFL Cup 2026-27</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">32.3% · @4.2</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+35.6% EV</span></div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">FACILE</span></div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('guimaraes_arouca')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">✈️ 2 Trasferta</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Vitória Guimarães vs FC Arouca</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">19:00 · Liga Portugal 2026-27</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">29.7% · @4.2</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+24.7% EV</span></div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">FACILE</span></div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('start_fredrikstad')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">✈️ 2 Trasferta</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">IK Start vs Fredrikstad FK</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">18:00 · Eliteserien 2026</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">38.1% · @3.1</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+18.1% EV</span></div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">FACILE</span></div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('guimaraes_arouca')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">🤝 X Pareggio</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Vitória Guimarães vs FC Arouca</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">19:00 · Liga Portugal 2026-27</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">30.9% · @3.8</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+17.3% EV</span></div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">FACILE</span></div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('wolfsburg_kaiserslautern')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">🤝 X Pareggio</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">VfL Wolfsburg vs 1. FC Kaiserslautern</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">20:30 · 2. Bundesliga 2026-27</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">25.1% · @4.45</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+11.5% EV</span></div><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">MEDIA</span></div><div style="background:#0a1f0f;border:1px solid #27ae60;border-radius:8px;padding:10px 12px;cursor:pointer;min-width:190px;flex:0 0 auto" onclick="showMatch('aarhus_koge')"><div style="font-size:.7em;font-weight:bold;color:#27ae60;margin-bottom:3px">🏠 1 Casa</div><div style="font-size:.81em;font-weight:bold;color:#ecf0f1;line-height:1.3;margin-bottom:4px">Aarhus Fremad vs HB Køge</div><div style="font-size:.69em;color:#7f8c8d;margin-bottom:7px">14:00 · 1. Division Danimarca 2026</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:.77em;color:#bdc3c7">64.0% · @1.68</span><span style="font-size:.81em;font-weight:bold;color:#27ae60">+7.5% EV</span></div><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:8px;font-size:.63em">DIFFICILE</span></div>
   </div>
 </div>
 
@@ -1678,31 +1718,7 @@ function applyFilters(reset) {
   }
 }
 
-function doLogin() {
-  try {
-    var u = (document.getElementById("lg-user").value || "").trim();
-    var p = document.getElementById("lg-pass").value || "";
-    var ok = (u === "Zingabet") && (p === atob("c2JhbmNhdG90YWxlOTYh"));
-    if (ok) {
-      try { localStorage.setItem("zb_auth","1"); } catch(e) {}
-      try {
-        var rem = document.getElementById("lg-remember");
-        if (rem && rem.checked) { localStorage.setItem("zb_su",u); localStorage.setItem("zb_sp",p); }
-      } catch(e) {}
-      document.getElementById("login-overlay").style.display = "none";
-      try { initBells(); } catch(e) {}
-      try { updateLiveBadges(); } catch(e) {}
-    } else {
-      var err = document.getElementById("lg-err");
-      if (err) { err.style.display="block"; setTimeout(function(){ err.style.display="none"; },3000); }
-      var pw = document.getElementById("lg-pass");
-      if (pw) { pw.value=""; pw.focus(); }
-    }
-  } catch(ex) {
-    var e2=document.getElementById("lg-err");
-    if(e2){ e2.textContent="⚠️ Errore: "+ex.message; e2.style.display="block"; }
-  }
-}
+// doLogin definita nello script early (prima dell'overlay) — nessuna dipendenza
 
 (function() {
   function _doUnlock() {
