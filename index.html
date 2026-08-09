@@ -203,15 +203,10 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
         <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Secche 1X2</div>
         <div style="font-size:.66em;color:#7f8c8d">Forma + EV + H2H</div>
       </div>
-      <div class="sidebar-item" id="sn-coupon" onclick="showMatch9('coupon')">
-        <div style="font-size:.68em;color:#27ae60;font-weight:bold">COUPON <span id="coupon-badge" class="coupon-badge"></span></div>
-        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Scommesse</div>
-        <div style="font-size:.66em;color:#7f8c8d">Traccia vinte/perse</div>
-      </div>
-      <div class="sidebar-item" id="sn-bankroll" onclick="showMatch9('bankroll')">
-        <div style="font-size:.68em;color:#9b59b6;font-weight:bold">BANKROLL</div>
-        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Proiezione 30gg</div>
-        <div style="font-size:.66em;color:#7f8c8d">Flat + compound</div>
+      <div class="sidebar-item" id="sn-scommesse" onclick="showMatch9('scommesse')">
+        <div style="font-size:.68em;color:#27ae60;font-weight:bold">SCOMMESSE <span id="coupon-badge" class="coupon-badge"></span></div>
+        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Budget + Monitoraggio</div>
+        <div style="font-size:.66em;color:#7f8c8d">Coupon + Proiezione 30gg</div>
       </div>
       <div class="sidebar-item" id="sn-m1" data-mid="m1" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">13:30 · Jupiler League</div>
@@ -933,63 +928,59 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
         </tr></tbody>
   </table>
 </div></div>
-      <!-- Coupon -->
-      <div class="match-content" id="mc-coupon" style="display:none">
+      <!-- SCOMMESSE (unificato: budget + coupon + monitoraggio + proiezione) -->
+      <div class="match-content" id="mc-scommesse" style="display:none">
         <div class="match-header">
-          <h2 style="color:#27ae60;margin:4px 0">Le mie scommesse</h2>
-          <div style="color:#95a5a6;font-size:.82em">Salvate in locale · traccia vinte/perse</div>
+          <h2 style="color:#27ae60;margin:4px 0">Scommesse &amp; Bankroll</h2>
+          <div style="color:#95a5a6;font-size:.82em">Budget · Coupon · Monitoraggio · Proiezione 30 giorni</div>
         </div>
-        <div id="coupon-content"></div>
-      </div>
-      <!-- Bankroll -->
-      <div class="match-content" id="mc-bankroll" style="display:none">
-        <div class="match-header">
-          <h2 style="color:#9b59b6;margin:4px 0">Bankroll Monitor</h2>
-          <div style="color:#95a5a6;font-size:.82em">Proiezione 30 giorni · flat vs compound</div>
-        </div>
-        <div class="card" style="background:#0d1520;border-color:#1a3a5a;margin-bottom:12px" id="bk-coupon-stats">
-          <div style="font-size:.78em;color:#7f8c8d;margin-bottom:6px">Riepilogo dal coupon oggi</div>
-          <div id="bk-stats-content" style="font-size:.85em;color:#ecf0f1">Caricamento...</div>
-        </div>
-        <div class="card" style="margin-bottom:12px">
-          <div style="font-size:.82em;font-weight:bold;color:#9b59b6;margin-bottom:12px">Parametri proiezione</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <!-- Budget + proiezione -->
+        <div class="card" style="background:#091a0f;border-color:#1a4a1a;margin-bottom:12px">
+          <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-bottom:10px">Budget iniziale &amp; Proiezione</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
             <div>
-              <label style="font-size:.78em;color:#95a5a6;display:block;margin-bottom:4px">Capitale iniziale (EUR)</label>
+              <label style="font-size:.75em;color:#95a5a6;display:block;margin-bottom:3px">Capitale iniziale (EUR)</label>
               <input id="bk-start" type="number" value="100" min="1" step="10"
-                style="background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 10px;width:100%;font-size:.9em">
+                style="background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 10px;width:100%;font-size:.9em"
+                oninput="calcProjection()">
             </div>
             <div>
-              <label style="font-size:.78em;color:#95a5a6;display:block;margin-bottom:4px">Guadagno/giorno (EUR)</label>
+              <label style="font-size:.75em;color:#95a5a6;display:block;margin-bottom:3px">Guadagno/giorno (EUR)</label>
               <input id="bk-daily" type="number" value="5" step="0.5"
-                style="background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 10px;width:100%;font-size:.9em">
+                style="background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 10px;width:100%;font-size:.9em"
+                oninput="calcProjection()">
             </div>
           </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button onclick="calcProjection()" style="background:#9b59b6;color:#fff;border:none;border-radius:6px;padding:8px 18px;cursor:pointer;font-size:.82em;font-weight:bold">Calcola proiezione</button>
-            <button onclick="calcFromCoupon()" style="background:#1a2c42;color:#3498db;border:1px solid #2c3e50;border-radius:6px;padding:8px 18px;cursor:pointer;font-size:.82em">Usa dati coupon</button>
+          <button onclick="calcFromCoupon()" style="background:#1a2634;color:#3498db;border:1px solid #2c3e50;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.8em;margin-bottom:10px">Importa P/L da coupon</button>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+            <div style="background:#0a1520;border:1px solid #1a3a5a;border-radius:8px;padding:8px;text-align:center">
+              <div style="font-size:.7em;color:#7f8c8d">30gg flat</div>
+              <div id="bk-30flat" style="font-size:1.4em;font-weight:bold;color:#27ae60">—</div>
+            </div>
+            <div style="background:#0a1520;border:1px solid #1a3a5a;border-radius:8px;padding:8px;text-align:center">
+              <div style="font-size:.7em;color:#7f8c8d">30gg compound</div>
+              <div id="bk-30comp" style="font-size:1.4em;font-weight:bold;color:#3498db">—</div>
+            </div>
+          </div>
+          <div style="overflow-x:auto;max-height:180px;overflow-y:auto">
+            <table style="width:100%;border-collapse:collapse;font-size:.78em">
+              <thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d">
+                <th style="padding:3px 6px;text-align:center">Gg</th>
+                <th style="padding:3px 6px;color:#27ae60">Flat (EUR)</th>
+                <th style="padding:3px 6px;color:#3498db">Compound (EUR)</th>
+              </tr></thead>
+              <tbody id="bk-table"></tbody>
+            </table>
           </div>
         </div>
-        <div class="card" style="overflow-x:auto">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-            <div style="background:#0a1520;border:1px solid #1a3a5a;border-radius:8px;padding:10px;text-align:center">
-              <div style="font-size:.72em;color:#7f8c8d">Finale 30gg (flat)</div>
-              <div id="bk-30flat" style="font-size:1.5em;font-weight:bold;color:#27ae60">—</div>
-            </div>
-            <div style="background:#0a1520;border:1px solid #1a3a5a;border-radius:8px;padding:10px;text-align:center">
-              <div style="font-size:.72em;color:#7f8c8d">Finale 30gg (compound)</div>
-              <div id="bk-30comp" style="font-size:1.5em;font-weight:bold;color:#3498db">—</div>
-            </div>
+        <!-- Coupon attivo -->
+        <div class="card" style="background:#0d1520;border-color:#1a3a5a">
+          <div style="font-size:.82em;font-weight:bold;color:#ecf0f1;margin-bottom:4px">
+            Coupon attivo <span id="coupon-badge2" style="background:#27ae60;color:#fff;border-radius:10px;padding:1px 7px;font-size:.75em;display:none"></span>
           </div>
-          <table style="width:100%;border-collapse:collapse;font-size:.82em">
-            <thead><tr style="color:#7f8c8d;font-size:.78em;border-bottom:2px solid #1e2d3d">
-              <th style="padding:5px 6px;text-align:center">Giorno</th>
-              <th style="padding:5px 6px">Profit/g</th>
-              <th style="padding:5px 6px;color:#27ae60">Flat</th>
-              <th style="padding:5px 6px;color:#3498db">Compound</th>
-            </tr></thead>
-            <tbody id="bk-table"></tbody>
-          </table>
+          <div style="font-size:.72em;color:#7f8c8d;margin-bottom:8px">Aggiungi scommesse dalla pagina di ogni partita</div>
+          <div id="bk-stats-bar" style="font-size:.8em;color:#ecf0f1;margin-bottom:8px;padding:6px 10px;background:#0f1923;border-radius:6px;display:none"></div>
+          <div id="coupon-content"></div>
         </div>
       </div>
       <div class="match-content" id="mc-m1" style="display:none"><div class="match-header">
@@ -1099,6 +1090,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     </div>
   </div>
 </div>
+
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Gent</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">21°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Parzialmente nuvoloso</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">10 km/h NE</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Gent</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Gift Orban</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">9 gol in stagione, miglior marcatore</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Matisse Samoise</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">5 assist, velocita sulla fascia</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Hugo Cuypers</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">2a Punta</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Link play tra centrocampo e attacco</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">KV Mechelen</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-4-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Nikola Storm</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">6 reti, 2 nelle ultime 3 trasferte</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Julien Vanzeir</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Regia offensiva, visione di gioco</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Gent</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">KV Mechelen</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">13.2 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">10.5 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">57%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">43%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.8 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.2 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">42%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">33%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 10.0 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">66.7%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">54.2%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">41.7%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">30.3%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Gent 5.8 + KV Mechelen 4.2 ang./gara</div></div>
 
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
@@ -1242,6 +1260,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Amburgo</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">22°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Soleggiato</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">8 km/h W</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">St. Pauli</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Elias Saad</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">8 gol in Bundesliga 2, in grande forma</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jackson Irvine</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Capitano australiano, motore a centrocampo</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Oladapo Afolabi</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Velocita e dribbling, 4 assist</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Greuther Fürth</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-2-3-1</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Julian Green</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">AMO</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Tecnica sopraffina ma discontinuo</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Branimir Hrgota</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">5 gol, fuori forma nelle ultime 3</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">St. Pauli</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Greuther Fürth</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">14.1 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">9.8 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">55%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">45%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.5 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">3.9 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">45%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">28%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.4 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">59.6%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">46.5%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">34.2%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">23.7%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — St. Pauli 5.5 + Greuther Fürth 3.9 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
@@ -1383,6 +1428,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     </div>
   </div>
 </div>
+
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Malmo</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">19°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Nuvoloso</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">14 km/h SW</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Malmo FF</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Malik Tillman</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">AMO</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Prestito Bayern, 7 gol e 5 assist</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">David Stanga</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Centravanti fisico, 6 reti</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Eric Larsson</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">TD</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Corsa e cross dalla destra, prolifico</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Degerfors IF</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-4-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Pontus Almqvist</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Solo 2 gol in stagione, rendimento calato</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jesper Karlsson</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">WNG</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Ex Ajax, qualita ma squadra in crisi</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Malmo FF</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Degerfors IF</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">15.3 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">7.2 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">60%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">40%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">6.4 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">3.1 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">48%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">18%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.5 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">60.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">47.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">35.5%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">24.8%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 10.5</strong> — Malmo FF 6.4 + Degerfors IF 3.1 ang./gara</div></div>
 
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
@@ -1526,6 +1598,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Fredericia</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">18°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Sereno</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">11 km/h NW</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Fredericia</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Lasse Vibe</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Esperienza in EFL, 5 gol stagione</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Magnus Brorsson</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Visione e distribuzione, pilastro</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Vendsyssel</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-4-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Lasse Munksgaard</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">6 reti in trasferta, pericolo costante</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jens Magnusson</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Difensore solido, buona lettura del gioco</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Fredericia</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Vendsyssel</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">10.8 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">10.2 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">52%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">48%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">4.8 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.6 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">38%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">35%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.4 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">59.6%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">46.5%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">34.2%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">23.7%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Fredericia 4.8 + Vendsyssel 4.6 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
@@ -1668,6 +1767,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Charleroi</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">20°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Parzialmente nuvoloso</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">9 km/h E</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Charleroi</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Younes Bedia</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">7 gol in casa, pericoloso nei duelli</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Marco Bruno</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Cerniera tra difesa e attacco, pressing alto</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Dorian Dessoleil</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Capitano, solidita difensiva</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">OHL Leuven</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-2-3-1</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Hamza Mendyl</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Attivo sulla fascia, supporto offensivo</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Nill De Pauw</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">AMO</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Fantasia, ma titolare offensivo assente</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Charleroi</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">OHL Leuven</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">12.5 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">9.2 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">54%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">46%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.2 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">3.8 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">40%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">30%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.0 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">54.4%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">41.3%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">29.4%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">19.7%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Charleroi 5.2 + OHL Leuven 3.8 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
@@ -1790,7 +1916,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     <div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">Dundee Utd — Forma</div>
     <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#e74c3c;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">L</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#e74c3c;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">L</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span></div>
     <div style="font-size:.75em;color:#95a5a6">Trasferta: 1.0 gol/gara</div>
-    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Dundee Utd: 1 difensore out</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Dundee Utd: difensore titolare out</div>
   </div>
 </div>
 
@@ -1810,10 +1936,37 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Edimburgo</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">16°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Pioggia leggera</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">18 km/h W</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Hearts</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-2-3-1</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Lawrence Shankland</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Capocannoniere SPL, 12 gol</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">James Forrest</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Esperienza Celtic, tecnica elevata</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jorge Grant</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Cervello del gioco, calci piazzati pericolosi</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Dundee Utd</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-4-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Louis Moult</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Fisicita, ma lento sul campo bagnato</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Glenn Middleton</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Dribbling, meno efficace in condizioni avverse</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Hearts</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Dundee Utd</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">12.0 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">9.5 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">54%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">46%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.5 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.0 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">38%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">32%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.5 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">60.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">47.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">35.5%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">24.8%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Hearts 5.5 + Dundee Utd 4.0 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
-  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">Derby di Edimburgo al Tynecastle. Hearts favorita in casa storicamente. Dundee United con difensore titolare out. Quote leggermente migliorate per la casa.</div>
+  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">Derby di Edimburgo al Tynecastle. Hearts favorita in casa storicamente. Dundee United con difensore titolare out. Quote leggermente migliorate per la casa. Meteo con pioggia prevista: campo pesante favorisce la fisicita di Hearts.</div>
   <div style="margin-top:10px;padding:8px 12px;background:#0f1923;border-radius:6px;border-left:3px solid #f39c12">
     <span style="font-size:.78em;font-weight:bold;color:#f39c12">Predizione: 1 (Vittoria Hearts)</span>
     <span style="font-size:.75em;color:#7f8c8d;margin-left:8px">Confidenza MEDIA</span>
@@ -1951,6 +2104,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     </div>
   </div>
 </div>
+
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Sion</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">25°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Soleggiato e caldo</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">6 km/h N</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">FC Sion</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Anto Pasche</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Bomber locale, 10 gol in Super League</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Edimilson Fernandes</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Ex West Ham, qualita internazionale</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jan Kronig</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Muro difensivo, 0 gol subiti in 4 gare</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">FC Vaduz</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">3-5-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Moritz Wieser</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Solo leader del centrocampo, carica di lavoro</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Philipp Muntwiler</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">CAP</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Capitano storico, ma fisico non al top</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">FC Sion</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">FC Vaduz</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">14.8 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">7.1 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">58%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">42%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">6.2 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">3.0 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">44%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">20%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.2 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">57.0%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">43.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">31.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">21.7%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — FC Sion 6.2 + FC Vaduz 3.0 ang./gara</div></div>
 
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
@@ -2094,6 +2274,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Hamar</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">15°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Parzialmente nuvoloso</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">12 km/h SE</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">HamKam</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Tobias Solberg</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Motore a centrocampo, recuperi palla</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Peter Christiansen</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Titolare dubbio per affaticamento muscolare</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Emil Jonassen</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Terzino destro attivo sulle fasce</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Aalesund</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-2-3-1</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Niklas Reppe</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">5 gol in trasferta, molto pericoloso</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Andre Kartum</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Veloce, dribbling e assist, 4 nel girone</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">HamKam</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Aalesund</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">10.5 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">11.2 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">50%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">50%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">4.5 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.8 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">32%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">35%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.3 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">58.3%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">45.2%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">33.0%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">22.7%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — HamKam 4.5 + Aalesund 4.8 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
@@ -2216,7 +2423,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     <div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">Slovacko — Forma</div>
     <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#e74c3c;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">L</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#e74c3c;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">L</span></div>
     <div style="font-size:.75em;color:#95a5a6">Trasferta: 1.0 gol/gara</div>
-    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Slovacko: centrocampista out</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Slovacko: centrocampista titolare out</div>
   </div>
 </div>
 
@@ -2235,6 +2442,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     </div>
   </div>
 </div>
+
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Jablonec n.N.</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">20°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Soleggiato</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">7 km/h E</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Jablonec</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-2-3-1</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Michal Houska</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">6 gol in casa, tecnica sopraffina</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jakub Ladra</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Veloce, assist man della squadra</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Martin Dostalik</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Regia, box-to-box dinamico</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Slovacko</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jan Kliment</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Fisico, buona percentuale gol</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Lukas Sadílek</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Titolare dubbio, assenza pesante per Slovacko</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Jablonec</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Slovacko</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">11.2 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">9.8 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">53%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">47%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.0 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.2 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">36%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">33%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.2 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">57.0%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">43.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">31.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">21.7%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Jablonec 5.0 + Slovacko 4.2 ang./gara</div></div>
 
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
@@ -2378,10 +2612,37 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Glasgow</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">16°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Pioggia moderata</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">22 km/h SW</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Rangers</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Cyriel Dessers</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">9 gol a Ibrox in stagione, letale in area</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">James Tavernier</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">TD/CAP</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Capitano, 6 gol da terzino su punizione e rigori</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">John Lundstram</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Recuperi e filtro, indispensabile in mezzo</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Hibernian</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-2-3-1</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Kevin Nisbet</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Bomber di Hibs, ma isolato senza supporto</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Martin Boyle</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Velocista australiano, meno efficace con pioggia</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Rangers</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Hibernian</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">16.2 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">10.8 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">61%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">46%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">7.1 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.5 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">52%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">30%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 11.6 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">81.7%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">72.1%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">60.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">49.2%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 11.5</strong> — Rangers 7.1 + Hibernian 4.5 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
-  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">Rangers a Ibrox con 4 vittorie nelle ultime 6 sfide interne contro Hibs. Hibernian senza il portiere titolare. 2.0 gol/gara per i Rangers in casa.</div>
+  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">Rangers a Ibrox con 4 vittorie nelle ultime 6 sfide interne contro Hibs. Hibernian senza il portiere titolare. 2.0 gol/gara per i Rangers in casa. Pioggia attesa a Glasgow.</div>
   <div style="margin-top:10px;padding:8px 12px;background:#0f1923;border-radius:6px;border-left:3px solid #27ae60">
     <span style="font-size:.78em;font-weight:bold;color:#27ae60">Predizione: 1 (Vittoria Rangers)</span>
     <span style="font-size:.75em;color:#7f8c8d;margin-left:8px">Confidenza ALTA</span>
@@ -2519,6 +2780,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     </div>
   </div>
 </div>
+
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Bruxelles</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">21°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Soleggiato</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">8 km/h NE</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Anderlecht</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Anders Dreyer</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Danese esplosivo, 8 gol e 7 assist</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jan Vertonghen</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Leggenda belga, guida la linea difensiva</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Julien Duranville</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Giovane talento, dribbling devastante</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">RAAL La Louviere</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-4-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Christophe Dossevi</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Solo 2 gol, prime difficolta in Jupiler</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Nicolas Defays</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Pilastro difensivo, ma livello inferiore</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Anderlecht</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">RAAL La Louviere</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">17.5 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">6.2 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">64%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">36%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">7.8 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">2.5 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">55%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">18%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 10.3 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">70.0%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">57.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">45.4%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">33.8%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 10.5</strong> — Anderlecht 7.8 + RAAL La Louviere 2.5 ang./gara</div></div>
 
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
@@ -2662,6 +2950,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Anversa</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">21°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Variabile</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">11 km/h W</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Royal Antwerp</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Vincent Janssen</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Ex Spurs, 8 gol in Jupiler, leader offensivo</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Toby Alderweireld</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Veterano internazionale, comanda la difesa</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Michel-Ange Balikwisha</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Dribbling e creativita, 5 assist</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">SK Beveren</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-4-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Simon Devriendt</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Attaccante tecnico, 5 gol in stagione</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Nikola Curic</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Box-to-box, copre molto campo</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Royal Antwerp</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">SK Beveren</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">13.8 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">9.2 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">56%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">44%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.9 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">3.7 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">40%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">28%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.6 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">62.0%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">49.1%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">36.7%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">25.9%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Royal Antwerp 5.9 + SK Beveren 3.7 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
@@ -2804,10 +3119,37 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Benevento</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">29°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Soleggiato e caldo</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">5 km/h NE</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Benevento</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Gianluca Lapadula</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Bomber peruviano, 10 gol in Serie B</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Salvatore Acampora</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Regia di qualita, spina dorsale del centrocampo</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Riccardo Improta</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Velocita e cross, 6 assist in stagione</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Ravenna</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">3-4-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Matteo Ferrara</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Miglior marcatore Serie D, divario di livello enorme</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Matteo Calderoni</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">DEF</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Difensore esperto, ma categorie inferiori</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Benevento</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Ravenna</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">14.2 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">6.8 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">59%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">41%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">6.1 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">2.8 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">46%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">15%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 8.9 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">53.1%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">39.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">28.2%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">18.7%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Benevento 6.1 + Ravenna 2.8 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
-  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">Benevento di Serie B ospita Ravenna (Serie D) in Coppa Italia. Forte divario di categoria. Benevento in ottima forma casalinga con 2.0 gol/gara. Risultato scontato.</div>
+  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">Benevento di Serie B ospita Ravenna (Serie D) in Coppa Italia. Forte divario di categoria. Benevento in ottima forma casalinga con 2.0 gol/gara. Caldo intenso a Benevento (29C) favorisce la squadra abituata al terreno.</div>
   <div style="margin-top:10px;padding:8px 12px;background:#0f1923;border-radius:6px;border-left:3px solid #27ae60">
     <span style="font-size:.78em;font-weight:bold;color:#27ae60">Predizione: 1 (Vittoria Benevento)</span>
     <span style="font-size:.75em;color:#7f8c8d;margin-left:8px">Confidenza ALTA</span>
@@ -2946,6 +3288,33 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<!-- Meteo -->
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo — Moreira de Conegos</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">26°C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Soleggiato</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">9 km/h W</div></div></div></div>
+
+<!-- Formazioni + Giocatori chiave -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Moreirense</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-4-2</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Yan Bueno</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Solo in panchina, 3 titolari out pesano</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Alan Ruiz</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">MID</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Creativo, ma squadra dimezzata dalle assenze</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Braga</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-2-3-1</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Ricardo Horta</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">AMO</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Capitano Braga, 11 gol e 8 assist, leader assoluto</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Simon Banza</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Centravanti fisico, letale in entrambe le aree</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Alvaro Djalo</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Ex Lille, velocita e profondita sulla fascia</div></div>
+  </div>
+</div>
+
+<!-- Stats avanzate -->
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Moreirense</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Braga</th></tr></thead><tbody><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">8.5 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">14.5 tiri</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">43%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">57%</td></tr><tr style="border-bottom:1px solid #0f1923"><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">3.5 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">6.2 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">22%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">42%</td></tr></tbody></table></div>
+
+<!-- Calci d'angolo -->
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo — Poisson (attesi: 9.7 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">63.2%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">50.4%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">37.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">27.0%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea consigliata: <strong style="color:#f39c12">Over 9.5</strong> — Moreirense 3.5 + Braga 6.2 ang./gara</div></div>
+
 <!-- Analisi narrativa -->
 <div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
   <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
@@ -3013,8 +3382,7 @@ function showMatch9(id){
   if(nav){nav.classList.add('active');nav.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
   document.getElementById('main9').scrollTop=0;
   window.scrollTo({top:0,behavior:'smooth'});
-  if(id==='coupon')renderCoupon();
-  if(id==='bankroll'){renderBankrollStats();calcProjection();}
+  if(id==='scommesse'){renderCoupon();renderBankrollStats();calcProjection();}
 }
 function setFilter(f){
   curTime=f;
@@ -3082,8 +3450,13 @@ function renderBankrollStats(){
   var lost=bets.filter(function(b){return b.status==='lost';});
   var profit=won.reduce(function(s,b){return s+b.stake*(b.odds-1);},0)-lost.reduce(function(s,b){return s+b.stake;},0);
   var staked=bets.reduce(function(s,b){return s+b.stake;},0);
-  var el=document.getElementById('bk-stats-content');
-  if(el)el.innerHTML='Scommesse nel coupon: '+bets.length+' · Puntata totale: EUR '+staked.toFixed(2)+' · P/L oggi: <strong style="color:'+(profit>=0?'#27ae60':'#e74c3c')+'">EUR '+profit.toFixed(2)+'</strong>';
+  var bar=document.getElementById('bk-stats-bar');
+  if(bar){
+    bar.style.display=bets.length>0?'block':'none';
+    bar.innerHTML='<strong>'+bets.length+'</strong> scommesse · Puntata: <strong>EUR '+staked.toFixed(2)+'</strong> · P/L oggi: <strong style="color:'+(profit>=0?'#27ae60':'#e74c3c')+'">EUR '+profit.toFixed(2)+'</strong>';
+  }
+  var b2=document.getElementById('coupon-badge2');
+  if(b2){b2.style.display=bets.length>0?'inline':'none';b2.textContent=bets.length;}
   if(profit!==0){var di=document.getElementById('bk-daily');if(di)di.value=profit.toFixed(2);}
 }
 function calcProjection(){
@@ -3095,10 +3468,9 @@ function calcProjection(){
     flat+=daily;comp=start*Math.pow(1+roi,i);
     var bg=i%7===0?'background:#1a2634;':'';
     rows+='<tr style="'+bg+'">'+
-      '<td style="padding:4px 6px;color:#7f8c8d;font-size:.78em;text-align:center">'+i+'</td>'+
-      '<td style="padding:4px 6px;color:#27ae60;font-size:.78em">+EUR '+Math.abs(daily).toFixed(2)+'</td>'+
-      '<td style="padding:4px 6px;color:#ecf0f1;font-weight:bold;font-size:.82em">EUR '+flat.toFixed(2)+'</td>'+
-      '<td style="padding:4px 6px;color:#3498db;font-size:.82em">EUR '+comp.toFixed(2)+'</td>'+
+      '<td style="padding:3px 6px;color:#7f8c8d;font-size:.75em;text-align:center">'+i+'</td>'+
+      '<td style="padding:3px 6px;color:#27ae60;font-size:.78em;font-weight:bold">'+flat.toFixed(2)+'</td>'+
+      '<td style="padding:3px 6px;color:#3498db;font-size:.78em">'+comp.toFixed(2)+'</td>'+
     '</tr>';
   }
   var tb=document.getElementById('bk-table');if(tb)tb.innerHTML=rows;
@@ -3144,8 +3516,10 @@ function markBet(id,status){
   saveBets(bets);renderCoupon();
 }
 function updateCouponBadge(){
-  var cnt=getBets().length,badge=document.getElementById('coupon-badge');
+  var cnt=getBets().length;
+  var badge=document.getElementById('coupon-badge');
   if(badge){badge.textContent=cnt>0?cnt:'';badge.style.display=cnt>0?'inline-block':'none';}
+  if(typeof renderBankrollStats==='function')renderBankrollStats();
 }
 function renderCoupon(){
   var el=document.getElementById('coupon-content');if(!el)return;
