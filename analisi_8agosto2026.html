@@ -1580,7 +1580,7 @@ function toggleNotif(id) {
       // Test notification immediata
       try {
         var tn = new Notification('🔔 Notifica attivata!', {
-          body: label + ' — riceverai avviso 5min prima e all'inizio',
+          body: label + ' — avviso 5min prima della partita',
           tag: 'test-' + id, icon: ''
         });
         setTimeout(function(){ tn.close(); }, 4000);
