@@ -103,7 +103,7 @@
         style="width:100%;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:10px 14px;color:#ecf0f1;font-size:.95em;margin-bottom:10px;outline:none;box-sizing:border-box"
         onfocus="this.style.borderColor='#3498db'" onblur="this.style.borderColor='#2c3e50'"
         onkeydown="if(event.key==='Enter')doLogin()">
-      <div style="position:relative;margin-bottom:16px">
+      <div style="position:relative;margin-bottom:10px">
         <input id="lg-pass" type="password" placeholder="Password" autocomplete="current-password"
           style="width:100%;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;padding:10px 44px 10px 14px;color:#ecf0f1;font-size:.95em;outline:none;box-sizing:border-box"
           onfocus="this.style.borderColor='#3498db'" onblur="this.style.borderColor='#2c3e50'"
@@ -111,8 +111,13 @@
         <button type="button" onclick="var i=document.getElementById('lg-pass');i.type=i.type==='password'?'text':'password';this.textContent=i.type==='password'?'👁':'🙈'"
           style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1em;color:#7f8c8d;padding:4px;min-height:0">👁</button>
       </div>
-      <div id="lg-err" style="display:none;background:#2c1010;color:#e74c3c;border-radius:4px;padding:7px;font-size:.82em;margin-bottom:12px">
-        ❌ Credenziali non valide
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer">
+        <input type="checkbox" id="lg-remember" checked
+          style="width:16px;height:16px;cursor:pointer;accent-color:#3498db">
+        <span style="font-size:.82em;color:#7f8c8d">Ricordami su questo dispositivo</span>
+      </label>
+      <div id="lg-err" style="display:none;background:#2c1010;color:#e74c3c;border-radius:4px;padding:7px;font-size:.82em;margin-bottom:12px;text-align:left">
+        ❌ Credenziali non valide — usa 👁 per verificare la password
       </div>
       <button type="button" onclick="doLogin()"
         style="width:100%;background:#2980b9;color:#fff;border:none;border-radius:6px;padding:11px;font-size:.95em;font-weight:bold;cursor:pointer;min-height:44px"
@@ -1678,6 +1683,11 @@ function doLogin() {
   var p = document.getElementById("lg-pass").value || "";
   if (_ck(u, p)) {
     localStorage.setItem("zb_auth","1");
+    var rem = document.getElementById("lg-remember");
+    if (rem && rem.checked) {
+      localStorage.setItem("zb_su", u);
+      localStorage.setItem("zb_sp", p);
+    }
     document.getElementById("login-overlay").style.display="none";
     initBells();
     updateLiveBadges();
@@ -1686,18 +1696,33 @@ function doLogin() {
     }
   } else {
     var err = document.getElementById("lg-err");
-    if (err) { err.style.display="block"; setTimeout(function(){ err.style.display="none"; }, 2500); }
+    if (err) { err.style.display="block"; setTimeout(function(){ err.style.display="none"; }, 3000); }
     var pw = document.getElementById("lg-pass");
     if (pw) { pw.value=""; pw.focus(); }
   }
 }
 
 (function() {
-  if (localStorage.getItem("zb_auth")==="1") {
+  function _doUnlock() {
     var ov = document.getElementById("login-overlay");
     if (ov) ov.style.display="none";
-    initBells();
+    initBells(); updateLiveBadges();
     if ('Notification' in window && Notification.permission === 'granted') scheduleNotifications();
+  }
+  // Già loggato
+  if (localStorage.getItem("zb_auth")==="1") { _doUnlock(); return; }
+  // Auto-login da credenziali salvate
+  var su=localStorage.getItem("zb_su"), sp=localStorage.getItem("zb_sp");
+  if (su && sp && _ck(su,sp)) {
+    localStorage.setItem("zb_auth","1");
+    _doUnlock(); return;
+  }
+  // Pre-compila i campi se salvati
+  if (su) {
+    var uf=document.getElementById("lg-user"); if(uf) uf.value=su;
+  }
+  if (sp) {
+    var pf=document.getElementById("lg-pass"); if(pf) pf.value=sp;
   }
 })();
 </script>
