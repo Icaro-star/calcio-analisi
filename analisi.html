@@ -3992,8 +3992,6 @@ function updateLiveClock(){
   var dot=document.getElementById('live-dot');
   if(dot) dot.style.background=liveMatches>0?'#e74c3c':'#7f8c8d';
 }
-setInterval(updateLiveClock,30000); updateLiveClock();
-
 // ── Bet entry form ────────────────────────────────────────────────────────────
 var MATCH_ODDS={};
 (function(){
@@ -4193,6 +4191,7 @@ function calcFromCoupon(){
 
 document.addEventListener('DOMContentLoaded',function(){
   loadPredResults();renderCoupon();updateCouponBadge();
+  try{setInterval(updateLiveClock,30000);updateLiveClock();}catch(e){console.warn('liveClock:',e);}
 });
 </script>
 
