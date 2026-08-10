@@ -3969,7 +3969,7 @@ function getMinute(timeStr){
 function setLiveFilter(){
   curLive=!curLive;
   document.getElementById('f-live').classList.toggle('on',curLive);
-  applyFilters9();
+  applyFilters();
 }
 function updateLiveClock(){
   var liveMatches=0;
@@ -4086,8 +4086,10 @@ function showMatch9(id){
   if(el){el.style.display='block';el.classList.add('active');}
   var nav=document.getElementById('sn-'+id);
   if(nav){nav.classList.add('active');nav.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
-  document.getElementById('main9').scrollTop=0;
-  window.scrollTo({top:0,behavior:'smooth'});
+  var _m9=document.getElementById('main9');
+  _m9.scrollTop=0;
+  if(window.innerWidth<=700){_m9.scrollIntoView({behavior:'smooth',block:'start'});}
+  else{window.scrollTo({top:0,behavior:'smooth'});}
   if(id==='scommesse'){renderCoupon();renderBankrollStats();calcProjection();}
 }
 function setFilter(f){
