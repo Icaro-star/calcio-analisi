@@ -4275,7 +4275,7 @@ function renderCoupon(){
       '<span style="color:#7f8c8d">'+(bets.length-wonCnt-lostCnt)+' in attesa</span>'+
       (wonCnt>0?' · <span style="color:#27ae60">+EUR '+(wonW-wonS).toFixed(2)+'</span>':'')+
     '</div>'+rows+
-    '<button onclick="if(confirm(\'Svuotare?\\')){localStorage.removeItem(BETS_KEY);renderCoupon();updateCouponBadge();}" '+
+    '<button onclick="if(confirm(\'Svuotare?\')){localStorage.removeItem(BETS_KEY);renderCoupon();updateCouponBadge();}" '+
       'style="width:100%;margin-top:6px;background:#1a0a0a;color:#e74c3c;border:1px solid #3a1a1a;border-radius:6px;padding:8px;cursor:pointer;font-size:.8em">Svuota coupon</button>';
 }
 document.addEventListener('DOMContentLoaded',function(){renderCoupon();updateCouponBadge();});
