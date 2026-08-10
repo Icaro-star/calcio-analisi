@@ -33,6 +33,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:10px}
 .day-content{display:none}
 .day-content.active{display:flex;height:100%;overflow:hidden;flex-direction:column}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
 @media(max-width:700px){
   .body-row{flex-direction:column}
   .sidebar{width:100%;min-width:0;height:auto;max-height:140px;display:flex;flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:6px;border-right:none;border-bottom:1px solid #1e2d3d;scrollbar-width:none}
@@ -190,6 +191,11 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     <button class="fb" id="f-facile" onclick="setDiffFilter('FACILE')">Facile</button>
     <button class="fb" id="f-media" onclick="setDiffFilter('MEDIA')">Media</button>
     <button class="fb" id="f-diff" onclick="setDiffFilter('DIFFICILE')">Difficile</button>
+    <span style="font-size:.75em;color:#7f8c8d;margin-left:8px;margin-right:4px">|</span>
+    <button class="fb" id="f-live" onclick="setLiveFilter()" style="border-color:#e74c3c">
+      <span id="live-dot" style="display:inline-block;width:7px;height:7px;background:#e74c3c;border-radius:50%;margin-right:4px;animation:blink 1s infinite"></span>LIVE
+    </button>
+    <span id="live-clock" style="font-size:.72em;color:#7f8c8d;margin-left:6px"></span>
   </div>
   <div class="body-row" style="flex:1;overflow:hidden">
     <div class="sidebar" id="sidebar9">
@@ -213,98 +219,98 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
         <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Budget + Monitoraggio</div>
         <div style="font-size:.66em;color:#7f8c8d">Coupon + Proiezione 30gg</div>
       </div>
-      <div class="sidebar-item" id="sn-m1" data-mid="m1" onclick="showMatch9(this.dataset.mid)">
+      <div class="sidebar-item" id="sn-m1" data-mid="m1" data-time="13:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">13:30 · Jupiler League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Gent vs KV Mechelen</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-0</span>
-          </div></div><div class="sidebar-item" id="sn-m2" data-mid="m2" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m2" data-mid="m2" data-time="13:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">13:30 · Bundesliga 2</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">St. Pauli vs Greuther Fürth</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-1</span>
-          </div></div><div class="sidebar-item" id="sn-m3" data-mid="m3" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m3" data-mid="m3" data-time="14:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">14:00 · Allsvenskan</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Malmo FF vs Degerfors IF</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-2</span>
-          </div></div><div class="sidebar-item" id="sn-m4" data-mid="m4" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m4" data-mid="m4" data-time="15:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">15:00 · 1st Division</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Fredericia vs Vendsyssel</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#e74c3c;font-size:.65em;font-weight:bold">BASSA</span>
             <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-1</span>
-          </div></div><div class="sidebar-item" id="sn-m5" data-mid="m5" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m5" data-mid="m5" data-time="16:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">16:00 · Jupiler League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Charleroi vs OHL Leuven</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-1</span>
-          </div></div><div class="sidebar-item" id="sn-m6" data-mid="m6" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m6" data-mid="m6" data-time="16:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">16:00 · Premiership</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Hearts vs Dundee Utd</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 4-0</span>
-          </div></div><div class="sidebar-item" id="sn-m7" data-mid="m7" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m7" data-mid="m7" data-time="16:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">16:30 · Super League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">FC Sion vs FC Vaduz</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 3-2</span>
-          </div></div><div class="sidebar-item" id="sn-m8" data-mid="m8" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m8" data-mid="m8" data-time="17:00" data-cat="FACILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">17:00 · Eliteserien</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">HamKam vs Aalesund</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#e74c3c;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">2</span>
             <span style="color:#e74c3c;font-size:.65em;font-weight:bold">BASSA</span>
             <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-1</span>
-          </div></div><div class="sidebar-item" id="sn-m9" data-mid="m9" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m9" data-mid="m9" data-time="17:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">17:00 · 1. Liga</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Jablonec vs Slovacko</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#f39c12;font-size:.65em;font-weight:bold">MEDIA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 1-0</span>
-          </div></div><div class="sidebar-item" id="sn-m10" data-mid="m10" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m10" data-mid="m10" data-time="17:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">17:00 · Premiership</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Rangers vs Hibernian</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-2</span>
-          </div></div><div class="sidebar-item" id="sn-m11" data-mid="m11" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m11" data-mid="m11" data-time="18:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">18:30 · Jupiler League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Anderlecht vs RAAL La Louviere</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-1</span>
-          </div></div><div class="sidebar-item" id="sn-m12" data-mid="m12" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m12" data-mid="m12" data-time="19:15" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">19:15 · Jupiler League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Royal Antwerp vs SK Beveren</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#f39c12;font-size:.65em;font-weight:bold">MEDIA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-1</span>
-          </div></div><div class="sidebar-item" id="sn-m13" data-mid="m13" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m13" data-mid="m13" data-time="21:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">21:00 · Coppa Italia</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Benevento vs Ravenna</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
             <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 5-3</span>
-          </div></div><div class="sidebar-item" id="sn-m14" data-mid="m14" onclick="showMatch9(this.dataset.mid)">
+          </div></div><div class="sidebar-item" id="sn-m14" data-mid="m14" data-time="21:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">21:30 · Liga Portugal</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Moreirense vs Braga</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
@@ -616,7 +622,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
           </div>
         </div></div>
         </div>
-        <div id="cards-container" class="cards-grid"><div class="card" style="cursor:pointer;transition:.15s" data-mid="m1" onclick="showMatch9(this.dataset.mid)"
+        <div id="cards-container" class="cards-grid"><div class="card" style="cursor:pointer;transition:.15s" data-mid="m1" data-time="13:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">13:30 · Jupiler League</div>
@@ -647,7 +653,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@4.0</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m2" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m2" data-time="13:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">13:30 · Bundesliga 2</div>
@@ -678,7 +684,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@5.14</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m3" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m3" data-time="14:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">14:00 · Allsvenskan</div>
@@ -709,7 +715,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@5.6</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m4" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m4" data-time="15:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">15:00 · 1st Division</div>
@@ -740,7 +746,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@3.4</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m5" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m5" data-time="16:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">16:00 · Jupiler League</div>
@@ -771,7 +777,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@4.45</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m6" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m6" data-time="16:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">16:00 · Premiership</div>
@@ -802,7 +808,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@4.0</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m7" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m7" data-time="16:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">16:30 · Super League</div>
@@ -833,7 +839,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@8.0</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m8" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m8" data-time="17:00" data-cat="FACILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">17:00 · Eliteserien</div>
@@ -864,7 +870,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@3.4</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m9" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m9" data-time="17:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">17:00 · 1. Liga</div>
@@ -895,7 +901,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@3.2</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m10" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m10" data-time="17:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">17:00 · Premiership</div>
@@ -926,7 +932,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@5.0</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m11" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m11" data-time="18:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">18:30 · Jupiler League</div>
@@ -957,7 +963,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@4.8</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m12" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m12" data-time="19:15" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">19:15 · Jupiler League</div>
@@ -988,7 +994,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@4.05</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m13" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m13" data-time="21:00" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">21:00 · Coppa Italia</div>
@@ -1019,7 +1025,7 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
               <div style="font-size:.62em;color:#7f8c8d">@4.5</div></div>
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
-        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m14" onclick="showMatch9(this.dataset.mid)"
+        </div><div class="card" style="cursor:pointer;transition:.15s" data-mid="m14" data-time="21:30" data-cat="DIFFICILE" onclick="showMatch9(this.dataset.mid)"
           onmouseover="this.style.borderColor='#3498db';this.style.background='#1a2c42'" onmouseout="this.style.borderColor='#1e2d3d';this.style.background=''">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:.67em;color:#7f8c8d">21:30 · Liga Portugal</div>
@@ -1051,6 +1057,45 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
           </div>
           <div style="font-size:.65em;color:#95a5a6;text-align:right">Clicca per analisi completa &rsaquo;</div>
         </div></div>
+        <!-- Legenda Modello v2 -->
+        <div class="card" style="margin-top:16px;background:#080e18;border-color:#1a2840">
+          <div style="font-size:.82em;font-weight:bold;color:#e67e22;margin-bottom:10px">&#128218; Legenda Modello v2</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;font-size:.75em">
+            <div>
+              <div style="color:#3498db;font-weight:bold;margin-bottom:4px">Confidenza predizione</div>
+              <div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:4px;font-size:.85em">ALTA</span> Gap prob &gt;22% + EV positivo</div>
+              <div style="margin-top:3px"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:4px;font-size:.85em">MEDIA</span> Gap &gt;10% o EV moderato</div>
+              <div style="margin-top:3px"><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:4px;font-size:.85em">BASSA</span> Partita equilibrata</div>
+            </div>
+            <div>
+              <div style="color:#3498db;font-weight:bold;margin-bottom:4px">Difficoltà coupon</div>
+              <div><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:4px;font-size:.85em">FACILE</span> pX≥26% e EV≥+5%</div>
+              <div style="margin-top:3px"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:4px;font-size:.85em">MEDIA</span> pX≥23% e EV≥0%</div>
+              <div style="margin-top:3px"><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:4px;font-size:.85em">DIFFICILE</span> Alta probabilità 1 o 2</div>
+            </div>
+            <div>
+              <div style="color:#3498db;font-weight:bold;margin-bottom:4px">Segnali modello (barre)</div>
+              <div style="display:flex;align-items:center;gap:6px"><div style="width:30px;height:6px;background:#27ae60;border-radius:3px"></div> &gt;55% — segnale positivo</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><div style="width:30px;height:6px;background:#f39c12;border-radius:3px"></div> 45-55% — neutro</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><div style="width:30px;height:6px;background:#e74c3c;border-radius:3px"></div> &lt;45% — segnale negativo</div>
+            </div>
+            <div>
+              <div style="color:#3498db;font-weight:bold;margin-bottom:4px">λ (lambda)</div>
+              <div style="color:#7f8c8d">Gol attesi aggiustati per forma (10g), H2H, xG, infortuni, motivazione, quote movement, meteo, arbitro</div>
+              <div style="margin-top:4px;color:#7f8c8d">EV = (prob×quota−1)×100 — positivo = valore</div>
+            </div>
+            <div>
+              <div style="color:#3498db;font-weight:bold;margin-bottom:4px">Quote movement</div>
+              <div style="color:#27ae60">▲ quota salita</div> = mercato scommette CONTRO quella squadra
+              <div style="color:#e74c3c;margin-top:2px">▼ quota scesa</div> = smart money SU quella squadra
+            </div>
+            <div>
+              <div style="color:#3498db;font-weight:bold;margin-bottom:4px">Filtro LIVE</div>
+              <div style="color:#7f8c8d">Mostra solo le partite in corso (kickoff &lt; ora &lt; kickoff+105min)</div>
+              <div style="margin-top:4px;color:#7f8c8d">Il minuto stimato appare accanto al nome della partita</div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- Predizioni secche -->
       <div class="match-content" id="mc-pred" style="display:none"><div class="match-header">
@@ -1371,12 +1416,53 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
             </table>
           </div>
         </div>
+        <!-- Form inserimento scommessa manuale -->
+        <div class="card" style="background:#0a1520;border-color:#1a3a6a;margin-bottom:12px">
+          <div style="font-size:.82em;font-weight:bold;color:#3498db;margin-bottom:10px">&#10133; Inserisci Scommessa</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+            <div style="grid-column:span 2">
+              <label style="font-size:.72em;color:#95a5a6;display:block;margin-bottom:3px">Partita</label>
+              <select id="bet-match" onchange="onBetMatchChange()"
+                style="width:100%;background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 8px;font-size:.82em">
+                <option value="">— Seleziona partita —</option>
+                <option value="m1">Gent vs KV Mechelen (13:30) — pred: 1 Vittoria Casa @1.9</option><option value="m2">St. Pauli vs Greuther Fürth (13:30) — pred: 1 Vittoria Casa @1.64</option><option value="m3">Malmo FF vs Degerfors IF (14:00) — pred: 1 Vittoria Casa @1.4</option><option value="m4">Fredericia vs Vendsyssel (15:00) — pred: 1 Vittoria Casa @2.0</option><option value="m5">Charleroi vs OHL Leuven (16:00) — pred: 1 Vittoria Casa @1.77</option><option value="m6">Hearts vs Dundee Utd (16:00) — pred: 1 Vittoria Casa @1.75</option><option value="m7">FC Sion vs FC Vaduz (16:30) — pred: 1 Vittoria Casa @1.32</option><option value="m8">HamKam vs Aalesund (17:00) — pred: 2 Vittoria Ospite @3.4</option><option value="m9">Jablonec vs Slovacko (17:00) — pred: 1 Vittoria Casa @2.1</option><option value="m10">Rangers vs Hibernian (17:00) — pred: 1 Vittoria Casa @1.6</option><option value="m11">Anderlecht vs RAAL La Louviere (18:30) — pred: 1 Vittoria Casa @1.7</option><option value="m12">Royal Antwerp vs SK Beveren (19:15) — pred: 1 Vittoria Casa @1.9</option><option value="m13">Benevento vs Ravenna (21:00) — pred: 1 Vittoria Casa @1.55</option><option value="m14">Moreirense vs Braga (21:30) — pred: 2 Vittoria Ospite @1.54</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:.72em;color:#95a5a6;display:block;margin-bottom:3px">Tipo scommessa</label>
+              <select id="bet-type"
+                style="width:100%;background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 8px;font-size:.82em">
+                <option value="1">1 — Vittoria Casa</option>
+                <option value="X">X — Pareggio</option>
+                <option value="2">2 — Vittoria Ospite</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:.72em;color:#95a5a6;display:block;margin-bottom:3px">Quota</label>
+              <input id="bet-odds" type="number" min="1.01" step="0.05" placeholder="es. 1.85"
+                style="width:100%;background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 8px;font-size:.82em">
+            </div>
+            <div>
+              <label style="font-size:.72em;color:#95a5a6;display:block;margin-bottom:3px">Puntata (EUR)</label>
+              <input id="bet-stake" type="number" min="0.5" step="0.5" value="10" placeholder="es. 10"
+                style="width:100%;background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:6px 8px;font-size:.82em">
+            </div>
+            <div>
+              <label style="font-size:.72em;color:#95a5a6;display:block;margin-bottom:3px">Vincita potenziale</label>
+              <div id="bet-preview" style="padding:6px 8px;background:#0f1923;border:1px solid #2c3e50;border-radius:6px;font-size:.88em;color:#27ae60;font-weight:bold">—</div>
+            </div>
+          </div>
+          <button onclick="submitManualBet()"
+            style="width:100%;padding:9px;background:#2980b9;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.85em;font-weight:bold">
+            &#10003; Aggiungi al Coupon
+          </button>
+        </div>
         <!-- Coupon attivo -->
         <div class="card" style="background:#0d1520;border-color:#1a3a5a">
           <div style="font-size:.82em;font-weight:bold;color:#ecf0f1;margin-bottom:4px">
             Coupon attivo <span id="coupon-badge2" style="background:#27ae60;color:#fff;border-radius:10px;padding:1px 7px;font-size:.75em;display:none"></span>
           </div>
-          <div style="font-size:.72em;color:#7f8c8d;margin-bottom:8px">Aggiungi scommesse dalla pagina di ogni partita</div>
+          <div style="font-size:.72em;color:#7f8c8d;margin-bottom:8px">Gestisci le tue scommesse · <span id="bet-pl-summary" style="color:#27ae60"></span></div>
           <div id="bk-stats-bar" style="font-size:.8em;color:#ecf0f1;margin-bottom:8px;padding:6px 10px;background:#0f1923;border-radius:6px;display:none"></div>
           <div id="coupon-content"></div>
         </div>
@@ -1400,6 +1486,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     <div style="width:20%;background:#4a1a1a;display:flex;align-items:center;justify-content:center;color:#e74c3c;padding:0 4px;white-space:nowrap">2 19.8%</div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#1a1500;border:2px solid #f39c12;padding:12px"><div style="font-size:.72em;color:#f39c12;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#f39c12">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#f39c12">@1.9</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">54.8%</div><div style="font-size:.85em;font-weight:bold;color:#f39c12">EV +4.2%</div></div></div><button onclick="addBetFromMatch('m1','1',1.9)" style="margin-top:10px;width:100%;padding:8px;background:#f39c12;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
 
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
@@ -1456,6 +1544,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">41%</div><div style="font-size:.75em;color:#95a5a6">@2.43</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">40%</div><div style="font-size:.75em;color:#95a5a6">@2.51</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">19%</div><div style="font-size:.75em;color:#95a5a6">@5.24</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria Gent</strong> · prob 41% · @2.43</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 4.0</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.15</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.25</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -1572,6 +1663,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#0a1f0f;border:2px solid #27ae60;padding:12px"><div style="font-size:.72em;color:#27ae60;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#27ae60">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#27ae60">@1.64</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">66.5%</div><div style="font-size:.85em;font-weight:bold;color:#27ae60">EV +9.1%</div></div></div><button onclick="addBetFromMatch('m2','1',1.64)" style="margin-top:10px;width:100%;padding:8px;background:#27ae60;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -1627,6 +1720,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">2-0</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">49%</div><div style="font-size:.75em;color:#95a5a6">@2.03</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">37%</div><div style="font-size:.75em;color:#95a5a6">@2.7</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">14%</div><div style="font-size:.75em;color:#95a5a6">@7.25</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria St. Pauli</strong> · prob 49% · @2.03</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.5</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.20</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.30</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -1743,6 +1839,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#1a1500;border:2px solid #f39c12;padding:12px"><div style="font-size:.72em;color:#f39c12;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#f39c12">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#f39c12">@1.4</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">73.4%</div><div style="font-size:.85em;font-weight:bold;color:#f39c12">EV +2.8%</div></div></div><button onclick="addBetFromMatch('m3','1',1.4)" style="margin-top:10px;width:100%;padding:8px;background:#f39c12;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -1798,6 +1896,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">2-0</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">55%</div><div style="font-size:.75em;color:#95a5a6">@1.83</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">34%</div><div style="font-size:.75em;color:#95a5a6">@2.95</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">11%</div><div style="font-size:.75em;color:#95a5a6">@8.85</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria Malmo FF</strong> · prob 55% · @1.83</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 3.8</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.12</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.22</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -1914,6 +2015,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#1a0a0a;border:2px solid #c0392b;padding:12px"><div style="font-size:.72em;color:#e74c3c;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#e74c3c">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#e74c3c">@2.0</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#e74c3c;font-weight:bold">BASSA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">39.5%</div><div style="font-size:.85em;font-weight:bold;color:#e74c3c">EV -20.9%</div></div></div><button onclick="addBetFromMatch('m4','1',2.0)" style="margin-top:10px;width:100%;padding:8px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -1969,6 +2072,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #f39c12"><div style="font-size:.63em;color:#7f8c8d">X ★</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">42%</div><div style="font-size:.75em;color:#95a5a6">@2.36</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">1</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">31%</div><div style="font-size:.75em;color:#95a5a6">@3.21</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">26%</div><div style="font-size:.75em;color:#95a5a6">@3.77</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">X — Pareggio</strong> · prob 42% · @2.36</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.2</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.18</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.28</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -2085,6 +2191,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#1a1500;border:2px solid #f39c12;padding:12px"><div style="font-size:.72em;color:#f39c12;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#f39c12">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#f39c12">@1.77</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">57.8%</div><div style="font-size:.85em;font-weight:bold;color:#f39c12">EV +2.3%</div></div></div><button onclick="addBetFromMatch('m5','1',1.77)" style="margin-top:10px;width:100%;padding:8px;background:#f39c12;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -2140,6 +2248,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">42%</div><div style="font-size:.75em;color:#95a5a6">@2.35</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">41%</div><div style="font-size:.75em;color:#95a5a6">@2.45</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">17%</div><div style="font-size:.75em;color:#95a5a6">@5.99</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria Charleroi</strong> · prob 42% · @2.35</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.8</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.22</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.32</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -2256,6 +2367,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#1a1500;border:2px solid #f39c12;padding:12px"><div style="font-size:.72em;color:#f39c12;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#f39c12">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#f39c12">@1.75</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">57.5%</div><div style="font-size:.85em;font-weight:bold;color:#f39c12">EV +0.6%</div></div></div><button onclick="addBetFromMatch('m6','1',1.75)" style="margin-top:10px;width:100%;padding:8px;background:#f39c12;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -2311,6 +2424,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">42%</div><div style="font-size:.75em;color:#95a5a6">@2.36</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">41%</div><div style="font-size:.75em;color:#95a5a6">@2.46</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">17%</div><div style="font-size:.75em;color:#95a5a6">@5.88</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria Hearts</strong> · prob 42% · @2.36</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 5.0</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.28</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.35</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -2427,6 +2543,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#1a1500;border:2px solid #f39c12;padding:12px"><div style="font-size:.72em;color:#f39c12;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#f39c12">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#f39c12">@1.32</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">76.9%</div><div style="font-size:.85em;font-weight:bold;color:#f39c12">EV +1.5%</div></div></div><button onclick="addBetFromMatch('m7','1',1.32)" style="margin-top:10px;width:100%;padding:8px;background:#f39c12;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -2482,6 +2600,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">2-0</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">57%</div><div style="font-size:.75em;color:#95a5a6">@1.76</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">34%</div><div style="font-size:.75em;color:#95a5a6">@2.95</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">9%</div><div style="font-size:.75em;color:#95a5a6">@10.87</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria FC Sion</strong> · prob 57% · @1.76</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 3.5</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.12</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.20</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -2598,6 +2719,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#0a1f0f;border:2px solid #27ae60;padding:12px"><div style="font-size:.72em;color:#27ae60;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#27ae60">2</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">2 Vittoria Ospite</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#27ae60">@3.4</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#e74c3c;font-weight:bold">BASSA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">38.7%</div><div style="font-size:.85em;font-weight:bold;color:#27ae60">EV +31.6%</div></div></div><button onclick="addBetFromMatch('m8','2',3.4)" style="margin-top:10px;width:100%;padding:8px;background:#27ae60;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -2653,6 +2776,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #f39c12"><div style="font-size:.63em;color:#7f8c8d">X ★</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">41%</div><div style="font-size:.75em;color:#95a5a6">@2.44</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">31%</div><div style="font-size:.75em;color:#95a5a6">@3.22</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">1</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">28%</div><div style="font-size:.75em;color:#95a5a6">@3.58</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">X — Pareggio</strong> · prob 41% · @2.44</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.2</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.15</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.28</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -2769,6 +2895,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#0a1f0f;border:2px solid #27ae60;padding:12px"><div style="font-size:.72em;color:#27ae60;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#27ae60">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#27ae60">@2.1</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#f39c12;font-weight:bold">MEDIA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">50.3%</div><div style="font-size:.85em;font-weight:bold;color:#27ae60">EV +5.7%</div></div></div><button onclick="addBetFromMatch('m9','1',2.1)" style="margin-top:10px;width:100%;padding:8px;background:#27ae60;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -2824,6 +2952,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #f39c12"><div style="font-size:.63em;color:#7f8c8d">X ★</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">43%</div><div style="font-size:.75em;color:#95a5a6">@2.3</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">1</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">37%</div><div style="font-size:.75em;color:#95a5a6">@2.69</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">19%</div><div style="font-size:.75em;color:#95a5a6">@5.15</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">X — Pareggio</strong> · prob 43% · @2.3</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 4.0</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.18</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.25</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -2940,6 +3071,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#0a1f0f;border:2px solid #27ae60;padding:12px"><div style="font-size:.72em;color:#27ae60;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#27ae60">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#27ae60">@1.6</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">68.7%</div><div style="font-size:.85em;font-weight:bold;color:#27ae60">EV +10.0%</div></div></div><button onclick="addBetFromMatch('m10','1',1.6)" style="margin-top:10px;width:100%;padding:8px;background:#27ae60;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -2995,6 +3128,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">2-0</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">50%</div><div style="font-size:.75em;color:#95a5a6">@1.98</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">37%</div><div style="font-size:.75em;color:#95a5a6">@2.67</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">12%</div><div style="font-size:.75em;color:#95a5a6">@8.13</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria Rangers</strong> · prob 50% · @1.98</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.8</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.25</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.38</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -3111,6 +3247,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#0a1f0f;border:2px solid #27ae60;padding:12px"><div style="font-size:.72em;color:#27ae60;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#27ae60">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#27ae60">@1.7</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">74.0%</div><div style="font-size:.85em;font-weight:bold;color:#27ae60">EV +25.8%</div></div></div><button onclick="addBetFromMatch('m11','1',1.7)" style="margin-top:10px;width:100%;padding:8px;background:#27ae60;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -3166,6 +3304,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">2-0</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">55%</div><div style="font-size:.75em;color:#95a5a6">@1.83</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">35%</div><div style="font-size:.75em;color:#95a5a6">@2.85</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">10%</div><div style="font-size:.75em;color:#95a5a6">@9.71</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria Anderlecht</strong> · prob 55% · @1.83</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.1</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.18</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.28</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -3282,6 +3423,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#1a0a0a;border:2px solid #c0392b;padding:12px"><div style="font-size:.72em;color:#e74c3c;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#e74c3c">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#e74c3c">@1.9</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#f39c12;font-weight:bold">MEDIA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">51.3%</div><div style="font-size:.85em;font-weight:bold;color:#e74c3c">EV -2.6%</div></div></div><button onclick="addBetFromMatch('m12','1',1.9)" style="margin-top:10px;width:100%;padding:8px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -3337,6 +3480,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #f39c12"><div style="font-size:.63em;color:#7f8c8d">X ★</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">41%</div><div style="font-size:.75em;color:#95a5a6">@2.46</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">1</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">39%</div><div style="font-size:.75em;color:#95a5a6">@2.58</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">21%</div><div style="font-size:.75em;color:#95a5a6">@4.83</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">X — Pareggio</strong> · prob 41% · @2.46</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.5</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.20</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.32</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -3453,6 +3599,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#0a1f0f;border:2px solid #27ae60;padding:12px"><div style="font-size:.72em;color:#27ae60;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#27ae60">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#27ae60">@1.55</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">70.2%</div><div style="font-size:.85em;font-weight:bold;color:#27ae60">EV +8.8%</div></div></div><button onclick="addBetFromMatch('m13','1',1.55)" style="margin-top:10px;width:100%;padding:8px;background:#27ae60;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -3508,6 +3656,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">2-0</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 ★</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">52%</div><div style="font-size:.75em;color:#95a5a6">@1.91</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">35%</div><div style="font-size:.75em;color:#95a5a6">@2.89</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">13%</div><div style="font-size:.75em;color:#95a5a6">@7.75</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">1 — Vittoria Benevento</strong> · prob 52% · @1.91</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 3.5</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.10</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.22</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -3624,6 +3775,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:12px;background:#1a1500;border:2px solid #f39c12;padding:12px"><div style="font-size:.72em;color:#f39c12;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA — se potessi farne una sola</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#f39c12">2</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">2 Vittoria Ospite</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#f39c12">@1.54</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza modello: <span style="color:#27ae60;font-weight:bold">ALTA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">67.9%</div><div style="font-size:.85em;font-weight:bold;color:#f39c12">EV +4.6%</div></div></div><button onclick="addBetFromMatch('m14','2',1.54)" style="margin-top:10px;width:100%;padding:8px;background:#f39c12;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold;letter-spacing:.5px">+ Aggiungi a Scommesse</button></div>
+
 <!-- EV cards -->
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
   <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
@@ -3679,6 +3832,9 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
       <div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">0-2</div></div>
   </div>
 </div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (λ×0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #e74c3c"><div style="font-size:.63em;color:#7f8c8d">2 ★</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">49%</div><div style="font-size:.75em;color:#95a5a6">@2.03</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">39%</div><div style="font-size:.75em;color:#95a5a6">@2.56</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">1</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">12%</div><div style="font-size:.75em;color:#95a5a6">@8.55</div></div></div><div style="font-size:.72em;color:#7f8c8d">Consiglio 1T: <strong style="color:#9b59b6">2 — Vittoria Braga</strong> · prob 49% · @2.03</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina — Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#f39c12">&#128439; 4.5</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.22</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.30</div><div style="font-size:.65em;color:#7f8c8d">/gara (arb.)</div></div></div></div>
 
 <!-- Forma + H2H -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -3791,7 +3947,131 @@ var PRED_DATA9=[{"id": "m1", "pred": "1"}, {"id": "m2", "pred": "1"}, {"id": "m3
 var predMap={};
 PRED_DATA9.forEach(function(p){predMap[p.id]=p.pred;});
 var PRED_KEY='pred_results_9ago2026';
-var curTime='all',curDiff='all';
+var curTime='all',curDiff='all',curLive=false;
+
+// ── LIVE detection ──────────────────────────────────────────────────────────
+function parseKickoff(timeStr){
+  var now=new Date(); var p=timeStr.split(':');
+  return new Date(now.getFullYear(),now.getMonth(),now.getDate(),parseInt(p[0]),parseInt(p[1]),0);
+}
+function isLive(timeStr){
+  var ko=parseKickoff(timeStr); var now=new Date();
+  return now>=ko && now<new Date(ko.getTime()+105*60000);
+}
+function getMinute(timeStr){
+  var ko=parseKickoff(timeStr); var diff=Math.floor((new Date()-ko)/60000);
+  if(diff<0) return null;
+  if(diff<=45) return diff+''';
+  if(diff<=60) return 'HT';
+  if(diff<=105) return (diff-15)+''';
+  return 'FT';
+}
+function setLiveFilter(){
+  curLive=!curLive;
+  document.getElementById('f-live').classList.toggle('on',curLive);
+  applyFilters9();
+}
+function updateLiveClock(){
+  var liveMatches=0;
+  document.querySelectorAll('.sidebar-item[data-time]').forEach(function(el){
+    var t=el.dataset.time; if(!t) return;
+    var live=isLive(t); var min=getMinute(t);
+    var dot=el.querySelector('.live-dot');
+    if(live){
+      liveMatches++;
+      if(!dot){dot=document.createElement('span');dot.className='live-dot';dot.style.cssText='display:inline-block;width:7px;height:7px;background:#e74c3c;border-radius:50%;margin-left:6px;animation:blink 1s infinite';el.appendChild(dot);}
+      var minEl=el.querySelector('.live-min');
+      if(!minEl){minEl=document.createElement('span');minEl.className='live-min';minEl.style.cssText='font-size:.65em;color:#e74c3c;margin-left:4px';el.appendChild(minEl);}
+      minEl.textContent=min||'';
+    } else {
+      if(dot) dot.remove(); var me=el.querySelector('.live-min'); if(me) me.remove();
+    }
+  });
+  var clk=document.getElementById('live-clock');
+  if(clk) clk.textContent=liveMatches>0?liveMatches+' live':'';
+  var dot=document.getElementById('live-dot');
+  if(dot) dot.style.background=liveMatches>0?'#e74c3c':'#7f8c8d';
+}
+setInterval(updateLiveClock,30000); updateLiveClock();
+
+// ── Bet entry form ────────────────────────────────────────────────────────────
+var MATCH_ODDS={};
+(function(){
+  var raw=[{"id": "m1", "time": "13:30", "cat": "DIFFICILE"}, {"id": "m2", "time": "13:30", "cat": "DIFFICILE"}, {"id": "m3", "time": "14:00", "cat": "DIFFICILE"}, {"id": "m4", "time": "15:00", "cat": "DIFFICILE"}, {"id": "m5", "time": "16:00", "cat": "DIFFICILE"}, {"id": "m6", "time": "16:00", "cat": "DIFFICILE"}, {"id": "m7", "time": "16:30", "cat": "DIFFICILE"}, {"id": "m8", "time": "17:00", "cat": "FACILE"}, {"id": "m9", "time": "17:00", "cat": "DIFFICILE"}, {"id": "m10", "time": "17:00", "cat": "DIFFICILE"}, {"id": "m11", "time": "18:30", "cat": "DIFFICILE"}, {"id": "m12", "time": "19:15", "cat": "DIFFICILE"}, {"id": "m13", "time": "21:00", "cat": "DIFFICILE"}, {"id": "m14", "time": "21:30", "cat": "DIFFICILE"}];
+  raw.forEach(function(m){MATCH_ODDS[m.id]={h:m.h_odds,d:m.d_odds,a:m.a_odds,pred:m.pred,home:m.home,away:m.away,time:m.time};});
+})();
+
+function onBetMatchChange(){
+  var sel=document.getElementById('bet-match');
+  var mid=sel.value; if(!mid) return;
+  var md=MATCH_ODDS[mid]; if(!md) return;
+  var bt=document.getElementById('bet-type');
+  var oddsMap={'1':md.h,'X':md.d,'2':md.a};
+  // Pre-seleziona il tipo predetto
+  for(var i=0;i<bt.options.length;i++) bt.options[i].selected=(bt.options[i].value===md.pred);
+  // Imposta la quota del tipo predetto
+  document.getElementById('bet-odds').value=oddsMap[md.pred]||'';
+  updateBetPreview();
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var bt=document.getElementById('bet-type');
+  var bo=document.getElementById('bet-odds');
+  var bs=document.getElementById('bet-stake');
+  if(bt) bt.addEventListener('change',function(){
+    var mid=document.getElementById('bet-match').value; if(!mid) return;
+    var md=MATCH_ODDS[mid]; if(!md) return;
+    var oddsMap={'1':md.h,'X':md.d,'2':md.a};
+    bo.value=oddsMap[this.value]||'';
+    updateBetPreview();
+  });
+  if(bo) bo.addEventListener('input',updateBetPreview);
+  if(bs) bs.addEventListener('input',updateBetPreview);
+});
+function updateBetPreview(){
+  var odds=parseFloat(document.getElementById('bet-odds').value)||0;
+  var stake=parseFloat(document.getElementById('bet-stake').value)||0;
+  var pr=document.getElementById('bet-preview');
+  if(!pr) return;
+  if(odds>1 && stake>0){
+    var win=(stake*odds-stake).toFixed(2);
+    var total=(stake*odds).toFixed(2);
+    pr.innerHTML='<span style="color:#27ae60">+'+win+' EUR</span> <span style="color:#7f8c8d">(tot '+total+' EUR)</span>';
+  } else { pr.innerHTML='—'; }
+}
+function submitManualBet(){
+  var mid=document.getElementById('bet-match').value;
+  var btype=document.getElementById('bet-type').value;
+  var odds=parseFloat(document.getElementById('bet-odds').value);
+  var stake=parseFloat(document.getElementById('bet-stake').value);
+  if(!mid||!btype||!odds||!stake||odds<=1||stake<=0){
+    alert('Compila tutti i campi correttamente'); return;
+  }
+  var md=MATCH_ODDS[mid]; if(!md) return;
+  var lbl={'1':'1 Casa','X':'X Pari','2':'2 Ospite'}[btype];
+  var existing=JSON.parse(localStorage.getItem('coupon9')||'[]');
+  existing.push({id:mid,match:md.home+' vs '+md.away,time:md.time,bet:lbl,odds:odds,stake:stake,ev:0});
+  localStorage.setItem('coupon9',JSON.stringify(existing));
+  // Reset form
+  document.getElementById('bet-match').value='';
+  document.getElementById('bet-odds').value='';
+  document.getElementById('bet-preview').innerHTML='—';
+  updateCouponBadge(); renderCoupon(); renderBankrollStats();
+  // Flash feedback
+  var btn=event.target; btn.style.background='#27ae60'; setTimeout(function(){btn.style.background='#2980b9';},600);
+}
+function addBetFromMatch(mid,pred,odds){
+  var md=MATCH_ODDS[mid]; if(!md) return;
+  var lbl={'1':'1 Casa','X':'X Pari','2':'2 Ospite'}[pred];
+  // Chiedi la puntata
+  var stake=prompt('Puntata per '+md.home+' vs '+md.away+' ('+lbl+' @'+odds+'):','10');
+  if(!stake) return;
+  stake=parseFloat(stake); if(isNaN(stake)||stake<=0){alert('Puntata non valida');return;}
+  var existing=JSON.parse(localStorage.getItem('coupon9')||'[]');
+  existing.push({id:mid,match:md.home+' vs '+md.away,time:md.time,bet:lbl,odds:odds,stake:stake,ev:0});
+  localStorage.setItem('coupon9',JSON.stringify(existing));
+  updateCouponBadge(); renderBankrollStats();
+  alert('Scommessa aggiunta: '+lbl+' @'+odds+' puntata '+stake+'€');
+}
 
 function switchDay(day){
   document.querySelectorAll('.day-content').forEach(function(d){d.classList.remove('active');});
@@ -3831,7 +4111,8 @@ function applyFilters(){
     var h=parseInt((meta.time||'00:00').split(':')[0]);
     var tOk=curTime==='all'||(curTime==='mat'&&h<13)||(curTime==='pom'&&h>=13&&h<18)||(curTime==='ser'&&h>=18);
     var dOk=curDiff==='all'||meta.cat===curDiff;
-    return tOk&&dOk;
+    var lOk=!curLive||isLive(meta.time||'00:00');
+    return tOk&&dOk&&lOk;
   }
   cards.forEach(function(c){c.style.display=isVisible(c.dataset.mid)?'':'none';});
   sideItems.forEach(function(s){s.style.display=isVisible(s.dataset.mid)?'':'none';});
