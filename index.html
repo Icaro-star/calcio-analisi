@@ -51,8 +51,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
 <div class="layout">
 <div class="topbar">
   <div class="topbar-brand">&#x26BD; Calcio Analisi</div>
-  <button class="cal-btn" id="cal-aug8" onclick="switchDay('aug8')">&#x1F4C5; Ven 8 Ago</button>
-  <button class="cal-btn active" id="cal-aug9" onclick="switchDay('aug9')">&#x1F4C5; Sab 9 Ago</button>
+  <button class="cal-btn" id="cal-aug8" onclick="switchDay('aug8')">8 Ago &#10003;</button>
+  <button class="cal-btn active" id="cal-aug9" onclick="switchDay('aug9')">9 Ago &#10003;</button>
 </div>
 
 <!-- ─── 8 Agosto ─── -->
@@ -193,14 +193,19 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   </div>
   <div class="body-row" style="flex:1;overflow:hidden">
     <div class="sidebar" id="sidebar9">
+      <div class="sidebar-item" id="sn-results9" onclick="showMatch9('results9')">
+        <div style="font-size:.68em;color:#27ae60;font-weight:bold">RISULTATI 9 AGO</div>
+        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">9/14 prese</div>
+        <div style="font-size:.66em;color:#7f8c8d">64% accuratezza</div>
+      </div>
       <div class="sidebar-item active" id="sn-dashboard" onclick="showMatch9('dashboard')">
         <div style="font-size:.68em;color:#3498db;font-weight:bold">DASHBOARD</div>
-        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Tutte le partite</div>
+        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Analisi complete</div>
         <div style="font-size:.66em;color:#7f8c8d">14 partite · 9 Ago</div>
       </div>
       <div class="sidebar-item" id="sn-pred" onclick="showMatch9('pred')">
         <div style="font-size:.68em;color:#f39c12;font-weight:bold">PREDIZIONI</div>
-        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Secche 1X2</div>
+        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;margin:2px 0">Tabella 1X2</div>
         <div style="font-size:.66em;color:#7f8c8d">Forma + EV + H2H</div>
       </div>
       <div class="sidebar-item" id="sn-scommesse" onclick="showMatch9('scommesse')">
@@ -214,100 +219,277 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#f39c12;font-size:.65em;font-weight:bold">MEDIA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-0</span>
           </div></div><div class="sidebar-item" id="sn-m2" data-mid="m2" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">13:30 · Bundesliga 2</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">St. Pauli vs Greuther Fürth</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-1</span>
           </div></div><div class="sidebar-item" id="sn-m3" data-mid="m3" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">14:00 · Allsvenskan</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Malmo FF vs Degerfors IF</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-2</span>
           </div></div><div class="sidebar-item" id="sn-m4" data-mid="m4" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">15:00 · 1st Division</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Fredericia vs Vendsyssel</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#e74c3c;font-size:.65em;font-weight:bold">BASSA</span>
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-1</span>
           </div></div><div class="sidebar-item" id="sn-m5" data-mid="m5" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">16:00 · Jupiler League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Charleroi vs OHL Leuven</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#f39c12;font-size:.65em;font-weight:bold">MEDIA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-1</span>
           </div></div><div class="sidebar-item" id="sn-m6" data-mid="m6" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">16:00 · Premiership</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Hearts vs Dundee Utd</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#f39c12;font-size:.65em;font-weight:bold">MEDIA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 4-0</span>
           </div></div><div class="sidebar-item" id="sn-m7" data-mid="m7" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">16:30 · Super League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">FC Sion vs FC Vaduz</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 3-2</span>
           </div></div><div class="sidebar-item" id="sn-m8" data-mid="m8" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">17:00 · Eliteserien</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">HamKam vs Aalesund</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#f39c12;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">X</span>
             <span style="color:#f39c12;font-size:.65em;font-weight:bold">MEDIA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 1-1</span>
           </div></div><div class="sidebar-item" id="sn-m9" data-mid="m9" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">17:00 · 1. Liga</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Jablonec vs Slovacko</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#e74c3c;font-size:.65em;font-weight:bold">BASSA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 1-0</span>
           </div></div><div class="sidebar-item" id="sn-m10" data-mid="m10" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">17:00 · Premiership</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Rangers vs Hibernian</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 1-2</span>
           </div></div><div class="sidebar-item" id="sn-m11" data-mid="m11" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">18:30 · Jupiler League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Anderlecht vs RAAL La Louviere</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-1</span>
           </div></div><div class="sidebar-item" id="sn-m12" data-mid="m12" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">19:15 · Jupiler League</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Royal Antwerp vs SK Beveren</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#f39c12;font-size:.65em;font-weight:bold">MEDIA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 2-1</span>
           </div></div><div class="sidebar-item" id="sn-m13" data-mid="m13" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">21:00 · Coppa Italia</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Benevento vs Ravenna</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
+            <span style="background:#27ae60;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10003; 5-3</span>
           </div></div><div class="sidebar-item" id="sn-m14" data-mid="m14" onclick="showMatch9(this.dataset.mid)">
           <div style="font-size:.63em;color:#7f8c8d">21:30 · Liga Portugal</div>
           <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Moreirense vs Braga</div>
           <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
             <span style="background:#e74c3c;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">2</span>
             <span style="color:#27ae60;font-size:.65em;font-weight:bold">ALTA</span>
+            <span style="background:#e74c3c;color:#fff;padding:0 5px;border-radius:4px;font-size:.6em">&#10007; 2-2</span>
           </div></div>
     </div>
     <div class="main" id="main9">
+      <!-- Risultati 9 Ago -->
+      <div class="match-content" id="mc-results9" style="display:none"><div class="match-header">
+  <h2 style="color:#ecf0f1;margin:0 0 4px">9 Agosto 2026 — Risultati</h2>
+  <div style="color:#95a5a6;font-size:.82em">Confronto predizioni modello vs risultati reali</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0">
+  <div class="card" style="text-align:center;background:#0a1f0f;border-color:#27ae60">
+    <div style="font-size:2em;font-weight:bold;color:#27ae60">9/14</div>
+    <div style="font-size:.78em;color:#95a5a6">Predizioni corrette</div></div>
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db">
+    <div style="font-size:2em;font-weight:bold;color:#3498db">64%</div>
+    <div style="font-size:.78em;color:#95a5a6">Accuratezza</div></div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12">
+    <div style="font-size:2em;font-weight:bold;color:#f39c12">5</div>
+    <div style="font-size:.78em;color:#95a5a6">Errori</div></div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:.78em;color:#95a5a6;margin-bottom:6px">Hit rate</div>
+    <div style="background:#1a2634;border-radius:4px;height:12px;overflow:hidden">
+      <div style="background:#27ae60;width:64%;height:100%;border-radius:4px"></div></div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">64%</div></div>
+</div>
+<div class="card" style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse">
+    <thead><tr style="color:#7f8c8d;font-size:.78em;border-bottom:2px solid #1e2d3d">
+      <th style="padding:6px">Ora</th><th style="padding:6px">Partita</th>
+      <th style="padding:6px;text-align:center">Score</th><th style="padding:6px;text-align:center">Ris.</th>
+      <th style="padding:6px;text-align:center">Modello</th>
+      <th style="padding:6px;text-align:center" class="hm">Conf</th>
+    </tr></thead>
+    <tbody><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">13:30</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Gent <span style="color:#7f8c8d">vs</span> KV Mechelen</div>
+            <div style="font-size:.72em;color:#7f8c8d">Jupiler League — Belgio</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">2-0</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">13:30</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">St. Pauli <span style="color:#7f8c8d">vs</span> Greuther Fürth</div>
+            <div style="font-size:.72em;color:#7f8c8d">Bundesliga 2 — Germania</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-1</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold">X</span><br><span style="font-size:.7em;color:#7f8c8d">Pareggio</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10007; pred:1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">ALTA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">14:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Malmo FF <span style="color:#7f8c8d">vs</span> Degerfors IF</div>
+            <div style="font-size:.72em;color:#7f8c8d">Allsvenskan — Svezia</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-2</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold">2</span><br><span style="font-size:.7em;color:#7f8c8d">Ospite</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10007; pred:1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">ALTA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">15:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Fredericia <span style="color:#7f8c8d">vs</span> Vendsyssel</div>
+            <div style="font-size:.72em;color:#7f8c8d">1st Division — Danimarca</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-1</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold">X</span><br><span style="font-size:.7em;color:#7f8c8d">Pareggio</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10007; pred:1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">BASSA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">16:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Charleroi <span style="color:#7f8c8d">vs</span> OHL Leuven</div>
+            <div style="font-size:.72em;color:#7f8c8d">Jupiler League — Belgio</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">2-1</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">16:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Hearts <span style="color:#7f8c8d">vs</span> Dundee Utd</div>
+            <div style="font-size:.72em;color:#7f8c8d">Premiership — Scozia</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">4-0</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">16:30</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">FC Sion <span style="color:#7f8c8d">vs</span> FC Vaduz</div>
+            <div style="font-size:.72em;color:#7f8c8d">Super League — Svizzera</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">3-2</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">ALTA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">17:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">HamKam <span style="color:#7f8c8d">vs</span> Aalesund</div>
+            <div style="font-size:.72em;color:#7f8c8d">Eliteserien — Norvegia</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-1</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">X</span><br><span style="font-size:.7em;color:#7f8c8d">Pareggio</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; X</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">17:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Jablonec <span style="color:#7f8c8d">vs</span> Slovacko</div>
+            <div style="font-size:.72em;color:#7f8c8d">1. Liga — Rep. Ceca</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-0</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#e74c3c;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">BASSA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">17:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Rangers <span style="color:#7f8c8d">vs</span> Hibernian</div>
+            <div style="font-size:.72em;color:#7f8c8d">Premiership — Scozia</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">1-2</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold">2</span><br><span style="font-size:.7em;color:#7f8c8d">Ospite</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10007; pred:1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">ALTA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">18:30</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Anderlecht <span style="color:#7f8c8d">vs</span> RAAL La Louviere</div>
+            <div style="font-size:.72em;color:#7f8c8d">Jupiler League — Belgio</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">2-1</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">ALTA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">19:15</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Royal Antwerp <span style="color:#7f8c8d">vs</span> SK Beveren</div>
+            <div style="font-size:.72em;color:#7f8c8d">Jupiler League — Belgio</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">2-1</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#f39c12;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">MEDIA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">21:00</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Benevento <span style="color:#7f8c8d">vs</span> Ravenna</div>
+            <div style="font-size:.72em;color:#7f8c8d">Coppa Italia — Italia</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">5-3</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#27ae60;font-weight:bold">1</span><br><span style="font-size:.7em;color:#7f8c8d">Casa</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#27ae60;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10003; 1</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">ALTA</span></td>
+        </tr><tr>
+          <td style="padding:7px 6px;font-size:.82em;color:#7f8c8d;white-space:nowrap">21:30</td>
+          <td style="padding:7px 6px">
+            <div style="font-weight:bold;font-size:.85em;color:#ecf0f1">Moreirense <span style="color:#7f8c8d">vs</span> Braga</div>
+            <div style="font-size:.72em;color:#7f8c8d">Liga Portugal — Portogallo</div></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#1a2634;color:#ecf0f1;padding:3px 10px;border-radius:6px;font-weight:bold;font-size:.9em">2-2</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="color:#e74c3c;font-weight:bold">X</span><br><span style="font-size:.7em;color:#7f8c8d">Pareggio</span></td>
+          <td style="padding:7px 6px;text-align:center"><span style="background:#e74c3c;color:#fff;padding:1px 7px;border-radius:10px;font-size:.72em;font-weight:bold">&#10007; pred:2</span></td>
+          <td style="padding:7px 6px;text-align:center" class="hm"><span style="background:#27ae60;color:#fff;padding:1px 6px;border-radius:8px;font-size:.68em">ALTA</span></td>
+        </tr></tbody>
+  </table>
+</div>
+<div class="card" style="margin-top:12px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-weight:bold;color:#f39c12;font-size:.85em;margin-bottom:8px">Analisi errori — Cosa ha sbagliato il modello</div>
+  <ul style="font-size:.82em;color:#bdc3c7;line-height:1.8;padding-left:16px"><li>St. Pauli vs Greuther Fürth: previsto 1, risultato X (1-1)</li><li>Malmo FF vs Degerfors IF: previsto 1, risultato 2 (1-2)</li><li>Fredericia vs Vendsyssel: previsto 1, risultato X (1-1)</li><li>Rangers vs Hibernian: previsto 1, risultato 2 (1-2)</li><li>Moreirense vs Braga: previsto 2, risultato X (2-2)</li></ul>
+  <div style="margin-top:8px;font-size:.78em;color:#7f8c8d">Nota: 3 errori su X (pareggi non previsti), 1 su 2 (Rangers favorita ma persa), 1 su X (Moreirense vs Braga finita 2-2). Il modello sovrastima le squadre favorite forti in casa.</div>
+</div></div>
       <!-- Dashboard -->
       <div class="match-content active" id="mc-dashboard">
         <div class="match-header">
-          <h2 style="color:#ecf0f1;margin:2px 0">Dashboard — 9 Agosto 2026</h2>
-          <div style="color:#95a5a6;font-size:.82em">14 partite · Poisson-DC + Forma + H2H</div>
+          <h2 style="color:#ecf0f1;margin:2px 0">9 Agosto 2026 — Analisi complete</h2>
+          <div style="color:#95a5a6;font-size:.82em">14 partite analizzate · Risultati: <span style="color:#27ae60;font-weight:bold">9/14 prese (64%)</span></div>
         </div>
         <div class="card" style="background:#0d1520;border-color:#1a3a5a;margin-bottom:12px">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
             <div>
-              <div style="font-size:.78em;color:#7f8c8d;margin-bottom:2px">Ieri — 8 Agosto</div>
-              <div style="font-size:.95em;font-weight:bold;color:#ecf0f1">Accuratezza: <span style="color:#27ae60">5/8 (62%)</span></div>
+              <div style="font-size:.78em;color:#7f8c8d;margin-bottom:2px">Storico modello</div>
+              <div style="font-size:.95em;font-weight:bold;color:#ecf0f1">8 Ago: <span style="color:#27ae60">5/8 (62%)</span> &nbsp;·&nbsp; 9 Ago: <span style="color:#27ae60">9/14 (64%)</span></div>
             </div>
-            <button onclick="switchDay('aug8')" style="background:#1a2634;color:#3498db;border:1px solid #2c3e50;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.8em">Vedi risultati</button>
+            <button onclick="showMatch9('results9')" style="background:#27ae60;color:#fff;border:none;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.8em">Vedi risultati 9 Ago</button>
           </div>
         </div>
         <div class="card" style="background:#080f18;border-color:#1a3a5a;margin-bottom:12px">
