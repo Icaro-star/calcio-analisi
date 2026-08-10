@@ -4246,8 +4246,10 @@ function showMatch10(id){
 function switchDay(day){
   document.querySelectorAll('.day-content').forEach(function(d){d.classList.remove('active');});
   document.querySelectorAll('.cal-btn').forEach(function(b){b.classList.remove('active');});
-  document.getElementById('day-'+day).classList.add('active');
-  document.getElementById('cal-'+day).classList.add('active');
+  var dc=document.getElementById('day-'+day);
+  if(dc){dc.classList.add('active');var m=dc.querySelector('.main');if(m)m.scrollTop=0;}
+  var btn=document.getElementById('cal-'+day);
+  if(btn)btn.classList.add('active');
 }
 function showMatch9(id){
   document.querySelectorAll('#main9 .match-content').forEach(function(e){e.style.display='none';e.classList.remove('active');});
@@ -4365,6 +4367,8 @@ document.addEventListener('DOMContentLoaded',function(){
   loadPredResults();renderCoupon();updateCouponBadge();
   try{setInterval(updateLiveClock,30000);updateLiveClock();}catch(e){console.warn('liveClock:',e);}
   switchDay('aug10');
+  var m10=document.getElementById('main10');if(m10)m10.scrollTop=0;
+  showMatch10('dashboard10');
 });
 </script>
 
