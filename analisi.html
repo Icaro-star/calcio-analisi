@@ -4241,7 +4241,7 @@ function showMatch10(id){
   var nav=document.getElementById('sn10-'+id);
   if(nav){nav.classList.add('active');nav.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
   var _m10=document.getElementById('main10');
-  if(_m10){_m10.scrollTop=0;if(window.innerWidth<=700)_m10.scrollIntoView({behavior:'smooth',block:'start'});}
+  if(_m10)_m10.scrollTop=0;
 }
 function switchDay(day){
   document.querySelectorAll('.day-content').forEach(function(d){d.classList.remove('active');});
