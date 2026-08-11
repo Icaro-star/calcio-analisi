@@ -55,6 +55,11 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
   <button class="cal-btn" id="cal-aug8" onclick="switchDay('aug8')">8 Ago &#10003;</button>
   <button class="cal-btn" id="cal-aug9" onclick="switchDay('aug9')">9 Ago &#10003;</button>
   <button class="cal-btn" id="cal-aug10" onclick="switchDay('aug10')">10 Ago &#10003;</button>
+  <button class="cal-btn" id="cal-aug11" onclick="switchDay('aug11')">11 Ago &#9658;</button>
+  <div style="margin-left:auto;padding:0 12px;font-size:.72em;color:#7f8c8d;white-space:nowrap;display:flex;align-items:center;gap:6px">
+    <span>Modello:</span>
+    <span style="color:#f39c12;font-weight:bold">13/25 (52%)</span>
+  </div>
 </div>
 
 <!-- ─── 8 Agosto ─── -->
@@ -494,7 +499,8 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
             <div>
               <div style="font-size:.78em;color:#7f8c8d;margin-bottom:2px">Storico modello</div>
-              <div style="font-size:.95em;font-weight:bold;color:#ecf0f1">8 Ago: <span style="color:#27ae60">5/8 (62%)</span> &nbsp;·&nbsp; 9 Ago: <span style="color:#27ae60">8/14 (57%)</span></div>
+              <div style="font-size:.95em;font-weight:bold;color:#ecf0f1">8 Ago: <span style="color:#27ae60">5/8 (62%)</span> &nbsp;·&nbsp; 9 Ago: <span style="color:#27ae60">8/14 (57%)</span> &nbsp;·&nbsp; 10 Ago: <span style="color:#e74c3c">0/3 (0%)</span></div>
+              <div style="font-size:.8em;margin-top:4px">Totale: <span style="color:#f39c12;font-weight:bold">13/25 (52%)</span></div>
             </div>
             <button onclick="showMatch9('results9')" style="background:#27ae60;color:#fff;border:none;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.8em">Vedi risultati 9 Ago</button>
           </div>
@@ -4526,6 +4532,503 @@ th{color:#7f8c8d;font-size:.78em;text-align:left}
     </div>
   </div>
 </div>
+
+<div class="day-content" id="day-aug11">
+  <div class="body-row" style="flex:1;overflow:hidden">
+    <div class="sidebar" id="sidebar11">
+      <div class="sidebar-item active" id="sn11-dashboard11" onclick="showMatch11('dashboard11')" style="border-color:#e74c3c;background:#1a0a1a">
+        <div style="font-size:.68em;color:#e74c3c;font-weight:bold">11 AGOSTO 2026</div>
+        <div style="font-weight:bold;font-size:.81em;color:#ecf0f1">UCL 3Q Ritorni</div>
+        <div style="font-size:.66em;color:#7f8c8d">2x1  0xX  1x2</div>
+      </div>
+<div class="sidebar-item" id="sn11-b1" data-mid="b1" data-time="18:00" onclick="showMatch11(this.dataset.mid)">
+  <div style="font-size:.63em;color:#7f8c8d">18:00 &middot; UCL 3Q</div>
+  <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Bodo/Glimt vs Royale Union SG</div>
+  <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+    <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
+    <span style="color:#e74c3c;font-size:.65em;font-weight:bold">BASSA</span>
+  </div>
+  <div style="font-size:.58em;color:#e74c3c;margin-top:2px">3-3 (parita')</div>
+</div><div class="sidebar-item" id="sn11-b2" data-mid="b2" data-time="19:00" onclick="showMatch11(this.dataset.mid)">
+  <div style="font-size:.63em;color:#7f8c8d">19:00 &middot; UCL 3Q</div>
+  <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Kauno Zalgiris vs Dinamo Zagreb</div>
+  <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+    <span style="background:#e74c3c;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">2</span>
+    <span style="color:#e74c3c;font-size:.65em;font-weight:bold">BASSA</span>
+  </div>
+  <div style="font-size:.58em;color:#e74c3c;margin-top:2px">0-5 (Dinamo qualificata)</div>
+</div><div class="sidebar-item" id="sn11-b3" data-mid="b3" data-time="20:15" onclick="showMatch11(this.dataset.mid)">
+  <div style="font-size:.63em;color:#7f8c8d">20:15 &middot; UCL 3Q</div>
+  <div style="font-weight:bold;font-size:.81em;color:#ecf0f1;line-height:1.3;margin:2px 0">Celje vs Ararat-Armenia</div>
+  <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
+    <span style="background:#3498db;color:#fff;padding:0 7px;border-radius:6px;font-size:.65em;font-weight:bold">1</span>
+    <span style="color:#e74c3c;font-size:.65em;font-weight:bold">BASSA</span>
+  </div>
+  <div style="font-size:.58em;color:#e74c3c;margin-top:2px">1-2 (Ararat avanti di 1)</div>
+</div>
+    </div>
+    <div class="main" id="main11">
+      <div class="match-content active" id="mc11-dashboard11">
+        <div class="match-header"><h2 style="color:#ecf0f1;margin:0 0 4px">11 Agosto 2026 -- UCL Qualifying</h2>
+        <div style="color:#95a5a6;font-size:.82em">3 ritorni &middot; Champions League 3° Turno Qualificazione</div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px">
+<div class="card" style="cursor:pointer;border-color=#e74c3c" onclick="showMatch11('b1')">
+  <div style="font-size:.65em;color:#e74c3c;font-weight:bold">UCL 3Q Ritorno</div>
+  <div style="font-size:.7em;color:#7f8c8d">18:00</div>
+  <div style="font-weight:bold;font-size:.88em;margin:4px 0">Bodo/Glimt vs Royale Union SG</div>
+  <div><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:8px;font-size:.7em">1 BASSA</span>
+  <span style="font-size:.72em;color:#7f8c8d;margin-left:6px">@1.55</span></div>
+  <div style="font-size:.68em;color:#e74c3c;margin-top:4px">3-3 (parita')</div></div><div class="card" style="cursor:pointer;border-color=#e74c3c" onclick="showMatch11('b2')">
+  <div style="font-size:.65em;color:#e74c3c;font-weight:bold">UCL 3Q Ritorno</div>
+  <div style="font-size:.7em;color:#7f8c8d">19:00</div>
+  <div style="font-weight:bold;font-size:.88em;margin:4px 0">Kauno Zalgiris vs Dinamo Zagreb</div>
+  <div><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:8px;font-size:.7em">2 BASSA</span>
+  <span style="font-size:.72em;color:#7f8c8d;margin-left:6px">@1.4</span></div>
+  <div style="font-size:.68em;color:#e74c3c;margin-top:4px">0-5 (Dinamo qualificata)</div></div><div class="card" style="cursor:pointer;border-color=#e74c3c" onclick="showMatch11('b3')">
+  <div style="font-size:.65em;color:#e74c3c;font-weight:bold">UCL 3Q Ritorno</div>
+  <div style="font-size:.7em;color:#7f8c8d">20:15</div>
+  <div style="font-weight:bold;font-size:.88em;margin:4px 0">Celje vs Ararat-Armenia</div>
+  <div><span style="background:#e74c3c;color:#fff;padding:2px 8px;border-radius:8px;font-size:.7em">1 BASSA</span>
+  <span style="font-size:.72em;color:#7f8c8d;margin-left:6px">@1.6</span></div>
+  <div style="font-size:.68em;color:#e74c3c;margin-top:4px">1-2 (Ararat avanti di 1)</div></div>
+        </div>
+      </div>
+<div class="match-content" id="mc11-b1" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">18:00 -- UCL 3° Qual. Ritorno — Norvegia</div>
+  <h2 style="color:#ecf0f1;margin:4px 0 6px">Bodo/Glimt vs Royale Union SG</h2>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span style="background:#f39c12;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">MEDIA</span>
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">Pred: 1 -- BASSA</span>
+    <span style="font-size:.78em;color:#95a5a6">Vittoria Bodo/Glimt</span>
+    <span style="font-size:.75em;color:#7f8c8d">Score atteso: 1-1</span>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#0a0f1a;border:2px solid #c0392b;padding:12px"><div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">&#127942; CONTESTO AGGREGATO UCL</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.78em"><div><div style="color:#7f8c8d;margin-bottom:3px">Andata</div><div style="font-weight:bold;color:#ecf0f1">3-3 (Union SG - Bodo/Glimt, 4 Ago)</div></div><div><div style="color:#7f8c8d;margin-bottom:3px">Aggregato</div><div style="font-weight:bold;color:#f39c12">3-3 (parita')</div></div><div><div style="color:#3498db;margin-bottom:3px">Bodo/Glimt deve:</div><div style="color:#ecf0f1">Vittoria per qualificarsi (pareggio > supplementari)</div></div><div><div style="color:#e74c3c;margin-bottom:3px">Royale Union SG deve:</div><div style="color:#ecf0f1">Vittoria per qualificarsi (pareggio > supplementari)</div></div></div></div>
+
+<div style="margin:14px 0 12px">
+  <div style="display:flex;height:26px;border-radius:6px;overflow:hidden;font-size:.78em;font-weight:bold">
+    <div style="width:44%;background:#1a4a7a;display:flex;align-items:center;justify-content:center;color:#ecf0f1;padding:0 4px;white-space:nowrap">1 44.1%</div>
+    <div style="width:24%;background:#5a4a00;display:flex;align-items:center;justify-content:center;color:#f39c12;padding:0 4px;white-space:nowrap">X 23.5%</div>
+    <div style="width:32%;background:#4a1a1a;display:flex;align-items:center;justify-content:center;color:#e74c3c;padding:0 4px;white-space:nowrap">2 32.4%</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#1a0a0a;border:2px solid #c0392b;padding:12px"><div style="font-size:.72em;color:#e74c3c;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#e74c3c">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#e74c3c">@1.55</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza: <span style="color:#e74c3c;font-weight:bold">BASSA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">44.1%</div><div style="font-size:.85em;font-weight:bold;color:#e74c3c">EV -31.6%</div></div></div><button onclick="addBetFromMatch('b1','1',1.55)" style="margin-top:10px;width:100%;padding:8px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold">+ Aggiungi a Scommesse</button></div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">1 -- Casa</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#3498db">44.1%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@1.55 <span style="color:#7f8c8d;font-size:.7em">=1.54</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @2.27</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:4px">EV -31.6%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">X -- Pareggio</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#f39c12">23.5%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@4.6 <span style="color:#7f8c8d;font-size:.7em">=4.6</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @4.26</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:4px">EV +8.0%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">2 -- Ospite</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#e74c3c">32.4%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@4.75 <span style="color:#e74c3c;font-size:.7em">&#9660;4.8</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @3.09</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:4px">EV +53.9%</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:10px">Statistiche Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px">
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">xG Casa</div><div style="font-size:1.1em;font-weight:bold;color:#3498db">1.944</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">xG Ospite</div><div style="font-size:1.1em;font-weight:bold;color:#e74c3c">1.654</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 1.5</div><div style="font-size:1.1em;font-weight:bold;color:#27ae60">88.3%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 2.5</div><div style="font-size:1.1em;font-weight:bold;color:#27ae60">69.7%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">BTTS</div><div style="font-size:1.1em;font-weight:bold;color:#9b59b6">70.2%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">HT O0.5</div><div style="font-size:1.1em;font-weight:bold;color:#16a085">80.2%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 0.5</div><div style="font-size:1.1em;font-weight:bold;color:#1abc9c">96.4%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Score</div><div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (lambda x0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #3498db"><div style="font-size:.63em;color:#7f8c8d">1 &#9733;</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">36%</div><div style="font-size:.75em;color:#95a5a6">@2.76</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">X</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">35%</div><div style="font-size:.75em;color:#95a5a6">@2.86</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">29%</div><div style="font-size:.75em;color:#95a5a6">@3.47</div></div></div><div style="font-size:.72em;color:#7f8c8d">1T: <strong style="color:#9b59b6">1</strong> -- Vittoria Bodo/Glimt -- prob 36% -- @2.76</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina -- Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 3.5</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.08</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.18</div></div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card">
+    <div style="font-size:.78em;font-weight:bold;color:#3498db;margin-bottom:8px">Bodo/Glimt -- Forma</div>
+    <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span></div>
+    <div style="font-size:.75em;color:#95a5a6">Gol/gara: 2.6</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Evjen (ginocchio, fuori), Bassi (fuori), Mikkelsen (fuori), Saltnes (fuori)</div>
+  </div>
+  <div class="card">
+    <div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">Royale Union SG -- Forma</div>
+    <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span></div>
+    <div style="font-size:.75em;color:#95a5a6">Gol/gara: 3.1</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Zorgane (dubbio)</div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0d1520;border-color:#1a3a5a">
+    <div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:6px">H2H</div>
+    <div style="font-size:.82em;color:#bdc3c7">2 incontri europei: 1P-1D — ultima 3-3 (andata UCL 4 Ago)</div>
+  </div>
+  <div class="card" style="background:#0d1520;border-color:#1a3a5a">
+    <div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:6px">Movimento Quote</div>
+    <div style="font-size:.78em;color:#bdc3c7;line-height:1.7">1: @1.55 <span style="color:#7f8c8d;font-size:.7em">=1.54</span><br>X: @4.6 <span style="color:#7f8c8d;font-size:.7em">=4.6</span><br>2: @4.75 <span style="color:#e74c3c;font-size:.7em">&#9660;4.8</span></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#080e18;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#e67e22;margin-bottom:10px">Segnali Modello v2 -- lambda adj: 1.944/1.654</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.75em"><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Forma 10 gare</div><div style="display:flex;justify-content:space-between"><div><span style="color:#3498db;font-weight:bold">93%</span> Bodo<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#27ae60;width:93%;height:6px;border-radius:3px"></div></div></div><div style="text-align:right"><span style="color:#e74c3c;font-weight:bold">77%</span> Royale<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#27ae60;width:76%;height:6px;border-radius:3px"></div></div></div></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">H2H storici</div><div style="display:flex;justify-content:space-between"><div><span style="color:#3498db;font-weight:bold">33%</span> Casa<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#e74c3c;width:33%;height:6px;border-radius:3px"></div></div></div><div style="text-align:right"><span style="color:#e74c3c;font-weight:bold">33%</span> Ospite<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#e74c3c;width:33%;height:6px;border-radius:3px"></div></div></div></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Motivazione</div><div><span style="color:#3498db">Europa</span> <span style="font-weight:bold;color:#27ae60">93%</span></div><div><span style="color:#e74c3c">Europa</span> <span style="font-weight:bold;color:#27ae60">93%</span></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Infortuni</div><div style="color:#3498db">Casa: <span style="color:#e74c3c">Assenze (36% imp.)</span></div><div style="color:#e74c3c">Ospite: <span style="color:#f39c12">Dubbio (4% imp.)</span></div></div><div style="background:#0f1923;border-radius:6px;padding:8px;grid-column:span 2"><div style="color:#7f8c8d;margin-bottom:4px">Movimento quote (smart money)</div><div style="display:flex;gap:20px"><div>Casa: <span style="color:#7f8c8d">--</span> &nbsp; Ospite: <span style="color:#7f8c8d">--</span></div><div style="color:#7f8c8d">Apertura: 1=1.54 X=4.6 2=4.8</div></div></div></div></div>
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo -- Bodo</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">14C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Parzialmente nuvoloso</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">15 km/h NW</div></div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Bodo/Glimt</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Patrick Berg</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">CM</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Capitano, gol su punizione nell'andata</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Ole Blomberg</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Rigore andata, principale finalizzatore</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jens Petter Hauge</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Creativita' e velocita' in fascia sinistra</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Ola Brynhildsen</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Centravanti, uomo gol</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Royale Union SG</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">3-4-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Raul Florucz</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">2 gol nell'andata, pericolo principale</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Promise David</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Gol all'88' andata, letale in area</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Bart Schoofs</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">CM</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Metronomo, organizza la manovra</div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Bodo/Glimt</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Royale Union SG</th></tr></thead><tbody><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">14.5 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">12.0 tiri</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">53%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">47%</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.8 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.5 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">30%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">0%</td></tr></tbody></table></div>
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo (attesi: 10.3 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">70.0%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">57.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">45.4%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">33.8%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea: <strong style="color:#f39c12">Over 9.5</strong> -- Bodo/Glimt 5.8 + Royale Union SG 4.5 ang./gara</div></div>
+
+<div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
+  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">UCL 3Q Ritorno — aggregato 3-3 (andata 3-3 a Bruxelles, 4 Ago). Pari: chi vince passa, pareggio > supplementari. Glimt 1° Eliteserien (41pt/17g), 11 gare senza sconfitta, primo gol in 10 gare consecutive. Aspmyra (Circolo Artico) fortezza europea quasi inespugnabile. Union SG 1° Pro League (43pt) ma 12 gol subiti in 5 gare, 0 clean sheet in 7. Glimt FAVORITA ma tie apertissimo.</div>
+  <div style="margin-top:10px;padding:8px 12px;background:#0f1923;border-radius:6px;border-left:3px solid #e74c3c">
+    <span style="font-size:.78em;font-weight:bold;color:#e74c3c">Predizione: 1 (Vittoria Bodo/Glimt)</span>
+    <span style="font-size:.75em;color:#7f8c8d;margin-left:8px">Confidenza BASSA</span>
+  </div>
+</div>
+
+<div class="card" style="background:#091a0f;border-color:#27ae60">
+  <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-bottom:10px">Aggiungi al Coupon</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+    <button data-mid="b1" data-type="1" data-odds="1.55" onclick="addBet(this)"
+      style="background:#1a2c42;color:#3498db;border:1px solid #2c3e50;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">1 Casa @1.55</button>
+    <button data-mid="b1" data-type="X" data-odds="4.6" onclick="addBet(this)"
+      style="background:#2a2200;color:#f39c12;border:1px solid #3a3000;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">X @4.6</button>
+    <button data-mid="b1" data-type="2" data-odds="4.75" onclick="addBet(this)"
+      style="background:#2a0a0a;color:#e74c3c;border:1px solid #3a1010;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">2 Ospite @4.75</button>
+    <button data-mid="b1" data-type="Over 1.5" data-odds="1.13" onclick="addBet(this)"
+      style="background:#0a1f0a;color:#27ae60;border:1px solid #1a3a1a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">Over 1.5 (88.3%)</button>
+    <button data-mid="b1" data-type="Over 2.5" data-odds="1.43" onclick="addBet(this)"
+      style="background:#0a1f0a;color:#27ae60;border:1px solid #1a3a1a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">Over 2.5 (69.7%)</button>
+    <button data-mid="b1" data-type="BTTS" data-odds="1.42" onclick="addBet(this)"
+      style="background:#1a0a2a;color:#9b59b6;border:1px solid #2a1a3a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">BTTS (70.2%)</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <label style="font-size:.8em;color:#95a5a6">Puntata (EUR):</label>
+    <input id="stake-b1" type="number" value="10" min="1" step="1"
+      style="background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:4px 10px;width:75px;font-size:.85em">
+    <span id="bet-msg-b1" style="font-size:.78em;color:#27ae60"></span>
+  </div>
+</div></div><div class="match-content" id="mc11-b2" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">19:00 -- UCL 3° Qual. Ritorno — Lituania</div>
+  <h2 style="color:#ecf0f1;margin:4px 0 6px">Kauno Zalgiris vs Dinamo Zagreb</h2>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span style="background:#27ae60;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">FACILE</span>
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">Pred: 2 -- BASSA</span>
+    <span style="font-size:.78em;color:#95a5a6">Vittoria Dinamo Zagreb</span>
+    <span style="font-size:.75em;color:#7f8c8d">Score atteso: 1-1</span>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#0a0f1a;border:2px solid #c0392b;padding:12px"><div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">&#127942; CONTESTO AGGREGATO UCL</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.78em"><div><div style="color:#7f8c8d;margin-bottom:3px">Andata</div><div style="font-weight:bold;color:#ecf0f1">0-5 (Dinamo Zagreb, 4 Ago)</div></div><div><div style="color:#7f8c8d;margin-bottom:3px">Aggregato</div><div style="font-weight:bold;color:#f39c12">0-5 (Dinamo qualificata)</div></div><div><div style="color:#3498db;margin-bottom:3px">Kauno Zalgiris deve:</div><div style="color:#ecf0f1">Impossibile (serve +6 senza subire)</div></div><div><div style="color:#e74c3c;margin-bottom:3px">Dinamo Zagreb deve:</div><div style="color:#ecf0f1">Qualificata — riposo giocatori chiave</div></div></div></div>
+
+<div style="margin:14px 0 12px">
+  <div style="display:flex;height:26px;border-radius:6px;overflow:hidden;font-size:.78em;font-weight:bold">
+    <div style="width:23%;background:#1a4a7a;display:flex;align-items:center;justify-content:center;color:#ecf0f1;padding:0 4px;white-space:nowrap">1 22.9%</div>
+    <div style="width:30%;background:#5a4a00;display:flex;align-items:center;justify-content:center;color:#f39c12;padding:0 4px;white-space:nowrap">X 30.0%</div>
+    <div style="width:47%;background:#4a1a1a;display:flex;align-items:center;justify-content:center;color:#e74c3c;padding:0 4px;white-space:nowrap">2 47.1%</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#1a0a0a;border:2px solid #c0392b;padding:12px"><div style="font-size:.72em;color:#e74c3c;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#e74c3c">2</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">2 Vittoria Ospite</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#e74c3c">@1.4</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza: <span style="color:#e74c3c;font-weight:bold">BASSA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">47.1%</div><div style="font-size:.85em;font-weight:bold;color:#e74c3c">EV -34.0%</div></div></div><button onclick="addBetFromMatch('b2','2',1.4)" style="margin-top:10px;width:100%;padding:8px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold">+ Aggiungi a Scommesse</button></div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">1 -- Casa</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#3498db">22.9%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@8.0 <span style="color:#7f8c8d;font-size:.7em">=8.0</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @4.37</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:4px">EV +82.8%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">X -- Pareggio</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#f39c12">30.0%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@4.8 <span style="color:#7f8c8d;font-size:.7em">=4.8</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @3.33</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:4px">EV +44.1%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">2 -- Ospite</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#e74c3c">47.1%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@1.4 <span style="color:#e74c3c;font-size:.7em">&#9660;1.47</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @2.12</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:4px">EV -34.0%</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:10px">Statistiche Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px">
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">xG Casa</div><div style="font-size:1.1em;font-weight:bold;color:#3498db">0.887</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">xG Ospite</div><div style="font-size:1.1em;font-weight:bold;color:#e74c3c">1.381</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 1.5</div><div style="font-size:1.1em;font-weight:bold;color:#27ae60">67.4%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 2.5</div><div style="font-size:1.1em;font-weight:bold;color:#27ae60">39.5%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">BTTS</div><div style="font-size:1.1em;font-weight:bold;color:#9b59b6">45.3%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">HT O0.5</div><div style="font-size:1.1em;font-weight:bold;color:#16a085">64.0%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 0.5</div><div style="font-size:1.1em;font-weight:bold;color:#1abc9c">88.4%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Score</div><div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (lambda x0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #f39c12"><div style="font-size:.63em;color:#7f8c8d">X &#9733;</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">46%</div><div style="font-size:.75em;color:#95a5a6">@2.19</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">35%</div><div style="font-size:.75em;color:#95a5a6">@2.89</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">1</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">20%</div><div style="font-size:.75em;color:#95a5a6">@5.05</div></div></div><div style="font-size:.72em;color:#7f8c8d">1T: <strong style="color:#9b59b6">X</strong> -- Pareggio -- prob 46% -- @2.19</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina -- Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 3.8</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.10</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.20</div></div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card">
+    <div style="font-size:.78em;font-weight:bold;color:#3498db;margin-bottom:8px">Kauno Zalgiris -- Forma</div>
+    <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#e74c3c;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">L</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span></div>
+    <div style="font-size:.75em;color:#95a5a6">Gol/gara: 1.15</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Ribeiro (dubbio)</div>
+  </div>
+  <div class="card">
+    <div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">Dinamo Zagreb -- Forma</div>
+    <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span></div>
+    <div style="font-size:.75em;color:#95a5a6">Gol/gara: 2.44</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Stojakovic (fuori)</div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0d1520;border-color:#1a3a5a">
+    <div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:6px">H2H</div>
+    <div style="font-size:.82em;color:#bdc3c7">Unico precedente: Dinamo 5-0 all'andata (4 Ago 2026)</div>
+  </div>
+  <div class="card" style="background:#0d1520;border-color:#1a3a5a">
+    <div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:6px">Movimento Quote</div>
+    <div style="font-size:.78em;color:#bdc3c7;line-height:1.7">1: @8.0 <span style="color:#7f8c8d;font-size:.7em">=8.0</span><br>X: @4.8 <span style="color:#7f8c8d;font-size:.7em">=4.8</span><br>2: @1.4 <span style="color:#e74c3c;font-size:.7em">&#9660;1.47</span></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#080e18;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#e67e22;margin-bottom:10px">Segnali Modello v2 -- lambda adj: 0.887/1.381</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.75em"><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Forma 10 gare</div><div style="display:flex;justify-content:space-between"><div><span style="color:#3498db;font-weight:bold">80%</span> Kauno Zalgiris<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#27ae60;width:80%;height:6px;border-radius:3px"></div></div></div><div style="text-align:right"><span style="color:#e74c3c;font-weight:bold">90%</span> Dinamo<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#27ae60;width:89%;height:6px;border-radius:3px"></div></div></div></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">H2H storici</div><div style="display:flex;justify-content:space-between"><div><span style="color:#3498db;font-weight:bold">0%</span> Casa<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#e74c3c;width:0%;height:6px;border-radius:3px"></div></div></div><div style="text-align:right"><span style="color:#e74c3c;font-weight:bold">100%</span> Ospite<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#27ae60;width:100%;height:6px;border-radius:3px"></div></div></div></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Motivazione</div><div><span style="color:#3498db">Centro-classifica</span> <span style="font-weight:bold;color:#f39c12">50%</span></div><div><span style="color:#e74c3c">Centro-classifica</span> <span style="font-weight:bold;color:#27ae60">68%</span></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Infortuni</div><div style="color:#3498db">Casa: <span style="color:#f39c12">Dubbio (4% imp.)</span></div><div style="color:#e74c3c">Ospite: <span style="color:#f39c12">Dubbio (9% imp.)</span></div></div><div style="background:#0f1923;border-radius:6px;padding:8px;grid-column:span 2"><div style="color:#7f8c8d;margin-bottom:4px">Movimento quote (smart money)</div><div style="display:flex;gap:20px"><div>Casa: <span style="color:#7f8c8d">--</span> &nbsp; Ospite: <span style="color:#7f8c8d">--</span></div><div style="color:#7f8c8d">Apertura: 1=8.0 X=4.8 2=1.47</div></div></div></div></div>
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo -- Kaunas</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">20C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Sereno</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">10 km/h SE</div></div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Kauno Zalgiris</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Bruno Oliveira</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Attaccante principale, motivato per l'onore</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Javairo Benchaib</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ALA</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Tecnica e velocita', pericoloso in casa</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Dinamo Zagreb</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Martin Beljo</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Prima punta, decisivo se in campo</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Miha Zajc</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">CM</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Gol all'andata, se titolare controlla il gioco</div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Kauno Zalgiris</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Dinamo Zagreb</th></tr></thead><tbody><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">8.5 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">16.0 tiri</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">44%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">56%</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">4.2 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">6.0 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">25%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">50%</td></tr></tbody></table></div>
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo (attesi: 10.2 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">68.9%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">56.7%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">44.2%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">32.6%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea: <strong style="color:#f39c12">Over 8.5</strong> -- Kauno Zalgiris 4.2 + Dinamo Zagreb 6.0 ang./gara</div></div>
+
+<div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
+  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">UCL 3Q Ritorno — aggregato 0-5 per Dinamo (QUALIFICATA). Partita di fatto ininfluente: Zalgiris dovrebbe vincere con 6+ gol senza subire, impossibile. Dinamo quasi certamente ruotera' 5-6 titolari in vista del playoff round. Zalgiris gioca per l'onore davanti al pubblico: 4 vittorie consecutive in casa. Coach Zalgiris: 'Eravamo impauriti a Zagabria, oggi vogliamo riscattarci'. ATTENZIONE: Dinamo rotazioni massicce = match piu' aperto del previsto.</div>
+  <div style="margin-top:10px;padding:8px 12px;background:#0f1923;border-radius:6px;border-left:3px solid #e74c3c">
+    <span style="font-size:.78em;font-weight:bold;color:#e74c3c">Predizione: 2 (Vittoria Dinamo Zagreb)</span>
+    <span style="font-size:.75em;color:#7f8c8d;margin-left:8px">Confidenza BASSA</span>
+  </div>
+</div>
+
+<div class="card" style="background:#091a0f;border-color:#27ae60">
+  <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-bottom:10px">Aggiungi al Coupon</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+    <button data-mid="b2" data-type="1" data-odds="8.0" onclick="addBet(this)"
+      style="background:#1a2c42;color:#3498db;border:1px solid #2c3e50;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">1 Casa @8.0</button>
+    <button data-mid="b2" data-type="X" data-odds="4.8" onclick="addBet(this)"
+      style="background:#2a2200;color:#f39c12;border:1px solid #3a3000;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">X @4.8</button>
+    <button data-mid="b2" data-type="2" data-odds="1.4" onclick="addBet(this)"
+      style="background:#2a0a0a;color:#e74c3c;border:1px solid #3a1010;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">2 Ospite @1.4</button>
+    <button data-mid="b2" data-type="Over 1.5" data-odds="1.48" onclick="addBet(this)"
+      style="background:#0a1f0a;color:#27ae60;border:1px solid #1a3a1a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">Over 1.5 (67.4%)</button>
+    <button data-mid="b2" data-type="Over 2.5" data-odds="2.53" onclick="addBet(this)"
+      style="background:#0a1f0a;color:#27ae60;border:1px solid #1a3a1a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">Over 2.5 (39.5%)</button>
+    <button data-mid="b2" data-type="BTTS" data-odds="2.21" onclick="addBet(this)"
+      style="background:#1a0a2a;color:#9b59b6;border:1px solid #2a1a3a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">BTTS (45.3%)</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <label style="font-size:.8em;color:#95a5a6">Puntata (EUR):</label>
+    <input id="stake-b2" type="number" value="10" min="1" step="1"
+      style="background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:4px 10px;width:75px;font-size:.85em">
+    <span id="bet-msg-b2" style="font-size:.78em;color:#27ae60"></span>
+  </div>
+</div></div><div class="match-content" id="mc11-b3" style="display:none"><div class="match-header">
+  <div style="font-size:.75em;color:#95a5a6">20:15 -- UCL 3° Qual. Ritorno — Slovenia</div>
+  <h2 style="color:#ecf0f1;margin:4px 0 6px">Celje vs Ararat-Armenia</h2>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span style="background:#27ae60;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">FACILE</span>
+    <span style="background:#e74c3c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.75em;font-weight:bold">Pred: 1 -- BASSA</span>
+    <span style="font-size:.78em;color:#95a5a6">Vittoria Celje</span>
+    <span style="font-size:.75em;color:#7f8c8d">Score atteso: 1-1</span>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#0a0f1a;border:2px solid #c0392b;padding:12px"><div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">&#127942; CONTESTO AGGREGATO UCL</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.78em"><div><div style="color:#7f8c8d;margin-bottom:3px">Andata</div><div style="font-weight:bold;color:#ecf0f1">1-2 (Ararat-Armenia, 4 Ago)</div></div><div><div style="color:#7f8c8d;margin-bottom:3px">Aggregato</div><div style="font-weight:bold;color:#f39c12">1-2 (Ararat avanti di 1)</div></div><div><div style="color:#3498db;margin-bottom:3px">Celje deve:</div><div style="color:#ecf0f1">Vincere con 2+ gol per passare in 90' (1-0 > supplementari)</div></div><div><div style="color:#e74c3c;margin-bottom:3px">Ararat-Armenia deve:</div><div style="color:#ecf0f1">Pareggio o qualsiasi vittoria. Sconfitta 1-0 > supplementari. Solo una sconfitta 2-0+ li elimina.</div></div></div></div>
+
+<div style="margin:14px 0 12px">
+  <div style="display:flex;height:26px;border-radius:6px;overflow:hidden;font-size:.78em;font-weight:bold">
+    <div style="width:40%;background:#1a4a7a;display:flex;align-items:center;justify-content:center;color:#ecf0f1;padding:0 4px;white-space:nowrap">1 39.9%</div>
+    <div style="width:26%;background:#5a4a00;display:flex;align-items:center;justify-content:center;color:#f39c12;padding:0 4px;white-space:nowrap">X 26.2%</div>
+    <div style="width:34%;background:#4a1a1a;display:flex;align-items:center;justify-content:center;color:#e74c3c;padding:0 4px;white-space:nowrap">2 34.0%</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#1a0a0a;border:2px solid #c0392b;padding:12px"><div style="font-size:.72em;color:#e74c3c;font-weight:bold;margin-bottom:8px">&#127919; SCOMMESSA CONSIGLIATA</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div style="font-size:2em;font-weight:bold;color:#e74c3c">1</div><div><div style="font-size:.85em;color:#ecf0f1;font-weight:bold">1 Vittoria Casa</div><div style="font-size:1.4em;font-weight:bold">Quota: <span style="color:#e74c3c">@1.6</span></div><div style="font-size:.72em;color:#7f8c8d">Confidenza: <span style="color:#e74c3c;font-weight:bold">BASSA</span></div></div><div style="margin-left:auto;text-align:right"><div style="font-size:.7em;color:#7f8c8d">Prob. modello</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">39.9%</div><div style="font-size:.85em;font-weight:bold;color:#e74c3c">EV -36.2%</div></div></div><button onclick="addBetFromMatch('b3','1',1.6)" style="margin-top:10px;width:100%;padding:8px;background:#c0392b;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:bold">+ Aggiungi a Scommesse</button></div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+  <div class="card" style="text-align:center;background:#0a1520;border-color:#3498db;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">1 -- Casa</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#3498db">39.9%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@1.6 <span style="color:#e74c3c;font-size:.7em">&#9660;1.78</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @2.51</div>
+    <div style="font-size:.82em;font-weight:bold;color:#e74c3c;margin-top:4px">EV -36.2%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a1500;border-color:#f39c12;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">X -- Pareggio</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#f39c12">26.2%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@4.15 <span style="color:#e74c3c;font-size:.7em">&#9660;4.35</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @3.82</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:4px">EV +8.6%</div>
+  </div>
+  <div class="card" style="text-align:center;background:#1a0a0a;border-color:#e74c3c;padding:10px 6px">
+    <div style="font-size:.68em;color:#7f8c8d">2 -- Ospite</div>
+    <div style="font-size:1.5em;font-weight:bold;color:#e74c3c">34.0%</div>
+    <div style="font-size:.7em;color:#ecf0f1;margin:2px 0">@6.5 <span style="color:#e74c3c;font-size:.7em">&#9660;6.75</span></div>
+    <div style="font-size:.65em;color:#7f8c8d">modello @2.94</div>
+    <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-top:4px">EV +120.7%</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:10px">Statistiche Poisson-DC</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px">
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">xG Casa</div><div style="font-size:1.1em;font-weight:bold;color:#3498db">1.598</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">xG Ospite</div><div style="font-size:1.1em;font-weight:bold;color:#e74c3c">1.462</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 1.5</div><div style="font-size:1.1em;font-weight:bold;color:#27ae60">82.1%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 2.5</div><div style="font-size:1.1em;font-weight:bold;color:#27ae60">59.0%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">BTTS</div><div style="font-size:1.1em;font-weight:bold;color:#9b59b6">62.4%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">HT O0.5</div><div style="font-size:1.1em;font-weight:bold;color:#16a085">74.8%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Over 0.5</div><div style="font-size:1.1em;font-weight:bold;color:#1abc9c">94.2%</div></div>
+    <div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">Score</div><div style="font-size:1.1em;font-weight:bold;color:#ecf0f1">1-1</div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#080d1a;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:8px">&#9203; Previsione 1° Tempo (lambda x0.45)</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center ;border:1px solid #f39c12"><div style="font-size:.63em;color:#7f8c8d">X &#9733;</div><div style="font-size:1.2em;font-weight:bold;color:#f39c12">39%</div><div style="font-size:.75em;color:#95a5a6">@2.58</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">1</div><div style="font-size:1.2em;font-weight:bold;color:#3498db">32%</div><div style="font-size:.75em;color:#95a5a6">@3.08</div></div><div style="background:#0f1923;border-radius:5px;padding:7px;text-align:center"><div style="font-size:.63em;color:#7f8c8d">2</div><div style="font-size:1.2em;font-weight:bold;color:#e74c3c">29%</div><div style="font-size:.75em;color:#95a5a6">@3.47</div></div></div><div style="font-size:.72em;color:#7f8c8d">1T: <strong style="color:#9b59b6">X</strong> -- Pareggio -- prob 39% -- @2.58</div></div>
+<div class="card" style="margin-bottom:12px;background:#0d0a00;border-color:#7d6608"><div style="font-size:.78em;font-weight:bold;color:#f1c40f;margin-bottom:8px">&#127959; Disciplina -- Arbitro: TBD</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Gialli attesi</div><div style="font-size:1.5em;font-weight:bold;color:#27ae60">&#128439; 4.0</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rossi attesi</div><div style="font-size:1.5em;font-weight:bold;color:#e74c3c">&#128997; 0.15</div></div><div style="background:#0f1923;border-radius:5px;padding:8px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Rigori/gara</div><div style="font-size:1.5em;font-weight:bold;color:#3498db">&#9917; 0.25</div></div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card">
+    <div style="font-size:.78em;font-weight:bold;color:#3498db;margin-bottom:8px">Celje -- Forma</div>
+    <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#f39c12;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">D</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#e74c3c;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">L</span></div>
+    <div style="font-size:.75em;color:#95a5a6">Gol/gara: 1.8</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Ajhmajer (infortuni, fuori), Pisek (infortuni, fuori)</div>
+  </div>
+  <div class="card">
+    <div style="font-size:.78em;font-weight:bold;color:#e74c3c;margin-bottom:8px">Ararat-Armenia -- Forma</div>
+    <div style="margin-bottom:6px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#e74c3c;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">L</span><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:3px;background:#27ae60;color:#fff;font-size:.68em;font-weight:bold;text-align:center;margin-right:2px">W</span></div>
+    <div style="font-size:.75em;color:#95a5a6">Gol/gara: 1.8</div>
+    <div style="font-size:.72em;color:#7f8c8d;margin-top:4px">Assenze: Nessun infortunio</div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0d1520;border-color:#1a3a5a">
+    <div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:6px">H2H</div>
+    <div style="font-size:.82em;color:#bdc3c7">Ararat 2V-0P-0S vs Celje in Europa (mai persa contro Celje)</div>
+  </div>
+  <div class="card" style="background:#0d1520;border-color:#1a3a5a">
+    <div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:6px">Movimento Quote</div>
+    <div style="font-size:.78em;color:#bdc3c7;line-height:1.7">1: @1.6 <span style="color:#e74c3c;font-size:.7em">&#9660;1.78</span><br>X: @4.15 <span style="color:#e74c3c;font-size:.7em">&#9660;4.35</span><br>2: @6.5 <span style="color:#e74c3c;font-size:.7em">&#9660;6.75</span></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px;background:#080e18;border-color:#1a2840"><div style="font-size:.78em;font-weight:bold;color:#e67e22;margin-bottom:10px">Segnali Modello v2 -- lambda adj: 1.598/1.462</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.75em"><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Forma 10 gare</div><div style="display:flex;justify-content:space-between"><div><span style="color:#3498db;font-weight:bold">54%</span> Celje<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#f39c12;width:54%;height:6px;border-radius:3px"></div></div></div><div style="text-align:right"><span style="color:#e74c3c;font-weight:bold">80%</span> Ararat-Armenia<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#27ae60;width:80%;height:6px;border-radius:3px"></div></div></div></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">H2H storici</div><div style="display:flex;justify-content:space-between"><div><span style="color:#3498db;font-weight:bold">0%</span> Casa<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#e74c3c;width:0%;height:6px;border-radius:3px"></div></div></div><div style="text-align:right"><span style="color:#e74c3c;font-weight:bold">100%</span> Ospite<div style="background:#0f1923;border-radius:3px;height:6px;margin-top:3px"><div style="background:#27ae60;width:100%;height:6px;border-radius:3px"></div></div></div></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Motivazione</div><div><span style="color:#3498db">Europa</span> <span style="font-weight:bold;color:#27ae60">93%</span></div><div><span style="color:#e74c3c">Centro-classifica</span> <span style="font-weight:bold;color:#27ae60">68%</span></div></div><div style="background:#0f1923;border-radius:6px;padding:8px"><div style="color:#7f8c8d;margin-bottom:4px">Infortuni</div><div style="color:#3498db">Casa: <span style="color:#e74c3c">Assenze (18% imp.)</span></div><div style="color:#e74c3c">Ospite: <span style="color:#27ae60">Nessuna</span></div></div><div style="background:#0f1923;border-radius:6px;padding:8px;grid-column:span 2"><div style="color:#7f8c8d;margin-bottom:4px">Movimento quote (smart money)</div><div style="display:flex;gap:20px"><div>Casa: <span style="color:#7f8c8d">--</span> &nbsp; Ospite: <span style="color:#7f8c8d">--</span></div><div style="color:#7f8c8d">Apertura: 1=1.78 X=4.35 2=6.75</div></div></div></div></div>
+<div class="card" style="margin-bottom:12px;background:#0a1520;border-color:#1a3a5a"><div style="font-size:.78em;font-weight:bold;color:#16a085;margin-bottom:8px">Meteo -- Celje</div><div style="display:flex;gap:20px;flex-wrap:wrap"><div><span style="font-size:.68em;color:#7f8c8d">Temperatura</span><div style="font-size:.95em;font-weight:bold;color:#1abc9c">22C</div></div><div><span style="font-size:.68em;color:#7f8c8d">Condizioni</span><div style="font-size:.82em;color:#ecf0f1">Parzialmente nuvoloso</div></div><div><span style="font-size:.68em;color:#7f8c8d">Vento</span><div style="font-size:.82em;color:#ecf0f1">8 km/h E</div></div></div></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+  <div class="card" style="background:#0a1520;border-color:#2c5a8a">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#3498db">Celje</div>
+      <span style="background:#1a2c42;color:#3498db;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">3-4-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Svit Seslar</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Gol su rigore all'andata, prima punta</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Yannick Kucys</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Velocita' e pressing, supporto attacco</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Dino Zabukovnik</span><span style="background:#1a2c42;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">CM</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Metronomo, organizza e gestisce</div></div>
+  </div>
+  <div class="card" style="background:#1a0a0a;border-color:#7a2c2c">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:.78em;font-weight:bold;color:#e74c3c">Ararat-Armenia</div>
+      <span style="background:#2a1212;color:#e74c3c;padding:1px 8px;border-radius:6px;font-size:.7em;font-weight:bold">4-3-3</span>
+    </div>
+    <div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Artur Serobyan</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Gol andata, letale in ripartenza</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Carlos Franca</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Gol andata, brasiliano tecnico</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Sandro Lima</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">ATT</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Centravanti brasiliano, pericolo in contropiede</div></div><div style="background:#0f1923;border-radius:5px;padding:6px 8px;margin-bottom:5px"><div style="display:flex;justify-content:space-between"><span style="font-size:.78em;font-weight:bold;color:#ecf0f1">Jubal Bravim</span><span style="background:#2a1212;color:#7f8c8d;padding:0 5px;border-radius:4px;font-size:.62em">GK</span></div><div style="font-size:.7em;color:#95a5a6;margin-top:2px">Portiere fondamentale per mantenere il vantaggio</div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px"><div style="font-size:.78em;font-weight:bold;color:#9b59b6;margin-bottom:10px">Statistiche avanzate</div><table style="width:100%;font-size:.78em;border-collapse:collapse"><thead><tr style="color:#7f8c8d;border-bottom:1px solid #1e2d3d"><th style="padding:4px 8px;text-align:right;color:#3498db">Celje</th><th style="padding:4px 8px;text-align:center;color:#7f8c8d">Stat</th><th style="padding:4px 8px;text-align:left;color:#e74c3c">Ararat-Armenia</th></tr></thead><tbody><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">11.5 tiri</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Tiri/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">10.0 tiri</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">50%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Possesso</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">50%</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">5.0 calc.</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Angoli/gara</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">4.5 calc.</td></tr><tr><td style="padding:4px 8px;text-align:right;font-weight:bold;color:#3498db">25%</td><td style="padding:4px 8px;text-align:center;color:#7f8c8d;font-size:.7em">Clean sheet</td><td style="padding:4px 8px;font-weight:bold;color:#e74c3c">40%</td></tr></tbody></table></div>
+<div class="card" style="margin-bottom:12px;background:#0a0d18;border-color:#2c3e50"><div style="font-size:.78em;font-weight:bold;color:#f39c12;margin-bottom:8px">Predizione Calci d'Angolo (attesi: 9.5 totali)</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px"><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 8.5</div><div style="font-size:1.05em;font-weight:bold;color:#27ae60">60.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 9.5</div><div style="font-size:1.05em;font-weight:bold;color:#f39c12">47.8%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 10.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">35.5%</div></div><div style="background:#0f1923;border-radius:6px;padding:7px;text-align:center"><div style="font-size:.62em;color:#7f8c8d">Over 11.5</div><div style="font-size:1.05em;font-weight:bold;color:#e74c3c">24.8%</div></div></div><div style="font-size:.72em;color:#7f8c8d">Linea: <strong style="color:#f39c12">Over 9.0</strong> -- Celje 5.0 + Ararat-Armenia 4.5 ang./gara</div></div>
+
+<div class="card" style="margin-bottom:12px;background:#0d1c2a;border-color:#1a3a5a">
+  <div style="font-size:.8em;font-weight:bold;color:#3498db;margin-bottom:8px">Analisi</div>
+  <div style="font-size:.83em;color:#bdc3c7;line-height:1.75">UCL 3Q Ritorno — aggregato 1-2 per Ararat (vantaggio di 1 gol). Celje deve vincere con 2+ gol per passare in 90'. Ararat ha perso TUTTE le trasferte europee di questo turno qualificativo, ma ha il cuscinetto. Situazione storica per Ararat: primo playoff UCL della storia se passano. Celje senza vittorie nelle prime 2 giornate slovene, 2 infortuni. Ararat giochera' difensivo e in contropiede: Sandro Lima e Banjaqui sono micidiali in transizione.</div>
+  <div style="margin-top:10px;padding:8px 12px;background:#0f1923;border-radius:6px;border-left:3px solid #e74c3c">
+    <span style="font-size:.78em;font-weight:bold;color:#e74c3c">Predizione: 1 (Vittoria Celje)</span>
+    <span style="font-size:.75em;color:#7f8c8d;margin-left:8px">Confidenza BASSA</span>
+  </div>
+</div>
+
+<div class="card" style="background:#091a0f;border-color:#27ae60">
+  <div style="font-size:.82em;font-weight:bold;color:#27ae60;margin-bottom:10px">Aggiungi al Coupon</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+    <button data-mid="b3" data-type="1" data-odds="1.6" onclick="addBet(this)"
+      style="background:#1a2c42;color:#3498db;border:1px solid #2c3e50;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">1 Casa @1.6</button>
+    <button data-mid="b3" data-type="X" data-odds="4.15" onclick="addBet(this)"
+      style="background:#2a2200;color:#f39c12;border:1px solid #3a3000;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">X @4.15</button>
+    <button data-mid="b3" data-type="2" data-odds="6.5" onclick="addBet(this)"
+      style="background:#2a0a0a;color:#e74c3c;border:1px solid #3a1010;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">2 Ospite @6.5</button>
+    <button data-mid="b3" data-type="Over 1.5" data-odds="1.22" onclick="addBet(this)"
+      style="background:#0a1f0a;color:#27ae60;border:1px solid #1a3a1a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">Over 1.5 (82.1%)</button>
+    <button data-mid="b3" data-type="Over 2.5" data-odds="1.69" onclick="addBet(this)"
+      style="background:#0a1f0a;color:#27ae60;border:1px solid #1a3a1a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">Over 2.5 (59.0%)</button>
+    <button data-mid="b3" data-type="BTTS" data-odds="1.6" onclick="addBet(this)"
+      style="background:#1a0a2a;color:#9b59b6;border:1px solid #2a1a3a;border-radius:6px;padding:6px 11px;cursor:pointer;font-size:.8em">BTTS (62.4%)</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <label style="font-size:.8em;color:#95a5a6">Puntata (EUR):</label>
+    <input id="stake-b3" type="number" value="10" min="1" step="1"
+      style="background:#0f1923;color:#ecf0f1;border:1px solid #2c3e50;border-radius:6px;padding:4px 10px;width:75px;font-size:.85em">
+    <span id="bet-msg-b3" style="font-size:.78em;color:#27ae60"></span>
+  </div>
+</div></div>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -4676,6 +5179,15 @@ function showMatch10(id){
   var _m10=document.getElementById('main10');
   if(_m10)_m10.scrollTop=0;
 }
+function showMatch11(id){
+  document.querySelectorAll('#main11 .match-content').forEach(function(e){e.style.display='none';e.classList.remove('active');});
+  document.querySelectorAll('#sidebar11 .sidebar-item').forEach(function(e){e.classList.remove('active');});
+  var el=document.getElementById('mc11-'+id);
+  if(el){el.style.display='block';el.classList.add('active');}
+  var nav=document.getElementById('sn11-'+id);
+  if(nav){nav.classList.add('active');nav.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
+  var _m11=document.getElementById('main11');if(_m11)_m11.scrollTop=0;
+}
 function switchDay(day){
   document.querySelectorAll('.day-content').forEach(function(d){d.classList.remove('active');});
   document.querySelectorAll('.cal-btn').forEach(function(b){b.classList.remove('active');});
@@ -4799,9 +5311,9 @@ function calcFromCoupon(){
 document.addEventListener('DOMContentLoaded',function(){
   loadPredResults();renderCoupon();updateCouponBadge();
   try{setInterval(updateLiveClock,30000);updateLiveClock();}catch(e){console.warn('liveClock:',e);}
-  switchDay('aug10');
-  var m10=document.getElementById('main10');if(m10)m10.scrollTop=0;
-  showMatch10('dashboard10');
+  switchDay('aug11');
+  var m11=document.getElementById('main11');if(m11)m11.scrollTop=0;
+  showMatch11('dashboard11');
 });
 </script>
 
@@ -4810,8 +5322,13 @@ var BETS_KEY='calcio_bets_9ago2026';
 var MD9={};
 (function(){var raw=[{"id": "m1", "home": "Gent", "away": "KV Mechelen", "time": "13:30", "league": "Jupiler League"}, {"id": "m2", "home": "St. Pauli", "away": "Greuther F\u00fcrth", "time": "13:30", "league": "Bundesliga 2"}, {"id": "m3", "home": "Malmo FF", "away": "Degerfors IF", "time": "14:00", "league": "Allsvenskan"}, {"id": "m4", "home": "Fredericia", "away": "Vendsyssel", "time": "15:00", "league": "1st Division"}, {"id": "m5", "home": "Charleroi", "away": "OHL Leuven", "time": "16:00", "league": "Jupiler League"}, {"id": "m6", "home": "Hearts", "away": "Dundee Utd", "time": "16:00", "league": "Premiership"}, {"id": "m7", "home": "FC Sion", "away": "FC Vaduz", "time": "16:30", "league": "Super League"}, {"id": "m8", "home": "HamKam", "away": "Aalesund", "time": "17:00", "league": "Eliteserien"}, {"id": "m9", "home": "Jablonec", "away": "Slovacko", "time": "17:00", "league": "1. Liga"}, {"id": "m10", "home": "Rangers", "away": "Hibernian", "time": "17:00", "league": "Premiership"}, {"id": "m11", "home": "Anderlecht", "away": "RAAL La Louviere", "time": "18:30", "league": "Jupiler League"}, {"id": "m12", "home": "Royal Antwerp", "away": "SK Beveren", "time": "19:15", "league": "Jupiler League"}, {"id": "m13", "home": "Benevento", "away": "Ravenna", "time": "21:00", "league": "Coppa Italia"}, {"id": "m14", "home": "Moreirense", "away": "Braga", "time": "21:30", "league": "Liga Portugal"}];raw.forEach(function(m){MD9[m.id]=m;});})();
 (function(){var raw10=[{"id": "a1", "time": "19:00", "cat": "DIFFICILE", "home": "Silkeborg IF", "away": "OB Odense", "pred": "2", "conf": "MEDIA", "h_odds": 2.6, "d_odds": 3.7, "a_odds": 2.25}, {"id": "a2", "time": "19:00", "cat": "MEDIA", "home": "V\u00e4ster\u00e5s SK", "away": "Djurg\u00e5rdens IF", "pred": "2", "conf": "MEDIA", "h_odds": 4.6, "d_odds": 4.3, "a_odds": 1.54}, {"id": "a3", "time": "21:15", "cat": "DIFFICILE", "home": "Santa Clara", "away": "Nacional", "pred": "1", "conf": "MEDIA", "h_odds": 1.76, "d_odds": 3.3, "a_odds": 4.4}];raw10.forEach(function(m){MD9[m.id]=m;});})();
+(function(){var raw11=[{"id": "b1", "time": "18:00", "cat": "MEDIA", "home": "Bodo/Glimt", "away": "Royale Union SG", "pred": "1", "conf": "BASSA", "h_odds": 1.55, "d_odds": 4.6, "a_odds": 4.75}, {"id": "b2", "time": "19:00", "cat": "FACILE", "home": "Kauno Zalgiris", "away": "Dinamo Zagreb", "pred": "2", "conf": "BASSA", "h_odds": 8.0, "d_odds": 4.8, "a_odds": 1.4}, {"id": "b3", "time": "20:15", "cat": "FACILE", "home": "Celje", "away": "Ararat-Armenia", "pred": "1", "conf": "BASSA", "h_odds": 1.6, "d_odds": 4.15, "a_odds": 6.5}];raw11.forEach(function(m){MD9[m.id]=m;});})();
 function getBets(){try{return JSON.parse(localStorage.getItem(BETS_KEY)||'[]');}catch(e){return[];}}
 function saveBets(b){localStorage.setItem(BETS_KEY,JSON.stringify(b));}
+(function(){{
+  var raw11=[{"id": "b1", "time": "18:00", "cat": "MEDIA", "home": "Bodo/Glimt", "away": "Royale Union SG", "pred": "1", "conf": "BASSA", "h_odds": 1.55, "d_odds": 4.6, "a_odds": 4.75}, {"id": "b2", "time": "19:00", "cat": "FACILE", "home": "Kauno Zalgiris", "away": "Dinamo Zagreb", "pred": "2", "conf": "BASSA", "h_odds": 8.0, "d_odds": 4.8, "a_odds": 1.4}, {"id": "b3", "time": "20:15", "cat": "FACILE", "home": "Celje", "away": "Ararat-Armenia", "pred": "1", "conf": "BASSA", "h_odds": 1.6, "d_odds": 4.15, "a_odds": 6.5}];
+  raw11.forEach(function(m){{MATCH_ODDS[m.id]={{h:m.h_odds,d:m.d_odds,a:m.a_odds,pred:m.pred,home:m.home,away:m.away,time:m.time}};}});
+}})();
 function addBet(btn){
   var mid=btn.dataset.mid,type=btn.dataset.type,odds=parseFloat(btn.dataset.odds);
   var stakeEl=document.getElementById('stake-'+mid);
