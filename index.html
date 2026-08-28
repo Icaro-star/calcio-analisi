@@ -1,960 +1,1698 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analisi Calcio — 28/29/30 Agosto 2026</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Analisi 28-30 Agosto 2026</title>
 <style>
-  :root {
-    --bg: #0f1117;
-    --card: #1a1d27;
-    --card2: #22263a;
-    --border: #2e3250;
-    --accent: #4f8ef7;
-    --green: #22c55e;
-    --yellow: #f59e0b;
-    --red: #ef4444;
-    --text: #e2e8f0;
-    --muted: #8892a4;
-    --green-dark: #166534;
-    --yellow-dark: #713f12;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
-
-  /* HEADER */
-  header { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 20px 24px; position: sticky; top: 0; z-index: 100; }
-  header h1 { font-size: 20px; font-weight: 700; color: var(--accent); }
-  header p { color: var(--muted); font-size: 12px; margin-top: 2px; }
-
-  /* NAV TABS */
-  .tabs { display: flex; gap: 8px; padding: 16px 24px 0; border-bottom: 1px solid var(--border); }
-  .tab { padding: 8px 20px; border-radius: 8px 8px 0 0; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--muted); background: transparent; border: none; border-bottom: 3px solid transparent; transition: all .2s; }
-  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-  .tab:hover { color: var(--text); }
-
-  /* CONTENT */
-  .content { display: none; padding: 20px 24px; max-width: 1100px; margin: 0 auto; }
-  .content.active { display: block; }
-
-  /* SECTION TITLE */
-  .day-header { display: flex; align-items: center; gap: 12px; margin: 24px 0 16px; }
-  .day-header h2 { font-size: 18px; font-weight: 700; }
-  .day-header .badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 12px; }
-
-  /* SLOT LABEL */
-  .slot-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 10px; padding-left: 4px; border-left: 3px solid var(--border); padding-left: 8px; }
-
-  /* MATCH CARD */
-  .match-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; transition: border-color .2s; }
-  .match-card:hover { border-color: var(--accent); }
-  .match-card.green { border-left: 4px solid var(--green); }
-  .match-card.yellow { border-left: 4px solid var(--yellow); }
-  .match-card.red { border-left: 4px solid var(--red); }
-
-  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-  .card-meta .flag { font-size: 16px; }
-  .card-meta .league { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; }
-  .card-meta .time { font-size: 11px; color: var(--accent); font-weight: 700; background: rgba(79,142,247,.12); padding: 1px 8px; border-radius: 6px; }
-  .match-name { font-size: 16px; font-weight: 700; }
-  .score-badge { text-align: right; min-width: 120px; }
-  .score-num { font-size: 28px; font-weight: 800; }
-  .score-num.green { color: var(--green); }
-  .score-num.yellow { color: var(--yellow); }
-  .score-num.red { color: var(--red); }
-  .score-label { font-size: 10px; color: var(--muted); text-transform: uppercase; }
-
-  /* PICK BOX */
-  .pick-box { background: var(--card2); border-radius: 8px; padding: 12px 16px; margin-top: 12px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .pick-label { font-size: 11px; color: var(--muted); text-transform: uppercase; font-weight: 700; }
-  .pick-value { font-size: 15px; font-weight: 800; color: var(--text); }
-  .pick-quota { background: var(--green-dark); color: var(--green); font-size: 14px; font-weight: 800; padding: 4px 14px; border-radius: 8px; }
-  .pick-quota.yellow { background: var(--yellow-dark); color: var(--yellow); }
-  .pick-quota.red { background: rgba(239,68,68,.15); color: var(--red); }
-
-  /* ANALYSIS GRID */
-  .analysis-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 12px; }
-  .analysis-item { background: var(--card2); border-radius: 8px; padding: 10px 12px; }
-  .analysis-item .label { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
-  .analysis-item .val { font-size: 13px; font-weight: 600; }
-  .analysis-item .val.good { color: var(--green); }
-  .analysis-item .val.warn { color: var(--yellow); }
-  .analysis-item .val.bad { color: var(--red); }
-
-  /* MINI NOTE */
-  .note { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: italic; line-height: 1.5; }
-  .note strong { color: var(--text); font-style: normal; }
-
-  /* RANKING TABLE */
-  .ranking-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-  .ranking-table th { background: var(--card2); color: var(--muted); font-size: 11px; text-transform: uppercase; font-weight: 700; padding: 8px 12px; text-align: left; }
-  .ranking-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .ranking-table tr:hover td { background: var(--card2); }
-  .rank-score { font-weight: 800; }
-  .rank-score.top { color: var(--green); }
-  .rank-score.mid { color: var(--yellow); }
-  .rank-pick { font-weight: 700; }
-  .rank-quota { font-weight: 800; color: var(--accent); }
-  .flag-cell { font-size: 16px; }
-  .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
-  .tag.green { background: rgba(34,197,94,.15); color: var(--green); }
-  .tag.yellow { background: rgba(245,158,11,.15); color: var(--yellow); }
-  .tag.red { background: rgba(239,68,68,.15); color: var(--red); }
-
-  /* SISTEMA BOX */
-  .sistema-box { background: var(--card); border: 1px solid var(--green); border-radius: 12px; padding: 20px; margin: 20px 0; }
-  .sistema-box h3 { color: var(--green); font-size: 16px; margin-bottom: 16px; }
-  .sistema-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .sistema-row:last-child { border-bottom: none; }
-  .sistema-label { color: var(--muted); font-size: 13px; }
-  .sistema-val { font-weight: 700; font-size: 14px; }
-  .sistema-val.green { color: var(--green); }
-  .sistema-val.accent { color: var(--accent); }
-
-  /* CORNER CARD */
-  .corner-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 12px 0; }
-  .corner-card h4 { font-size: 14px; color: var(--accent); margin-bottom: 12px; }
-  .corner-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
-  .corner-stat { background: var(--card2); border-radius: 8px; padding: 10px; text-align: center; }
-  .corner-stat .num { font-size: 22px; font-weight: 800; color: var(--text); }
-  .corner-stat .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
-  .corner-verdict { margin-top: 14px; padding: 12px 16px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.2); border-radius: 8px; }
-  .corner-verdict p { font-size: 13px; line-height: 1.6; }
-
-  /* DISCLAIMER */
-  footer { text-align: center; color: var(--muted); font-size: 11px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 32px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f172a;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;}
+header{background:#1e293b;padding:16px 24px;border-bottom:1px solid #334155;display:flex;align-items:center;gap:16px;}
+header h1{font-size:1.3rem;font-weight:700;color:#f8fafc;}
+header .sub{color:#94a3b8;font-size:0.85rem;}
+.tabs{display:flex;gap:4px;padding:12px 16px;background:#1e293b;border-bottom:1px solid #334155;flex-wrap:wrap;}
+.tab{padding:8px 16px;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.85rem;background:#0f172a;color:#94a3b8;border:1px solid #334155;transition:all .2s;}
+.tab.active,.tab:hover{background:#3b82f6;color:#fff;border-color:#3b82f6;}
+.content{display:none;padding:16px;max-width:1400px;margin:0 auto;}
+.content.active{display:block;}
+.card{background:#1e293b;border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid #334155;}
+.card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.league{font-size:0.8rem;color:#94a3b8;}
+.time{font-size:0.85rem;font-weight:700;color:#fbbf24;background:rgba(251,191,36,0.1);padding:2px 8px;border-radius:4px;}
+.score-badge{padding:3px 10px;border-radius:12px;font-weight:800;font-size:0.9rem;}
+.tag{padding:3px 10px;border-radius:12px;font-size:0.75rem;font-weight:700;}
+.teams{font-size:1.2rem;font-weight:800;color:#f8fafc;margin-bottom:10px;}
+.vs{color:#64748b;font-weight:400;margin:0 8px;}
+.pick-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;background:rgba(59,130,246,0.1);padding:8px 12px;border-radius:6px;}
+.pick-label{color:#94a3b8;font-size:0.85rem;}
+.pick-val{font-weight:700;color:#60a5fa;font-size:1rem;}
+.odds-val{font-weight:800;color:#fbbf24;font-size:1.1rem;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
+.info-block{background:#0f172a;border-radius:6px;padding:10px;}
+.info-title{font-size:0.75rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.info-block div{font-size:0.82rem;color:#cbd5e1;line-height:1.5;}
+.pick-angoli{color:#22c55e;font-weight:700;margin-top:4px;}
+.note-row{margin-top:10px;padding:8px 12px;background:rgba(99,102,241,0.1);border-radius:6px;color:#a5b4fc;font-size:0.82rem;}
+/* Home tab */
+.picks-table{width:100%;border-collapse:collapse;margin-top:16px;}
+.picks-table th{background:#1e293b;padding:10px 12px;text-align:left;font-size:0.75rem;color:#64748b;text-transform:uppercase;}
+.picks-table td{padding:10px 12px;border-bottom:1px solid #1e293b;font-size:0.85rem;}
+.picks-table tr:hover td{background:rgba(255,255,255,0.03);}
+.sistema-box{background:#1e293b;border-radius:10px;padding:20px;margin-bottom:20px;border:2px solid #3b82f6;}
+.sistema-box h3{font-size:1.1rem;font-weight:800;color:#60a5fa;margin-bottom:16px;}
+.fissa-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(34,197,94,0.1);padding:12px;border-radius:8px;margin-bottom:12px;}
+.fissa-label{font-size:0.85rem;font-weight:700;color:#22c55e;}
+.fissa-match{font-weight:700;color:#f8fafc;}
+.fissa-pick{color:#60a5fa;font-weight:700;}
+.fissa-odds{font-weight:800;color:#fbbf24;}
+.sistema-table{width:100%;border-collapse:collapse;}
+.sistema-table th{background:#0f172a;padding:8px 12px;text-align:left;font-size:0.75rem;color:#64748b;}
+.sistema-table td{padding:8px 12px;border-bottom:1px solid #0f172a;font-size:0.85rem;}
+.section-title{font-size:1rem;font-weight:700;color:#94a3b8;margin:20px 0 12px;padding-bottom:8px;border-bottom:1px solid #334155;}
+.day-header{background:#1e3a5f;border-radius:8px;padding:10px 16px;margin-bottom:12px;font-size:0.9rem;font-weight:700;color:#93c5fd;}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>⚽ Analisi Calcio — 28 / 29 / 30 Agosto 2026</h1>
-  <p>Modello 5 Blocchi | Aggiornato 28 agosto 2026 | Solo per uso personale</p>
+  <div>
+    <h1>⚽ Analisi Calcio — 28/29/30 Agosto 2026</h1>
+    <div class="sub">Bundesliga MD1 · Serie A MD2 · Premier League MD2 · Ligue 1 MD2 · La Liga MD3 · Eredivisie · Jupiler Pro</div>
+  </div>
 </header>
-
 <div class="tabs">
-  <button class="tab active" onclick="showTab('home')">🏠 Home</button>
-  <button class="tab" onclick="showTab('gio28')">Gio 28</button>
-  <button class="tab" onclick="showTab('ven29')">Ven 29</button>
-  <button class="tab" onclick="showTab('dom30')">Dom 30</button>
-  <button class="tab" onclick="showTab('corner')">📐 Angoli Milan</button>
+  <div class="tab active" onclick="show('home')">🏠 Home & Sistema</div>
+  <div class="tab" onclick="show('gio28')">Gio 28 Ago</div>
+  <div class="tab" onclick="show('ven29')">Ven 29 Ago</div>
+  <div class="tab" onclick="show('dom30')">Dom 30 Ago</div>
+  <div class="tab" onclick="show('angoli')">📐 Angoli Milan</div>
 </div>
 
-<!-- HOME TAB -->
 <div id="home" class="content active">
-  <div class="day-header">
-    <h2>Quadro Definitivo</h2>
-    <span class="badge">17 PICK</span>
+  <div class="section-title">🏆 TOP PICKS — Ordine Cronologico</div>
+  
+<div class="sistema-box">
+  <h3>🎯 Sistema 2/3 — 28–30 Agosto 2026</h3>
+  <div class="fissa-row">
+    <span class="fissa-label">⭐ FISSA (80% budget)</span>
+    <span class="fissa-match">Bayern Munich vs Stuttgart</span>
+    <span class="fissa-pick">Bayern -2.25 AH</span>
+    <span class="fissa-odds" style="color:#fbbf24;font-size:1.4rem;">@1.95</span>
   </div>
-
-  <table class="ranking-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Giorno</th>
-        <th>Ora</th>
-        <th>🌍</th>
-        <th>Campionato</th>
-        <th>Partita</th>
-        <th>Score</th>
-        <th>Pick</th>
-        <th>Quota</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>1</strong></td>
-        <td>Gio 28</td>
-        <td style="color:var(--accent);font-weight:700">20:45</td>
-        <td class="flag-cell">🇫🇷</td>
-        <td>Ligue 1 MD2</td>
-        <td><strong>Lille vs PSG</strong></td>
-        <td><span class="rank-score top">80/100</span></td>
-        <td class="rank-pick">BTTS + PSG combo</td>
-        <td><span class="rank-quota">~2.80</span></td>
-      </tr>
-      <tr>
-        <td><strong>2</strong></td>
-        <td>Gio 28</td>
-        <td style="color:var(--accent);font-weight:700">21:00</td>
-        <td class="flag-cell">🇬🇧</td>
-        <td>Premier League MD2</td>
-        <td><strong>Crystal Palace vs Man City</strong></td>
-        <td><span class="rank-score top">82/100</span></td>
-        <td class="rank-pick">City win / win to nil</td>
-        <td><span class="rank-quota">1.73 / ~2.80</span></td>
-      </tr>
-      <tr>
-        <td><strong>3</strong></td>
-        <td>Gio 28</td>
-        <td style="color:var(--accent);font-weight:700">18:30</td>
-        <td class="flag-cell">🇩🇪</td>
-        <td>Bundesliga MD1</td>
-        <td>Bayern Munich vs Stuttgart</td>
-        <td><span class="rank-score mid">73/100</span></td>
-        <td class="rank-pick">Over 3.5 gol</td>
-        <td><span class="rank-quota">~2.10</span></td>
-      </tr>
-      <tr>
-        <td><strong>4</strong></td>
-        <td>Gio 28</td>
-        <td style="color:var(--accent);font-weight:700">19:00</td>
-        <td class="flag-cell">🇪🇸</td>
-        <td>La Liga MD3</td>
-        <td>Racing Santander vs Elche</td>
-        <td><span class="rank-score mid">75/100</span></td>
-        <td class="rank-pick">DC 1X</td>
-        <td><span class="rank-quota">~1.55</span></td>
-      </tr>
-      <tr>
-        <td><strong>5</strong></td>
-        <td>Gio 28</td>
-        <td style="color:var(--accent);font-weight:700">20:45</td>
-        <td class="flag-cell">🇮🇹</td>
-        <td>Serie A MD2</td>
-        <td>AC Milan vs Venezia</td>
-        <td><span class="rank-score mid">74/100</span></td>
-        <td class="rank-pick">Milan win</td>
-        <td><span class="rank-quota">~1.50</span></td>
-      </tr>
-      <tr style="background:rgba(34,197,94,.04)">
-        <td><strong>6</strong></td>
-        <td>Ven 29</td>
-        <td style="color:var(--accent);font-weight:700">15:30</td>
-        <td class="flag-cell">🇩🇪</td>
-        <td>Bundesliga MD1</td>
-        <td><strong>RB Leipzig vs M'gladbach</strong></td>
-        <td><span class="rank-score top">86/100</span></td>
-        <td class="rank-pick">Leipzig win</td>
-        <td><span class="rank-quota">1.63</span></td>
-      </tr>
-      <tr>
-        <td><strong>7</strong></td>
-        <td>Ven 29</td>
-        <td style="color:var(--accent);font-weight:700">18:30</td>
-        <td class="flag-cell">🇬🇧</td>
-        <td>Premier League MD2</td>
-        <td>Tottenham vs Newcastle</td>
-        <td><span class="rank-score mid">77/100</span></td>
-        <td class="rank-pick">Over 2.5 / Newcastle</td>
-        <td><span class="rank-quota">2.14 / 3.05</span></td>
-      </tr>
-      <tr>
-        <td><strong>8</strong></td>
-        <td>Ven 29</td>
-        <td style="color:var(--accent);font-weight:700">18:30</td>
-        <td class="flag-cell">🇩🇪</td>
-        <td>Bundesliga MD1</td>
-        <td>Dortmund vs Hamburg SV</td>
-        <td><span class="rank-score mid">70/100</span></td>
-        <td class="rank-pick">AH Dortmund -1</td>
-        <td><span class="rank-quota">~1.85</span></td>
-      </tr>
-      <tr>
-        <td><strong>9</strong></td>
-        <td>Ven 29</td>
-        <td style="color:var(--accent);font-weight:700">20:45</td>
-        <td class="flag-cell">🇮🇹</td>
-        <td>Serie A MD2</td>
-        <td>Juventus vs Parma</td>
-        <td><span class="rank-score mid">72/100</span></td>
-        <td class="rank-pick">Win to nil Juve</td>
-        <td><span class="rank-quota">~1.90</span></td>
-      </tr>
-      <tr style="background:rgba(34,197,94,.04)">
-        <td><strong>10</strong></td>
-        <td>Ven 29</td>
-        <td style="color:var(--accent);font-weight:700">21:30</td>
-        <td class="flag-cell">🇪🇸</td>
-        <td>La Liga MD2</td>
-        <td><strong>Siviglia vs Atlético Madrid</strong></td>
-        <td><span class="rank-score top">86/100</span></td>
-        <td class="rank-pick">Siviglia win</td>
-        <td><span class="rank-quota">3.07–3.64</span></td>
-      </tr>
-      <tr>
-        <td><strong>11</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">12:15</td>
-        <td class="flag-cell">🇳🇱</td>
-        <td>Eredivisie MD3</td>
-        <td>Utrecht vs PSV</td>
-        <td><span class="rank-score mid">70/100</span></td>
-        <td class="rank-pick">PSV win</td>
-        <td><span class="rank-quota">~1.60</span></td>
-      </tr>
-      <tr>
-        <td><strong>12</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">13:30</td>
-        <td class="flag-cell">🇩🇪</td>
-        <td>Bundesliga MD1</td>
-        <td><strong>Freiburg vs Werder Bremen</strong></td>
-        <td><span class="rank-score top">80/100</span></td>
-        <td class="rank-pick">Freiburg win</td>
-        <td><span class="rank-quota">1.83</span></td>
-      </tr>
-      <tr>
-        <td><strong>13</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">15:00</td>
-        <td class="flag-cell">🇬🇧</td>
-        <td>Premier League MD2</td>
-        <td>Chelsea vs Brighton</td>
-        <td><span class="rank-score mid">73/100</span></td>
-        <td class="rank-pick">Chelsea win</td>
-        <td><span class="rank-quota">~1.75</span></td>
-      </tr>
-      <tr>
-        <td><strong>14</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">15:30</td>
-        <td class="flag-cell">🇩🇪</td>
-        <td>Bundesliga MD1</td>
-        <td>Augsburg vs Schalke 04</td>
-        <td><span class="rank-score mid">74/100</span></td>
-        <td class="rank-pick">Draw</td>
-        <td><span class="rank-quota">4.00</span></td>
-      </tr>
-      <tr>
-        <td><strong>15</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">17:00</td>
-        <td class="flag-cell">🇪🇸</td>
-        <td>La Liga MD3</td>
-        <td>Real Madrid vs Málaga</td>
-        <td><span class="rank-score mid">75/100</span></td>
-        <td class="rank-pick">Over 3.5 gol</td>
-        <td><span class="rank-quota">~2.50</span></td>
-      </tr>
-      <tr>
-        <td><strong>16</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">18:30</td>
-        <td class="flag-cell">🇧🇪</td>
-        <td>Jupiler Pro League MD3</td>
-        <td><strong>Union SG vs Anderlecht</strong></td>
-        <td><span class="rank-score top">78/100</span></td>
-        <td class="rank-pick">Union SG win</td>
-        <td><span class="rank-quota">1.67</span></td>
-      </tr>
-      <tr style="background:rgba(34,197,94,.04)">
-        <td><strong>17</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">20:45</td>
-        <td class="flag-cell">🇫🇷</td>
-        <td>Ligue 1 MD2</td>
-        <td><strong>Monaco vs Marsiglia</strong></td>
-        <td><span class="rank-score top">82/100</span></td>
-        <td class="rank-pick">Monaco + Over 2.5 combo</td>
-        <td><span class="rank-quota">~3.55</span></td>
-      </tr>
-      <tr>
-        <td><strong>—</strong></td>
-        <td>Dom 30</td>
-        <td style="color:var(--accent);font-weight:700">20:45</td>
-        <td class="flag-cell">🇮🇹</td>
-        <td>Serie A MD2</td>
-        <td>Cagliari vs Inter</td>
-        <td><span class="rank-score mid">73/100</span></td>
-        <td class="rank-pick">Draw</td>
-        <td><span class="rank-quota">3.70</span></td>
-      </tr>
-    </tbody>
+  <p style="color:#9ca3af;font-size:0.85rem;margin:8px 0 16px;">
+    Sistema 2/3: vinci se almeno 2 delle 3 doppie passano. Budget residuo (20%) diviso in 3 parti uguali.
+  </p>
+  <table class="sistema-table">
+    <thead><tr><th></th><th>Selezione 1</th><th>Selezione 2</th><th>Quota comb.</th><th>Stake</th></tr></thead>
+    <tbody><tr>
+          <td>Doppia 1</td>
+          <td>Leipzig Over 2.5 @1.45</td>
+          <td>Freiburg BTTS No @1.70</td>
+          <td style="color:#fbbf24;font-weight:700;">2.47</td>
+          <td>20% budget / 3</td>
+        </tr><tr>
+          <td>Doppia 2</td>
+          <td>Leipzig Over 2.5 @1.45</td>
+          <td>Monaco BTTS Sì @1.52</td>
+          <td style="color:#fbbf24;font-weight:700;">2.20</td>
+          <td>20% budget / 3</td>
+        </tr><tr>
+          <td>Doppia 3</td>
+          <td>Freiburg BTTS No @1.70</td>
+          <td>Monaco BTTS Sì @1.52</td>
+          <td style="color:#fbbf24;font-weight:700;">2.58</td>
+          <td>20% budget / 3</td>
+        </tr></tbody>
   </table>
-
-  <div class="sistema-box" style="margin-top:32px">
-    <h3>💰 Sistema Consigliato (budget 40€)</h3>
-    <div class="sistema-row">
-      <span class="sistema-label">FISSA (32€)</span>
-      <span class="sistema-val green">Monaco vs Marsiglia — Monaco + Over 2.5 @~3.55 → potenziale 113.60€</span>
-    </div>
-    <div class="sistema-row">
-      <span class="sistema-label">Sistema 2/3 (8€ → 2.67€ per doppia)</span>
-      <span class="sistema-val accent">Siviglia @3.35 + Leipzig @1.63 + Man City @1.73</span>
-    </div>
-    <div class="sistema-row">
-      <span class="sistema-label">Doppia 1: Siviglia × Leipzig</span>
-      <span class="sistema-val">~5.46 → potenziale 14.58€</span>
-    </div>
-    <div class="sistema-row">
-      <span class="sistema-label">Doppia 2: Siviglia × City</span>
-      <span class="sistema-val">~5.80 → potenziale 15.49€</span>
-    </div>
-    <div class="sistema-row">
-      <span class="sistema-label">Doppia 3: Leipzig × City</span>
-      <span class="sistema-val">~2.82 → potenziale 7.53€</span>
-    </div>
-  </div>
+</div>
+  <table class="picks-table">
+    <thead><tr>
+      <th>Data/Ora</th><th>Campionato</th><th>Partita</th><th>Pick</th><th>Quota</th><th>Score</th><th>Tipo</th>
+    </tr></thead>
+    <tbody><tr>
+          <td>28 ago 18:30</td><td>Bundesliga</td>
+          <td><b>Bayern Munich</b> vs <b>VfB Stuttgart</b></td>
+          <td><b>Bayern -2.25 AH</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@1.95</td>
+          <td style="color:#22c55e;font-weight:700;">82/100</td>
+          <td><span class="tag" style="background:#8b5cf6;color:#fff;">FISSA</span></td>
+        </tr><tr>
+          <td>29 ago 15:30</td><td>Bundesliga</td>
+          <td><b>RB Leipzig</b> vs <b>B. M'Gladbach</b></td>
+          <td><b>Over 2.5</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@1.45</td>
+          <td style="color:#22c55e;font-weight:700;">78/100</td>
+          <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA</span></td>
+        </tr><tr>
+          <td>30 ago 13:30</td><td>Bundesliga</td>
+          <td><b>SC Freiburg</b> vs <b>Werder Bremen</b></td>
+          <td><b>BTTS No</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@1.70</td>
+          <td style="color:#22c55e;font-weight:700;">77/100</td>
+          <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA</span></td>
+        </tr><tr>
+          <td>29 ago 20:45</td><td>Serie A</td>
+          <td><b>Juventus</b> vs <b>Parma</b></td>
+          <td><b>Juve -1 AH</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@1.73</td>
+          <td style="color:#22c55e;font-weight:700;">76/100</td>
+          <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA</span></td>
+        </tr><tr>
+          <td>30 ago 17:00</td><td>La Liga</td>
+          <td><b>Real Madrid</b> vs <b>Málaga CF</b></td>
+          <td><b>RM AH -2</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@est.1.80</td>
+          <td style="color:#22c55e;font-weight:700;">82/100</td>
+          <td><span class="tag" style="background:#22c55e;color:#000;">TOP</span></td>
+        </tr><tr>
+          <td>30 ago 20:45</td><td>Ligue 1</td>
+          <td><b>AS Monaco</b> vs <b>O. Marseille</b></td>
+          <td><b>BTTS Sì</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@1.52</td>
+          <td style="color:#eab308;font-weight:700;">74/100</td>
+          <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA</span></td>
+        </tr><tr>
+          <td>30 ago 20:45</td><td>Serie A</td>
+          <td><b>Lazio</b> vs <b>Genoa</b></td>
+          <td><b>Lazio DNB</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@1.49</td>
+          <td style="color:#eab308;font-weight:700;">74/100</td>
+          <td><span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span></td>
+        </tr><tr>
+          <td>29 ago 20:45</td><td>2.Bundesliga</td>
+          <td><b>BVB</b> vs <b>Hamburger SV</b></td>
+          <td><b>BVB 1</b></td>
+          <td style="color:#fbbf24;font-weight:700;">@1.32</td>
+          <td style="color:#eab308;font-weight:700;">74/100</td>
+          <td><span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span></td>
+        </tr></tbody>
+  </table>
 </div>
 
-<!-- GIO 28 TAB -->
 <div id="gio28" class="content">
-  <div class="day-header"><h2>Giovedì 28 Agosto</h2><span class="badge">5 ANALISI</span></div>
-
-  <div class="slot-label">⏰ 18:00 SLOT</div>
-
-  <!-- Bayern -->
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">18:30</span></div>
-        <div class="match-name">Bayern Munich vs VfB Stuttgart</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num yellow">73</div>
-        <div class="score-label">/ 100 — CAUTO</div>
-      </div>
+  <div class="day-header">📅 Giovedì 28 Agosto 2026 — 5 partite</div>
+  
+<div class="card" style="border-left:4px solid #22c55e;background:rgba(34,197,94,0.15);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">82/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">TOP PICK</span>
+  </div>
+  <div class="teams">Bayern Munich <span class="vs">vs</span> VfB Stuttgart</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Bayern -2.25 AH</span>
+    <span class="odds-val">@1.95</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC (DFL)</b></div>
+      <div>GJ/g: <b>N/D</b></div>
     </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">10/25 — Bayern @1.28 = zero valore sul win</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">18/20 — Bayern 8V su 9 H2H recenti; 3-0 finale DFB-Pokal 2026</div></div>
-      <div class="analysis-item"><div class="label">C — Forma/xG</div><div class="val good">16/20 — Bayern xG 2.32/g + Stuttgart xG 1.78/g</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — 5 assenti Bayern incl. Musiala</div></div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 8.60 FOR / 2.50 AGN</div>
+      <div>Ospiti FOR/AGN: 5.00 FOR / 4.30 AGN</div>
+      <div><b>~13.6–14.9 est.</b></div>
+      <div class="pick-angoli">Pick: Over 10.5 @2.00</div>
     </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Over 3.5 gol</div></div>
-      <div class="pick-quota yellow">~2.10</div>
-      <div style="flex:1"><div class="pick-label">Motivazione</div><div style="font-size:12px;color:var(--muted)">Profili xG enormi per entrambe. Musiala assente ma Bayern domina comunque. Over 3.5 supportato dalla differenza qualitativa.</div></div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: ~2.8–3.2 (top BL 25-26)</div>
+      <div>Ospiti xG: Media/bassa</div>
+      <div>SoT casa: ~15/g | osp: ~10/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Musiala (testa), Gnabry (inguine), Zaragoza (ginocchio), Buchmann, Karl</div>
+      <div><b>Ospiti:</b> Führich, Diehl, Sauer, Arévalo, Leweling, Nartey, Jagacz, Seimen, Assignon, Hendriks (10+ assenti!)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.19</b> / 7.50 / 10.50</div>
+      <div>O2.5: 1.18 | U2.5: 4.70</div>
+      <div>BTTS S/N: 1.50 / 2.43</div>
+      <div>AH: Bayern -2.25 @1.95</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> W 5-1, W/D 3-3, W 4-0, W 5-0, W 4-2 (ultime 5 in casa)</div>
+      <div><b>Ospiti away:</b> L 0-5, L 1-3, D 2-2 (ultime 3 away vs Bayern)</div>
+      <div><b>H2H:</b> Bayern 5W-0D-0L ultimi 5 H2H, 19 gol fatti, 3 subiti</div>
     </div>
   </div>
-
-  <!-- Racing Santander -->
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇪🇸</span><span class="league">La Liga MD3</span><span class="time">19:00</span></div>
-        <div class="match-name">Racing Santander vs Elche</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num yellow">75</div>
-        <div class="score-label">/ 100 — CAUTO</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — Racing @2.00, DC 1X @~1.55 ha valore</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">15/20 — Racing 9V su 19 in casa vs Elche. Ultima: 2-0</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">13/20 — Elche 0-5 vs Barça! Racing 1P, 1S senza vittorie</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — Dati stagione insufficienti</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">DC 1X (Racing o Pareggio)</div></div>
-      <div class="pick-quota yellow">~1.55</div>
-      <div style="flex:1"><div class="pick-label">Motivazione</div><div style="font-size:12px;color:var(--muted)">Elche in caduta libera (0-5 vs Barça). Racing in casa deve vincere. Doppia chance sicura.</div></div>
-    </div>
-  </div>
-
-  <div class="slot-label">⏰ 21:00 SLOT</div>
-
-  <!-- Milan Venezia -->
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇮🇹</span><span class="league">Serie A MD2</span><span class="time">20:45</span></div>
-        <div class="match-name">AC Milan vs Venezia</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num yellow">74</div>
-        <div class="score-label">/ 100 — CAUTO</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">16/25 — Milan @~1.50, quota bassa</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">16/20 — Milan 4-0 e 2-0 nelle ultime 2 Serie A vs Venezia</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">15/20 — Milan vince a Torino MD1; Venezia 0-2 vs Lecce + 2 gol annullati VAR</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">16/20 — Nessun europeo</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — Venezia neopromossa: primo San Siro</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Milan win</div></div>
-      <div class="pick-quota yellow">~1.50</div>
-      <div style="flex:1"><div class="pick-label">Angoli</div><div style="font-size:12px;color:var(--muted)">Vedi tab separato "Angoli Milan" per analisi dettagliata. Pick bonus: Milan Over 5.5 corner @1.68</div></div>
-    </div>
-  </div>
-
-  <!-- Lille PSG -->
-  <div class="match-card green">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇫🇷</span><span class="league">Ligue 1 MD2</span><span class="time">20:45</span></div>
-        <div class="match-name">Lille vs PSG</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num green">80</div>
-        <div class="score-label">/ 100 — GIOCA</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — PSG @1.78 shortato. BTTS @~1.75 = valore</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — <strong>BTTS in 9/10 precedenti H2H</strong>. PSG 3+ gol in 6/9</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">15/20 — PSG rimonta 0-2 vs Rennes. Mendes squalificato, Dembélé riposo</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">12/15 — Arbitro Wattellier 3.1 YC/g (tranquillo)</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick principale</div><div class="pick-value">BTTS (entrambe segnano)</div></div>
-      <div class="pick-quota">~1.75</div>
-      <div><div class="pick-label">Combo</div><div class="pick-value">BTTS + PSG win</div></div>
-      <div class="pick-quota">~2.80</div>
-    </div>
-    <p class="note">⭐ <strong>9/10 H2H</strong> con entrambe le squadre a segno. PSG senza Mendes sul lato sinistro → Lille può trovare il gol.</p>
-  </div>
-
-  <!-- Crystal Palace Man City -->
-  <div class="match-card green">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇬🇧</span><span class="league">Premier League MD2</span><span class="time">21:00</span></div>
-        <div class="match-name">Crystal Palace vs Manchester City</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num green">82</div>
-        <div class="score-label">/ 100 — GIOCA</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — City shortata 1.80→1.73 (soldi forti). Palace driftata a 5.20</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — City 3-0 al Selhurst Park dic 2025. City 35V, Palace 3V negli ultimi 25 H2H</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">16/20 — City vince 2-1 vs Bournemouth MD1. <strong>Palace 0-2 vs Everton in casa!</strong> Nuovo manager</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">13/15 — Haaland + Foden confermati. Palace: Pierre Sage nuovo allenatore, difesa non rodata</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick A</div><div class="pick-value">Man City win</div></div>
-      <div class="pick-quota">1.73</div>
-      <div><div class="pick-label">Pick B (valore)</div><div class="pick-value">City win to nil</div></div>
-      <div class="pick-quota">~2.80</div>
-    </div>
-    <p class="note">💰 <strong>Shortening forte confermato</strong> (1.80→1.73). Palace concede con un sistema difensivo non ancora rodato sotto Sage. Haaland in trasferta al Selhurst Park: 3 gol nelle ultime 4 visite.</p>
-  </div>
+  <div class="note-row">💡 Stuttgart in crisi infortuni totale. Bayern record 122 gol stagione 25-26.</div>
 </div>
 
-<!-- VEN 29 TAB -->
+<div class="card" style="border-left:4px solid #ef4444;background:rgba(239,68,68,0.12);">
+  <div class="card-header">
+    <span class="league">La Liga 🇪🇸</span>
+    <span class="time">19:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">64/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Racing Santander <span class="vs">vs</span> Elche</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC (RFEF)</b></div>
+      <div>GJ/g: <b>N/D</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 6.30 FOR / 3.90 AGN</div>
+      <div>Ospiti FOR/AGN: 4.30 FOR / 3.80 AGN</div>
+      <div><b>~10.2 est.</b></div>
+      <div class="pick-angoli">Pick: Over 9.5 @1.84</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: N/D (MD3)</div>
+      <div>Ospiti xG: N/D</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Pedro Felipe (muscolare)</div>
+      <div><b>Ospiti:</b> Osorio (hamstring), Y. Santiago (ginocchio), Boayar (coscia — doubt)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.12</b> / 3.40 / 3.50</div>
+      <div>O2.5: 1.73 | U2.5: 2.05</div>
+      <div>BTTS S/N: 1.60 / 2.23</div>
+      <div>AH: Racing -0.25 @1.80</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> D 2-2 Villarreal (MD1), W 4-1 Cádiz (recente)</div>
+      <div><b>Ospiti away:</b> 7L-2D-1W ultimi 10 away</div>
+      <div><b>H2H:</b> Racing 11W / 13D / Elche meno frequenti</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Partita equilibrata MD3, pochi dati stagionali.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">67/100</span>
+    <span class="tag" style="background:#3b82f6;color:#fff;">ANGOLI</span>
+  </div>
+  <div class="teams">AC Milan <span class="vs">vs</span> Venezia</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Milan Over 5.5 angoli</span>
+    <span class="odds-val">@1.68</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Gianluca Manganiello</b></div>
+      <div>GJ/g: <b>3.25 GJ/g (0.13 RS/g)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 4.80 FOR / 3.40 AGN</div>
+      <div>Ospiti FOR/AGN: 4.40 FOR / 5.60 AGN</div>
+      <div><b>λ = 0.6×(4.80+4.40) = 5.52 → ~10.2 est. | Milan Over 5.5 @1.68</b></div>
+      <div class="pick-angoli">Pick: Milan Over 5.5 @1.68</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Milan xG MD1 vs Torino: 19 tiri in box</div>
+      <div>Ospiti xG: Venezia xG MD1 vs Lecce: 2.05 (19 tiri, 5 big chances)</div>
+      <div>SoT casa: ~14/g | osp: ~12/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Giménez (SQUALIFICATO), Leão (muscolare), Fofana (escluso), Tomori (escluso), Nkunku (escluso)</div>
+      <div><b>Ospiti:</b> Adorante (schiena — ottobre), Sverko (ottobre), Moreno (doubt)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.45</b> / 4.35 / 6.75</div>
+      <div>O2.5: 1.80 | U2.5: 1.97</div>
+      <div>BTTS S/N: 1.95 / 1.80</div>
+      <div>AH: Milan -1.25 @2.02</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Prima gara interna 26-27 (non vince in casa da 3 gare 25-26)</div>
+      <div><b>Ospiti away:</b> xG 2.05 in MD1 nonostante sconfitta 0-2</div>
+      <div><b>H2H:</b> Milan W8-D2-L0 ultimi 10 in casa vs Venezia | 4-0 e 2-0 recenti</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Milan senza CF titolare e ala sinistra. Venezia crea tanto ma spreca.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Ligue 1 🇫🇷</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">70/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Lille <span class="vs">vs</span> PSG</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">PSG -0.75 AH</span>
+    <span class="odds-val">@1.86</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Eric Wattelier</b></div>
+      <div>GJ/g: <b>3.00 GJ/g (0.40 rigori/g — alto!)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 6.20 FOR / 2.90 AGN</div>
+      <div>Ospiti FOR/AGN: 5.40 FOR / 3.50 AGN</div>
+      <div><b>λ = 0.6×(6.2+5.4) = 6.96 → ~11.6 est.</b></div>
+      <div class="pick-angoli">Pick: Over 9.5 (est.)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Lille 0.9 gol / 11.8 tiri per gara</div>
+      <div>Ospiti xG: PSG 2.0 gol / 17.0 tiri away</div>
+      <div>SoT casa: ~12/g | osp: ~17/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Nianzou (infortunio), Igamane (crociato — probabile out)</div>
+      <div><b>Ospiti:</b> Barcola (squalificato/infort.), Dembélé (polpaccio), Mendes (SQUALIFICATO), Mbaye (cessione Liverpool)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>4.70</b> / 3.85 / 1.66</div>
+      <div>O2.5: 1.71 | U2.5: 2.08</div>
+      <div>BTTS S/N: 1.68 / 2.08</div>
+      <div>AH: PSG -0.75 @1.86</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Lille W-W-W-D-W (5 gare, forma positiva); D 2-2 vs Rennes MD1</div>
+      <div><b>Ospiti away:</b> PSG D 2-2 Rennes (MD1); 5W-2L-2D ultimi 10 away</div>
+      <div><b>H2H:</b> PSG 10W consecutivi vs Lille (tutte le competizioni)</div>
+    </div>
+  </div>
+  <div class="note-row">💡 PSG perde Barcola+Dembélé (entrambe le ali) e Mendes (terzino sn). Wattelier: pochi cartellini ma tante panchine.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">21:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">70/100</span>
+    <span class="tag" style="background:#3b82f6;color:#fff;">ANGOLI</span>
+  </div>
+  <div class="teams">Crystal Palace <span class="vs">vs</span> Manchester City</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Over 9.5 angoli</span>
+    <span class="odds-val">@1.72</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Andy Madley</b></div>
+      <div>GJ/g: <b>3.14 GJ/g (0.32 rigori/g)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 4.00 FOR / 6.10 AGN</div>
+      <div>Ospiti FOR/AGN: 9.70 FOR / 3.80 AGN</div>
+      <div><b>λ = 0.6×(4.0+9.7) = 8.22 → ~13.7–14.8 est.</b></div>
+      <div class="pick-angoli">Pick: Over 9.5 @1.72</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Palace xG MD1 vs Everton: 1.96 (sconfitti 0-2)</div>
+      <div>Ospiti xG: City W 2-1 Bournemouth MD1 (Cherki 2 assist)</div>
+      <div>SoT casa: ~11/g | osp: ~16/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Sarr (inguine), Riad (ginocchio — CB)</div>
+      <div><b>Ospiti:</b> Doku (polpaccio — sett.), Kovačić (SQUALIFICATO), Anderson (coscia — doubt)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>4.80</b> / 4.00 / 1.68</div>
+      <div>O2.5: 1.68 | U2.5: 2.16</div>
+      <div>BTTS S/N: 1.65 / 2.12</div>
+      <div>AH: Palace +1 @1.85</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> L 0-2 Everton MD1 (1.96 xG for), L vs Arsenal fine 25-26</div>
+      <div><b>Ospiti away:</b> W 2-1 Bournemouth MD1, L 1-2 Aston Villa fine 25-26</div>
+      <div><b>H2H:</b> City favorita, Palace a Selhurst difende basso → molti angoli City</div>
+    </div>
+  </div>
+  <div class="note-row">💡 City senza Doku+Kovačić. Cherki in grande forma. Palace concede 6.1 angoli/g in casa.</div>
+</div>
+</div>
+
 <div id="ven29" class="content">
-  <div class="day-header"><h2>Venerdì 29 Agosto</h2><span class="badge">6 ANALISI</span></div>
-
-  <div class="slot-label">⏰ 15:00 SLOT</div>
-
-  <!-- Leipzig -->
-  <div class="match-card green">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">15:30</span></div>
-        <div class="match-name">RB Leipzig vs Borussia M'gladbach</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num green">86</div>
-        <div class="score-label">/ 100 — GIOCA FORTE</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Leipzig @1.63 = buona quota per casa dominante</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">19/20 — <strong>Gladbach: 0 vittorie in 10 visite al Red Bull Arena</strong> (6S, 4P)</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">17/20 — Gladbach 0V in trasferta Bundesliga da dicembre 2025</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Baumgartner (coscia) e Ouédraogo (spalla) dubbi last-minute</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Leipzig win</div></div>
-      <div class="pick-quota">1.63</div>
-    </div>
-    <p class="note">⭐ Pick più solido dell'intero 29 agosto. <strong>Gladbach non vince in questo stadio da anni</strong>. Anche con i dubbi di formazione, la struttura favorisce nettamente Leipzig.</p>
+  <div class="day-header">📅 Venerdì 29 Agosto 2026 — 12 partite</div>
+  
+<div class="card" style="border-left:4px solid #22c55e;background:rgba(34,197,94,0.15);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">15:30</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">78/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">TOP PICK</span>
   </div>
-
-  <!-- Elversberg SCARTA -->
-  <div class="match-card red">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">15:30</span></div>
-        <div class="match-name">Elversberg vs Bayer Leverkusen</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num red">69</div>
-        <div class="score-label">/ 100 — SCARTA</div>
-      </div>
-    </div>
-    <p class="note" style="margin-top:8px">Elversberg neopromossa: troppa incognita, nessun precedente Bundesliga. Leverkusen driftata da 1.50 a 1.55 = qualche segnale. AH Leverkusen -1 @~2.10 se si vuole giocare.</p>
+  <div class="teams">RB Leipzig <span class="vs">vs</span> B. M'Gladbach</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Over 2.5 gol</span>
+    <span class="odds-val">@1.45</span>
   </div>
-
-  <div class="slot-label">⏰ 18:00 SLOT</div>
-
-  <!-- Tottenham Newcastle -->
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇬🇧</span><span class="league">Premier League MD2</span><span class="time">18:30</span></div>
-        <div class="match-name">Tottenham vs Newcastle United</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num yellow">77</div>
-        <div class="score-label">/ 100 — CAUTO</div>
-      </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Sven Jablonski</b></div>
+      <div>GJ/g: <b>~3.70 GJ/g (est.)</b></div>
     </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">18/25 — Spurs 2.30 (gonfiato dal 5-1 Carabao). Newcastle @3.05 ha valore</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">16/20 — Newcastle imbattuto vs Spurs nelle ultime <strong>8 partite</strong> di fila</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val bad">14/20 — Spurs 0-3 a Brentford MD1. <strong>8 assenti</strong> (Maddison, Kulusevski, van de Ven, Porro…)</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — Spurs 2.89 YC/g in casa</div></div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 5.88 FOR / ~4.5 AGN</div>
+      <div>Ospiti FOR/AGN: 4.24 FOR / ~5.64 AGN</div>
+      <div><b>λ = 0.6×(5.88+4.24) = 6.07 → ~10 tot est.</b></div>
+      <div class="pick-angoli">Pick: Leipzig dominante</div>
     </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick A</div><div class="pick-value">Over 2.5 gol</div></div>
-      <div class="pick-quota yellow">2.14</div>
-      <div><div class="pick-label">Pick B</div><div class="pick-value">Newcastle win</div></div>
-      <div class="pick-quota yellow">3.05</div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: 16.12 tiri/g totali, 5.76 in porta</div>
+      <div>Ospiti xG: N/D</div>
+      <div>SoT casa: ~16/g | osp: ~11/g</div>
     </div>
-    <p class="note">📊 <strong>Over 2.5 al 100% nelle ultime 11 H2H</strong> tra le due squadre (media 3.78 gol). Con 8 assenti Spurs la difesa è esposta. Newcastle valore reale a 3.05.</p>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Baumgartner (coscia), Ouédraogo (spalla — sett.), Rômulo (tendine), Klostermann (inguine), Gebel, Elmas</div>
+      <div><b>Ospiti:</b> Konoplya (LCA ginocchio), Chiarodia (muscolare), Castrop (spalla — mesi), Zento Uno | DUBBI: Kleindienst, Ngoumou, Hack</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.54</b> / 4.60 / 5.70</div>
+      <div>O2.5: 1.45 | U2.5: 2.55</div>
+      <div>BTTS S/N: 1.57 / 2.30</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> W 6-0 Trier (Pokal), W 5-0 Hoffenheim, W 2-1 Werder, DFB 4W-0D-1L</div>
+      <div><b>Ospiti away:</b> 8 gare BL away senza vittoria! Ultima: W 1-0 Mainz (dicembre)</div>
+      <div><b>H2H:</b> Leipzig imbattuto in 10 gare HOME vs Gladbach (11W in 20 totali)</div>
+    </div>
   </div>
-
-  <!-- Dortmund Hamburg -->
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">18:30</span></div>
-        <div class="match-name">Borussia Dortmund vs Hamburg SV</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num yellow">70</div>
-        <div class="score-label">/ 100 — CAUTO</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val bad">10/25 — Dortmund @1.31 = zero valore. AH -1 @~1.85 = mercato alternativo</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — Dortmund imbattuto in 7 H2H vs Hamburg (6V, 1P)</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">14/20 — Dortmund perde Supercup 1-2 vs Bayern. Hamburg perde Glatzel, Baldé estivi</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — Dortmund: Schlotterbeck + Can OUT. Emozione HSV = variabile</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">AH Dortmund -1</div></div>
-      <div class="pick-quota yellow">~1.85</div>
-    </div>
-    <p class="note">🏟️ Il ritorno di Hamburg in Bundesliga dopo 8 anni. Signal Iduna Park esaurito (81k). Dortmund storicamente vince con margine qui, ma Schlotterbeck e Can out indeboliscono la difesa. Hamburg proverà a segnare nel grande giorno.</p>
-  </div>
-
-  <div class="slot-label">⏰ 21:00 SLOT</div>
-
-  <!-- Juventus Parma -->
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇮🇹</span><span class="league">Serie A MD2</span><span class="time">20:45</span></div>
-        <div class="match-name">Juventus vs Parma</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num yellow">72</div>
-        <div class="score-label">/ 100 — CAUTO</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val bad">10/25 — Juve @1.22 = zero valore sul win. Win to nil @~1.90 = valore</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">18/20 — Juve 2-0 (MD2 stagione scorsa) + 4-1 in trasferta (feb 2026)</div></div>
-      <div class="analysis-item"><div class="label">C — Forma/xG</div><div class="val good">16/20 — Juve xG 1.99 vs 0.45 vs Frosinone. Parma 0 gol in MD1</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val bad">10/15 — <strong>Yildiz OUT</strong> (lungo infortun.), Gatti OUT, Vicario OUT — 3 titolari</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Juventus Win to Nil</div></div>
-      <div class="pick-quota yellow">~1.90</div>
-    </div>
-    <p class="note">Parma ha segnato 0 gol in MD1 vs Cagliari. La Juve in casa concede pochissimo. Win to nil a ~1.90 è il mercato con valore reale dato che il semplice win a 1.22 non ha edge.</p>
-  </div>
-
-  <!-- Siviglia Atletico -->
-  <div class="match-card green">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇪🇸</span><span class="league">La Liga MD2</span><span class="time">21:30</span></div>
-        <div class="match-name">Siviglia vs Atlético Madrid</div>
-      </div>
-      <div class="score-badge">
-        <div class="score-num green">86</div>
-        <div class="score-label">/ 100 — GIOCA FORTE</div>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">22/25 — Siviglia @3.07–3.64 con H2H forte e Atlético decimato = <strong>valore eccezionale</strong></div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — Siviglia vince <strong>4 delle ultime 6 in casa</strong> vs Atlético. Ultima: 2-1 (apr 2026)</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">16/20 — Siviglia: 5 gol in 2 gare. Atlético: <strong>Le Normand SOSPESO + Álvarez FUORI (contratto)</strong></div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg per nessuna</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">13/15 — Atlético 2.5 YC/g (Simeone fisico). Pizjuán bollente</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Siviglia win</div></div>
-      <div class="pick-quota">3.07–3.64</div>
-    </div>
-    <p class="note">🔥 <strong>Migliore pick del 29 agosto.</strong> Le Normand squalificato (pilastro difesa Atlético) + Álvarez fuori per standoff contrattuale = Atlético amputata. Siviglia in casa è in fiducia (5 gol in 2 gare) e storicamente batte Atlético al Pizjuán. Cerca la quota più alta disponibile (~3.64 su Boyle Sports).</p>
-  </div>
+  <div class="note-row">💡 Leipzig ha decimato il centrocampo avversario in casa. Gladbach senza ali titolari.</div>
 </div>
 
-<!-- DOM 30 TAB -->
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">15:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">SV Elversberg <span class="vs">vs</span> Bayer Leverkusen</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Leverkusen -0.75 AH</span>
+    <span class="odds-val">@1.55</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Robert Hartmann</b></div>
+      <div>GJ/g: <b>~4.00 GJ/g (est.)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: N/D (debutto BL)</div>
+      <div>Ospiti FOR/AGN: 4.47 FOR (BL 25-26)</div>
+      <div><b>N/D — prima gara BL Elversberg</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: N/D (2.BL 25-26)</div>
+      <div>Ospiti xG: Forte (19 gol pre-season in 6 gare)</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Zimmerschied (schiena — sett.)</div>
+      <div><b>Ospiti:</b> Ben Seghir (coscia), Culbreath (piede), Andrich (muscolare), Eichhorn (metabolico), Terrier</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>4.50</b> / 4.25 / 1.55</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: Leverkusen @1.55</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Promossa come 2ª in 2.BL; W 3-1 Duisburg (Pokal)</div>
+      <div><b>Ospiti away:</b> 7W-1L in 8 gare sotto Martínez Novell; W 4-0 Wehen (Pokal)</div>
+      <div><b>H2H:</b> 1° incontro BL. Elversberg ha battuto Leverkusen in coppa una volta</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Elversberg debutta in BL. Leverkusen ha peso specifico superiore nonostante assenze.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">15:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">70/100</span>
+    <span class="tag" style="background:#3b82f6;color:#fff;">ANGOLI</span>
+  </div>
+  <div class="teams">Union Berlin <span class="vs">vs</span> E. Frankfurt</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Under 9.5 angoli</span>
+    <span class="odds-val">@est.1.80</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Bastian Dankert</b></div>
+      <div>GJ/g: <b>~4.20 GJ/g (VAR controverso)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: ~4.5 FOR / 5.9 AGN</div>
+      <div>Ospiti FOR/AGN: ~4.0 FOR / 5.0 AGN</div>
+      <div><b>~9 tot est.</b></div>
+      <div class="pick-angoli">Pick: Under 9.5 (predicted by TotalCorner)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: N/D MD1</div>
+      <div>Ospiti xG: Frankfurt xG FOR 1.37 / xGA 1.44 (25-26) | 65 gol subiti (record neg.)</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Burke (achille), Nsoki (polpaccio), Skov (muscolare) | DUBBI: Juranovic, Leite</div>
+      <div><b>Ospiti:</b> Knauff (hamstring), Doan (muscolare), Uzun (coscia), Burkardt (polpaccio), Collins (schiena), Larsson, Batshuayi, Chandler (8 assenti!)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.40</b> / 3.25 / 2.80</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> 1W-3D-1L ultimi 5 gare</div>
+      <div><b>Ospiti away:</b> 0W-3D-2L ultimi 5 (0 vittorie)</div>
+      <div><b>H2H:</b> Frankfurt 10W vs Union 5W (22 totali) | Ultima: 1-1 | Frankfurt 5W in 11 away all'Alte Försterei</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Frankfurt in crisi infortuni totale (8 giocatori fuori). Adi Hütter al ritorno.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #ef4444;background:rgba(239,68,68,0.12);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">15:30</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">63/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">FC Köln <span class="vs">vs</span> TSG Hoffenheim</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Florian Badstübner</b></div>
+      <div>GJ/g: <b>~3.50 GJ/g (est.)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: N/D</div>
+      <div>Ospiti FOR/AGN: ~10.58 tot/g (25-26 overall)</div>
+      <div><b>N/D</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: N/D</div>
+      <div>Ospiti xG: N/D</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Waldschmidt (muscolare), Hübers (rehab), Sebulonsen (coscia)</div>
+      <div><b>Ospiti:</b> DUBBIO: Kramarić (inguine — availability uncertain)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.81</b> / 3.63 / 2.28</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> W 2-1 Würzburger (Pokal)</div>
+      <div><b>Ospiti away:</b> W 4-0 Erzgebirge Aue (Pokal) | Hoffenheim 7W in 16 away all'EnergieStadion</div>
+      <div><b>H2H:</b> Hoffenheim 13-9 in BL totale | 7W in 16 gare away vs Köln</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Gara incerta. Hoffenheim leggermente favorita se Kramarić disponibile.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">15:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">72/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Mainz 05 <span class="vs">vs</span> SC Paderborn</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Mainz 1</span>
+    <span class="odds-val">@1.68</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Tobias Stieler</b></div>
+      <div>GJ/g: <b>~3.60 GJ/g (uno dei più esperti)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: Mainz dominante in casa</div>
+      <div>Ospiti FOR/AGN: N/D (debutto BL Paderborn)</div>
+      <div><b>N/D</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Mainz 2.2 gol/g | 9-0 vs VfB Krieschow (Pokal)</div>
+      <div>Ospiti xG: N/D (BL debut)</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Nebel (adduttore), Martel (legamento ginocchio), Silas (frattura lunga deg.)</div>
+      <div><b>Ospiti:</b> Gayret (LCA), Klaas (adduttore), Michel (adduttore), Awortwie-Grant (tendine)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.68</b> / 3.92 / 4.60</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: est.1.80 / est.2.10</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Mainz 3W in 3 home vs Paderborn (BL)</div>
+      <div><b>Ospiti away:</b> Paderborn promossa via playoff vs Wolfsburg</div>
+      <div><b>H2H:</b> Mainz 3W-1D-0L vs Paderborn in BL | 3W in 3 gare al MEWA Arena</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Mainz imbattuta vs Paderborn in casa. Paderborn debutta in BL con infermeria piena.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Fiorentina <span class="vs">vs</span> Frosinone</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Fiorentina 1</span>
+    <span class="odds-val">@1.60</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Giuseppe Collu</b></div>
+      <div>GJ/g: <b>N/D (21 pres. SA, 3 stagioni)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: ~5.1 FOR (9.17 tot/g) | 51.7% Over 9.5</div>
+      <div>Ospiti FOR/AGN: N/D (ritorno SA)</div>
+      <div><b>~9.17 tot est.</b></div>
+      <div class="pick-angoli">Pick: Over 9.5 (51.7% H Fiorentina)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Fiorentina xG 2.51 vs Udinese (campione 25-26)</div>
+      <div>Ospiti xG: N/D</div>
+      <div>SoT casa: ~9/g (MD1 vs Roma: 9 tiri) | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Parisi (LCA — novembre)</div>
+      <div><b>Ospiti:</b> Nessun infortunato confermato</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.60</b> / 4.25 / 5.00</div>
+      <div>O2.5: 1.82 | U2.5: 2.10</div>
+      <div>BTTS S/N: 1.75 / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Fiorentina 7W-1D (ultimi 8 con BTTS) | L 0-4 a Roma MD1</div>
+      <div><b>Ospiti away:</b> Frosinone L 0-1 vs Juve (MD1) | Non vince l'esordio trasferta da anni</div>
+      <div><b>H2H:</b> Fiorentina 2W-3D-1W Frosinone (6 totali) | Fiorentina 2.8 gol/g ultimi 5 H2H</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Viola arrivano da un 0-4 che ha scosso l'ambiente. Prima gara in casa 26-27.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #ef4444;background:rgba(239,68,68,0.12);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">62/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Monza <span class="vs">vs</span> Udinese</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Under 2.5 gol</span>
+    <span class="odds-val">@1.60</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>C.G. Allegretta</b></div>
+      <div>GJ/g: <b>DEBUTTO IN SERIE A (0 presenze)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: N/D (ritorno SA da Serie B)</div>
+      <div>Ospiti FOR/AGN: N/D</div>
+      <div><b>~8-10 est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: L 1-4 Inter MD1</div>
+      <div>Ospiti xG: D 1-1 Como MD1</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Pessina (rotula — novembre), Ciurria, Colombo, Tourè (tutti fuori sab)</div>
+      <div><b>Ospiti:</b> Zaniolo (tendine — sett.), Palma (adduttore — sett.), Chakvetadze (piede), Zanoli (LCA) | SQUALIFICATO: Kabasele</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>3.20</b> / 3.15 / 2.38</div>
+      <div>O2.5: N/D | U2.5: 1.60</div>
+      <div>BTTS S/N: 1.87 / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> 15W su 21 home (Serie B 25-26) | L 1-4 Inter MD1</div>
+      <div><b>Ospiti away:</b> D 1-1 Como MD1 (in casa Udinese)</div>
+      <div><b>H2H:</b> Monza 3W vs Udinese 2W (8 incontri all'U-Power, equilibrio storico)</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Arbitro al debutto assoluto in SA = variabile di rischio. Under 2.5 @1.60 quotata favorita.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">65/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Sassuolo <span class="vs">vs</span> Torino</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BTTS Sì</span>
+    <span class="odds-val">@1.75</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Davide Di Marco</b></div>
+      <div>GJ/g: <b>N/D (7 pres. SA, 3 stagioni)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: ~4.0/g (Statz 26-27)</div>
+      <div>Ospiti FOR/AGN: N/D</div>
+      <div><b>~7-9 est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: 22 tiri / 8 in porta (Statz MD1)</div>
+      <div>Ospiti xG: Torino 1.29 xG / 3.97 in porta (25-26)</div>
+      <div>SoT casa: 22/g | osp: ~12/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Berardi (caviglia), Konè (tibia — gen.), Candé (LCA — sett.), Pieragnolo (LCA), Walukiewicz (contusione), Boloca (ginocchio) — 6 assenti</div>
+      <div><b>Ospiti:</b> Israel (spalla — nov.), Adams, Anjorin, Pellegri</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>3.10</b> / 3.25 / 2.50</div>
+      <div>O2.5: 1.85 | U2.5: 1.90</div>
+      <div>BTTS S/N: 1.75 / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Sassuolo L-L-L-W-L (ultime 5) | L 1-2 Atalanta MD1</div>
+      <div><b>Ospiti away:</b> Torino L 1-2 Milan MD1 (in casa)</div>
+      <div><b>H2H:</b> Torino 15W vs Sassuolo 6W (32 totali) | BTTS 66% | Over 1.5 78% | Media 2.66 gol/g</div>
+    </div>
+  </div>
+  <div class="note-row">💡 H2H favorisce Torino. Sassuolo decimata (6 assenti). BTTS 66% in 32 precedenti.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">73/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Tottenham <span class="vs">vs</span> Newcastle</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BTTS Sì</span>
+    <span class="odds-val">@1.68</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Peter Bankes</b></div>
+      <div>GJ/g: <b>4.16 GJ/g — MOLTO ALTO (3 rossi 25-26)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 6.20 FOR (Spurs home)</div>
+      <div>Ospiti FOR/AGN: 5.37 FOR (Newcastle away)</div>
+      <div><b>~11.53 tot (media storica H2H)</b></div>
+      <div class="pick-angoli">Pick: N/D odds</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: N/D MD2</div>
+      <div>Ospiti xG: N/D MD2</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Maddison (spalla), Kulusevski, van de Ven, Porro, Simons (LCA), Kudus, Odobert</div>
+      <div><b>Ospiti:</b> Joelinton (inguine), Tonali (spalla), Schar (commozione), Miley (gamba rotta)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.37</b> / 3.80 / 2.95</div>
+      <div>O2.5: 1.65 | U2.5: N/D</div>
+      <div>BTTS S/N: 1.68 / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> N/D MD2</div>
+      <div><b>Ospiti away:</b> N/D MD2</div>
+      <div><b>H2H:</b> BTTS in 87% degli ultimi H2H | Over 2.5 in TUTTI gli ultimi 11 H2H</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Bankes: 4.16 gialli/g = partita nervosa. Entrambe le squadre senza titolari chiave.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">2.Bundesliga 🇩🇪</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">74/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Borussia Dortmund <span class="vs">vs</span> Hamburger SV</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BVB 1</span>
+    <span class="odds-val">@1.32</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC</b></div>
+      <div>GJ/g: <b>N/D</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 7.24 FOR (BVB home)</div>
+      <div>Ospiti FOR/AGN: N/D</div>
+      <div><b>~10+ est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: BVB 1.58 xG/g home</div>
+      <div>Ospiti xG: Hamburg: 3W-5D-9L away (2.BL storico)</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Duranville, Meunier, Schlotterbeck, Can, Özcan</div>
+      <div><b>Ospiti:</b> Omari (spalla) | DUBBIO: Muheim (adduttore)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.32</b> / 5.50 / 8.50</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: 1.91 / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> BVB campione e favorito assoluto per risalire</div>
+      <div><b>Ospiti away:</b> Hamburg: 3W-5D-9L away stagione 25-26 in 2.BL</div>
+      <div><b>H2H:</b> BVB nettamente superiore in questa fase</div>
+    </div>
+  </div>
+  <div class="note-row">💡 BVB in 2.BL per risalire. Hamburg ha storico away deludente. BTTS @1.91 se vuoi coprire.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #22c55e;background:rgba(34,197,94,0.15);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">76/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">TOP PICK</span>
+  </div>
+  <div class="teams">Juventus <span class="vs">vs</span> Parma</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Juventus -1 AH</span>
+    <span class="odds-val">@1.73</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Francesco Fourneau</b></div>
+      <div>GJ/g: <b>4.7 GJ/g | 2.8 verso trasferta | 28 falli/g | 7W in 9 gare Juve</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: ~5.5–6.0 FOR (est.)</div>
+      <div>Ospiti FOR/AGN: ~3.0 FOR (est. — 0.39 xG away = poco possesso)</div>
+      <div><b>~9-11 est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Juve 1.74 xG home | 50% CS | 16.0 tiri/g</div>
+      <div>Ospiti xG: Parma 0.39 xG away (!) | 0% CS away | 2.06 xGA</div>
+      <div>SoT casa: 16/g | osp: ~8/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Yildiz (piede — 3 mesi, rischio chirurgia), Vicario (polpaccio — Pinsoglio in porta), Gatti (caviglia), Ekhator | DUBBIO: K.Thuram (polpaccio)</div>
+      <div><b>Ospiti:</b> Nicolussi Caviglia (ernia — nov.), Idrissi (LCA — nov.), Balogh</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.35</b> / 4.60 / 9.50</div>
+      <div>O2.5: 1.61 | U2.5: 2.24</div>
+      <div>BTTS S/N: 2.00 / N/D</div>
+      <div>AH: Juve -1 @1.73</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Juve W10-D7-L2 in casa 25-26 | W 1-0 Frosinone MD1</div>
+      <div><b>Ospiti away:</b> Parma: 0% vittorie away | 0 gol away recenti | L 0-1 vs Cagliari MD1</div>
+      <div><b>H2H:</b> Juve 25W in 36 totali all'Allianz | Recente: 2-0 (Juve) e 4-1 (Juve) | Over 2.5 57% H2H</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Parma non vince l'esordio in trasferta da 21 stagioni SA. Juve perde Yildiz+Vicario ma rimane nettamente favorita.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">La Liga 🇪🇸</span>
+    <span class="time">21:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">66/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Sevilla <span class="vs">vs</span> Atlético Madrid</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Atlético -0.5 AH</span>
+    <span class="odds-val">@est.1.75</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC</b></div>
+      <div>GJ/g: <b>N/D</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: N/D</div>
+      <div>Ospiti FOR/AGN: N/D</div>
+      <div><b>N/D</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: N/D</div>
+      <div>Ospiti xG: N/D</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Vargas (muscolare), González</div>
+      <div><b>Ospiti:</b> Le Normand (SQUALIFICATO), Sorloth (muscolare), Álvarez (DUBBIO — disputa contratto)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>3.40</b> / 3.30 / 2.00</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: Atlético -0.5 (est.)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Sevilla @3.40 = mercato segnala partita difficile</div>
+      <div><b>Ospiti away:</b> Atlético senza Le Normand (CB titolare squalificato)</div>
+      <div><b>H2H:</b> Atlético forte pur decimata</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Atlético perde Le Normand (susp) e Sorloth (infort). Sevilla ha qualche chance ma Atlético resta favorita.</div>
+</div>
+</div>
+
 <div id="dom30" class="content">
-  <div class="day-header"><h2>Domenica 30 Agosto</h2><span class="badge">8 ANALISI</span></div>
-
-  <div class="slot-label">⏰ 12:00 SLOT</div>
-
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇳🇱</span><span class="league">Eredivisie MD3</span><span class="time">12:15</span></div>
-        <div class="match-name">FC Utrecht vs PSV Eindhoven</div>
-      </div>
-      <div class="score-badge"><div class="score-num yellow">70</div><div class="score-label">/ 100 — CAUTO</div></div>
+  <div class="day-header">📅 Domenica 30 Agosto 2026 — 10 partite</div>
+  
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Eredivisie 🇳🇱</span>
+    <span class="time">12:15</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">72/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">FC Utrecht <span class="vs">vs</span> PSV Eindhoven</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">PSV 1</span>
+    <span class="odds-val">@est.1.50</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Jeroen Manschot</b></div>
+      <div>GJ/g: <b>3.31 GJ/g (0.09 RS/g)</b></div>
     </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val">14/25 — PSV @~1.60, quota corretta</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">14/20 — PSV tende a vincere al Galgenwaard, Utrecht difende compatto</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val bad">15/20 — Utrecht: 5 titolari infortunati (Ohio, Engwanda, Jensen, Jonathans, Van Ommeren)</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">16/20 — PSV in CL ma nessuna gara nei prossimi 3gg</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — 1.8 YC/g Utrecht</div></div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: N/D (MD3 early)</div>
+      <div>Ospiti FOR/AGN: PSV dominante</div>
+      <div><b>~9-11 est. (PSV genera molti angoli)</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
     </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">PSV win</div></div>
-      <div class="pick-quota yellow">~1.60</div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Utrecht L 2-1 Groningen MD1 (in casa)</div>
+      <div>Ospiti xG: PSV 3 titoli consecutivi Eredivisie</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Jonathans (LCA), Jensen (LCA), Agougil (LCA), Ohio (LCA), Engwanda (hamstring), van Ommeren (schiena) — 6 ASSENTI!</div>
+      <div><b>Ospiti:</b> Schouten (LCA — long-term) | DUBBIO: Driouech (botta)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>est.3.50</b> / est.3.80 / est.1.50</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> L 2-1 Groningen MD1 (Utrecht in casa)</div>
+      <div><b>Ospiti away:</b> PSV imbattuta vs Utrecht in 7 anni (22W-6D-2L in 30 totali)</div>
+      <div><b>H2H:</b> PSV 22W in 30 H2H | 0 sconfitte in 7 anni | Ultima: L 1-2 PSV a Utrecht</div>
     </div>
   </div>
+  <div class="note-row">💡 Utrecht con 6 assenti (3 LCA in centrocampo/attacco). PSV nettamente superiore.</div>
+</div>
 
-  <div class="match-card green">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">13:30</span></div>
-        <div class="match-name">SC Freiburg vs SV Werder Bremen</div>
-      </div>
-      <div class="score-badge"><div class="score-num green">80</div><div class="score-label">/ 100 — GIOCA</div></div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — Freiburg @1.83 = buona quota per casa solida</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">15/20 — Freiburg 2V nelle ultime 3 in casa vs Werder (incl. 1-0 e 2-1)</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">16/20 — Werder: <strong>11 gare senza vittoria in trasferta</strong> nella scorsa stagione</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna. Apertura stagione = energie fresche</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">13/15 — Freiburg 2.1 YC/g, Werder 1.9 YC/g. Nessuna assenza grave</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Freiburg win</div></div>
-      <div class="pick-quota">1.83</div>
-    </div>
-    <p class="note">Werder aveva uno dei peggiori record in trasferta della Bundesliga nella scorsa stagione. Freiburg al Europa-Park Stadion è una fortezza vs questa avversaria specifica.</p>
+<div class="card" style="border-left:4px solid #22c55e;background:rgba(34,197,94,0.15);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">13:30</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">77/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">TOP PICK</span>
   </div>
-
-  <div class="slot-label">⏰ 15:00 SLOT</div>
-
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇬🇧</span><span class="league">Premier League MD2</span><span class="time">15:00</span></div>
-        <div class="match-name">Chelsea vs Brighton</div>
-      </div>
-      <div class="score-badge"><div class="score-num yellow">73</div><div class="score-label">/ 100 — CAUTO</div></div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val">17/25 — Chelsea @~1.75</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val">14/20 — Chelsea vince spesso a Stamford Bridge vs Brighton</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">17/20 — Brighton ha giocato Conference League gio 27/8 (solo 3gg). Rotazioni attese</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val warn">12/20 — <strong>Brighton fatigue: Conference League gio 27/8 → dom 30/8 = 3 giorni</strong></div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">13/15 — Brighton: Ferguson, Baleba, Minteh OUT</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Chelsea win</div></div>
-      <div class="pick-quota yellow">~1.75</div>
-    </div>
+  <div class="teams">SC Freiburg <span class="vs">vs</span> Werder Bremen</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BTTS No</span>
+    <span class="odds-val">@1.70</span>
   </div>
-
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">15:30</span></div>
-        <div class="match-name">Augsburg vs Schalke 04</div>
-      </div>
-      <div class="score-badge"><div class="score-num yellow">74</div><div class="score-label">/ 100 — CAUTO</div></div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Daniel Siebert</b></div>
+      <div>GJ/g: <b>3.63 GJ/g BL (4.23 carriera) | CL 35 gare</b></div>
     </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Draw @4.00 ha edge storico</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val warn">12/20 — Schalke storicamente superiore ma neopromossa. <strong>10 pareggi su 25 H2H</strong></div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">13/20 — Schalke: prima gara in Bundesliga dopo promozione = incognita</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">17/20 — Nessun europeo, prima giornata</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Schalke 2.2 YC/g, emotività del ritorno = variabile</div></div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 3.50 FOR / 4.40 AGN</div>
+      <div>Ospiti FOR/AGN: 4.90 FOR / 5.80 AGN</div>
+      <div><b>λ = 0.6×(3.5+4.9) = 5.04 → ~9.3-10.7 est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
     </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick (rischio alto)</div><div class="pick-value">Draw</div></div>
-      <div class="pick-quota yellow">4.00</div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Freiburg 1.90 gol / 0.60 conc (ultime 10 home) | 8W-2D-0L casa</div>
+      <div>Ospiti xG: Bremen 4.18 SoT away | 2.00 gol conc/g away</div>
+      <div>SoT casa: N/D | osp: 4.18 on target/g</div>
     </div>
-    <p class="note">Schalke torna in Bundesliga dopo anni. H2H storico ha prodotto 10 pareggi in 25 incontri. Pick ad alto rischio ma quota molto alta.</p>
-  </div>
-
-  <div class="slot-label">⏰ 18:00 SLOT</div>
-
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇪🇸</span><span class="league">La Liga MD3</span><span class="time">17:00</span></div>
-        <div class="match-name">Real Madrid vs Málaga CF</div>
-      </div>
-      <div class="score-badge"><div class="score-num yellow">75</div><div class="score-label">/ 100 — CAUTO</div></div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Muslija (LCA — ottobre), Manzambi (ceduto a Aston Villa)</div>
+      <div><b>Ospiti:</b> Topp (LCA), Stalmach (spalla), Weiser (LCA — doubt), Agu (polpaccio), Dinkci, Kownacki</div>
     </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val bad">10/25 — Real Madrid @1.13 = inutile sul win</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">18/20 — Madrid 8V 2P 0S negli ultimi 10 H2H totali</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">17/20 — Madrid: 3 vittorie in stagione. Málaga: 0V in 6 trasferte</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo questa settimana</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Málaga 2.4 YC/g sotto pressione</div></div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.97</b> / 3.65 / 3.96</div>
+      <div>O2.5: 1.35 | U2.5: 3.35</div>
+      <div>BTTS S/N: 2.10 / 1.70</div>
+      <div>AH: Freiburg DNB @1.47</div>
     </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick (mercato alternativo)</div><div class="pick-value">Over 3.5 gol</div></div>
-      <div class="pick-quota yellow">~2.50</div>
-      <div><div class="pick-label">Bonus</div><div class="pick-value">Mbappe marcatore</div></div>
-      <div class="pick-quota yellow">~1.50</div>
-    </div>
-    <p class="note">Non Madrid @1.13. Bernabéu vs neo-promossa: Over 3.5 a ~2.50 è il mercato con valore reale.</p>
-  </div>
-
-  <div class="match-card green">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇧🇪</span><span class="league">Jupiler Pro League MD3</span><span class="time">18:30</span></div>
-        <div class="match-name">Royale Union SG vs RSC Anderlecht</div>
-      </div>
-      <div class="score-badge"><div class="score-num green">78</div><div class="score-label">/ 100 — GIOCA</div></div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Union @1.67 = valore con H2H casalingo forte</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">16/20 — Union vince le ultime derbies in casa vs Anderlecht</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val">14/20 — Union 1V 1P; Anderlecht 1V 1S in Pro League</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">16/20 — Entrambe in Europa ma nessuna gara entro 3gg</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Derby = Pro League 3.2 YC/g media</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick</div><div class="pick-value">Union SG win</div></div>
-      <div class="pick-quota">1.67</div>
-      <div><div class="pick-label">Bonus</div><div class="pick-value">GG (entrambe segnano)</div></div>
-      <div class="pick-quota">~1.80</div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> W 3-1 Motherwell (UECL 27 ago — 72h prima!), W 5-1 Düsseldorf (Pokal), 8W-2D in casa</div>
+      <div><b>Ospiti away:</b> 1W in ultime 10 trasferte BL</div>
+      <div><b>H2H:</b> BREMEN 0 GOL IN 4 H2H CONSECUTIVI vs Freiburg! Ultimo gol: 27 gen 2024</div>
     </div>
   </div>
+  <div class="note-row">💡 STAT CHIAVE: Bremen non segna vs Freiburg da 4 gare. Freiburg gioca 72h dopo UECL. Over 2.5 @1.35 = sottovalutato ma BTTS No @1.70 è il valore.</div>
+</div>
 
-  <div class="slot-label">⏰ 21:00 SLOT</div>
-
-  <div class="match-card green">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇫🇷</span><span class="league">Ligue 1 MD2</span><span class="time">20:45</span></div>
-        <div class="match-name">Monaco vs Olympique Marseille</div>
-      </div>
-      <div class="score-badge"><div class="score-num green">82</div><div class="score-label">/ 100 — GIOCA FORTE</div></div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Monaco @2.15 = quota buona per casa in fiducia</div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">15/20 — Monaco 2-1 vs Marsiglia nella scorsa stagione al Louis II</div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">18/20 — Monaco: <strong>6 vittorie consecutive</strong> prima estate. Marsiglia: <strong>0V in 10 Ligue 1 trasferte!</strong></div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo imminente per nessuna</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — Monaco: Minamino, Vanderson OUT; Marsiglia: Aguerd, Greenwood OUT</div></div>
-    </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick FISSA</div><div class="pick-value">Monaco win + Over 2.5</div></div>
-      <div class="pick-quota">~3.55 (combo)</div>
-    </div>
-    <p class="note">🔥 <strong>Migliore pick del 30 agosto.</strong> Marsiglia non vince in trasferta in Ligue 1 da 10 partite. Monaco in casa è inarrestabile. Combo Monaco @2.15 × Over 2.5 @1.65 = ~3.55.</p>
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">15:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
   </div>
+  <div class="teams">Chelsea <span class="vs">vs</span> Brighton</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Chelsea 1</span>
+    <span class="odds-val">@1.99</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Simon Hooper</b></div>
+      <div>GJ/g: <b>~3.30 GJ/g</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: ~5.5-6.0 FOR (est.)</div>
+      <div>Ospiti FOR/AGN: ~4.0-5.0 FOR (est.)</div>
+      <div><b>~10-11 est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Chelsea W 3-2 Fulham MD1 (away)</div>
+      <div>Ospiti xG: Brighton W 4-0 Aston Villa MD1 (home) | xG 1.37 / xGA 0.03</div>
+      <div>SoT casa: ~15/g | osp: ~13/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Fofana (SQUALIFICATO), Henderson (polso), Emegha (coscia), Wiley, Anselmino</div>
+      <div><b>Ospiti:</b> Minteh (polpaccio — sett.), Tzimas (LCA), Ferguson (caviglia), Baleba (ceduto a Man Utd) | DUBBI: Mitoma, O'Riley, Kadioglu</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.99</b> / 3.81 / 4.01</div>
+      <div>O2.5: 1.76 | U2.5: N/D</div>
+      <div>BTTS S/N: 1.64 / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> W 3-2 Fulham MD1 (fuori) | Xabi Alonso debutto stagionale</div>
+      <div><b>Ospiti away:</b> W 4-0 Villa MD1 | W 4-0 Tromsø (UECL) | UECL in corso</div>
+      <div><b>H2H:</b> Brighton W 3-1 a Stamford Bridge (sett.2025) | Chelsea W 4-2 (sett.2024) | 67% Over 2.5</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Brighton depleta in attacco (Minteh out, Mitoma doubt). Chelsea in casa con Xabi Alonso.</div>
+</div>
 
-  <div class="match-card yellow">
-    <div class="card-top">
-      <div>
-        <div class="card-meta"><span class="flag">🇮🇹</span><span class="league">Serie A MD2</span><span class="time">20:45</span></div>
-        <div class="match-name">Cagliari vs Internazionale</div>
-      </div>
-      <div class="score-badge"><div class="score-num yellow">73</div><div class="score-label">/ 100 — CAUTO</div></div>
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">15:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">70/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">FC Augsburg <span class="vs">vs</span> FC Schalke 04</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BTTS Sì</span>
+    <span class="odds-val">@1.57</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Sascha Stegemann</b></div>
+      <div>GJ/g: <b>3.68 GJ/g (0.20 RS/g!) | 9 GJ+1 RS ultimo incarico</b></div>
     </div>
-    <div class="analysis-grid">
-      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">16/25 — Inter @1.20 = inutile. <strong>Draw @3.70 ha edge storico</strong></div></div>
-      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — <strong>Cagliari 1V 3P 1S nelle ultime 5 all'Unipol Domus vs Inter!</strong></div></div>
-      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">12/20 — Inter 4-1 vs Monza MD1. Cagliari: Pavoletti, Felici, Idrissi tutti OUT</div></div>
-      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">17/20 — Inter in CL ma nessuna gara questa settimana</div></div>
-      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — 2.1 YC/g Cagliari</div></div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 4.5 FOR / 4.5 AGN (9.0 tot home)</div>
+      <div>Ospiti FOR/AGN: ~4.0 FOR (2.BL)</div>
+      <div><b>λ = 0.6×(4.5+4.0) = 5.1 → ~9.0-10.0 est. | Over 9.5 @-115</b></div>
+      <div class="pick-angoli">Pick: Over 9.5 @est.1.87</div>
     </div>
-    <div class="pick-box">
-      <div><div class="pick-label">Pick A (valore)</div><div class="pick-value">Draw</div></div>
-      <div class="pick-quota yellow">3.70</div>
-      <div><div class="pick-label">Pick B</div><div class="pick-value">Under 2.5 gol</div></div>
-      <div class="pick-quota yellow">~1.90</div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Augsburg 1.56 xG / 4.39 SoT home</div>
+      <div>Ospiti xG: Schalke 1.71 xG (2.BL 25-26)</div>
+      <div>SoT casa: 12.83/g | osp: N/D</div>
     </div>
-    <p class="note">H2H all'Unipol Domus: Inter ha vinto solo 2 delle ultime 5 qui. 3 pareggi recenti. Con Cagliari senza attacco (3 assenti) ma difesa intatta, pareggio 0-0 o 1-0 è scenario reale.</p>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Claude-Maurice (polpaccio), Breithaupt (alluce), Sima | DUBBIO: Jakić (acc.gialli)</div>
+      <div><b>Ospiti:</b> Karaman (anca + fluido — DUBBIO leaning OUT), Lasme (polpaccio), Gantenbein (caviglia) | Gosens e Wöber rientrati</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.23</b> / 4.00 / 3.35</div>
+      <div>O2.5: 1.69 | U2.5: N/D</div>
+      <div>BTTS S/N: 1.57 / N/D</div>
+      <div>AH: Aug -0.5 @+105</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> W 3-1 M'Gladbach (maggio), D 1-1 Frankfurt, D 2-2 Hoffenheim (ultime home)</div>
+      <div><b>Ospiti away:</b> W 2-5 Hallescher (Pokal away) | 7 gare away senza CS fine 25-26</div>
+      <div><b>H2H:</b> Prima gara BL Schalke da 3 anni | Augsburg ha più esperienza massima serie</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Stegemann: arbitro severo (0.20 RC/g). BTTS @1.57 = mercato vede entrambe che segnano. Schalke ritorna in BL con capitano Karaman incerto.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #22c55e;background:rgba(34,197,94,0.15);">
+  <div class="card-header">
+    <span class="league">La Liga 🇪🇸</span>
+    <span class="time">17:00</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">82/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">TOP PICK</span>
+  </div>
+  <div class="teams">Real Madrid <span class="vs">vs</span> Málaga CF</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Real Madrid AH -2</span>
+    <span class="odds-val">@est.1.80</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Javier Alberola Rojas</b></div>
+      <div>GJ/g: <b>4.20 GJ/g (0.25 RC/g) | 87 rigori in carriera</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 6.00 FOR / ~4.0 AGN | 10.1 tot/g home</div>
+      <div>Ospiti FOR/AGN: 3.40 FOR / 5.00 AGN (Málaga away)</div>
+      <div><b>λ = 0.6×(6.0+3.4) = 5.64 → ~9.4 est. | RM 60% gare Over 10.5</b></div>
+      <div class="pick-angoli">Pick: Over 10.5 (est.)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: RM 2.52 xG / ~9.5 SoT home (2026-27: 20 tiri in 2 gare)</div>
+      <div>Ospiti xG: Málaga 0.61 xG away | 0 gol away in La Liga</div>
+      <div>SoT casa: ~10/g | osp: ~5/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Mendy (tendine — apr.2027!), Rodrygo (LCA — sett.), Militão (muscolare — sett.), Endrick (muscolare), Asencio | DUBBIO: Tchouaméni, Vinicius Jr.</div>
+      <div><b>Ospiti:</b> Murillo (LCA), Calero (costola), Diarra (polpaccio), Juanpe (muscolare), Niño (coscia), Dotor (ginocchio) | SQUALIFICATO: Ochoa</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>est.1.13</b> / est.12.00 / est.25.00</div>
+      <div>O2.5: est.1.30 | U2.5: 3.20</div>
+      <div>BTTS S/N: N/D / est.1.60</div>
+      <div>AH: RM -2 (est.@1.80)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> RM W 4-1 Real Sociedad MD2 (Mbappé hat-trick), W 2-1 Espanyol MD1</div>
+      <div><b>Ospiti away:</b> Málaga 0W-0D-5L last 5 away | 0 gol away La Liga | L 0-2 Atlético MD2</div>
+      <div><b>H2H:</b> RM 8W-2D-0L ultimi 10 H2H | Histórico: 6-2 (2013), 2-1 (2017) al Bernabéu</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Málaga neopromossa con 7 assenti. RM guidata da Mourinho (2° mandato). Mbappé in forma smagliante.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Jupiler Pro League 🇧🇪</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">70/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Royale Union SG <span class="vs">vs</span> RSC Anderlecht</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Union SG 1</span>
+    <span class="odds-val">@1.67</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Lawrence Visser</b></div>
+      <div>GJ/g: <b>4.40 GJ/g (UEFA elite ref) | Ha arbitrato Union 5-1 AND (maggio)</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 4.5 FOR (H2H avg)</div>
+      <div>Ospiti FOR/AGN: 3.0 FOR (H2H avg)</div>
+      <div><b>H2H avg 7.5 (basso!) — 6 di 7 H2H: Under 10.5</b></div>
+      <div class="pick-angoli">Pick: Under 10.5 (H2H trend)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: USG 1.16 xG (1 home MD2) | 9 SoT senza gol MD2</div>
+      <div>Ospiti xG: Anderlecht 24 tiri/g (più alta Pro League!)</div>
+      <div>SoT casa: ~14/g | osp: ~24/g</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Sykes (AC joint — gen.), Hurtevent</div>
+      <div><b>Ospiti:</b> Hey (tibia rotta — gen.), Camara (piede — sett.), Sardella (DUBBIO), Stroeykens (DUBBIO)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.67</b> / 3.75 / 4.50</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> D 0-0 Zulte MD2, L 2-3 Bodø (CL Qual), W 1-5 Westerlo MD1, W 5-1 AND (maggio)</div>
+      <div><b>Ospiti away:</b> W 0-3 Kairat (EL away), L 0-1 SK Beveren MD2 | 5W-5D-10L away 25-26 (scarso)</div>
+      <div><b>H2H:</b> USG 17W-3D-3L all-time vs AND | 10W ultimi 15 | H2H angoli: 5-10 range (basso)</div>
+    </div>
+  </div>
+  <div class="note-row">💡 USG nettamente dominante H2H vs Anderlecht. Anderlecht fuori casa ha storico deludente.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">67/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Napoli <span class="vs">vs</span> Como</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Under 2.5 gol</span>
+    <span class="odds-val">@1.57</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Luca Pairetto</b></div>
+      <div>GJ/g: <b>4.98 GJ/g (carriera!) — MOLTO SEVERO</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: Alto (Napoli pressing)</div>
+      <div>Ospiti FOR/AGN: Basso (Como compact)</div>
+      <div><b>Range 6-8 angoli @13/8 sul mercato</b></div>
+      <div class="pick-angoli">Pick: 6-8 total corners @13/8</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Napoli 1.71 xG home (25-26)</div>
+      <div>Ospiti xG: Como 1.39 xG away</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Buongiorno (CB — titolare OUT), Marianucci, Neres | DUBBIO: Beukema (CB)</div>
+      <div><b>Ospiti:</b> Nessun infortunato (Fàbregas: squadra al completo)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.68 (AH0)</b> / N/D / N/D</div>
+      <div>O2.5: 2.30 | U2.5: 1.57</div>
+      <div>BTTS S/N: 1.95 / N/D</div>
+      <div>AH: Napoli AH0 @1.68</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Napoli W 0-2 a Genova MD1 (away) | De Bruyne: rientro dalla panchina</div>
+      <div><b>Ospiti away:</b> Como: 3ª stagione SA con Fàbregas</div>
+      <div><b>H2H:</b> H2H ultimi 5: 1W Napoli, 1W Como, 3 pareggi | 8 gol totali (1.6/g)</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Napoli senza Buongiorno+Neres. Como compatta con Fàbregas. Mercato spinge Under 2.5.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Ligue 1 🇫🇷</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">74/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">TOP PICK</span>
+  </div>
+  <div class="teams">AS Monaco <span class="vs">vs</span> Olympique Marseille</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BTTS Sì</span>
+    <span class="odds-val">@1.52</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Willy Delajod</b></div>
+      <div>GJ/g: <b>2.80 GJ/g (basso) | 0.56 rigori/g (alto!) | 3 gare OM: 3-0W, 5-0L, 1-1D</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: 4.94 FOR home (84 tot 25-26)</div>
+      <div>Ospiti FOR/AGN: 5.75 FOR away</div>
+      <div><b>λ = 0.6×(4.94+5.75) = 6.41 → ~9.01 est. | 6/7 H2H: Under 10.5</b></div>
+      <div class="pick-angoli">Pick: Under 10.5 (H2H trend) | 8/10 Monaco home: Under 9.5</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Monaco 1.44 xG MD1 (W 1-0 Le Havre) | Rolling avg: 2.06 xG / 0.96 xGA</div>
+      <div>Ospiti xG: Marsiglia 2.5 xG MD1 (W 4-0 Strasbourg) | Rolling: 2.04 xG / 2.02 xGA</div>
+      <div>SoT casa: 11/g (MD1) | osp: 14/g (MD1)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Minamino (LCA), Salisu (LCA), Fati (infort.), Abline (piede) | DUBBI: Teze (hamstring), Balogun (fitness) | SQUALIFICATO: Mawissa</div>
+      <div><b>Ospiti:</b> Greenwood (infort. — settimana prossima), Kondogbia (all.), Weah (SQUALIFICATO), Traoré (stagione) | DUBBIO: Aguerd | RIENTRO: Balerdi</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.39</b> / 3.25 / 2.73</div>
+      <div>O2.5: 1.58 | U2.5: 2.40</div>
+      <div>BTTS S/N: 1.52 / N/D</div>
+      <div>AH: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Monaco 5W-0D in casa 25-26 (11 gol / 3 subiti) | W 1-0 Le Havre MD1</div>
+      <div><b>Ospiti away:</b> OM 0W in 10 TRASFERTE! | Nessuna vittoria away da molte gare | W 4-0 Strasbourg (casa) MD1</div>
+      <div><b>H2H:</b> Monaco W 2-1 OM (aprile 2026 all'Louis II) | Monaco 60% win rate in casa (ultimi 10)</div>
+    </div>
+  </div>
+  <div class="note-row">💡 STAT CHIAVE: OM 0 vittorie in 10 trasferte! Monaco fortissima in casa (5W 25-26). Entrambe segnano → BTTS @1.52.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">72/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Cagliari <span class="vs">vs</span> Internazionale</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Inter -1 AH</span>
+    <span class="odds-val">@est.1.70</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Michael Fabbri</b></div>
+      <div>GJ/g: <b>4.84 GJ/g carriera (4.40 in 25-26) | 24.87 falli/g</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: ~3-4 FOR (Cagliari compact)</div>
+      <div>Ospiti FOR/AGN: ~5-6 FOR (Inter away)</div>
+      <div><b>~9-11 est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: N/D specifico</div>
+      <div>Ospiti xG: Inter 21° scudetto con 89 gol in 25-26</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Albarracín, Trepy, Idrissi (LCA)</div>
+      <div><b>Ospiti:</b> Mkhitaryan (SQUALIFICATO), Dumfries (ceduto) | RIENTRI: Stones (ex City), Spence (ex Spur)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>est.7.50 (Cagliari@12¢ Poly)</b> / est.5.00 (21¢) / est.1.47 (Inter@68¢)</div>
+      <div>O2.5: est.2.00 (50¢) | U2.5: est.1.80 (51¢)</div>
+      <div>BTTS S/N: est.2.27 (44¢) / est.1.75 (57¢)</div>
+      <div>AH: AH Cagliari+1.5 @1.69 (59¢)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Cagliari W 1-0 Parma MD1</div>
+      <div><b>Ospiti away:</b> Inter campione d'Italia 25-26 (11 punti di vantaggio)</div>
+      <div><b>H2H:</b> Inter fortissima favorita (68% implied Polymarket)</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Inter non ha Mkhitaryan (squalifica) ma resta nettamente superiore. BTTS No @1.75 se cerchi valore.</div>
+</div>
+
+<div class="card" style="border-left:4px solid #eab308;background:rgba(234,179,8,0.12);">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">74/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Lazio <span class="vs">vs</span> Genoa</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Lazio DNB</span>
+    <span class="odds-val">@1.49</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">⚖️ Arbitro</div>
+      <div><b>Ermanno Feliciani</b></div>
+      <div>GJ/g: <b>4.10 GJ/g carriera (2.77 in 25-26) | 24.08 falli/g</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📐 Angoli (λ-model)</div>
+      <div>Casa FOR/AGN: Alto (Lazio pressing all'Olimpico)</div>
+      <div>Ospiti FOR/AGN: Basso (Genoa compact)</div>
+      <div><b>~9-11 est.</b></div>
+      <div class="pick-angoli">Pick: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa xG: Lazio 2.3 gol/g (70% W rate recente) | W 1-0 a Bologna MD1</div>
+      <div>Ospiti xG: Genoa 0 gol in MD1 (L 0-2 a Napoli)</div>
+      <div>SoT casa: N/D | osp: N/D</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Nessun infortunato maggiore (Gattuso nuovo CT)</div>
+      <div><b>Ospiti:</b> Nuredini (LCA — long-term)</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote</div>
+      <div>1X2: <b>Lazio forte fav.</b> / N/D / N/D</div>
+      <div>O2.5: N/D | U2.5: 1.21 (U3.5)</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: Lazio DNB @1.49 | CS @2.35</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📈 Forma (split casa/away)</div>
+      <div><b>Casa home:</b> Lazio W 1-0 Bologna MD1 (away, clean sheet)</div>
+      <div><b>Ospiti away:</b> Genoa L 0-2 Napoli MD1 | 0 vittorie vs Lazio in 4 gare consecutive (3-2, 3-0, 2-0, 3-0)</div>
+      <div><b>H2H:</b> Lazio 4W-0D-0L ultimi 4 vs Genoa | Punteggi: 3-2, 3-0, 2-0, 3-0</div>
+    </div>
+  </div>
+  <div class="note-row">💡 Genoa non batte la Lazio da 4 gare. Gattuso inizia con clean sheet. DNB @1.49 = rischio limitato.</div>
+</div>
+</div>
+
+<div id="angoli" class="content">
+  <div class="day-header">📐 Analisi Angoli — AC Milan vs Venezia (28 Ago 20:45)</div>
+  
+<div class="card" style="border-left:4px solid #22c55e;background:rgba(34,197,94,0.1);">
+  <div class="teams">AC Milan <span class="vs">vs</span> Venezia — Analisi Angoli</div>
+  <div class="grid2">
+    <div class="info-block">
+      <div class="info-title">📐 Input Modello</div>
+      <div>Milan angoli FOR in casa: <b>4.80/g</b></div>
+      <div>Milan angoli AGAINST in casa: <b>3.40/g</b></div>
+      <div>Venezia angoli FOR away: <b>4.40/g</b></div>
+      <div>Venezia angoli AGAINST away: <b>5.60/g</b></div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">🧮 Calcolo λ</div>
+      <div>λ = 0.6 × (home_avg_home + away_avg_away) + 0.4 × H2H</div>
+      <div>λ = 0.6 × (4.80 + 4.40) + 0.4 × H2H</div>
+      <div>λ base = <b>5.52</b> → totale stimato ~<b>10.2</b></div>
+      <div>H2H: Milan 6-7 angoli nelle ultime 2 gare SA vs Venezia</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">📊 H2H Angoli al Bernabéu... ops: a San Siro</div>
+      <div>H2H 2024-25 (SA): Milan dominante, ~6-7 angoli per Milan</div>
+      <div>Milan vince in casa 8W-2D-0L vs Venezia (ultimi 10)</div>
+      <div>Venezia: concede 5.60 angoli/g in trasferta</div>
+    </div>
+    <div class="info-block">
+      <div class="info-title">💰 Quote Angoli Disponibili</div>
+      <div>Milan Over 5.5 angoli: <b style="color:#22c55e;font-size:1.2rem;">@1.68</b></div>
+      <div>Milan Under 5.5 angoli: @2.02</div>
+      <div>Venezia Over 3.5 angoli: @2.06</div>
+      <div>Venezia Under 3.5 angoli: @1.66</div>
+      <div>Totale Over 9.5: @1.84 | Under 9.5: @1.84</div>
+    </div>
+  </div>
+  <div class="info-block" style="margin-top:16px;">
+    <div class="info-title">✅ Pick Consigliato</div>
+    <div style="font-size:1.1rem;">
+      <b>Milan Over 5.5 angoli @1.68</b><br/>
+      <span style="color:#9ca3af;">Nota: la fonte segnala che "Milan non ha coperto Over 6.5 in 10 gare recenti" —
+      ma Over 5.5 è una soglia più bassa. Milan domina H2H a San Siro (8W-2D).
+      Venezia concede molto in trasferta. Manganiello arbitra con 3.25 GJ/g = gara fisica ma non nervosa.</span>
+    </div>
+    <div style="margin-top:8px;padding:8px;background:rgba(234,179,8,0.1);border-radius:6px;">
+      ⚠️ Range modello: <b>6.98–8.72</b> angoli totali Milan. Over 5.5 supportato; Over 6.5 @1.90 come alternativa più coraggiosa.
+    </div>
   </div>
 </div>
 
-<!-- CORNER TAB -->
-<div id="corner" class="content">
-  <div class="day-header"><h2>📐 Analisi Angoli — AC Milan vs Venezia</h2><span class="badge">28 AGO 20:45</span></div>
-
-  <div class="corner-card">
-    <h4>Dati raccolti</h4>
-    <div class="corner-grid">
-      <div class="corner-stat"><div class="num" style="color:var(--accent)">4.80</div><div class="lbl">Milan angoli per home game (ultimi 10)</div></div>
-      <div class="corner-stat"><div class="num" style="color:var(--muted)">3.40</div><div class="lbl">Angoli concessi da Milan in casa (ultimi 10)</div></div>
-      <div class="corner-stat"><div class="num" style="color:var(--green)">6.5</div><div class="lbl">Media angoli Milan in H2H vs Venezia Serie A (2 gare)</div></div>
-      <div class="corner-stat"><div class="num" style="color:var(--red)">1.5</div><div class="lbl">Media angoli Venezia in H2H vs Milan Serie A</div></div>
-      <div class="corner-stat"><div class="num">8.0</div><div class="lbl">Media totale angoli in H2H (7 e 9)</div></div>
-      <div class="corner-stat"><div class="num" style="color:var(--accent)">16.9</div><div class="lbl">Cross Milan per gara 2025-26 (ampio attacco)</div></div>
-    </div>
-  </div>
-
-  <div class="corner-card">
-    <h4>H2H specifico (Serie A)</h4>
-    <table class="ranking-table">
-      <thead><tr><th>Data</th><th>Venue</th><th>Risultato</th><th>Milan CK</th><th>Venezia CK</th><th>Totale</th></tr></thead>
-      <tbody>
-        <tr><td>14 Set 2024</td><td>San Siro (Milan casa)</td><td>Milan 4-0 Venezia</td><td style="color:var(--green);font-weight:800">6</td><td>1</td><td>7</td></tr>
-        <tr><td>27 Apr 2025</td><td>Penzo (Venezia casa)</td><td>Venezia 0-2 Milan</td><td style="color:var(--green);font-weight:800">7</td><td>2</td><td>9</td></tr>
-        <tr style="background:var(--card2)"><td colspan="3"><strong>Media</strong></td><td style="color:var(--green);font-weight:800">6.5</td><td>1.5</td><td><strong>8.0</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="corner-card">
-    <h4>Modello λ_corners = 0.6 × (home_avg_home + away_avg_away) + 0.4 × H2H_avg</h4>
-    <div class="corner-grid">
-      <div class="corner-stat" style="background:rgba(79,142,247,.08)">
-        <div class="num" style="color:var(--accent)">8.72</div>
-        <div class="lbl">λ base (con dati Serie B Venezia)</div>
-      </div>
-      <div class="corner-stat" style="background:rgba(79,142,247,.08)">
-        <div class="num" style="color:var(--accent)">6.98</div>
-        <div class="lbl">λ corretto (Venezia rebassato a Serie A)</div>
-      </div>
-      <div class="corner-stat" style="background:rgba(34,197,94,.08)">
-        <div class="num" style="color:var(--green)">7-9</div>
-        <div class="lbl">Range atteso totale angoli</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="corner-card">
-    <h4>Verdetto mercati angoli</h4>
-    <table class="ranking-table">
-      <thead><tr><th>Mercato</th><th>Quota</th><th>Affidabilità</th><th>Verdetto</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Milan Over 5.5 angoli</strong></td><td style="color:var(--green);font-weight:800">1.68</td><td>Alta (H2H: 6 e 7, entrambe OVER)</td><td><span class="tag green">✅ GIOCA</span></td></tr>
-        <tr><td>Total Over 6.5 angoli</td><td>n.d.</td><td>Media (H2H min 7, media 8)</td><td><span class="tag green">✅ Interessante</span></td></tr>
-        <tr><td>Total Over 9.5 angoli</td><td>1.84</td><td>Bassa (modello a ~7-8.7)</td><td><span class="tag red">❌ EVITA</span></td></tr>
-        <tr><td>Milan Under 6.5 angoli</td><td>1.73</td><td>Conflitto (ultimi 10 gare: under, ma H2H: 6.5)</td><td><span class="tag yellow">⚠️ Evita</span></td></tr>
-        <tr><td>Venezia Under 3.5 angoli</td><td>1.66</td><td>Alta (H2H: 1.5 media)</td><td><span class="tag green">✅ Supportato</span></td></tr>
-      </tbody>
-    </table>
-    <div class="corner-verdict" style="margin-top:14px">
-      <p>🎯 <strong>Pick angoli consigliato: Milan Over 5.5 team corners @1.68</strong><br>
-      H2H mostra Milan a 6 e 7 angoli in entrambe le gare Serie A vs Venezia. Milan attacca largo (16.9 cross/gara, fullback alti). Venezia neopromossa al San Siro si schiaccerà in basso → ancora più angoli per Milan. Il conflitto con gli ultimi 10 dati genera incertezza, ma la specificità del matchup H2H vince sul generico.</p>
-    </div>
-  </div>
 </div>
-
-<footer>
-  ⚠️ Analisi per uso personale. Le scommesse sportive comportano rischio di perdita. Scommetti responsabilmente. | Generato 28 Agosto 2026
-</footer>
 
 <script>
-function showTab(id) {
-  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+function show(id){
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
 }
