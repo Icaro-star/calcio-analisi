@@ -1,882 +1,963 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<title>Analisi Calcio</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analisi Calcio — 28/29/30 Agosto 2026</title>
 <style>
-:root {
-  --bg: #0f1923;
-  --bg2: #162030;
-  --bg3: #1e2d40;
-  --bg4: #243040;
-  --border: #2c3e55;
-  --text: #ecf0f1;
-  --muted: #7f8c8d;
-  --green: #27ae60;
-  --green-light: #2ecc71;
-  --yellow: #f39c12;
-  --red: #e74c3c;
-  --blue: #3498db;
-  --purple: #9b59b6;
-  --teal: #1abc9c;
-  --card-radius: 10px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.5; }
-a { color: var(--blue); text-decoration: none; }
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card2: #22263a;
+    --border: #2e3250;
+    --accent: #4f8ef7;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --green-dark: #166534;
+    --yellow-dark: #713f12;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
 
-/* NAV */
-.nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 16px; display: flex; align-items: center; gap: 4px; position: sticky; top: 0; z-index: 100; }
-.nav-brand { font-weight: 700; font-size: 1em; color: var(--teal); padding: 14px 8px; margin-right: 8px; }
-.nav-tab { padding: 14px 14px; cursor: pointer; border-bottom: 3px solid transparent; color: var(--muted); font-size: .88em; font-weight: 600; transition: all .15s; white-space: nowrap; }
-.nav-tab:hover { color: var(--text); }
-.nav-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
-.badge { background: var(--green); color: #fff; font-size: .6em; padding: 1px 5px; border-radius: 8px; margin-left: 4px; vertical-align: middle; }
+  /* HEADER */
+  header { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 20px 24px; position: sticky; top: 0; z-index: 100; }
+  header h1 { font-size: 20px; font-weight: 700; color: var(--accent); }
+  header p { color: var(--muted); font-size: 12px; margin-top: 2px; }
 
-/* LAYOUT */
-.section { display: none; padding: 20px 16px; max-width: 1100px; margin: 0 auto; }
-.section.active { display: block; }
+  /* NAV TABS */
+  .tabs { display: flex; gap: 8px; padding: 16px 24px 0; border-bottom: 1px solid var(--border); }
+  .tab { padding: 8px 20px; border-radius: 8px 8px 0 0; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--muted); background: transparent; border: none; border-bottom: 3px solid transparent; transition: all .2s; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab:hover { color: var(--text); }
 
-/* CARDS */
-.card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 16px; margin-bottom: 14px; }
-.card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media (max-width: 680px) { .card-grid { grid-template-columns: 1fr; } }
+  /* CONTENT */
+  .content { display: none; padding: 20px 24px; max-width: 1100px; margin: 0 auto; }
+  .content.active { display: block; }
 
-/* LABELS */
-.label { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: .7em; font-weight: 700; text-transform: uppercase; }
-.label-green { background: #1a4a30; color: var(--green-light); }
-.label-yellow { background: #4a3a10; color: var(--yellow); }
-.label-red { background: #4a1a1a; color: var(--red); }
-.label-blue { background: #1a304a; color: var(--blue); }
-.label-purple { background: #2a1a4a; color: var(--purple); }
+  /* SECTION TITLE */
+  .day-header { display: flex; align-items: center; gap: 12px; margin: 24px 0 16px; }
+  .day-header h2 { font-size: 18px; font-weight: 700; }
+  .day-header .badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 12px; }
 
-/* SCORE RING */
-.score-ring { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1em; font-weight: 800; flex-shrink: 0; }
-.ring-green { border: 3px solid var(--green); color: var(--green); }
-.ring-yellow { border: 3px solid var(--yellow); color: var(--yellow); }
-.ring-red { border: 3px solid var(--red); color: var(--red); }
+  /* SLOT LABEL */
+  .slot-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 10px; padding-left: 4px; border-left: 3px solid var(--border); padding-left: 8px; }
 
-/* PROGRESS BAR */
-.pbar-wrap { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
-.pbar-label { width: 120px; font-size: .75em; color: var(--muted); flex-shrink: 0; }
-.pbar { flex: 1; background: var(--bg4); border-radius: 4px; height: 6px; overflow: hidden; }
-.pbar-fill { height: 100%; border-radius: 4px; transition: width .3s; }
-.pbar-val { width: 34px; text-align: right; font-size: .75em; font-weight: 700; }
+  /* MATCH CARD */
+  .match-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; transition: border-color .2s; }
+  .match-card:hover { border-color: var(--accent); }
+  .match-card.green { border-left: 4px solid var(--green); }
+  .match-card.yellow { border-left: 4px solid var(--yellow); }
+  .match-card.red { border-left: 4px solid var(--red); }
 
-/* TABLE */
-.tbl { width: 100%; border-collapse: collapse; font-size: .82em; }
-.tbl th { background: var(--bg4); color: var(--muted); font-weight: 600; padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border); }
-.tbl td { padding: 8px 10px; border-bottom: 1px solid #1a2535; vertical-align: middle; }
-.tbl tr:last-child td { border-bottom: none; }
-.tbl tr:hover td { background: var(--bg3); }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .card-meta .flag { font-size: 16px; }
+  .card-meta .league { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; }
+  .card-meta .time { font-size: 11px; color: var(--accent); font-weight: 700; background: rgba(79,142,247,.12); padding: 1px 8px; border-radius: 6px; }
+  .match-name { font-size: 16px; font-weight: 700; }
+  .score-badge { text-align: right; min-width: 120px; }
+  .score-num { font-size: 28px; font-weight: 800; }
+  .score-num.green { color: var(--green); }
+  .score-num.yellow { color: var(--yellow); }
+  .score-num.red { color: var(--red); }
+  .score-label { font-size: 10px; color: var(--muted); text-transform: uppercase; }
 
-/* MATCH CARD */
-.match-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.match-info { flex: 1; }
-.match-title { font-size: 1em; font-weight: 700; }
-.match-meta { font-size: .75em; color: var(--muted); margin-top: 2px; }
-.market-pill { background: var(--bg4); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; text-align: center; }
-.market-pill .market-bet { font-size: 1em; font-weight: 800; color: var(--teal); }
-.market-pill .market-odds { font-size: .8em; color: var(--muted); }
+  /* PICK BOX */
+  .pick-box { background: var(--card2); border-radius: 8px; padding: 12px 16px; margin-top: 12px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .pick-label { font-size: 11px; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+  .pick-value { font-size: 15px; font-weight: 800; color: var(--text); }
+  .pick-quota { background: var(--green-dark); color: var(--green); font-size: 14px; font-weight: 800; padding: 4px 14px; border-radius: 8px; }
+  .pick-quota.yellow { background: var(--yellow-dark); color: var(--yellow); }
+  .pick-quota.red { background: rgba(239,68,68,.15); color: var(--red); }
 
-/* BLOCKS */
-.block-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 12px 0; }
-@media (max-width: 600px) { .block-grid { grid-template-columns: repeat(3, 1fr); } }
-.block { background: var(--bg3); border-radius: 6px; padding: 8px; text-align: center; border: 1px solid var(--border); }
-.block-letter { font-size: .7em; font-weight: 700; color: var(--muted); }
-.block-name { font-size: .6em; color: var(--muted); margin-bottom: 4px; }
-.block-score { font-size: 1.1em; font-weight: 800; }
-.block-weight { font-size: .6em; color: var(--muted); }
+  /* ANALYSIS GRID */
+  .analysis-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 12px; }
+  .analysis-item { background: var(--card2); border-radius: 8px; padding: 10px 12px; }
+  .analysis-item .label { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+  .analysis-item .val { font-size: 13px; font-weight: 600; }
+  .analysis-item .val.good { color: var(--green); }
+  .analysis-item .val.warn { color: var(--yellow); }
+  .analysis-item .val.bad { color: var(--red); }
 
-/* VERDICT */
-.verdict-row { display: flex; align-items: center; gap: 8px; background: var(--bg3); border-radius: 6px; padding: 10px 14px; margin-top: 10px; }
-.verdict-icon { font-size: 1.4em; }
-.verdict-text { flex: 1; font-size: .85em; }
-.verdict-badge { font-size: .75em; font-weight: 700; padding: 3px 10px; border-radius: 4px; }
+  /* MINI NOTE */
+  .note { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: italic; line-height: 1.5; }
+  .note strong { color: var(--text); font-style: normal; }
 
-/* BUDGET CALCULATOR */
-.calc-box { background: var(--bg3); border: 1px solid var(--teal); border-radius: var(--card-radius); padding: 16px; }
-.calc-input-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.calc-input { background: var(--bg4); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 10px 14px; font-size: 1.1em; width: 140px; outline: none; font-weight: 700; }
-.calc-input:focus { border-color: var(--teal); }
-.calc-btn { background: var(--teal); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: .9em; font-weight: 700; cursor: pointer; }
-.calc-btn:hover { background: #17a589; }
-.calc-results { display: none; }
-.split-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--bg4); border-radius: 6px; margin-bottom: 6px; }
-.split-label { font-size: .82em; }
-.split-amount { font-size: 1em; font-weight: 800; color: var(--teal); }
-.scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
-@media (max-width: 500px) { .scenario-grid { grid-template-columns: 1fr; } }
-.scenario { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 10px; text-align: center; }
-.scenario-label { font-size: .72em; color: var(--muted); margin-bottom: 4px; }
-.scenario-return { font-size: 1.1em; font-weight: 800; }
-.scenario-profit { font-size: .78em; margin-top: 2px; }
+  /* RANKING TABLE */
+  .ranking-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .ranking-table th { background: var(--card2); color: var(--muted); font-size: 11px; text-transform: uppercase; font-weight: 700; padding: 8px 12px; text-align: left; }
+  .ranking-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .ranking-table tr:hover td { background: var(--card2); }
+  .rank-score { font-weight: 800; }
+  .rank-score.top { color: var(--green); }
+  .rank-score.mid { color: var(--yellow); }
+  .rank-pick { font-weight: 700; }
+  .rank-quota { font-weight: 800; color: var(--accent); }
+  .flag-cell { font-size: 16px; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+  .tag.green { background: rgba(34,197,94,.15); color: var(--green); }
+  .tag.yellow { background: rgba(245,158,11,.15); color: var(--yellow); }
+  .tag.red { background: rgba(239,68,68,.15); color: var(--red); }
 
-/* IERI RESULTS */
-.result-ok { color: var(--green); font-weight: 700; }
-.result-ko { color: var(--red); font-weight: 700; }
-.result-pending { color: var(--muted); font-style: italic; }
+  /* SISTEMA BOX */
+  .sistema-box { background: var(--card); border: 1px solid var(--green); border-radius: 12px; padding: 20px; margin: 20px 0; }
+  .sistema-box h3 { color: var(--green); font-size: 16px; margin-bottom: 16px; }
+  .sistema-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .sistema-row:last-child { border-bottom: none; }
+  .sistema-label { color: var(--muted); font-size: 13px; }
+  .sistema-val { font-weight: 700; font-size: 14px; }
+  .sistema-val.green { color: var(--green); }
+  .sistema-val.accent { color: var(--accent); }
 
-/* DETAIL SECTIONS */
-.detail-section { margin: 10px 0; }
-.detail-title { font-size: .72em; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
-.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-@media (max-width: 500px) { .detail-grid { grid-template-columns: 1fr; } }
-.detail-item { background: var(--bg3); border-radius: 6px; padding: 8px 10px; }
-.detail-item-label { font-size: .7em; color: var(--muted); }
-.detail-item-value { font-size: .9em; font-weight: 700; margin-top: 2px; }
+  /* CORNER CARD */
+  .corner-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 12px 0; }
+  .corner-card h4 { font-size: 14px; color: var(--accent); margin-bottom: 12px; }
+  .corner-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+  .corner-stat { background: var(--card2); border-radius: 8px; padding: 10px; text-align: center; }
+  .corner-stat .num { font-size: 22px; font-weight: 800; color: var(--text); }
+  .corner-stat .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+  .corner-verdict { margin-top: 14px; padding: 12px 16px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.2); border-radius: 8px; }
+  .corner-verdict p { font-size: 13px; line-height: 1.6; }
 
-.odds-move { display: flex; align-items: center; gap: 6px; }
-.odds-arrow-up { color: var(--red); }
-.odds-arrow-down { color: var(--green); }
-
-.tag { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: .68em; font-weight: 600; margin: 1px; }
-.tag-green { background: #1a4a30; color: var(--green-light); }
-.tag-red { background: #4a1a1a; color: var(--red); }
-.tag-yellow { background: #4a3a10; color: var(--yellow); }
-.tag-blue { background: #1a304a; color: var(--blue); }
-.tag-purple { background: #2a1a4a; color: var(--purple); }
-.tag-muted { background: var(--bg4); color: var(--muted); }
-
-/* SEPARATOR */
-.sep { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
-
-/* HOME QUADRO */
-.quadro-table { width: 100%; border-collapse: collapse; }
-.quadro-table th { padding: 8px 10px; text-align: left; background: var(--bg4); color: var(--muted); font-size: .75em; font-weight: 600; }
-.quadro-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-.quadro-table tr.top-pick td { background: rgba(39, 174, 96, .07); }
-.quadro-table tr.good-pick td { background: rgba(52, 152, 219, .05); }
-.quadro-table tr.cauto-pick td { background: rgba(243, 156, 18, .05); }
-.quadro-table tr.scarta-pick td { background: rgba(231, 76, 60, .05); opacity: .7; }
-.score-pill { display: inline-block; width: 34px; text-align: center; padding: 2px 4px; border-radius: 4px; font-weight: 800; font-size: .82em; }
-.score-green { background: #1a4a30; color: var(--green-light); }
-.score-yellow { background: #4a3a10; color: var(--yellow); }
-.score-red { background: #4a1a1a; color: var(--red); }
+  /* DISCLAIMER */
+  footer { text-align: center; color: var(--muted); font-size: 11px; padding: 32px 24px; border-top: 1px solid var(--border); margin-top: 32px; }
 </style>
 </head>
 <body>
 
-<div class="nav">
-  <div class="nav-brand">⚽ Calcio AI</div>
-  <div class="nav-tab active" onclick="showSection('home')">Home <span class="badge">22 AGO</span></div>
-  <div class="nav-tab" onclick="showSection('oggi')">Partite</div>
-  <div class="nav-tab" onclick="showSection('ieri')">Ieri</div>
+<header>
+  <h1>⚽ Analisi Calcio — 28 / 29 / 30 Agosto 2026</h1>
+  <p>Modello 5 Blocchi | Aggiornato 28 agosto 2026 | Solo per uso personale</p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('home')">🏠 Home</button>
+  <button class="tab" onclick="showTab('gio28')">Gio 28</button>
+  <button class="tab" onclick="showTab('ven29')">Ven 29</button>
+  <button class="tab" onclick="showTab('dom30')">Dom 30</button>
+  <button class="tab" onclick="showTab('corner')">📐 Angoli Milan</button>
 </div>
 
-<!-- ════════════════════════════════════ HOME ════════════════════════════════════ -->
-<div id="home" class="section active">
-
-  <div style="margin-bottom:18px">
-    <div style="font-size:1.2em;font-weight:800;color:var(--teal)">Analisi 22 Agosto 2026</div>
-    <div style="font-size:.8em;color:var(--muted)">8 partite analizzate · Modello 5 blocchi · Aggiornato 22/08/2026</div>
+<!-- HOME TAB -->
+<div id="home" class="content active">
+  <div class="day-header">
+    <h2>Quadro Definitivo</h2>
+    <span class="badge">17 PICK</span>
   </div>
 
-  <!-- QUADRO DEFINITIVO -->
-  <div class="card" style="border-color:var(--teal)">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-      <span style="font-size:.9em;font-weight:800;color:var(--teal)">Quadro Definitivo</span>
-      <span style="font-size:.7em;color:var(--muted)">score su 100 · modello 5 blocchi</span>
+  <table class="ranking-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Giorno</th>
+        <th>Ora</th>
+        <th>🌍</th>
+        <th>Campionato</th>
+        <th>Partita</th>
+        <th>Score</th>
+        <th>Pick</th>
+        <th>Quota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1</strong></td>
+        <td>Gio 28</td>
+        <td style="color:var(--accent);font-weight:700">20:45</td>
+        <td class="flag-cell">🇫🇷</td>
+        <td>Ligue 1 MD2</td>
+        <td><strong>Lille vs PSG</strong></td>
+        <td><span class="rank-score top">80/100</span></td>
+        <td class="rank-pick">BTTS + PSG combo</td>
+        <td><span class="rank-quota">~2.80</span></td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td>Gio 28</td>
+        <td style="color:var(--accent);font-weight:700">21:00</td>
+        <td class="flag-cell">🇬🇧</td>
+        <td>Premier League MD2</td>
+        <td><strong>Crystal Palace vs Man City</strong></td>
+        <td><span class="rank-score top">82/100</span></td>
+        <td class="rank-pick">City win / win to nil</td>
+        <td><span class="rank-quota">1.73 / ~2.80</span></td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td>Gio 28</td>
+        <td style="color:var(--accent);font-weight:700">18:30</td>
+        <td class="flag-cell">🇩🇪</td>
+        <td>Bundesliga MD1</td>
+        <td>Bayern Munich vs Stuttgart</td>
+        <td><span class="rank-score mid">73/100</span></td>
+        <td class="rank-pick">Over 3.5 gol</td>
+        <td><span class="rank-quota">~2.10</span></td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td>Gio 28</td>
+        <td style="color:var(--accent);font-weight:700">19:00</td>
+        <td class="flag-cell">🇪🇸</td>
+        <td>La Liga MD3</td>
+        <td>Racing Santander vs Elche</td>
+        <td><span class="rank-score mid">75/100</span></td>
+        <td class="rank-pick">DC 1X</td>
+        <td><span class="rank-quota">~1.55</span></td>
+      </tr>
+      <tr>
+        <td><strong>5</strong></td>
+        <td>Gio 28</td>
+        <td style="color:var(--accent);font-weight:700">20:45</td>
+        <td class="flag-cell">🇮🇹</td>
+        <td>Serie A MD2</td>
+        <td>AC Milan vs Venezia</td>
+        <td><span class="rank-score mid">74/100</span></td>
+        <td class="rank-pick">Milan win</td>
+        <td><span class="rank-quota">~1.50</span></td>
+      </tr>
+      <tr style="background:rgba(34,197,94,.04)">
+        <td><strong>6</strong></td>
+        <td>Ven 29</td>
+        <td style="color:var(--accent);font-weight:700">15:30</td>
+        <td class="flag-cell">🇩🇪</td>
+        <td>Bundesliga MD1</td>
+        <td><strong>RB Leipzig vs M'gladbach</strong></td>
+        <td><span class="rank-score top">86/100</span></td>
+        <td class="rank-pick">Leipzig win</td>
+        <td><span class="rank-quota">1.63</span></td>
+      </tr>
+      <tr>
+        <td><strong>7</strong></td>
+        <td>Ven 29</td>
+        <td style="color:var(--accent);font-weight:700">18:30</td>
+        <td class="flag-cell">🇬🇧</td>
+        <td>Premier League MD2</td>
+        <td>Tottenham vs Newcastle</td>
+        <td><span class="rank-score mid">77/100</span></td>
+        <td class="rank-pick">Over 2.5 / Newcastle</td>
+        <td><span class="rank-quota">2.14 / 3.05</span></td>
+      </tr>
+      <tr>
+        <td><strong>8</strong></td>
+        <td>Ven 29</td>
+        <td style="color:var(--accent);font-weight:700">18:30</td>
+        <td class="flag-cell">🇩🇪</td>
+        <td>Bundesliga MD1</td>
+        <td>Dortmund vs Hamburg SV</td>
+        <td><span class="rank-score mid">70/100</span></td>
+        <td class="rank-pick">AH Dortmund -1</td>
+        <td><span class="rank-quota">~1.85</span></td>
+      </tr>
+      <tr>
+        <td><strong>9</strong></td>
+        <td>Ven 29</td>
+        <td style="color:var(--accent);font-weight:700">20:45</td>
+        <td class="flag-cell">🇮🇹</td>
+        <td>Serie A MD2</td>
+        <td>Juventus vs Parma</td>
+        <td><span class="rank-score mid">72/100</span></td>
+        <td class="rank-pick">Win to nil Juve</td>
+        <td><span class="rank-quota">~1.90</span></td>
+      </tr>
+      <tr style="background:rgba(34,197,94,.04)">
+        <td><strong>10</strong></td>
+        <td>Ven 29</td>
+        <td style="color:var(--accent);font-weight:700">21:30</td>
+        <td class="flag-cell">🇪🇸</td>
+        <td>La Liga MD2</td>
+        <td><strong>Siviglia vs Atlético Madrid</strong></td>
+        <td><span class="rank-score top">86/100</span></td>
+        <td class="rank-pick">Siviglia win</td>
+        <td><span class="rank-quota">3.07–3.64</span></td>
+      </tr>
+      <tr>
+        <td><strong>11</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">12:15</td>
+        <td class="flag-cell">🇳🇱</td>
+        <td>Eredivisie MD3</td>
+        <td>Utrecht vs PSV</td>
+        <td><span class="rank-score mid">70/100</span></td>
+        <td class="rank-pick">PSV win</td>
+        <td><span class="rank-quota">~1.60</span></td>
+      </tr>
+      <tr>
+        <td><strong>12</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">13:30</td>
+        <td class="flag-cell">🇩🇪</td>
+        <td>Bundesliga MD1</td>
+        <td><strong>Freiburg vs Werder Bremen</strong></td>
+        <td><span class="rank-score top">80/100</span></td>
+        <td class="rank-pick">Freiburg win</td>
+        <td><span class="rank-quota">1.83</span></td>
+      </tr>
+      <tr>
+        <td><strong>13</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">15:00</td>
+        <td class="flag-cell">🇬🇧</td>
+        <td>Premier League MD2</td>
+        <td>Chelsea vs Brighton</td>
+        <td><span class="rank-score mid">73/100</span></td>
+        <td class="rank-pick">Chelsea win</td>
+        <td><span class="rank-quota">~1.75</span></td>
+      </tr>
+      <tr>
+        <td><strong>14</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">15:30</td>
+        <td class="flag-cell">🇩🇪</td>
+        <td>Bundesliga MD1</td>
+        <td>Augsburg vs Schalke 04</td>
+        <td><span class="rank-score mid">74/100</span></td>
+        <td class="rank-pick">Draw</td>
+        <td><span class="rank-quota">4.00</span></td>
+      </tr>
+      <tr>
+        <td><strong>15</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">17:00</td>
+        <td class="flag-cell">🇪🇸</td>
+        <td>La Liga MD3</td>
+        <td>Real Madrid vs Málaga</td>
+        <td><span class="rank-score mid">75/100</span></td>
+        <td class="rank-pick">Over 3.5 gol</td>
+        <td><span class="rank-quota">~2.50</span></td>
+      </tr>
+      <tr>
+        <td><strong>16</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">18:30</td>
+        <td class="flag-cell">🇧🇪</td>
+        <td>Jupiler Pro League MD3</td>
+        <td><strong>Union SG vs Anderlecht</strong></td>
+        <td><span class="rank-score top">78/100</span></td>
+        <td class="rank-pick">Union SG win</td>
+        <td><span class="rank-quota">1.67</span></td>
+      </tr>
+      <tr style="background:rgba(34,197,94,.04)">
+        <td><strong>17</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">20:45</td>
+        <td class="flag-cell">🇫🇷</td>
+        <td>Ligue 1 MD2</td>
+        <td><strong>Monaco vs Marsiglia</strong></td>
+        <td><span class="rank-score top">82/100</span></td>
+        <td class="rank-pick">Monaco + Over 2.5 combo</td>
+        <td><span class="rank-quota">~3.55</span></td>
+      </tr>
+      <tr>
+        <td><strong>—</strong></td>
+        <td>Dom 30</td>
+        <td style="color:var(--accent);font-weight:700">20:45</td>
+        <td class="flag-cell">🇮🇹</td>
+        <td>Serie A MD2</td>
+        <td>Cagliari vs Inter</td>
+        <td><span class="rank-score mid">73/100</span></td>
+        <td class="rank-pick">Draw</td>
+        <td><span class="rank-quota">3.70</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sistema-box" style="margin-top:32px">
+    <h3>💰 Sistema Consigliato (budget 40€)</h3>
+    <div class="sistema-row">
+      <span class="sistema-label">FISSA (32€)</span>
+      <span class="sistema-val green">Monaco vs Marsiglia — Monaco + Over 2.5 @~3.55 → potenziale 113.60€</span>
     </div>
-    <div style="overflow-x:auto">
-    <table class="quadro-table">
-      <thead>
-        <tr>
-          <th>Partita</th>
-          <th>KO</th>
-          <th>Score</th>
-          <th>Verdetto</th>
-          <th>Selezione</th>
-          <th>Quota</th>
-        </tr>
-      </thead>
+    <div class="sistema-row">
+      <span class="sistema-label">Sistema 2/3 (8€ → 2.67€ per doppia)</span>
+      <span class="sistema-val accent">Siviglia @3.35 + Leipzig @1.63 + Man City @1.73</span>
+    </div>
+    <div class="sistema-row">
+      <span class="sistema-label">Doppia 1: Siviglia × Leipzig</span>
+      <span class="sistema-val">~5.46 → potenziale 14.58€</span>
+    </div>
+    <div class="sistema-row">
+      <span class="sistema-label">Doppia 2: Siviglia × City</span>
+      <span class="sistema-val">~5.80 → potenziale 15.49€</span>
+    </div>
+    <div class="sistema-row">
+      <span class="sistema-label">Doppia 3: Leipzig × City</span>
+      <span class="sistema-val">~2.82 → potenziale 7.53€</span>
+    </div>
+  </div>
+</div>
+
+<!-- GIO 28 TAB -->
+<div id="gio28" class="content">
+  <div class="day-header"><h2>Giovedì 28 Agosto</h2><span class="badge">5 ANALISI</span></div>
+
+  <div class="slot-label">⏰ 18:00 SLOT</div>
+
+  <!-- Bayern -->
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">18:30</span></div>
+        <div class="match-name">Bayern Munich vs VfB Stuttgart</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num yellow">73</div>
+        <div class="score-label">/ 100 — CAUTO</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">10/25 — Bayern @1.28 = zero valore sul win</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">18/20 — Bayern 8V su 9 H2H recenti; 3-0 finale DFB-Pokal 2026</div></div>
+      <div class="analysis-item"><div class="label">C — Forma/xG</div><div class="val good">16/20 — Bayern xG 2.32/g + Stuttgart xG 1.78/g</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — 5 assenti Bayern incl. Musiala</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Over 3.5 gol</div></div>
+      <div class="pick-quota yellow">~2.10</div>
+      <div style="flex:1"><div class="pick-label">Motivazione</div><div style="font-size:12px;color:var(--muted)">Profili xG enormi per entrambe. Musiala assente ma Bayern domina comunque. Over 3.5 supportato dalla differenza qualitativa.</div></div>
+    </div>
+  </div>
+
+  <!-- Racing Santander -->
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇪🇸</span><span class="league">La Liga MD3</span><span class="time">19:00</span></div>
+        <div class="match-name">Racing Santander vs Elche</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num yellow">75</div>
+        <div class="score-label">/ 100 — CAUTO</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — Racing @2.00, DC 1X @~1.55 ha valore</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">15/20 — Racing 9V su 19 in casa vs Elche. Ultima: 2-0</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">13/20 — Elche 0-5 vs Barça! Racing 1P, 1S senza vittorie</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — Dati stagione insufficienti</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">DC 1X (Racing o Pareggio)</div></div>
+      <div class="pick-quota yellow">~1.55</div>
+      <div style="flex:1"><div class="pick-label">Motivazione</div><div style="font-size:12px;color:var(--muted)">Elche in caduta libera (0-5 vs Barça). Racing in casa deve vincere. Doppia chance sicura.</div></div>
+    </div>
+  </div>
+
+  <div class="slot-label">⏰ 21:00 SLOT</div>
+
+  <!-- Milan Venezia -->
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇮🇹</span><span class="league">Serie A MD2</span><span class="time">20:45</span></div>
+        <div class="match-name">AC Milan vs Venezia</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num yellow">74</div>
+        <div class="score-label">/ 100 — CAUTO</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">16/25 — Milan @~1.50, quota bassa</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">16/20 — Milan 4-0 e 2-0 nelle ultime 2 Serie A vs Venezia</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">15/20 — Milan vince a Torino MD1; Venezia 0-2 vs Lecce + 2 gol annullati VAR</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">16/20 — Nessun europeo</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — Venezia neopromossa: primo San Siro</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Milan win</div></div>
+      <div class="pick-quota yellow">~1.50</div>
+      <div style="flex:1"><div class="pick-label">Angoli</div><div style="font-size:12px;color:var(--muted)">Vedi tab separato "Angoli Milan" per analisi dettagliata. Pick bonus: Milan Over 5.5 corner @1.68</div></div>
+    </div>
+  </div>
+
+  <!-- Lille PSG -->
+  <div class="match-card green">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇫🇷</span><span class="league">Ligue 1 MD2</span><span class="time">20:45</span></div>
+        <div class="match-name">Lille vs PSG</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num green">80</div>
+        <div class="score-label">/ 100 — GIOCA</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — PSG @1.78 shortato. BTTS @~1.75 = valore</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — <strong>BTTS in 9/10 precedenti H2H</strong>. PSG 3+ gol in 6/9</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">15/20 — PSG rimonta 0-2 vs Rennes. Mendes squalificato, Dembélé riposo</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">12/15 — Arbitro Wattellier 3.1 YC/g (tranquillo)</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick principale</div><div class="pick-value">BTTS (entrambe segnano)</div></div>
+      <div class="pick-quota">~1.75</div>
+      <div><div class="pick-label">Combo</div><div class="pick-value">BTTS + PSG win</div></div>
+      <div class="pick-quota">~2.80</div>
+    </div>
+    <p class="note">⭐ <strong>9/10 H2H</strong> con entrambe le squadre a segno. PSG senza Mendes sul lato sinistro → Lille può trovare il gol.</p>
+  </div>
+
+  <!-- Crystal Palace Man City -->
+  <div class="match-card green">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇬🇧</span><span class="league">Premier League MD2</span><span class="time">21:00</span></div>
+        <div class="match-name">Crystal Palace vs Manchester City</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num green">82</div>
+        <div class="score-label">/ 100 — GIOCA</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — City shortata 1.80→1.73 (soldi forti). Palace driftata a 5.20</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — City 3-0 al Selhurst Park dic 2025. City 35V, Palace 3V negli ultimi 25 H2H</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">16/20 — City vince 2-1 vs Bournemouth MD1. <strong>Palace 0-2 vs Everton in casa!</strong> Nuovo manager</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">13/15 — Haaland + Foden confermati. Palace: Pierre Sage nuovo allenatore, difesa non rodata</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick A</div><div class="pick-value">Man City win</div></div>
+      <div class="pick-quota">1.73</div>
+      <div><div class="pick-label">Pick B (valore)</div><div class="pick-value">City win to nil</div></div>
+      <div class="pick-quota">~2.80</div>
+    </div>
+    <p class="note">💰 <strong>Shortening forte confermato</strong> (1.80→1.73). Palace concede con un sistema difensivo non ancora rodato sotto Sage. Haaland in trasferta al Selhurst Park: 3 gol nelle ultime 4 visite.</p>
+  </div>
+</div>
+
+<!-- VEN 29 TAB -->
+<div id="ven29" class="content">
+  <div class="day-header"><h2>Venerdì 29 Agosto</h2><span class="badge">6 ANALISI</span></div>
+
+  <div class="slot-label">⏰ 15:00 SLOT</div>
+
+  <!-- Leipzig -->
+  <div class="match-card green">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">15:30</span></div>
+        <div class="match-name">RB Leipzig vs Borussia M'gladbach</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num green">86</div>
+        <div class="score-label">/ 100 — GIOCA FORTE</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Leipzig @1.63 = buona quota per casa dominante</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">19/20 — <strong>Gladbach: 0 vittorie in 10 visite al Red Bull Arena</strong> (6S, 4P)</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">17/20 — Gladbach 0V in trasferta Bundesliga da dicembre 2025</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Baumgartner (coscia) e Ouédraogo (spalla) dubbi last-minute</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Leipzig win</div></div>
+      <div class="pick-quota">1.63</div>
+    </div>
+    <p class="note">⭐ Pick più solido dell'intero 29 agosto. <strong>Gladbach non vince in questo stadio da anni</strong>. Anche con i dubbi di formazione, la struttura favorisce nettamente Leipzig.</p>
+  </div>
+
+  <!-- Elversberg SCARTA -->
+  <div class="match-card red">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">15:30</span></div>
+        <div class="match-name">Elversberg vs Bayer Leverkusen</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num red">69</div>
+        <div class="score-label">/ 100 — SCARTA</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:8px">Elversberg neopromossa: troppa incognita, nessun precedente Bundesliga. Leverkusen driftata da 1.50 a 1.55 = qualche segnale. AH Leverkusen -1 @~2.10 se si vuole giocare.</p>
+  </div>
+
+  <div class="slot-label">⏰ 18:00 SLOT</div>
+
+  <!-- Tottenham Newcastle -->
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇬🇧</span><span class="league">Premier League MD2</span><span class="time">18:30</span></div>
+        <div class="match-name">Tottenham vs Newcastle United</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num yellow">77</div>
+        <div class="score-label">/ 100 — CAUTO</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">18/25 — Spurs 2.30 (gonfiato dal 5-1 Carabao). Newcastle @3.05 ha valore</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">16/20 — Newcastle imbattuto vs Spurs nelle ultime <strong>8 partite</strong> di fila</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val bad">14/20 — Spurs 0-3 a Brentford MD1. <strong>8 assenti</strong> (Maddison, Kulusevski, van de Ven, Porro…)</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — Spurs 2.89 YC/g in casa</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick A</div><div class="pick-value">Over 2.5 gol</div></div>
+      <div class="pick-quota yellow">2.14</div>
+      <div><div class="pick-label">Pick B</div><div class="pick-value">Newcastle win</div></div>
+      <div class="pick-quota yellow">3.05</div>
+    </div>
+    <p class="note">📊 <strong>Over 2.5 al 100% nelle ultime 11 H2H</strong> tra le due squadre (media 3.78 gol). Con 8 assenti Spurs la difesa è esposta. Newcastle valore reale a 3.05.</p>
+  </div>
+
+  <!-- Dortmund Hamburg -->
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">18:30</span></div>
+        <div class="match-name">Borussia Dortmund vs Hamburg SV</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num yellow">70</div>
+        <div class="score-label">/ 100 — CAUTO</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val bad">10/25 — Dortmund @1.31 = zero valore. AH -1 @~1.85 = mercato alternativo</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — Dortmund imbattuto in 7 H2H vs Hamburg (6V, 1P)</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">14/20 — Dortmund perde Supercup 1-2 vs Bayern. Hamburg perde Glatzel, Baldé estivi</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — Dortmund: Schlotterbeck + Can OUT. Emozione HSV = variabile</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">AH Dortmund -1</div></div>
+      <div class="pick-quota yellow">~1.85</div>
+    </div>
+    <p class="note">🏟️ Il ritorno di Hamburg in Bundesliga dopo 8 anni. Signal Iduna Park esaurito (81k). Dortmund storicamente vince con margine qui, ma Schlotterbeck e Can out indeboliscono la difesa. Hamburg proverà a segnare nel grande giorno.</p>
+  </div>
+
+  <div class="slot-label">⏰ 21:00 SLOT</div>
+
+  <!-- Juventus Parma -->
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇮🇹</span><span class="league">Serie A MD2</span><span class="time">20:45</span></div>
+        <div class="match-name">Juventus vs Parma</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num yellow">72</div>
+        <div class="score-label">/ 100 — CAUTO</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val bad">10/25 — Juve @1.22 = zero valore sul win. Win to nil @~1.90 = valore</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">18/20 — Juve 2-0 (MD2 stagione scorsa) + 4-1 in trasferta (feb 2026)</div></div>
+      <div class="analysis-item"><div class="label">C — Forma/xG</div><div class="val good">16/20 — Juve xG 1.99 vs 0.45 vs Frosinone. Parma 0 gol in MD1</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val bad">10/15 — <strong>Yildiz OUT</strong> (lungo infortun.), Gatti OUT, Vicario OUT — 3 titolari</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Juventus Win to Nil</div></div>
+      <div class="pick-quota yellow">~1.90</div>
+    </div>
+    <p class="note">Parma ha segnato 0 gol in MD1 vs Cagliari. La Juve in casa concede pochissimo. Win to nil a ~1.90 è il mercato con valore reale dato che il semplice win a 1.22 non ha edge.</p>
+  </div>
+
+  <!-- Siviglia Atletico -->
+  <div class="match-card green">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇪🇸</span><span class="league">La Liga MD2</span><span class="time">21:30</span></div>
+        <div class="match-name">Siviglia vs Atlético Madrid</div>
+      </div>
+      <div class="score-badge">
+        <div class="score-num green">86</div>
+        <div class="score-label">/ 100 — GIOCA FORTE</div>
+      </div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">22/25 — Siviglia @3.07–3.64 con H2H forte e Atlético decimato = <strong>valore eccezionale</strong></div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — Siviglia vince <strong>4 delle ultime 6 in casa</strong> vs Atlético. Ultima: 2-1 (apr 2026)</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">16/20 — Siviglia: 5 gol in 2 gare. Atlético: <strong>Le Normand SOSPESO + Álvarez FUORI (contratto)</strong></div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo nei prossimi 3gg per nessuna</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">13/15 — Atlético 2.5 YC/g (Simeone fisico). Pizjuán bollente</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Siviglia win</div></div>
+      <div class="pick-quota">3.07–3.64</div>
+    </div>
+    <p class="note">🔥 <strong>Migliore pick del 29 agosto.</strong> Le Normand squalificato (pilastro difesa Atlético) + Álvarez fuori per standoff contrattuale = Atlético amputata. Siviglia in casa è in fiducia (5 gol in 2 gare) e storicamente batte Atlético al Pizjuán. Cerca la quota più alta disponibile (~3.64 su Boyle Sports).</p>
+  </div>
+</div>
+
+<!-- DOM 30 TAB -->
+<div id="dom30" class="content">
+  <div class="day-header"><h2>Domenica 30 Agosto</h2><span class="badge">8 ANALISI</span></div>
+
+  <div class="slot-label">⏰ 12:00 SLOT</div>
+
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇳🇱</span><span class="league">Eredivisie MD3</span><span class="time">12:15</span></div>
+        <div class="match-name">FC Utrecht vs PSV Eindhoven</div>
+      </div>
+      <div class="score-badge"><div class="score-num yellow">70</div><div class="score-label">/ 100 — CAUTO</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val">14/25 — PSV @~1.60, quota corretta</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">14/20 — PSV tende a vincere al Galgenwaard, Utrecht difende compatto</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val bad">15/20 — Utrecht: 5 titolari infortunati (Ohio, Engwanda, Jensen, Jonathans, Van Ommeren)</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">16/20 — PSV in CL ma nessuna gara nei prossimi 3gg</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — 1.8 YC/g Utrecht</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">PSV win</div></div>
+      <div class="pick-quota yellow">~1.60</div>
+    </div>
+  </div>
+
+  <div class="match-card green">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">13:30</span></div>
+        <div class="match-name">SC Freiburg vs SV Werder Bremen</div>
+      </div>
+      <div class="score-badge"><div class="score-num green">80</div><div class="score-label">/ 100 — GIOCA</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">18/25 — Freiburg @1.83 = buona quota per casa solida</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">15/20 — Freiburg 2V nelle ultime 3 in casa vs Werder (incl. 1-0 e 2-1)</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">16/20 — Werder: <strong>11 gare senza vittoria in trasferta</strong> nella scorsa stagione</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo per nessuna. Apertura stagione = energie fresche</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val good">13/15 — Freiburg 2.1 YC/g, Werder 1.9 YC/g. Nessuna assenza grave</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Freiburg win</div></div>
+      <div class="pick-quota">1.83</div>
+    </div>
+    <p class="note">Werder aveva uno dei peggiori record in trasferta della Bundesliga nella scorsa stagione. Freiburg al Europa-Park Stadion è una fortezza vs questa avversaria specifica.</p>
+  </div>
+
+  <div class="slot-label">⏰ 15:00 SLOT</div>
+
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇬🇧</span><span class="league">Premier League MD2</span><span class="time">15:00</span></div>
+        <div class="match-name">Chelsea vs Brighton</div>
+      </div>
+      <div class="score-badge"><div class="score-num yellow">73</div><div class="score-label">/ 100 — CAUTO</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val">17/25 — Chelsea @~1.75</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val">14/20 — Chelsea vince spesso a Stamford Bridge vs Brighton</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">17/20 — Brighton ha giocato Conference League gio 27/8 (solo 3gg). Rotazioni attese</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val warn">12/20 — <strong>Brighton fatigue: Conference League gio 27/8 → dom 30/8 = 3 giorni</strong></div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">13/15 — Brighton: Ferguson, Baleba, Minteh OUT</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Chelsea win</div></div>
+      <div class="pick-quota yellow">~1.75</div>
+    </div>
+  </div>
+
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇩🇪</span><span class="league">Bundesliga MD1</span><span class="time">15:30</span></div>
+        <div class="match-name">Augsburg vs Schalke 04</div>
+      </div>
+      <div class="score-badge"><div class="score-num yellow">74</div><div class="score-label">/ 100 — CAUTO</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Draw @4.00 ha edge storico</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val warn">12/20 — Schalke storicamente superiore ma neopromossa. <strong>10 pareggi su 25 H2H</strong></div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">13/20 — Schalke: prima gara in Bundesliga dopo promozione = incognita</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">17/20 — Nessun europeo, prima giornata</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Schalke 2.2 YC/g, emotività del ritorno = variabile</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick (rischio alto)</div><div class="pick-value">Draw</div></div>
+      <div class="pick-quota yellow">4.00</div>
+    </div>
+    <p class="note">Schalke torna in Bundesliga dopo anni. H2H storico ha prodotto 10 pareggi in 25 incontri. Pick ad alto rischio ma quota molto alta.</p>
+  </div>
+
+  <div class="slot-label">⏰ 18:00 SLOT</div>
+
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇪🇸</span><span class="league">La Liga MD3</span><span class="time">17:00</span></div>
+        <div class="match-name">Real Madrid vs Málaga CF</div>
+      </div>
+      <div class="score-badge"><div class="score-num yellow">75</div><div class="score-label">/ 100 — CAUTO</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val bad">10/25 — Real Madrid @1.13 = inutile sul win</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">18/20 — Madrid 8V 2P 0S negli ultimi 10 H2H totali</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">17/20 — Madrid: 3 vittorie in stagione. Málaga: 0V in 6 trasferte</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo questa settimana</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Málaga 2.4 YC/g sotto pressione</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick (mercato alternativo)</div><div class="pick-value">Over 3.5 gol</div></div>
+      <div class="pick-quota yellow">~2.50</div>
+      <div><div class="pick-label">Bonus</div><div class="pick-value">Mbappe marcatore</div></div>
+      <div class="pick-quota yellow">~1.50</div>
+    </div>
+    <p class="note">Non Madrid @1.13. Bernabéu vs neo-promossa: Over 3.5 a ~2.50 è il mercato con valore reale.</p>
+  </div>
+
+  <div class="match-card green">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇧🇪</span><span class="league">Jupiler Pro League MD3</span><span class="time">18:30</span></div>
+        <div class="match-name">Royale Union SG vs RSC Anderlecht</div>
+      </div>
+      <div class="score-badge"><div class="score-num green">78</div><div class="score-label">/ 100 — GIOCA</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Union @1.67 = valore con H2H casalingo forte</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">16/20 — Union vince le ultime derbies in casa vs Anderlecht</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val">14/20 — Union 1V 1P; Anderlecht 1V 1S in Pro League</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">16/20 — Entrambe in Europa ma nessuna gara entro 3gg</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">12/15 — Derby = Pro League 3.2 YC/g media</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick</div><div class="pick-value">Union SG win</div></div>
+      <div class="pick-quota">1.67</div>
+      <div><div class="pick-label">Bonus</div><div class="pick-value">GG (entrambe segnano)</div></div>
+      <div class="pick-quota">~1.80</div>
+    </div>
+  </div>
+
+  <div class="slot-label">⏰ 21:00 SLOT</div>
+
+  <div class="match-card green">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇫🇷</span><span class="league">Ligue 1 MD2</span><span class="time">20:45</span></div>
+        <div class="match-name">Monaco vs Olympique Marseille</div>
+      </div>
+      <div class="score-badge"><div class="score-num green">82</div><div class="score-label">/ 100 — GIOCA FORTE</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val good">20/25 — Monaco @2.15 = quota buona per casa in fiducia</div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">15/20 — Monaco 2-1 vs Marsiglia nella scorsa stagione al Louis II</div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val good">18/20 — Monaco: <strong>6 vittorie consecutive</strong> prima estate. Marsiglia: <strong>0V in 10 Ligue 1 trasferte!</strong></div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">18/20 — Nessun europeo imminente per nessuna</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val warn">11/15 — Monaco: Minamino, Vanderson OUT; Marsiglia: Aguerd, Greenwood OUT</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick FISSA</div><div class="pick-value">Monaco win + Over 2.5</div></div>
+      <div class="pick-quota">~3.55 (combo)</div>
+    </div>
+    <p class="note">🔥 <strong>Migliore pick del 30 agosto.</strong> Marsiglia non vince in trasferta in Ligue 1 da 10 partite. Monaco in casa è inarrestabile. Combo Monaco @2.15 × Over 2.5 @1.65 = ~3.55.</p>
+  </div>
+
+  <div class="match-card yellow">
+    <div class="card-top">
+      <div>
+        <div class="card-meta"><span class="flag">🇮🇹</span><span class="league">Serie A MD2</span><span class="time">20:45</span></div>
+        <div class="match-name">Cagliari vs Internazionale</div>
+      </div>
+      <div class="score-badge"><div class="score-num yellow">73</div><div class="score-label">/ 100 — CAUTO</div></div>
+    </div>
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">A — Quote</div><div class="val warn">16/25 — Inter @1.20 = inutile. <strong>Draw @3.70 ha edge storico</strong></div></div>
+      <div class="analysis-item"><div class="label">B — H2H</div><div class="val good">17/20 — <strong>Cagliari 1V 3P 1S nelle ultime 5 all'Unipol Domus vs Inter!</strong></div></div>
+      <div class="analysis-item"><div class="label">C — Forma</div><div class="val warn">12/20 — Inter 4-1 vs Monza MD1. Cagliari: Pavoletti, Felici, Idrissi tutti OUT</div></div>
+      <div class="analysis-item"><div class="label">D — Calendario</div><div class="val good">17/20 — Inter in CL ma nessuna gara questa settimana</div></div>
+      <div class="analysis-item"><div class="label">E — Disciplinare</div><div class="val">11/15 — 2.1 YC/g Cagliari</div></div>
+    </div>
+    <div class="pick-box">
+      <div><div class="pick-label">Pick A (valore)</div><div class="pick-value">Draw</div></div>
+      <div class="pick-quota yellow">3.70</div>
+      <div><div class="pick-label">Pick B</div><div class="pick-value">Under 2.5 gol</div></div>
+      <div class="pick-quota yellow">~1.90</div>
+    </div>
+    <p class="note">H2H all'Unipol Domus: Inter ha vinto solo 2 delle ultime 5 qui. 3 pareggi recenti. Con Cagliari senza attacco (3 assenti) ma difesa intatta, pareggio 0-0 o 1-0 è scenario reale.</p>
+  </div>
+</div>
+
+<!-- CORNER TAB -->
+<div id="corner" class="content">
+  <div class="day-header"><h2>📐 Analisi Angoli — AC Milan vs Venezia</h2><span class="badge">28 AGO 20:45</span></div>
+
+  <div class="corner-card">
+    <h4>Dati raccolti</h4>
+    <div class="corner-grid">
+      <div class="corner-stat"><div class="num" style="color:var(--accent)">4.80</div><div class="lbl">Milan angoli per home game (ultimi 10)</div></div>
+      <div class="corner-stat"><div class="num" style="color:var(--muted)">3.40</div><div class="lbl">Angoli concessi da Milan in casa (ultimi 10)</div></div>
+      <div class="corner-stat"><div class="num" style="color:var(--green)">6.5</div><div class="lbl">Media angoli Milan in H2H vs Venezia Serie A (2 gare)</div></div>
+      <div class="corner-stat"><div class="num" style="color:var(--red)">1.5</div><div class="lbl">Media angoli Venezia in H2H vs Milan Serie A</div></div>
+      <div class="corner-stat"><div class="num">8.0</div><div class="lbl">Media totale angoli in H2H (7 e 9)</div></div>
+      <div class="corner-stat"><div class="num" style="color:var(--accent)">16.9</div><div class="lbl">Cross Milan per gara 2025-26 (ampio attacco)</div></div>
+    </div>
+  </div>
+
+  <div class="corner-card">
+    <h4>H2H specifico (Serie A)</h4>
+    <table class="ranking-table">
+      <thead><tr><th>Data</th><th>Venue</th><th>Risultato</th><th>Milan CK</th><th>Venezia CK</th><th>Totale</th></tr></thead>
       <tbody>
-        <tr class="top-pick">
-          <td><strong>Heerenveen vs Zwolle</strong><br><span style="font-size:.7em;color:var(--muted)">Eredivisie MD3</span></td>
-          <td>21:00</td>
-          <td><span class="score-pill score-green">83</span></td>
-          <td><span class="tag tag-green">🟢 TOP</span></td>
-          <td><strong>1 (Casa)</strong></td>
-          <td style="color:var(--teal);font-weight:800">1.57</td>
-        </tr>
-        <tr class="top-pick">
-          <td><strong>Albacete vs RSB</strong><br><span style="font-size:.7em;color:var(--muted)">LaLiga Hypermotion MD2</span></td>
-          <td>19:00</td>
-          <td><span class="score-pill score-green">82</span></td>
-          <td><span class="tag tag-green">🟢 TOP</span></td>
-          <td><strong>1 (Casa)</strong></td>
-          <td style="color:var(--teal);font-weight:800">1.75</td>
-        </tr>
-        <tr class="top-pick">
-          <td><strong>Stockport</strong> <span style="font-size:.7em;background:var(--red);color:#fff;padding:1px 5px;border-radius:4px">LIVE</span><br><span style="font-size:.7em;color:var(--muted)">League One</span></td>
-          <td>In corso</td>
-          <td><span class="score-pill score-green">82</span></td>
-          <td><span class="tag tag-green">🟢 ENTRA</span></td>
-          <td><strong>1X live</strong></td>
-          <td style="color:var(--muted);font-weight:700">~1.3X</td>
-        </tr>
-        <tr class="good-pick">
-          <td><strong>Charleroi vs Mechelen</strong><br><span style="font-size:.7em;color:var(--muted)">Jupiler Pro MD4</span></td>
-          <td>18:15</td>
-          <td><span class="score-pill score-green">74</span></td>
-          <td><span class="tag tag-green">🟢 GIOCA</span></td>
-          <td><strong>1 (Casa)</strong></td>
-          <td style="color:var(--teal);font-weight:800">1.62</td>
-        </tr>
-        <tr class="good-pick">
-          <td><strong>Ath. Bilbao vs Siviglia</strong><br><span style="font-size:.7em;color:var(--muted)">LaLiga MD2</span></td>
-          <td>17:00</td>
-          <td><span class="score-pill score-green">71</span></td>
-          <td><span class="tag tag-green">🟢 GIOCA</span></td>
-          <td><strong>1 (Casa)</strong></td>
-          <td style="color:var(--teal);font-weight:800">1.73</td>
-        </tr>
-        <tr class="cauto-pick">
-          <td><strong>Lens vs Auxerre</strong><br><span style="font-size:.7em;color:var(--muted)">Ligue 1 MD3</span></td>
-          <td>17:15</td>
-          <td><span class="score-pill score-yellow">62</span></td>
-          <td><span class="tag tag-yellow">🟡 CAUTO</span></td>
-          <td><em style="color:var(--muted)">—</em></td>
-          <td style="color:var(--muted)">1.48 ⚠️</td>
-        </tr>
-        <tr class="scarta-pick">
-          <td><strong>Dinamo Zagreb</strong><br><span style="font-size:.7em;color:var(--muted)">HNL + UCL rotation</span></td>
-          <td>21:00</td>
-          <td><span class="score-pill score-red">35</span></td>
-          <td><span class="tag tag-red">❌ SCARTA</span></td>
-          <td><em style="color:var(--muted)">—</em></td>
-          <td style="color:var(--muted)">—</td>
-        </tr>
-        <tr class="scarta-pick">
-          <td><strong>Estoril vs Rio Ave</strong><br><span style="font-size:.7em;color:var(--muted)">Liga Portugal MD2</span></td>
-          <td>19:00</td>
-          <td><span class="score-pill score-red">28</span></td>
-          <td><span class="tag tag-red">❌ SCARTA</span></td>
-          <td><em style="color:var(--muted)">—</em></td>
-          <td style="color:var(--muted)">—</td>
-        </tr>
+        <tr><td>14 Set 2024</td><td>San Siro (Milan casa)</td><td>Milan 4-0 Venezia</td><td style="color:var(--green);font-weight:800">6</td><td>1</td><td>7</td></tr>
+        <tr><td>27 Apr 2025</td><td>Penzo (Venezia casa)</td><td>Venezia 0-2 Milan</td><td style="color:var(--green);font-weight:800">7</td><td>2</td><td>9</td></tr>
+        <tr style="background:var(--card2)"><td colspan="3"><strong>Media</strong></td><td style="color:var(--green);font-weight:800">6.5</td><td>1.5</td><td><strong>8.0</strong></td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="corner-card">
+    <h4>Modello λ_corners = 0.6 × (home_avg_home + away_avg_away) + 0.4 × H2H_avg</h4>
+    <div class="corner-grid">
+      <div class="corner-stat" style="background:rgba(79,142,247,.08)">
+        <div class="num" style="color:var(--accent)">8.72</div>
+        <div class="lbl">λ base (con dati Serie B Venezia)</div>
+      </div>
+      <div class="corner-stat" style="background:rgba(79,142,247,.08)">
+        <div class="num" style="color:var(--accent)">6.98</div>
+        <div class="lbl">λ corretto (Venezia rebassato a Serie A)</div>
+      </div>
+      <div class="corner-stat" style="background:rgba(34,197,94,.08)">
+        <div class="num" style="color:var(--green)">7-9</div>
+        <div class="lbl">Range atteso totale angoli</div>
+      </div>
     </div>
   </div>
 
-  <!-- SCHEDINA -->
-  <div class="card" style="border-color:var(--purple);margin-top:4px">
-    <div style="font-size:.9em;font-weight:800;color:var(--purple);margin-bottom:12px">Schedina Consigliata — 22 Agosto 2026</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
-      <!-- FISSA -->
-      <div style="background:var(--bg3);border:1px solid var(--green);border-radius:8px;padding:12px">
-        <div style="font-size:.68em;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:6px">🔒 FISSA 80% del budget</div>
-        <div style="font-size:.92em;font-weight:800">Heerenveen 1</div>
-        <div style="font-size:.78em;color:var(--muted)">vs Zwolle · 21:00 · Eredivisie</div>
-        <div style="margin-top:6px;font-size:1em;font-weight:800;color:var(--teal)">@ 1.57</div>
-        <div style="margin-top:4px;font-size:.7em;color:var(--muted)">Score 83/100 · odds in calo · casa forte</div>
-      </div>
-      <!-- SISTEMA -->
-      <div style="background:var(--bg3);border:1px solid var(--purple);border-radius:8px;padding:12px">
-        <div style="font-size:.68em;font-weight:700;color:var(--purple);text-transform:uppercase;margin-bottom:6px">⚙️ SISTEMA 2/3 — 20% del budget</div>
-        <div style="font-size:.75em;margin-bottom:4px"><span style="color:var(--muted)">🔒 Fissa:</span> <strong>Albacete 1</strong> <span style="color:var(--teal)">@1.75</span></div>
-        <div style="font-size:.75em;margin-bottom:4px"><span style="color:var(--muted)">🔄 Girata A:</span> <strong>Charleroi 1</strong> <span style="color:var(--teal)">@1.62</span></div>
-        <div style="font-size:.75em;"><span style="color:var(--muted)">🔄 Girata B:</span> <strong>Heerenveen O2.5</strong> <span style="color:var(--teal)">@1.85</span></div>
-        <div style="margin-top:8px;font-size:.7em;color:var(--muted)">3 doppie coperte · sistema</div>
-      </div>
-    </div>
-
-    <!-- DOUBLES TABLE -->
-    <div style="font-size:.72em;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:6px">3 Doppie del Sistema</div>
-    <table class="tbl" style="margin-bottom:14px">
-      <thead>
-        <tr>
-          <th>Doppia</th>
-          <th>Quote comb.</th>
-          <th id="th-puntata">Puntata</th>
-          <th id="th-ritorno">Ritorno</th>
-        </tr>
-      </thead>
+  <div class="corner-card">
+    <h4>Verdetto mercati angoli</h4>
+    <table class="ranking-table">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>Affidabilità</th><th>Verdetto</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Albacete 1 + Charleroi 1</td>
-          <td style="color:var(--teal);font-weight:700">@2.84</td>
-          <td id="d1-puntata" style="color:var(--muted)">—</td>
-          <td id="d1-ritorno" style="color:var(--muted)">—</td>
-        </tr>
-        <tr>
-          <td>Albacete 1 + Heerenveen O2.5</td>
-          <td style="color:var(--teal);font-weight:700">@3.24</td>
-          <td id="d2-puntata" style="color:var(--muted)">—</td>
-          <td id="d2-ritorno" style="color:var(--muted)">—</td>
-        </tr>
-        <tr>
-          <td>Charleroi 1 + Heerenveen O2.5</td>
-          <td style="color:var(--teal);font-weight:700">@3.00</td>
-          <td id="d3-puntata" style="color:var(--muted)">—</td>
-          <td id="d3-ritorno" style="color:var(--muted)">—</td>
-        </tr>
+        <tr><td><strong>Milan Over 5.5 angoli</strong></td><td style="color:var(--green);font-weight:800">1.68</td><td>Alta (H2H: 6 e 7, entrambe OVER)</td><td><span class="tag green">✅ GIOCA</span></td></tr>
+        <tr><td>Total Over 6.5 angoli</td><td>n.d.</td><td>Media (H2H min 7, media 8)</td><td><span class="tag green">✅ Interessante</span></td></tr>
+        <tr><td>Total Over 9.5 angoli</td><td>1.84</td><td>Bassa (modello a ~7-8.7)</td><td><span class="tag red">❌ EVITA</span></td></tr>
+        <tr><td>Milan Under 6.5 angoli</td><td>1.73</td><td>Conflitto (ultimi 10 gare: under, ma H2H: 6.5)</td><td><span class="tag yellow">⚠️ Evita</span></td></tr>
+        <tr><td>Venezia Under 3.5 angoli</td><td>1.66</td><td>Alta (H2H: 1.5 media)</td><td><span class="tag green">✅ Supportato</span></td></tr>
       </tbody>
     </table>
-
-    <!-- CALCULATOR -->
-    <div class="calc-box">
-      <div style="font-size:.8em;font-weight:700;color:var(--teal);margin-bottom:10px">Calcolatore Budget</div>
-      <div class="calc-input-row">
-        <span style="font-size:.85em;color:var(--muted)">Budget giornaliero €</span>
-        <input type="number" class="calc-input" id="budget-input" value="40" min="1" step="1">
-        <button class="calc-btn" onclick="calcBudget()">Calcola</button>
-      </div>
-
-      <div class="calc-results" id="calc-results">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
-          <div class="split-row" style="flex:1;min-width:180px">
-            <span class="split-label">🔒 FISSA · Heerenveen 1</span>
-            <span class="split-amount" id="r-fissa">—</span>
-          </div>
-          <div class="split-row" style="flex:1;min-width:180px">
-            <span class="split-label">⚙️ Sistema 3 doppie (per doppia)</span>
-            <span class="split-amount" id="r-sistema">—</span>
-          </div>
-        </div>
-
-        <div style="font-size:.72em;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:6px">Scenari di ritorno</div>
-        <div class="scenario-grid">
-          <div class="scenario">
-            <div class="scenario-label">Solo FISSA vince</div>
-            <div class="scenario-return" id="s1-ret" style="color:var(--green)">—</div>
-            <div class="scenario-profit" id="s1-pnl">—</div>
-          </div>
-          <div class="scenario">
-            <div class="scenario-label">FISSA + 2 pick sistema</div>
-            <div class="scenario-return" id="s2-ret" style="color:var(--blue)">—</div>
-            <div class="scenario-profit" id="s2-pnl">—</div>
-          </div>
-          <div class="scenario">
-            <div class="scenario-label">Tutto vince ⭐</div>
-            <div class="scenario-return" id="s3-ret" style="color:var(--purple)">—</div>
-            <div class="scenario-profit" id="s3-pnl">—</div>
-          </div>
-        </div>
-        <div style="margin-top:8px;font-size:.72em;color:var(--muted)">* Sistema: ritorno se vincono 2 doppie su 3 (scenario medio). Best case: tutte e 3.</div>
-      </div>
+    <div class="corner-verdict" style="margin-top:14px">
+      <p>🎯 <strong>Pick angoli consigliato: Milan Over 5.5 team corners @1.68</strong><br>
+      H2H mostra Milan a 6 e 7 angoli in entrambe le gare Serie A vs Venezia. Milan attacca largo (16.9 cross/gara, fullback alti). Venezia neopromossa al San Siro si schiaccerà in basso → ancora più angoli per Milan. Il conflitto con gli ultimi 10 dati genera incertezza, ma la specificità del matchup H2H vince sul generico.</p>
     </div>
   </div>
-
 </div>
 
-<!-- ════════════════════════════════════ PARTITE OGGI ════════════════════════════════════ -->
-<div id="oggi" class="section">
-  <div style="margin-bottom:16px">
-    <div style="font-size:1.1em;font-weight:800">Analisi Dettagliata — 22 Agosto 2026</div>
-    <div style="font-size:.78em;color:var(--muted)">Modello 5 blocchi: A=Mercato(25%) · B=H2H(20%) · C=Forma(20%) · D=Fixture(20%) · E=Qualitativo(15%)</div>
-  </div>
-
-  <!-- ── MATCH 1: HEERENVEEN ── -->
-  <div class="card" style="border-color:var(--green)">
-    <div class="match-header">
-      <div class="score-ring ring-green">83</div>
-      <div class="match-info">
-        <div class="match-title">Heerenveen vs Zwolle</div>
-        <div class="match-meta">Eredivisie MD3 · 22/08/2026 21:00 · Abe Lenstra Stadion</div>
-        <div style="margin-top:4px"><span class="tag tag-green">🟢 TOP PICK</span> <span class="tag tag-green">FISSA</span> <span class="tag tag-muted">Eredivisie</span></div>
-      </div>
-      <div class="market-pill">
-        <div style="font-size:.65em;color:var(--muted)">SELEZIONE</div>
-        <div class="market-bet">1 Casa</div>
-        <div class="market-odds">@ 1.57</div>
-      </div>
-    </div>
-
-    <div class="block-grid">
-      <div class="block"><div class="block-letter">A</div><div class="block-name">Mercato</div><div class="block-score" style="color:var(--green)">22<span style="font-size:.6em">/25</span></div><div class="block-weight">25%</div></div>
-      <div class="block"><div class="block-letter">B</div><div class="block-name">H2H</div><div class="block-score" style="color:var(--green)">17<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">C</div><div class="block-name">Forma</div><div class="block-score" style="color:var(--green)">18<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">D</div><div class="block-name">Fixture</div><div class="block-score" style="color:var(--green)">16<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">E</div><div class="block-name">Qual.</div><div class="block-score" style="color:var(--green)">10<span style="font-size:.6em">/15</span></div><div class="block-weight">15%</div></div>
-    </div>
-
-    <div class="detail-grid" style="margin-bottom:10px">
-      <div class="detail-item">
-        <div class="detail-item-label">Movimento quota</div>
-        <div class="detail-item-value odds-move"><span style="color:var(--green)">▼</span> 1.65 → 1.57 <span class="tag tag-green">Favorevole</span></div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Forma casa (ultime 5)</div>
-        <div class="detail-item-value">4V 0P 1S · Casa forte</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Forma trasferta Zwolle</div>
-        <div class="detail-item-value" style="color:var(--red)">0V 0P 5S · Ultimo MD1: 0-3</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">H2H (ultimi 4)</div>
-        <div class="detail-item-value">Heerenveen 3V 1P · dominante</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Assenti chiave</div>
-        <div class="detail-item-value">Nessuna nota significativa</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Prossima partita</div>
-        <div class="detail-item-value">MD4 ordinaria — nessuna distrazione</div>
-      </div>
-    </div>
-
-    <div class="verdict-row" style="background:#1a3a25;border:1px solid var(--green)">
-      <div class="verdict-icon">🟢</div>
-      <div class="verdict-text"><strong>FISSA della giornata.</strong> Heerenveen è una delle squadre più solide in casa in Eredivisie. Zwolle in crisi totale — peggior difesa, 0V in 5 trasferte. La quota in calo da 1.65 a 1.57 conferma il consenso del mercato. Nessun fattore di rischio rilevato.</div>
-      <div class="verdict-badge" style="background:var(--green);color:#fff">83/100</div>
-    </div>
-  </div>
-
-  <!-- ── MATCH 2: ALBACETE ── -->
-  <div class="card" style="border-color:var(--green)">
-    <div class="match-header">
-      <div class="score-ring ring-green">82</div>
-      <div class="match-info">
-        <div class="match-title">Albacete vs Real Sociedad B</div>
-        <div class="match-meta">LaLiga Hypermotion MD2 · 22/08/2026 19:00 · Estadio Carlos Belmonte</div>
-        <div style="margin-top:4px"><span class="tag tag-green">🟢 TOP PICK</span> <span class="tag tag-purple">FISSA SISTEMA</span> <span class="tag tag-muted">Segunda División</span></div>
-      </div>
-      <div class="market-pill">
-        <div style="font-size:.65em;color:var(--muted)">SELEZIONE</div>
-        <div class="market-bet">1 Casa</div>
-        <div class="market-odds">@ 1.75</div>
-      </div>
-    </div>
-
-    <div class="block-grid">
-      <div class="block"><div class="block-letter">A</div><div class="block-name">Mercato</div><div class="block-score" style="color:var(--green)">21<span style="font-size:.6em">/25</span></div><div class="block-weight">25%</div></div>
-      <div class="block"><div class="block-letter">B</div><div class="block-name">H2H</div><div class="block-score" style="color:var(--green)">15<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">C</div><div class="block-name">Forma</div><div class="block-score" style="color:var(--green)">18<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">D</div><div class="block-name">Fixture</div><div class="block-score" style="color:var(--green)">15<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">E</div><div class="block-name">Qual.</div><div class="block-score" style="color:var(--green)">13<span style="font-size:.6em">/15</span></div><div class="block-weight">15%</div></div>
-    </div>
-
-    <div style="background:#1a3a25;border:1px solid var(--green);border-radius:6px;padding:10px;margin-bottom:10px">
-      <div style="font-size:.72em;font-weight:800;color:var(--green);margin-bottom:6px">⚠️ NOTIZIA CRITICA — RSB gioca con squadra C</div>
-      <div style="font-size:.78em">5 giocatori convocati dal primo team Real Sociedad per la partita di ieri vs Betis:</div>
-      <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px">
-        <span class="tag tag-red">Gorka Carrera (Top scorer 15G)</span>
-        <span class="tag tag-red">Theo Folgado (Portiere titolare)</span>
-        <span class="tag tag-red">Alex Lebarbier (Difensore)</span>
-        <span class="tag tag-red">Alex Marchal (Difensore)</span>
-        <span class="tag tag-red">Luken Beitia (Centrocampista)</span>
-      </div>
-      <div style="margin-top:6px;font-size:.72em;color:var(--muted)">RSB gioca senza GK titolare, coppia difensiva centrale e capocannoniere.</div>
-    </div>
-
-    <div class="detail-grid" style="margin-bottom:10px">
-      <div class="detail-item">
-        <div class="detail-item-label">Movimento quota</div>
-        <div class="detail-item-value odds-move"><span style="color:var(--green)">▼</span> ~1.86 → 1.67-1.75 <span class="tag tag-green">Favorevole</span></div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">RSB in trasferta (ultime 5)</div>
-        <div class="detail-item-value" style="color:var(--red)">0V 0P 5S · zero punti away</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">H2H recente</div>
-        <div class="detail-item-value"><span style="color:var(--green)">Albacete 3-1 RSB</span> (24 mag 2026, stesso campo)</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Classifica</div>
-        <div class="detail-item-value">Entrambe 0 punti dopo MD1 — 6-pointer salvezza</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Assenti Albacete</div>
-        <div class="detail-item-value" style="color:var(--yellow)">Obeng (ACL), Puertas (crociato), +4</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Assenti RSB</div>
-        <div class="detail-item-value" style="color:var(--red)">5 convocati 1° team · squadra C</div>
-      </div>
-    </div>
-
-    <div style="margin-bottom:10px">
-      <div class="detail-title">Forma Albacete (ultime 5 in casa)</div>
-      <div style="display:flex;gap:5px">
-        <span class="tag tag-green">V 3-1 RSB</span>
-        <span class="tag tag-green">V 2-1 C.Leonesa</span>
-        <span class="tag tag-green">V 4-1 Granada</span>
-        <span class="tag tag-red">S 0-1 Ceuta</span>
-        <span class="tag tag-red">S 2-3 Burgos</span>
-      </div>
-    </div>
-
-    <div class="verdict-row" style="background:#1a3a25;border:1px solid var(--green)">
-      <div class="verdict-icon">🟢</div>
-      <div class="verdict-text"><strong>TOP PICK / Fissa sistema.</strong> RSB arriva senza portiere, coppia difensiva e capocannoniere. Zero vittorie in 5 trasferte. Albacete vince H2H recente 3-1 allo stesso stadio. Mercato ha già prezzato la notizia (quota in calo). Scontro salvezza che favorisce nettamente la casa.</div>
-      <div class="verdict-badge" style="background:var(--green);color:#fff">82/100</div>
-    </div>
-  </div>
-
-  <!-- ── MATCH 3: CHARLEROI ── -->
-  <div class="card" style="border-color:var(--blue)">
-    <div class="match-header">
-      <div class="score-ring ring-green">74</div>
-      <div class="match-info">
-        <div class="match-title">Charleroi vs Mechelen</div>
-        <div class="match-meta">Jupiler Pro League MD4 · 22/08/2026 18:15 · Stade du Pays de Charleroi</div>
-        <div style="margin-top:4px"><span class="tag tag-green">🟢 GIOCA</span> <span class="tag tag-purple">GIRATA A</span> <span class="tag tag-muted">Belgio</span></div>
-      </div>
-      <div class="market-pill">
-        <div style="font-size:.65em;color:var(--muted)">SELEZIONE</div>
-        <div class="market-bet">1 Casa</div>
-        <div class="market-odds">@ 1.62</div>
-      </div>
-    </div>
-
-    <div class="block-grid">
-      <div class="block"><div class="block-letter">A</div><div class="block-name">Mercato</div><div class="block-score" style="color:var(--green)">24<span style="font-size:.6em">/25</span></div><div class="block-weight">25%</div></div>
-      <div class="block"><div class="block-letter">B</div><div class="block-name">H2H</div><div class="block-score" style="color:var(--yellow)">12<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">C</div><div class="block-name">Forma</div><div class="block-score" style="color:var(--green)">16<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">D</div><div class="block-name">Fixture</div><div class="block-score" style="color:var(--green)">14<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">E</div><div class="block-name">Qual.</div><div class="block-score" style="color:var(--green)">8<span style="font-size:.6em">/15</span></div><div class="block-weight">15%</div></div>
-    </div>
-
-    <div style="background:#1a304a;border:1px solid var(--blue);border-radius:6px;padding:10px;margin-bottom:10px">
-      <div style="font-size:.72em;font-weight:800;color:var(--blue);margin-bottom:4px">Segnale mercato eccezionale</div>
-      <div style="font-size:.82em">Quota <strong>2.06 → 1.62</strong> · collasso del <strong>21%</strong> · denaro professionale confermato</div>
-      <div style="font-size:.78em;color:var(--muted);margin-top:2px">Mechelen drifta da 3.81 → 5.00 (+31%) · mercato scarica Mechelen</div>
-    </div>
-
-    <div class="detail-grid" style="margin-bottom:10px">
-      <div class="detail-item">
-        <div class="detail-item-label">Assenti Mechelen</div>
-        <div class="detail-item-value" style="color:var(--red)">9 giocatori fuori infortunio</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Mechelen in trasferta (serie)</div>
-        <div class="detail-item-value" style="color:var(--red)">8 gare consecutive senza vittoria away</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Charleroi ultime 5</div>
-        <div class="detail-item-value">9 gol segnati in tutte le competizioni</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">H2H (ultimo visit)</div>
-        <div class="detail-item-value" style="color:var(--yellow)">Mechelen ha vinto le ultime 2 visite ⚠️</div>
-      </div>
-    </div>
-
-    <div class="verdict-row" style="background:#1a304a;border:1px solid var(--blue)">
-      <div class="verdict-icon">🟢</div>
-      <div class="verdict-text"><strong>GIRATA A.</strong> Il segnale mercato è il più forte della giornata: -21% sulla quota casa, +31% trasferta. 9 assenti Mechelen annullano l'effetto H2H (le vittorie precedenti erano con rosa completa). 8 trasferte consecutive senza win per Mechelen. Il denaro sa qualcosa.</div>
-      <div class="verdict-badge" style="background:var(--blue);color:#fff">74/100</div>
-    </div>
-  </div>
-
-  <!-- ── MATCH 4: BILBAO ── -->
-  <div class="card" style="border-color:var(--border)">
-    <div class="match-header">
-      <div class="score-ring ring-green">71</div>
-      <div class="match-info">
-        <div class="match-title">Athletic Bilbao vs Siviglia</div>
-        <div class="match-meta">LaLiga MD2 · 22/08/2026 17:00 · Estadio San Mamés</div>
-        <div style="margin-top:4px"><span class="tag tag-green">🟢 GIOCA</span> <span class="tag tag-muted">LaLiga</span> <span class="tag tag-muted">Fuori schedina</span></div>
-      </div>
-      <div class="market-pill">
-        <div style="font-size:.65em;color:var(--muted)">SELEZIONE</div>
-        <div class="market-bet">1 Casa</div>
-        <div class="market-odds">@ 1.73</div>
-      </div>
-    </div>
-
-    <div class="block-grid">
-      <div class="block"><div class="block-letter">A</div><div class="block-name">Mercato</div><div class="block-score" style="color:var(--green)">17<span style="font-size:.6em">/25</span></div><div class="block-weight">25%</div></div>
-      <div class="block"><div class="block-letter">B</div><div class="block-name">H2H</div><div class="block-score" style="color:var(--green)">14<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">C</div><div class="block-name">Forma</div><div class="block-score" style="color:var(--green)">16<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">D</div><div class="block-name">Fixture</div><div class="block-score" style="color:var(--green)">14<span style="font-size:.6em">/20</span></div><div class="block-weight">20%</div></div>
-      <div class="block"><div class="block-letter">E</div><div class="block-name">Qual.</div><div class="block-score" style="color:var(--green)">10<span style="font-size:.6em">/15</span></div><div class="block-weight">15%</div></div>
-    </div>
-
-    <div class="detail-grid" style="margin-bottom:10px">
-      <div class="detail-item">
-        <div class="detail-item-label">Fortezza San Mamés</div>
-        <div class="detail-item-value">Tasso vittoria casa LaLiga: 61% (+5 anni)</div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-item-label">Siviglia in trasferta</div>
-        <div class="detail-item-value">Debole lontano dal Sánchez-Pizjuán</div>
-      </div>
-    </div>
-
-    <div class="verdict-row">
-      <div class="verdict-icon">🟢</div>
-      <div class="verdict-text"><strong>Fuori schedina principale per concentrare il rischio.</strong> Pick valido (71/100) ma già abbiamo 3 pick nel sistema. Buona opzione per chi vuole aggiungere una singola separata.</div>
-      <div class="verdict-badge" style="background:var(--bg4);color:var(--text)">71/100</div>
-    </div>
-  </div>
-
-  <!-- ── MATCH 5: LENS ── -->
-  <div class="card" style="border-color:var(--yellow);opacity:.85">
-    <div class="match-header">
-      <div class="score-ring ring-yellow">62</div>
-      <div class="match-info">
-        <div class="match-title">Lens vs Auxerre</div>
-        <div class="match-meta">Ligue 1 MD3 · 22/08/2026 17:15</div>
-        <div style="margin-top:4px"><span class="tag tag-yellow">🟡 CAUTO</span> <span class="tag tag-red">Quota sotto range</span></div>
-      </div>
-      <div class="market-pill" style="border-color:var(--yellow)">
-        <div style="font-size:.65em;color:var(--muted)">QUOTA</div>
-        <div class="market-bet" style="color:var(--yellow)">1.48</div>
-        <div class="market-odds" style="color:var(--red)">Sotto 1.50 ⚠️</div>
-      </div>
-    </div>
-    <div class="verdict-row" style="background:#2a2010;border-color:var(--yellow)">
-      <div class="verdict-icon">🟡</div>
-      <div class="verdict-text"><strong>Escluso per quota sotto range (1.48).</strong> La regola pre-filtro richiede min 1.50 in casa. Valore positivo ma margine di errore troppo stretto per il profilo rischio/rendimento del portafoglio.</div>
-      <div class="verdict-badge" style="background:var(--yellow);color:#000">62/100</div>
-    </div>
-  </div>
-
-  <!-- ── MATCH 6: DINAMO ZAGREB ── -->
-  <div class="card" style="opacity:.7">
-    <div class="match-header">
-      <div class="score-ring ring-red">35</div>
-      <div class="match-info">
-        <div class="match-title">Dinamo Zagreb</div>
-        <div class="match-meta">HNL · 22/08/2026 21:00</div>
-        <div style="margin-top:4px"><span class="tag tag-red">❌ SCARTA</span> <span class="tag tag-red">UCL Rotation</span></div>
-      </div>
-    </div>
-    <div class="verdict-row" style="background:#2a1010;border-color:var(--red)">
-      <div class="verdict-icon">❌</div>
-      <div class="verdict-text"><strong>SCARTA.</strong> Dinamo Zagreb è tra due sfide di Champions League. Rotazione massiva confermata — 3 giocatori chiave infortunati nella gara europea. Il titolare abituale del campionato non giocherà. Effetto "distrazione UCL" attivo.</div>
-      <div class="verdict-badge" style="background:var(--red);color:#fff">35/100</div>
-    </div>
-  </div>
-
-  <!-- ── MATCH 7: ESTORIL ── -->
-  <div class="card" style="opacity:.7">
-    <div class="match-header">
-      <div class="score-ring ring-red">28</div>
-      <div class="match-info">
-        <div class="match-title">Estoril vs Rio Ave</div>
-        <div class="match-meta">Liga Portugal MD2 · 22/08/2026 19:00</div>
-        <div style="margin-top:4px"><span class="tag tag-red">❌ SCARTA</span> <span class="tag tag-red">Quota >2.00</span> <span class="tag tag-red">Segnale avverso</span></div>
-      </div>
-    </div>
-    <div class="verdict-row" style="background:#2a1010;border-color:var(--red)">
-      <div class="verdict-icon">❌</div>
-      <div class="verdict-text"><strong>SCARTA.</strong> Quota 2.05 sopra il range (max 1.90). Mercato in movimento avverso (quota in salita = denaro sul pareggio/trasferta). Troppi flag negativi combinati.</div>
-      <div class="verdict-badge" style="background:var(--red);color:#fff">28/100</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ════════════════════════════════════ IERI ════════════════════════════════════ -->
-<div id="ieri" class="section">
-  <div style="margin-bottom:16px">
-    <div style="font-size:1.1em;font-weight:800">Verifica Picks — 21 Agosto 2026</div>
-    <div style="font-size:.78em;color:var(--muted)">Risultati delle previsioni di ieri · Aggiorna con i risultati reali</div>
-  </div>
-
-  <div class="card">
-    <div style="font-size:.85em;font-weight:700;color:var(--teal);margin-bottom:10px">Picks di ieri (21 Agosto)</div>
-    <table class="tbl">
-      <thead>
-        <tr>
-          <th>Partita</th>
-          <th>Selezione</th>
-          <th>Quota</th>
-          <th>Risultato finale</th>
-          <th>Esito</th>
-        </tr>
-      </thead>
-      <tbody id="ieri-results">
-        <tr>
-          <td><strong>Partite 21 Agosto</strong><br><span style="font-size:.72em;color:var(--muted)">Analisi del giorno precedente</span></td>
-          <td colspan="4" style="color:var(--muted);font-style:italic">
-            Inserisci i risultati di ieri per tracciare le performance del modello.
-            <br><br>
-            <button onclick="showEditYesterday()" style="background:var(--teal);color:#fff;border:none;padding:6px 14px;border-radius:5px;cursor:pointer;font-size:.8em">+ Inserisci risultati</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- FORM INSERIMENTO -->
-  <div id="edit-yesterday" style="display:none">
-    <div class="card" style="border-color:var(--teal)">
-      <div style="font-size:.85em;font-weight:700;margin-bottom:12px">Inserisci risultati di ieri</div>
-      <div id="yesterday-form-rows"></div>
-      <div style="margin-top:4px">
-        <button onclick="addYesterdayRow()" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:5px;cursor:pointer;font-size:.8em;margin-right:8px">+ Aggiungi partita</button>
-        <button onclick="saveYesterday()" style="background:var(--teal);border:none;color:#fff;padding:6px 16px;border-radius:5px;cursor:pointer;font-size:.8em">Salva</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- STORICO PERFORMANCE -->
-  <div class="card">
-    <div style="font-size:.85em;font-weight:700;color:var(--teal);margin-bottom:12px">Performance Modello (storico)</div>
-    <div class="card-grid" style="margin-bottom:10px">
-      <div style="background:var(--bg3);border-radius:8px;padding:12px;text-align:center">
-        <div style="font-size:.72em;color:var(--muted)">Picks totali</div>
-        <div id="stat-total" style="font-size:1.6em;font-weight:800;color:var(--text)">—</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:8px;padding:12px;text-align:center">
-        <div style="font-size:.72em;color:var(--muted)">Win rate</div>
-        <div id="stat-winrate" style="font-size:1.6em;font-weight:800;color:var(--teal)">—</div>
-      </div>
-    </div>
-    <div style="font-size:.78em;color:var(--muted);text-align:center">Inserisci i risultati per abilitare le statistiche</div>
-  </div>
-</div>
+<footer>
+  ⚠️ Analisi per uso personale. Le scommesse sportive comportano rischio di perdita. Scommetti responsabilmente. | Generato 28 Agosto 2026
+</footer>
 
 <script>
-// ──── NAV ────
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+function showTab(id) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
 }
-
-// ──── BUDGET CALCULATOR ────
-function calcBudget() {
-  const budget = parseFloat(document.getElementById('budget-input').value) || 0;
-  if (budget <= 0) return;
-
-  const fissa = Math.round(budget * 0.80 * 100) / 100;
-  const sistema = Math.round(budget * 0.20 * 100) / 100;
-  const perDoppia = Math.round((sistema / 3) * 100) / 100;
-
-  // Odds
-  const O_HEER = 1.57;
-  const O_ALB = 1.75;
-  const O_CHAR = 1.62;
-  const O_HEER_O25 = 1.85;
-
-  // Doubles
-  const d1 = O_ALB * O_CHAR;
-  const d2 = O_ALB * O_HEER_O25;
-  const d3 = O_CHAR * O_HEER_O25;
-
-  // Update doubles table
-  document.getElementById('d1-puntata').textContent = '€ ' + perDoppia.toFixed(2);
-  document.getElementById('d2-puntata').textContent = '€ ' + perDoppia.toFixed(2);
-  document.getElementById('d3-puntata').textContent = '€ ' + perDoppia.toFixed(2);
-  document.getElementById('d1-ritorno').textContent = '€ ' + (perDoppia * d1).toFixed(2);
-  document.getElementById('d2-ritorno').textContent = '€ ' + (perDoppia * d2).toFixed(2);
-  document.getElementById('d3-ritorno').textContent = '€ ' + (perDoppia * d3).toFixed(2);
-  document.getElementById('d1-ritorno').style.color = 'var(--teal)';
-  document.getElementById('d2-ritorno').style.color = 'var(--teal)';
-  document.getElementById('d3-ritorno').style.color = 'var(--teal)';
-  document.getElementById('d1-puntata').style.color = 'var(--text)';
-  document.getElementById('d2-puntata').style.color = 'var(--text)';
-  document.getElementById('d3-puntata').style.color = 'var(--text)';
-
-  // Split display
-  document.getElementById('r-fissa').textContent = '€ ' + fissa.toFixed(2);
-  document.getElementById('r-sistema').textContent = '€ ' + perDoppia.toFixed(2) + ' × 3';
-
-  // Scenario 1: solo FISSA vince
-  const s1 = fissa * O_HEER;
-  const s1pnl = s1 - budget;
-
-  // Scenario 2: FISSA + 2 doppie su 3 (scenario medio — Albacete+Charleroi hit)
-  const s2sistema = perDoppia * d1; // almeno 1 doppia vince
-  const s2 = (fissa * O_HEER) + s2sistema;
-  const s2pnl = s2 - budget;
-
-  // Scenario 3: tutto vince (3 doppie)
-  const s3 = (fissa * O_HEER) + (perDoppia * d1) + (perDoppia * d2) + (perDoppia * d3);
-  const s3pnl = s3 - budget;
-
-  function fmt(n) { return '€ ' + n.toFixed(2); }
-  function fmtPnl(n) {
-    const s = (n >= 0 ? '+' : '') + n.toFixed(2);
-    return '<span style="color:' + (n >= 0 ? 'var(--green)' : 'var(--red)') + '">' + s + '€</span>';
-  }
-
-  document.getElementById('s1-ret').textContent = fmt(s1);
-  document.getElementById('s1-pnl').innerHTML = fmtPnl(s1pnl);
-  document.getElementById('s2-ret').textContent = fmt(s2);
-  document.getElementById('s2-pnl').innerHTML = fmtPnl(s2pnl);
-  document.getElementById('s3-ret').textContent = fmt(s3);
-  document.getElementById('s3-pnl').innerHTML = fmtPnl(s3pnl);
-
-  document.getElementById('calc-results').style.display = 'block';
-}
-
-// ──── YESTERDAY FORM ────
-let yesterdayRows = [];
-
-function showEditYesterday() {
-  document.getElementById('edit-yesterday').style.display = 'block';
-  if (yesterdayRows.length === 0) addYesterdayRow();
-}
-
-function addYesterdayRow() {
-  const idx = yesterdayRows.length;
-  yesterdayRows.push({});
-  const container = document.getElementById('yesterday-form-rows');
-  const div = document.createElement('div');
-  div.style.cssText = 'display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;align-items:center';
-  div.innerHTML = `
-    <input placeholder="Partita" id="yr-match-${idx}" style="flex:2;min-width:160px;background:var(--bg4);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:7px 10px;font-size:.82em">
-    <input placeholder="Selezione (es. 1)" id="yr-sel-${idx}" style="flex:1;min-width:80px;background:var(--bg4);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:7px 10px;font-size:.82em">
-    <input placeholder="Quota" type="number" step="0.01" id="yr-odds-${idx}" style="width:80px;background:var(--bg4);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:7px 10px;font-size:.82em">
-    <input placeholder="Risultato (es. 2-1)" id="yr-result-${idx}" style="flex:1;min-width:90px;background:var(--bg4);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:7px 10px;font-size:.82em">
-    <select id="yr-ok-${idx}" style="background:var(--bg4);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:7px 10px;font-size:.82em">
-      <option value="">Esito</option>
-      <option value="ok">✅ Vince</option>
-      <option value="ko">❌ Perde</option>
-    </select>
-  `;
-  container.appendChild(div);
-}
-
-function saveYesterday() {
-  const tbody = document.getElementById('ieri-results');
-  tbody.innerHTML = '';
-  let total = 0, wins = 0;
-
-  for (let i = 0; i < yesterdayRows.length; i++) {
-    const match = document.getElementById('yr-match-'+i)?.value || '—';
-    const sel = document.getElementById('yr-sel-'+i)?.value || '—';
-    const odds = parseFloat(document.getElementById('yr-odds-'+i)?.value) || 0;
-    const result = document.getElementById('yr-result-'+i)?.value || '—';
-    const ok = document.getElementById('yr-ok-'+i)?.value || '';
-    if (!match || match === '—') continue;
-    total++;
-    if (ok === 'ok') wins++;
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><strong>${match}</strong></td>
-      <td>${sel}</td>
-      <td>${odds ? '@'+odds.toFixed(2) : '—'}</td>
-      <td>${result}</td>
-      <td>${ok === 'ok' ? '<span class="result-ok">✅ VINCE</span>' : ok === 'ko' ? '<span class="result-ko">❌ PERDE</span>' : '<span class="result-pending">In attesa</span>'}</td>
-    `;
-    tbody.appendChild(tr);
-  }
-
-  if (total > 0) {
-    document.getElementById('stat-total').textContent = total;
-    document.getElementById('stat-winrate').textContent = Math.round(wins/total*100) + '%';
-    document.getElementById('stat-winrate').style.color = wins/total >= 0.6 ? 'var(--green)' : wins/total >= 0.4 ? 'var(--yellow)' : 'var(--red)';
-  }
-
-  document.getElementById('edit-yesterday').style.display = 'none';
-}
-
-// Auto-calc on load with default 40€
-window.addEventListener('load', () => {
-  calcBudget();
-  document.getElementById('calc-results').style.display = 'block';
-});
-
-// Re-calc on Enter key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && document.getElementById('budget-input') === document.activeElement) {
-    calcBudget();
-  }
-});
 </script>
 </body>
 </html>
