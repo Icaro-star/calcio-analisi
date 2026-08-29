@@ -1,458 +1,2108 @@
 <!DOCTYPE html>
 <html lang="it">
-<head><meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Tabella 29 Agosto 2026</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Analisi 29 Agosto 2026</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
 body{background:#0f172a;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;}
 header{background:#1e293b;padding:14px 20px;border-bottom:1px solid #334155;}
-header h1{font-size:1.15rem;font-weight:700;color:#f8fafc;}
-header .sub{color:#94a3b8;font-size:0.79rem;margin-top:3px;}
-.wrap{padding:16px;max-width:1600px;margin:0 auto;overflow-x:auto;}
-.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center;}
-.legend span{font-size:0.75rem;color:#94a3b8;}
-table{width:100%;border-collapse:collapse;min-width:900px;}
-thead tr th{background:#1e293b;padding:9px 10px;text-align:left;font-size:0.72rem;color:#64748b;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;border-bottom:2px solid #334155;}
-tbody tr td{padding:9px 10px;border-bottom:1px solid #1a2234;vertical-align:middle;}
-tbody tr:hover td{background:rgba(255,255,255,.025);}
-tr.hour-sep td{background:#1e3a5f;color:#93c5fd;font-weight:700;font-size:0.85rem;padding:7px 12px;letter-spacing:.03em;}
-.secca-box{background:#1e293b;border:2px solid #22c55e;border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.secca-box .label{color:#22c55e;font-weight:800;font-size:0.9rem;}
-.secca-box .match{font-weight:700;color:#f8fafc;font-size:1rem;}
-.secca-box .pick{color:#60a5fa;font-weight:700;font-size:1rem;}
-.secca-box .odds{color:#fbbf24;font-weight:800;font-size:1.5rem;}
-.secca-box .why{color:#94a3b8;font-size:0.8rem;max-width:420px;}
-</style>
-</head>
+h1{font-size:1.15rem;font-weight:700;color:#f8fafc;}
+.sub{color:#94a3b8;font-size:0.79rem;margin-top:3px;}
+.tabs{display:flex;gap:4px;padding:8px 14px;background:#1e293b;border-bottom:1px solid #334155;flex-wrap:wrap;}
+.tab{padding:6px 13px;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.81rem;background:#0f172a;color:#94a3b8;border:1px solid #334155;transition:all .15s;}
+.tab.active,.tab:hover{background:#3b82f6;color:#fff;border-color:#3b82f6;}
+.content{display:none;padding:14px;max-width:1440px;margin:0 auto;}
+.content.active{display:block;}
+/* cards */
+.card{background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border:1px solid #2d3748;}
+.card-header{display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap;}
+.league{font-size:0.75rem;color:#94a3b8;}
+.time{font-size:0.81rem;font-weight:700;color:#fbbf24;background:rgba(251,191,36,.1);padding:2px 7px;border-radius:4px;}
+.score-badge{padding:2px 8px;border-radius:12px;font-weight:800;font-size:0.84rem;}
+.tag{padding:2px 8px;border-radius:10px;font-size:0.70rem;font-weight:700;}
+.teams{font-size:1.05rem;font-weight:800;color:#f8fafc;margin-bottom:8px;}
+.vs{color:#64748b;font-weight:400;margin:0 7px;}
+.pick-row{display:flex;align-items:center;gap:9px;margin-bottom:10px;background:rgba(59,130,246,.1);padding:7px 11px;border-radius:6px;flex-wrap:wrap;}
+.pick-label{color:#94a3b8;font-size:0.79rem;}
+.pick-val{font-weight:700;color:#60a5fa;}
+.odds-val{font-weight:800;color:#fbbf24;font-size:1.0rem;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;}
+.info-block{background:#0f172a;border-radius:6px;padding:9px;}
+.full-width{grid-column:1/-1;}
+.info-title{font-size:0.70rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px;}
+.info-block div,.info-block td{font-size:0.78rem;color:#cbd5e1;line-height:1.5;}
+.info-block th{padding:3px 7px;color:#64748b;font-size:0.70rem;}
+.info-block td{padding:3px 7px;border-bottom:1px solid #1e293b;}
+.pick-angoli{color:#22c55e;font-weight:700;margin-top:3px;}
+.blocchi-row{margin:8px 0;padding:6px 10px;background:rgba(59,130,246,.08);border-radius:5px;font-size:0.77rem;color:#93c5fd;}
+.note-row{margin-top:8px;padding:6px 10px;background:rgba(99,102,241,.1);border-radius:6px;color:#a5b4fc;font-size:0.77rem;}
+.section-title{font-size:0.9rem;font-weight:700;color:#94a3b8;margin:14px 0 8px;padding-bottom:5px;border-bottom:1px solid #334155;}
+/* secca */
+.secca-box{background:#1e293b;border:2px solid #22c55e;border-radius:10px;padding:13px 17px;margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.sl{color:#22c55e;font-weight:800;font-size:0.88rem;}
+.sm{font-weight:700;color:#f8fafc;}
+.sp{color:#60a5fa;font-weight:700;}
+.so{color:#fbbf24;font-weight:800;font-size:1.45rem;}
+.sw{color:#94a3b8;font-size:0.79rem;max-width:420px;}
+/* sistema */
+.sistema-box{background:#1e293b;border-radius:10px;padding:17px;margin-bottom:16px;border:2px solid #3b82f6;}
+.sistema-box h3{font-size:1.0rem;font-weight:800;color:#60a5fa;margin-bottom:12px;}
+.fissa-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(34,197,94,.12);padding:10px;border-radius:8px;margin-bottom:10px;}
+.sistema-table{width:100%;border-collapse:collapse;}
+.sistema-table th{background:#0f172a;padding:6px 10px;text-align:left;font-size:0.70rem;color:#64748b;}
+.sistema-table td{padding:7px 10px;border-bottom:1px solid #0f172a;font-size:0.79rem;vertical-align:top;}
+/* tabella */
+.wrap-table{overflow-x:auto;}
+table.ptable{width:100%;border-collapse:collapse;min-width:850px;}
+table.ptable thead th{background:#1e293b;padding:8px 10px;text-align:left;font-size:0.69rem;color:#64748b;text-transform:uppercase;border-bottom:2px solid #334155;white-space:nowrap;}
+table.ptable tbody td{padding:8px 10px;border-bottom:1px solid #1a2234;vertical-align:middle;}
+table.ptable tbody tr:hover td{background:rgba(255,255,255,.025);}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
+.legend span{font-size:0.73rem;color:#94a3b8;}</style></head>
 <body>
 <header>
-  <h1>⚽ 29 Agosto 2026 — Top 3 pick per partita (ordine orario)</h1>
-  <div class="sub">① = migliore &nbsp;|&nbsp; ② = seconda scelta &nbsp;|&nbsp; ③ = terza scelta &nbsp;|&nbsp; Score = affidabilità 0-100</div>
+  <h1>⚽ Analisi 29 Agosto 2026 — Tutti i campionati</h1>
+  <div class="sub">Championship · League One/Two · Allsvenskan · Bundesliga · PL · Serie A/B · La Liga · La Liga 2 · Süper Lig · Jupiler Pro · Ligue 1 · Ekstraklasa · Scottish Prem</div>
 </header>
-<div class="wrap">
+<div class="tabs">
+  <div class="tab active" onclick="show('home',this)">🏠 Sistema &amp; Secca</div>
+  <div class="tab" onclick="show('tab',this)">📋 Tabella top 3</div>
+  <div class="tab" onclick="show('analisi',this)">📊 Analisi completa</div>
+</div>
 
-  <!-- SECCA DEL GIORNO -->
+<div id="home" class="content active">
   <div class="secca-box">
-    <span class="label">🎯 SECCA DEL GIORNO</span>
-    <span class="match">Juventus vs Parma &nbsp;·&nbsp; 20:45 · Serie A</span>
-    <span class="pick">Juventus -1 AH</span>
-    <span class="odds">@1.73</span>
-    <span class="why">Parma 0 gol in 5 trasferte SA | 0% win away | xG away 0.39 (peggiore SA) | Juve 10W-7D-2L in casa | EV stimato +18% su quota di mercato</span>
+  <span class="sl">🎯 SECCA DEL GIORNO</span>
+  <span class="sm">Juventus vs Parma &nbsp;·&nbsp; ore 20:45 · Serie A</span>
+  <span class="sp">Juventus -1 AH</span>
+  <span class="so">@1.73</span>
+  <span class="sw">Parma 0 gol in 5 trasferte SA · 0% win away · xG away 0.39 (pegg. SA) · Juve 10W-7D-2L casa · Fourneau 7W Juve in 9 · EV stimato +18%</span>
+</div>
+  <div class="sistema-box">
+  <h3>🎯 Sistema 2/3 — 29 Agosto 2026</h3>
+  <div class="fissa-row">
+    <span style='color:#22c55e;font-weight:700;font-size:0.85rem;'>⭐ FISSA (80%)</span>
+    <span style='font-weight:700;'>RB Leipzig vs B. M'Gladbach</span>
+    <span style='color:#60a5fa;font-weight:700;'>Leipzig 1</span>
+    <span style='color:#fbbf24;font-weight:800;font-size:1.3rem;'>@1.57</span>
+    <span style='color:#64748b;font-size:0.79rem;'>8W-0D-0L HOME vs Gladbach | Gladbach 0W in 8 trasferte BL</span>
   </div>
-
-  <!-- LEGENDA -->
-  <div class="legend">
-    <span>Legenda:</span>
-    <span style='background:#22c55e;color:#000;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.72rem;'>FISSA ⭐ / TOP PICK</span>
-    <span style='background:#8b5cf6;color:#fff;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.72rem;'>SISTEMA</span>
-    <span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.72rem;'>BUONA</span>
-    <span style='background:#eab308;color:#000;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.72rem;'>INTERESSANTE</span>
-    <span style='background:#3b82f6;color:#fff;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.72rem;'>ANGOLI</span>
-    <span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.72rem;'>SCARTA</span>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Campionato</th>
-        <th>Partita</th>
-        <th style='text-align:center;'>Score</th>
-        <th style='text-align:center;'>Tipo</th>
-        <th>① Miglior pick</th><th>Quota</th>
-        <th>② 2ª scelta</th><th>Quota</th>
-        <th>③ 3ª scelta</th><th>Quota</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class='hour-sep'><td colspan='10'>🕐 13:30</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Championship 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Wolverhampton</b> <span style='color:#475569;'>vs</span> <b>Stoke City</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>72</td>
-      <td style='text-align:center;'><span style='background:#475569;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Wolves)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.55</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.40</td>
-      <td><b style='color:#64748b;'>③</b> Wolves -0.5 AH</td>
-      <td style='color:#64748b;font-weight:600;'>~1.75</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>League One 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Blackpool</b> <span style='color:#475569;'>vs</span> <b>Peterborough</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>55</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1X</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.40</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 2.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.80</td>
-      <td><b style='color:#64748b;'>③</b> 1 (Blackpool)</td>
-      <td style='color:#64748b;font-weight:600;'>1.75</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Barnet</b> <span style='color:#475569;'>vs</span> <b>Cheltenham</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>52</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Barnet)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.62</td>
-      <td><b style='color:#94a3b8;'>②</b> 1X</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.30</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.55</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 14:00</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>1st Div. 🇩🇰</td>
-      <td><b>Aalborg BK</b> <span style='color:#475569;'>vs</span> <b>HB Koge</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>65</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Aalborg)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.60</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.45</td>
-      <td><b style='color:#64748b;'>③</b> 1X</td>
-      <td style='color:#64748b;font-weight:600;'>~1.35</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 15:00</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Allsvenskan 🇸🇪</td>
-      <td><b>IF Elfsborg</b> <span style='color:#475569;'>vs</span> <b>Degerfors IF</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>73</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Elfsborg)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.57</td>
-      <td><b style='color:#94a3b8;'>②</b> Elfsborg -0.5 AH</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.75</td>
-      <td><b style='color:#64748b;'>③</b> Over 2.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.70</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 15:30</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Bundesliga 🇩🇪</td>
-      <td><b>RB Leipzig</b> <span style='color:#475569;'>vs</span> <b>B. M'Gladbach</b></td>
-      <td style='color:#22c55e;font-weight:800;text-align:center;'>78</td>
-      <td style='text-align:center;'><span style='background:#22c55e;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>FISSA ⭐</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Leipzig)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.57</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 2.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>1.45</td>
-      <td><b style='color:#64748b;'>③</b> Leipzig -0.5 AH</td>
-      <td style='color:#64748b;font-weight:600;'>~1.68</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 16:00</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Bournemouth</b> <span style='color:#475569;'>vs</span> <b>Everton</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>63</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1X</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.45</td>
-      <td><b style='color:#94a3b8;'>②</b> Under 2.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.70</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.58</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Championship 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Norwich City</b> <span style='color:#475569;'>vs</span> <b>Burnley</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> X2</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.50</td>
-      <td><b style='color:#94a3b8;'>②</b> 2 (Burnley)</td>
-      <td style='color:#94a3b8;font-weight:600;'>3.00</td>
-      <td><b style='color:#64748b;'>③</b> Under 2.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.85</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>League One 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Sheffield Wed</b> <span style='color:#475569;'>vs</span> <b>Bromley</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Sheff.Wed)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.83</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.42</td>
-      <td><b style='color:#64748b;'>③</b> Over 2.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.80</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Grimsby Town</b> <span style='color:#475569;'>vs</span> <b>Fleetwood</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>52</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Grimsby)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.85</td>
-      <td><b style='color:#94a3b8;'>②</b> 1X</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.42</td>
-      <td><b style='color:#64748b;'>③</b> BTTS Sì</td>
-      <td style='color:#64748b;font-weight:600;'>~1.90</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Oldham Athletic</b> <span style='color:#475569;'>vs</span> <b>Swindon Town</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>52</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1X</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.38</td>
-      <td><b style='color:#94a3b8;'>②</b> 1 (Oldham)</td>
-      <td style='color:#94a3b8;font-weight:600;'>1.91</td>
-      <td><b style='color:#64748b;'>③</b> X2</td>
-      <td style='color:#64748b;font-weight:600;'>~1.62</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Sc. Premiership 🏴󠁧󠁢󠁳󠁣󠁴󠁿</td>
-      <td><b>Hearts</b> <span style='color:#475569;'>vs</span> <b>St. Johnstone</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Hearts)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.73</td>
-      <td><b style='color:#94a3b8;'>②</b> BTTS No</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.75</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.50</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Scozia: L1 🏴󠁧󠁢󠁳󠁣󠁴󠁿</td>
-      <td><b>Hamilton Acad.</b> <span style='color:#475569;'>vs</span> <b>Cove Rangers</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>50</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Hamilton)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.53</td>
-      <td><b style='color:#94a3b8;'>②</b> 1X</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.22</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.48</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 17:30</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Ekstraklasa 🇵🇱</td>
-      <td><b>Wisla Krakow</b> <span style='color:#475569;'>vs</span> <b>Wieczysta Kr.</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>58</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> Over 2.5</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.90</td>
-      <td><b style='color:#94a3b8;'>②</b> 1 (Wisla)</td>
-      <td style='color:#94a3b8;font-weight:600;'>1.73</td>
-      <td><b style='color:#64748b;'>③</b> 1X</td>
-      <td style='color:#64748b;font-weight:600;'>~1.42</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 18:30</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>2.Bundesliga 🇩🇪</td>
-      <td><b>Borussia Dortmund</b> <span style='color:#475569;'>vs</span> <b>Hamburger SV</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>74</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> BVB 1PT</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.65</td>
-      <td><b style='color:#94a3b8;'>②</b> BVB -0.5 AH</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.55</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.40</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie A 🇮🇹</td>
-      <td><b>Fiorentina</b> <span style='color:#475569;'>vs</span> <b>Frosinone</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Fiorentina)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.62</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.38</td>
-      <td><b style='color:#64748b;'>③</b> BTTS Sì</td>
-      <td style='color:#64748b;font-weight:600;'>~1.75</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
-      <td><b>Tottenham</b> <span style='color:#475569;'>vs</span> <b>Newcastle Utd</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>73</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> BTTS Sì</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.68</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 2.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>1.65</td>
-      <td><b style='color:#64748b;'>③</b> 1X</td>
-      <td style='color:#64748b;font-weight:600;'>~1.57</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 19:00</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie B 🇮🇹</td>
-      <td><b>Sampdoria</b> <span style='color:#475569;'>vs</span> <b>Juve Stabia</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>65</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Sampdoria)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.85</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.45</td>
-      <td><b style='color:#64748b;'>③</b> 1X</td>
-      <td style='color:#64748b;font-weight:600;'>~1.40</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>La Liga 🇪🇸</td>
-      <td><b>Real Sociedad</b> <span style='color:#475569;'>vs</span> <b>Españyol</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (R.Sociedad)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.86</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.42</td>
-      <td><b style='color:#64748b;'>③</b> R.Soc. -0.5 AH</td>
-      <td style='color:#64748b;font-weight:600;'>~1.90</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>La Liga 2 🇪🇸</td>
-      <td><b>Albacete</b> <span style='color:#475569;'>vs</span> <b>Real Oviedo</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>55</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> X (pari)</td>
-      <td style='color:#fbbf24;font-weight:700;'>3.20</td>
-      <td><b style='color:#94a3b8;'>②</b> X2</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.65</td>
-      <td><b style='color:#64748b;'>③</b> Under 2.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.80</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>La Liga 2 🇪🇸</td>
-      <td><b>Leganés</b> <span style='color:#475569;'>vs</span> <b>Eldense</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>63</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Leganés)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.90</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.45</td>
-      <td><b style='color:#64748b;'>③</b> BTTS No</td>
-      <td style='color:#64748b;font-weight:600;'>~1.75</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 20:30</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Süper Lig 🇹🇷</td>
-      <td><b>Galatasaray</b> <span style='color:#475569;'>vs</span> <b>Göztepe SK</b></td>
-      <td style='color:#22c55e;font-weight:800;text-align:center;'>76</td>
-      <td style='text-align:center;'><span style='background:#8b5cf6;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SISTEMA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> Gala 1PT</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.75</td>
-      <td><b style='color:#94a3b8;'>②</b> Gala -1 AH</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.85</td>
-      <td><b style='color:#64748b;'>③</b> 1 (Galatasaray)</td>
-      <td style='color:#64748b;font-weight:600;'>1.42</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 20:45</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Jupiler Pro 🇧🇪</td>
-      <td><b>Cercle Brugge</b> <span style='color:#475569;'>vs</span> <b>Lommel SK</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>67</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Cercle)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.53</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.45</td>
-      <td><b style='color:#64748b;'>③</b> BTTS No</td>
-      <td style='color:#64748b;font-weight:600;'>~1.80</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Ligue 1 🇫🇷</td>
-      <td><b>Olympique Lyon</b> <span style='color:#475569;'>vs</span> <b>Le Havre AC</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>72</td>
-      <td style='text-align:center;'><span style='background:#8b5cf6;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SISTEMA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> Lyon 1PT</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.80</td>
-      <td><b style='color:#94a3b8;'>②</b> Lyon -1 AH</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.85</td>
-      <td><b style='color:#64748b;'>③</b> 1 (Lyon)</td>
-      <td style='color:#64748b;font-weight:600;'>1.46</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Bundesliga 🇩🇪</td>
-      <td><b>Elversberg</b> <span style='color:#475569;'>vs</span> <b>Bayer Leverkusen</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 2 (Leverkusen)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.55</td>
-      <td><b style='color:#94a3b8;'>②</b> Lev. -0.5 AH</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.65</td>
-      <td><b style='color:#64748b;'>③</b> Over 2.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.75</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Bundesliga 🇩🇪</td>
-      <td><b>Union Berlin</b> <span style='color:#475569;'>vs</span> <b>Eintracht Fr.</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>70</td>
-      <td style='text-align:center;'><span style='background:#3b82f6;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>ANGOLI</span></td>
-      <td><b style='color:#fbbf24;'>①</b> Under 9.5 ang.</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.80</td>
-      <td><b style='color:#94a3b8;'>②</b> BTTS No</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.70</td>
-      <td><b style='color:#64748b;'>③</b> 1X (Union)</td>
-      <td style='color:#64748b;font-weight:600;'>~1.62</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Bundesliga 🇩🇪</td>
-      <td><b>Mainz 05</b> <span style='color:#475569;'>vs</span> <b>SC Paderborn</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>72</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Mainz)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.68</td>
-      <td><b style='color:#94a3b8;'>②</b> Over 1.5</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.45</td>
-      <td><b style='color:#64748b;'>③</b> Mainz 1ST</td>
-      <td style='color:#64748b;font-weight:600;'>~1.85</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie A 🇮🇹</td>
-      <td><b>Monza</b> <span style='color:#475569;'>vs</span> <b>Udinese</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> Under 2.5</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.60</td>
-      <td><b style='color:#94a3b8;'>②</b> BTTS No</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.75</td>
-      <td><b style='color:#64748b;'>③</b> X (pari)</td>
-      <td style='color:#64748b;font-weight:600;'>3.15</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie A 🇮🇹</td>
-      <td><b>Sassuolo</b> <span style='color:#475569;'>vs</span> <b>Torino</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>65</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> BTTS Sì</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.75</td>
-      <td><b style='color:#94a3b8;'>②</b> 2 (Torino)</td>
-      <td style='color:#94a3b8;font-weight:600;'>2.50</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.40</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie B 🇮🇹</td>
-      <td><b>Ascoli Calcio</b> <span style='color:#475569;'>vs</span> <b>Carrarese</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1X (Ascoli)</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.50</td>
-      <td><b style='color:#94a3b8;'>②</b> 1 (Ascoli)</td>
-      <td style='color:#94a3b8;font-weight:600;'>1.91</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.45</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>La Liga 🇪🇸</td>
-      <td><b>Sevilla</b> <span style='color:#475569;'>vs</span> <b>Atlético Madrid</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>66</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> X2</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.40</td>
-      <td><b style='color:#94a3b8;'>②</b> Atlético -0.5 AH</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.75</td>
-      <td><b style='color:#64748b;'>③</b> Under 2.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.65</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 21:00</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie B 🇮🇹</td>
-      <td><b>Padova</b> <span style='color:#475569;'>vs</span> <b>Hellas Verona</b></td>
-      <td style='color:#eab308;font-weight:800;text-align:center;'>67</td>
-      <td style='text-align:center;'><span style='background:#6366f1;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>BUONA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> X2</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.55</td>
-      <td><b style='color:#94a3b8;'>②</b> 2 (Verona)</td>
-      <td style='color:#94a3b8;font-weight:600;'>2.45</td>
-      <td><b style='color:#64748b;'>③</b> BTTS Sì</td>
-      <td style='color:#64748b;font-weight:600;'>~1.90</td>
-    </tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie B 🇮🇹</td>
-      <td><b>Köln</b> <span style='color:#475569;'>vs</span> <b>Hoffenheim</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>63</td>
-      <td style='text-align:center;'><span style='background:#6b7280;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>SCARTA</span></td>
-      <td><b style='color:#fbbf24;'>①</b> X2</td>
-      <td style='color:#fbbf24;font-weight:700;'>~1.58</td>
-      <td><b style='color:#94a3b8;'>②</b> 2 (Hoffenheim)</td>
-      <td style='color:#94a3b8;font-weight:600;'>2.28</td>
-      <td><b style='color:#64748b;'>③</b> Under 2.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.65</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 20:45</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>Serie A 🇮🇹</td>
-      <td><b>Juventus</b> <span style='color:#475569;'>vs</span> <b>Parma Calcio</b></td>
-      <td style='color:#22c55e;font-weight:800;text-align:center;'>76</td>
-      <td style='text-align:center;'><span style='background:#22c55e;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>TOP PICK ⭐</span></td>
-      <td><b style='color:#fbbf24;'>①</b> Juve -1 AH</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.73</td>
-      <td><b style='color:#94a3b8;'>②</b> Juve 1PT</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.65</td>
-      <td><b style='color:#64748b;'>③</b> BTTS No</td>
-      <td style='color:#64748b;font-weight:600;'>~1.85</td>
-    </tr><tr class='hour-sep'><td colspan='10'>🕐 21:30</td></tr><tr>
-      <td style='color:#94a3b8;font-size:0.8rem;'>La Liga 2 🇪🇸</td>
-      <td><b>Girona FC</b> <span style='color:#475569;'>vs</span> <b>Las Palmas</b></td>
-      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
-      <td style='text-align:center;'><span style='background:#eab308;color:#000;padding:2px 8px;border-radius:8px;font-size:0.72rem;font-weight:700;white-space:nowrap;'>INTERESSANTE</span></td>
-      <td><b style='color:#fbbf24;'>①</b> 1 (Girona)</td>
-      <td style='color:#fbbf24;font-weight:700;'>1.73</td>
-      <td><b style='color:#94a3b8;'>②</b> 1X</td>
-      <td style='color:#94a3b8;font-weight:600;'>~1.45</td>
-      <td><b style='color:#64748b;'>③</b> Over 1.5</td>
-      <td style='color:#64748b;font-weight:600;'>~1.42</td>
-    </tr>
-    </tbody>
+  <p style='color:#9ca3af;font-size:0.8rem;margin:8px 0 12px;'>Sistema 2/3: vinci se ≥ 2 doppie passano. 20% budget diviso in 3 parti uguali (~6.7% cad.).</p>
+  <table class='sistema-table'>
+    <thead><tr><th></th><th>Selezione 1</th><th>Selezione 2</th><th>Quota comb.</th><th>Stake</th></tr></thead>
+    <tbody><tr><td style='color:#a78bfa;font-weight:700;'>Doppia 1</td>
+          <td><b>Galatasaray 1PT @~1.75</b><br/><span style='color:#64748b;font-size:0.77rem;'>12W-3D-1L H2H | domina 1°T in casa</span></td>
+          <td><b>Lyon 1 @1.46</b><br/><span style='color:#64748b;font-size:0.77rem;'>8W-1D-1L casa vs Le Havre | top L1</span></td>
+          <td style='color:#fbbf24;font-weight:700;'>2.55</td>
+          <td style='color:#94a3b8;'>~6.7% budget</td></tr><tr><td style='color:#a78bfa;font-weight:700;'>Doppia 2</td>
+          <td><b>Elfsborg 1 @1.57</b><br/><span style='color:#64748b;font-size:0.77rem;'>Top Allsvenskan vs Degerfors (lotta salvezza)</span></td>
+          <td><b>Real Sociedad 1 @1.86</b><br/><span style='color:#64748b;font-size:0.77rem;'>Top 6 La Liga in casa | @1.86 = ottimo valore</span></td>
+          <td style='color:#fbbf24;font-weight:700;'>2.92</td>
+          <td style='color:#94a3b8;'>~6.7% budget</td></tr><tr><td style='color:#a78bfa;font-weight:700;'>Doppia 3</td>
+          <td><b>Wolves 1 @1.55</b><br/><span style='color:#64748b;font-size:0.77rem;'>Ex-PL team in Championship vs Stoke</span></td>
+          <td><b>Fiorentina 1 @1.62</b><br/><span style='color:#64748b;font-size:0.77rem;'>Reazione post 0-4 | Frosinone neopromossa SA</span></td>
+          <td style='color:#fbbf24;font-weight:700;'>2.51</td>
+          <td style='color:#94a3b8;'>~6.7% budget</td></tr></tbody>
   </table>
 </div>
-</body>
-</html>
+</div>
+
+<div id="tab" class="content">
+  <div class="legend">
+    <span>Legenda:</span>
+    <span style='background:#22c55e;color:#000;padding:2px 7px;border-radius:6px;font-weight:700;font-size:0.70rem;'>FISSA ⭐ / TOP PICK</span>
+    <span style='background:#8b5cf6;color:#fff;padding:2px 7px;border-radius:6px;font-weight:700;font-size:0.70rem;'>SISTEMA</span>
+    <span style='background:#6366f1;color:#fff;padding:2px 7px;border-radius:6px;font-weight:700;font-size:0.70rem;'>BUONA</span>
+    <span style='background:#eab308;color:#000;padding:2px 7px;border-radius:6px;font-weight:700;font-size:0.70rem;'>INTERESSANTE</span>
+    <span style='background:#3b82f6;color:#fff;padding:2px 7px;border-radius:6px;font-weight:700;font-size:0.70rem;'>ANGOLI</span>
+    <span style='background:#6b7280;color:#fff;padding:2px 7px;border-radius:6px;font-weight:700;font-size:0.70rem;'>SCARTA</span>
+  </div>
+  <div class="wrap-table">
+  <table class="ptable">
+    <thead><tr>
+      <th>Campionato</th><th>Partita</th>
+      <th style='text-align:center;'>Score</th><th style='text-align:center;'>Tipo</th>
+      <th>① Miglior pick</th><th>Quota</th>
+      <th>② 2ª scelta</th><th>Quota</th>
+      <th>③ 3ª scelta</th><th>Quota</th>
+    </tr></thead>
+    <tbody><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 13:30</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Championship 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Wolverhampton</b> <span style='color:#475569;'>vs</span> <b>Stoke City</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>72</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>1 (Wolves)</b></td><td style='color:#fbbf24;font-weight:700;'>1.55</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.40</td>
+      <td style='color:#64748b;'>③ Wolves -0.5 AH</td><td style='color:#64748b;font-weight:600;'>~1.75</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>League One 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Blackpool</b> <span style='color:#475569;'>vs</span> <b>Peterborough</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>55</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>1X</b></td><td style='color:#fbbf24;font-weight:700;'>~1.40</td>
+      <td style='color:#94a3b8;'>② Over 2.5</td><td style='color:#94a3b8;font-weight:600;'>~1.80</td>
+      <td style='color:#64748b;'>③ 1</td><td style='color:#64748b;font-weight:600;'>1.75</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Barnet</b> <span style='color:#475569;'>vs</span> <b>Cheltenham</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>52</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.62</td>
+      <td style='color:#94a3b8;'>② 1X</td><td style='color:#94a3b8;font-weight:600;'>~1.30</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.55</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 14:00</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>1st Div. 🇩🇰</td>
+      <td><b>Aalborg BK</b> <span style='color:#475569;'>vs</span> <b>HB Koge</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>65</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.60</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.45</td>
+      <td style='color:#64748b;'>③ 1X</td><td style='color:#64748b;font-weight:600;'>~1.35</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 15:00</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Allsvenskan 🇸🇪</td>
+      <td><b>IF Elfsborg</b> <span style='color:#475569;'>vs</span> <b>Degerfors IF</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>73</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.57</td>
+      <td style='color:#94a3b8;'>② Elfsborg -0.5 AH</td><td style='color:#94a3b8;font-weight:600;'>~1.75</td>
+      <td style='color:#64748b;'>③ Over 2.5</td><td style='color:#64748b;font-weight:600;'>~1.70</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 15:30</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Bundesliga 🇩🇪</td>
+      <td><b>RB Leipzig</b> <span style='color:#475569;'>vs</span> <b>B. M'Gladbach</b></td>
+      <td style='color:#22c55e;font-weight:800;text-align:center;'>78</td>
+      <td style='text-align:center;'><span class='tag' style='background:#22c55e;color:#000;'>FISSA ⭐</span></td>
+      <td>① <b>1 (Leipzig)</b></td><td style='color:#fbbf24;font-weight:700;'>1.57</td>
+      <td style='color:#94a3b8;'>② Over 2.5</td><td style='color:#94a3b8;font-weight:600;'>1.45</td>
+      <td style='color:#64748b;'>③ Leipzig -0.5 AH</td><td style='color:#64748b;font-weight:600;'>~1.68</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 16:00</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Bournemouth</b> <span style='color:#475569;'>vs</span> <b>Everton</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>63</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>1X</b></td><td style='color:#fbbf24;font-weight:700;'>~1.45</td>
+      <td style='color:#94a3b8;'>② Under 2.5</td><td style='color:#94a3b8;font-weight:600;'>~1.70</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.58</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Championship 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Norwich</b> <span style='color:#475569;'>vs</span> <b>Burnley</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>X2</b></td><td style='color:#fbbf24;font-weight:700;'>~1.50</td>
+      <td style='color:#94a3b8;'>② 2 (Burnley)</td><td style='color:#94a3b8;font-weight:600;'>3.00</td>
+      <td style='color:#64748b;'>③ Under 2.5</td><td style='color:#64748b;font-weight:600;'>~1.85</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>League One 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Sheffield Wed</b> <span style='color:#475569;'>vs</span> <b>Bromley</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>1 (Sheff.Wed)</b></td><td style='color:#fbbf24;font-weight:700;'>1.83</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.42</td>
+      <td style='color:#64748b;'>③ Over 2.5</td><td style='color:#64748b;font-weight:600;'>~1.80</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Grimsby</b> <span style='color:#475569;'>vs</span> <b>Fleetwood</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>52</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.85</td>
+      <td style='color:#94a3b8;'>② 1X</td><td style='color:#94a3b8;font-weight:600;'>~1.42</td>
+      <td style='color:#64748b;'>③ BTTS</td><td style='color:#64748b;font-weight:600;'>~1.90</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Oldham</b> <span style='color:#475569;'>vs</span> <b>Swindon</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>52</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>1X</b></td><td style='color:#fbbf24;font-weight:700;'>~1.38</td>
+      <td style='color:#94a3b8;'>② 1</td><td style='color:#94a3b8;font-weight:600;'>1.91</td>
+      <td style='color:#64748b;'>③ X2</td><td style='color:#64748b;font-weight:600;'>~1.62</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Sc. Prem. 🏴󠁧󠁢󠁳󠁣󠁴󠁿</td>
+      <td><b>Hearts</b> <span style='color:#475569;'>vs</span> <b>St. Johnstone</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>1 (Hearts)</b></td><td style='color:#fbbf24;font-weight:700;'>1.73</td>
+      <td style='color:#94a3b8;'>② BTTS No</td><td style='color:#94a3b8;font-weight:600;'>~1.75</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.50</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Scozia L1 🏴󠁧󠁢󠁳󠁣󠁴󠁿</td>
+      <td><b>Hamilton</b> <span style='color:#475569;'>vs</span> <b>Cove Rangers</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>50</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.53</td>
+      <td style='color:#94a3b8;'>② 1X</td><td style='color:#94a3b8;font-weight:600;'>~1.22</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.48</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 17:30</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Ekstraklasa 🇵🇱</td>
+      <td><b>Wisla Krakow</b> <span style='color:#475569;'>vs</span> <b>Wieczysta Kr.</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>58</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>Over 2.5</b></td><td style='color:#fbbf24;font-weight:700;'>~1.90</td>
+      <td style='color:#94a3b8;'>② 1</td><td style='color:#94a3b8;font-weight:600;'>1.73</td>
+      <td style='color:#64748b;'>③ 1X</td><td style='color:#64748b;font-weight:600;'>~1.42</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 18:30</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>2.Bundesliga 🇩🇪</td>
+      <td><b>BVB</b> <span style='color:#475569;'>vs</span> <b>Hamburger SV</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>74</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>BVB 1PT</b></td><td style='color:#fbbf24;font-weight:700;'>~1.65</td>
+      <td style='color:#94a3b8;'>② BVB -0.5 AH</td><td style='color:#94a3b8;font-weight:600;'>~1.55</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.40</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Serie A 🇮🇹</td>
+      <td><b>Fiorentina</b> <span style='color:#475569;'>vs</span> <b>Frosinone</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>1 (Fiorentina)</b></td><td style='color:#fbbf24;font-weight:700;'>1.62</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.38</td>
+      <td style='color:#64748b;'>③ BTTS Sì</td><td style='color:#64748b;font-weight:600;'>~1.75</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</td>
+      <td><b>Tottenham</b> <span style='color:#475569;'>vs</span> <b>Newcastle Utd</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>73</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>BTTS Sì</b></td><td style='color:#fbbf24;font-weight:700;'>1.68</td>
+      <td style='color:#94a3b8;'>② Over 2.5</td><td style='color:#94a3b8;font-weight:600;'>1.65</td>
+      <td style='color:#64748b;'>③ 1X</td><td style='color:#64748b;font-weight:600;'>~1.57</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 19:00</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Serie B 🇮🇹</td>
+      <td><b>Sampdoria</b> <span style='color:#475569;'>vs</span> <b>Juve Stabia</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>65</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.85</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.45</td>
+      <td style='color:#64748b;'>③ 1X</td><td style='color:#64748b;font-weight:600;'>~1.40</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>La Liga 🇪🇸</td>
+      <td><b>Real Sociedad</b> <span style='color:#475569;'>vs</span> <b>Españyol</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>1 (R.Soc.)</b></td><td style='color:#fbbf24;font-weight:700;'>1.86</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.42</td>
+      <td style='color:#64748b;'>③ Soc. -0.5 AH</td><td style='color:#64748b;font-weight:600;'>~1.90</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>La Liga 2 🇪🇸</td>
+      <td><b>Albacete</b> <span style='color:#475569;'>vs</span> <b>Real Oviedo</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>55</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>X</b></td><td style='color:#fbbf24;font-weight:700;'>3.20</td>
+      <td style='color:#94a3b8;'>② X2</td><td style='color:#94a3b8;font-weight:600;'>~1.65</td>
+      <td style='color:#64748b;'>③ Under 2.5</td><td style='color:#64748b;font-weight:600;'>~1.80</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>La Liga 2 🇪🇸</td>
+      <td><b>Leganés</b> <span style='color:#475569;'>vs</span> <b>Eldense</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>63</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.90</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.45</td>
+      <td style='color:#64748b;'>③ BTTS No</td><td style='color:#64748b;font-weight:600;'>~1.75</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 20:30</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Süper Lig 🇹🇷</td>
+      <td><b>Galatasaray</b> <span style='color:#475569;'>vs</span> <b>Göztepe SK</b></td>
+      <td style='color:#22c55e;font-weight:800;text-align:center;'>76</td>
+      <td style='text-align:center;'><span class='tag' style='background:#8b5cf6;color:#fff;'>SISTEMA</span></td>
+      <td>① <b>Gala 1PT</b></td><td style='color:#fbbf24;font-weight:700;'>~1.75</td>
+      <td style='color:#94a3b8;'>② Gala -1 AH</td><td style='color:#94a3b8;font-weight:600;'>~1.85</td>
+      <td style='color:#64748b;'>③ Over 2.5</td><td style='color:#64748b;font-weight:600;'>~1.65</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 20:45</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Jupiler Pro 🇧🇪</td>
+      <td><b>Cercle Brugge</b> <span style='color:#475569;'>vs</span> <b>Lommel SK</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>67</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>1</b></td><td style='color:#fbbf24;font-weight:700;'>1.53</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.45</td>
+      <td style='color:#64748b;'>③ BTTS No</td><td style='color:#64748b;font-weight:600;'>~1.80</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Ligue 1 🇫🇷</td>
+      <td><b>Olympique Lyon</b> <span style='color:#475569;'>vs</span> <b>Le Havre AC</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>72</td>
+      <td style='text-align:center;'><span class='tag' style='background:#8b5cf6;color:#fff;'>SISTEMA</span></td>
+      <td>① <b>Lyon 1PT</b></td><td style='color:#fbbf24;font-weight:700;'>~1.80</td>
+      <td style='color:#94a3b8;'>② Lyon -1 AH</td><td style='color:#94a3b8;font-weight:600;'>~1.85</td>
+      <td style='color:#64748b;'>③ Over 2.5</td><td style='color:#64748b;font-weight:600;'>~1.65</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Bundesliga 🇩🇪</td>
+      <td><b>Elversberg</b> <span style='color:#475569;'>vs</span> <b>Bayer Leverkusen</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>68</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>2 (Leverkusen)</b></td><td style='color:#fbbf24;font-weight:700;'>1.55</td>
+      <td style='color:#94a3b8;'>② Lev. -0.5 AH</td><td style='color:#94a3b8;font-weight:600;'>~1.65</td>
+      <td style='color:#64748b;'>③ Over 2.5</td><td style='color:#64748b;font-weight:600;'>~1.75</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Bundesliga 🇩🇪</td>
+      <td><b>Union Berlin</b> <span style='color:#475569;'>vs</span> <b>Eintracht Fr.</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>70</td>
+      <td style='text-align:center;'><span class='tag' style='background:#3b82f6;color:#fff;'>ANGOLI</span></td>
+      <td>① <b>Under 9.5 ang.</b></td><td style='color:#fbbf24;font-weight:700;'>~1.80</td>
+      <td style='color:#94a3b8;'>② BTTS No</td><td style='color:#94a3b8;font-weight:600;'>~1.70</td>
+      <td style='color:#64748b;'>③ Under 2.5</td><td style='color:#64748b;font-weight:600;'>~1.65</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Bundesliga 🇩🇪</td>
+      <td><b>Mainz 05</b> <span style='color:#475569;'>vs</span> <b>SC Paderborn</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>72</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>1 (Mainz)</b></td><td style='color:#fbbf24;font-weight:700;'>1.68</td>
+      <td style='color:#94a3b8;'>② Over 1.5</td><td style='color:#94a3b8;font-weight:600;'>~1.45</td>
+      <td style='color:#64748b;'>③ Mainz 1ST</td><td style='color:#64748b;font-weight:600;'>~1.85</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Serie A 🇮🇹</td>
+      <td><b>Monza</b> <span style='color:#475569;'>vs</span> <b>Udinese</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>Under 2.5</b></td><td style='color:#fbbf24;font-weight:700;'>1.60</td>
+      <td style='color:#94a3b8;'>② BTTS No</td><td style='color:#94a3b8;font-weight:600;'>~1.75</td>
+      <td style='color:#64748b;'>③ X2</td><td style='color:#64748b;font-weight:600;'>~1.72</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Serie A 🇮🇹</td>
+      <td><b>Sassuolo</b> <span style='color:#475569;'>vs</span> <b>Torino</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>65</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>BTTS Sì</b></td><td style='color:#fbbf24;font-weight:700;'>1.75</td>
+      <td style='color:#94a3b8;'>② 2 (Torino)</td><td style='color:#94a3b8;font-weight:600;'>2.50</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.40</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>La Liga 🇪🇸</td>
+      <td><b>Sevilla</b> <span style='color:#475569;'>vs</span> <b>Atlético Madrid</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>66</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>X2</b></td><td style='color:#fbbf24;font-weight:700;'>~1.40</td>
+      <td style='color:#94a3b8;'>② Atlético AH</td><td style='color:#94a3b8;font-weight:600;'>~1.75</td>
+      <td style='color:#64748b;'>③ Under 2.5</td><td style='color:#64748b;font-weight:600;'>~1.65</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Serie A 🇮🇹</td>
+      <td><b>Juventus</b> <span style='color:#475569;'>vs</span> <b>Parma Calcio</b></td>
+      <td style='color:#22c55e;font-weight:800;text-align:center;'>76</td>
+      <td style='text-align:center;'><span class='tag' style='background:#22c55e;color:#000;'>TOP PICK ⭐</span></td>
+      <td>① <b>Juve -1 AH ⭐</b></td><td style='color:#fbbf24;font-weight:700;'>1.73</td>
+      <td style='color:#94a3b8;'>② Juve 1PT</td><td style='color:#94a3b8;font-weight:600;'>~1.65</td>
+      <td style='color:#64748b;'>③ BTTS No</td><td style='color:#64748b;font-weight:600;'>~1.85</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 21:00</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Serie B 🇮🇹</td>
+      <td><b>Ascoli</b> <span style='color:#475569;'>vs</span> <b>Carrarese</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>1X</b></td><td style='color:#fbbf24;font-weight:700;'>~1.50</td>
+      <td style='color:#94a3b8;'>② 1</td><td style='color:#94a3b8;font-weight:600;'>1.91</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.45</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Serie B 🇮🇹</td>
+      <td><b>Padova</b> <span style='color:#475569;'>vs</span> <b>Hellas Verona</b></td>
+      <td style='color:#eab308;font-weight:800;text-align:center;'>67</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6366f1;color:#fff;'>BUONA</span></td>
+      <td>① <b>X2</b></td><td style='color:#fbbf24;font-weight:700;'>~1.55</td>
+      <td style='color:#94a3b8;'>② 2 (Verona)</td><td style='color:#94a3b8;font-weight:600;'>2.45</td>
+      <td style='color:#64748b;'>③ Over 2.5</td><td style='color:#64748b;font-weight:600;'>~1.90</td>
+    </tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>Bundesliga 🇩🇪</td>
+      <td><b>Köln</b> <span style='color:#475569;'>vs</span> <b>Hoffenheim</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>63</td>
+      <td style='text-align:center;'><span class='tag' style='background:#6b7280;color:#fff;'>SCARTA</span></td>
+      <td>① <b>X2</b></td><td style='color:#fbbf24;font-weight:700;'>~1.58</td>
+      <td style='color:#94a3b8;'>② 2 (Hoffenheim)</td><td style='color:#94a3b8;font-weight:600;'>2.28</td>
+      <td style='color:#64748b;'>③ Under 2.5</td><td style='color:#64748b;font-weight:600;'>~1.65</td>
+    </tr><tr style='background:#1e3a5f;'><td colspan='10' style='color:#93c5fd;font-weight:700;padding:6px 12px;font-size:0.84rem;'>🕐 21:30</td></tr><tr>
+      <td style='color:#94a3b8;font-size:0.79rem;white-space:nowrap;'>La Liga 2 🇪🇸</td>
+      <td><b>Girona FC</b> <span style='color:#475569;'>vs</span> <b>Las Palmas</b></td>
+      <td style='color:#ef4444;font-weight:800;text-align:center;'>62</td>
+      <td style='text-align:center;'><span class='tag' style='background:#eab308;color:#000;'>INTERESSANTE</span></td>
+      <td>① <b>1X</b></td><td style='color:#fbbf24;font-weight:700;'>~1.45</td>
+      <td style='color:#94a3b8;'>② 1</td><td style='color:#94a3b8;font-weight:600;'>1.73</td>
+      <td style='color:#64748b;'>③ Over 1.5</td><td style='color:#64748b;font-weight:600;'>~1.42</td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div id="analisi" class="content">
+  <div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 13:30</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Championship 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">13:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">72/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Wolverhampton <span class="vs">vs</span> Stoke City</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Wolves 1</span>
+    <span class="odds-val">@1.55</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC EFL</b> — GJ/g: ~3.50 GJ/g</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>λ≈0.6×(6.0+3.8)=5.9 → ~11 tot</div>
+      <div class="pick-angoli">Over 9.5 est.</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.8 xG (qualità PL)</div><div>Osp: ~1.0 xG</div>
+      <div>SoT: ~14/g | ~9/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare</div>
+      <div><b>Osp:</b> Da verificare</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.55</b> / 4.20 / 5.35</div>
+      <div>O2.5: ~1.75 | U2.5: ~2.00</div>
+      <div>BTTS S/N: ~1.85 / ~1.90</div>
+      <div>AH: Wolves -0.5 ~1.75</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Wolves retrocessi PL — qualità superiore Championship</div>
+      <div><b>Away:</b> Stoke mid-table Championship</div>
+      <div><b>H2H:</b> Wolves dominanti per livello</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Wolves)</b></td><td style='color:#fbbf24;'>1.55</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Retrocessa PL = netta favorita. Quota giusta.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.40</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quasi certezza con qualità Wolves.</td></tr><tr><td><b>Wolves -0.5 AH</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Più valore della 1 pura.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Stoke può segnare 1.</td></tr><tr><td><b>Wolves 1PT</b></td><td style='color:#fbbf24;'>~2.00</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Wolves aggressivi in casa.</td></tr><tr><td><b>Wolves 1ST</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Domina ripresa. Valida.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Wolves ex-PL in Championship = pick solido @1.55.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">League One 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">13:30</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">55/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Blackpool <span class="vs">vs</span> Peterborough</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC EFL</b> — GJ/g: ~3.80</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~8-10 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.75</b> / 3.80 / 4.10</div>
+      <div>O2.5: ~1.80 | U2.5: ~1.95</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D</div>
+      <div><b>Away:</b> N/D</div>
+      <div><b>H2H:</b> N/D</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.40</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Più safe ma bassa. L1 = varianza.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Possibile in L1 ma pochi dati.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 League One — troppa varianza/pochi dati stagionali.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">13:30</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">52/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Barnet <span class="vs">vs</span> Cheltenham</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC EFL</b> — GJ/g: ~4.00</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~7-9 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.62</b> / 3.80 / 5.25</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D</div>
+      <div><b>Away:</b> N/D</div>
+      <div><b>H2H:</b> N/D</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Barnet)</b></td><td style='color:#fbbf24;'>1.62</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>League Two — alta varianza. Evitare.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 League Two — 4° divisione inglese. Evitare.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 14:00</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">1st Division 🇩🇰</span>
+    <span class="time">14:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">65/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Aalborg BK <span class="vs">vs</span> HB Koge</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Aalborg 1</span>
+    <span class="odds-val">@1.60</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC DBU</b> — GJ/g: ~3.20</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.6 xG (top Danish)</div><div>Osp: ~0.8 xG</div>
+      <div>SoT: ~13/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.60</b> / 4.00 / 4.80</div>
+      <div>O2.5: ~1.85 | U2.5: ~1.90</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Aalborg top 3 Danimarca storicamente</div>
+      <div><b>Away:</b> Koge lotta salvezza tipicamente</div>
+      <div><b>H2H:</b> Aalborg favorita nei precedenti</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Aalborg)</b></td><td style='color:#fbbf24;'>1.60</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quota decente per top club danese in casa.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quasi certezza. Aalborg segna sempre.</td></tr><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.35</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Safe ma bassa.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Possibile ma Danish Division spesso chiusa.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Aalborg 1 @1.60 ok. Over 1.5 come alternativa più sicura.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 15:00</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Allsvenskan 🇸🇪</span>
+    <span class="time">15:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">73/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">IF Elfsborg <span class="vs">vs</span> Degerfors IF</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Elfsborg 1</span>
+    <span class="odds-val">@1.57</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC SvFF</b> — GJ/g: ~3.40</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>λ≈0.6×(6.5+3.0)=5.7 → ~11 est.</div>
+      <div class="pick-angoli">Over 9.5 est.</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.9 xG/g (top Allsvenskan)</div><div>Osp: ~0.7 xG (lotta salvezza)</div>
+      <div>SoT: ~14/g | ~7/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.57</b> / 3.80 / 6.00</div>
+      <div>O2.5: ~1.70 | U2.5: ~2.10</div>
+      <div>BTTS S/N: ~1.95 / ~1.80</div>
+      <div>AH: Elfsborg -0.5 ~1.75</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Elfsborg top Allsvenskan | forte in casa</div>
+      <div><b>Away:</b> Degerfors tipicamente fondo classifica</div>
+      <div><b>H2H:</b> Elfsborg dominante nei precedenti</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Elfsborg)</b></td><td style='color:#fbbf24;'>1.57</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Gap enorme vs Degerfors. Top vs bottom.</td></tr><tr><td><b>Elfsborg -0.5 AH</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Più valore. Elfsborg vince raramente di misura vs Degerfors.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.70</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Elfsborg attacca tantissimo, Degerfors difende male.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.38</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quasi certezza. Elfsborg segna sempre.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Degerfors fatica fuori. CS possibile.</td></tr><tr><td><b>Elfsborg 1PT</b></td><td style='color:#fbbf24;'>~2.00</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Parte subito forte.</td></tr><tr><td><b>Elfsborg 1ST</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Domina la ripresa.</td></tr></tbody></table></div>
+  </div>
+  <div class="blocchi-row">A=Mkt(17/25) | B=H2H(15/20) | C=Forma(15/20) | D=Cal(14/20) | E=Disc(12/15)</div>
+  <div class="note-row">💡 Elfsborg 1 @1.57 = pick solido. Gap qualitativo enorme. Over 2.5 ~1.70 come alternativa.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 15:30</div><div class="card" style="border-left:4px solid #22c55e;">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">15:30</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">78/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">FISSA ⭐</span>
+  </div>
+  <div class="teams">RB Leipzig <span class="vs">vs</span> B. M'Gladbach</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Leipzig 1</span>
+    <span class="odds-val">@1.57</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Sven Jablonski</b> — GJ/g: ~3.70 GJ/g</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>λ=6.07 → ~10 tot est.</div>
+      <div class="pick-angoli">Leipzig dominante</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: 16.12 tiri/g | 5.76 in porta</div><div>Osp: Depleta (Kleindienst, Ngoumou dubbio)</div>
+      <div>SoT: ~16/g | ~11/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Baumgartner, Ouédraogo, Rômulo, Klostermann, Gebel, Elmas</div>
+      <div><b>Osp:</b> Konoplya (LCA), Chiarodia, Castrop | Dubbi: Kleindienst, Ngoumou, Hack</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.57</b> / 4.50 / 5.25</div>
+      <div>O2.5: 1.45 | U2.5: 2.55</div>
+      <div>BTTS S/N: 1.57 / 2.30</div>
+      <div>AH: Leipzig -0.5 ~1.68</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> 8W-0D-0L HOME vs Gladbach | W6-0 Trier, W5-0 Hoffenheim</div>
+      <div><b>Away:</b> 8 gare BL away senza vittoria!</div>
+      <div><b>H2H:</b> Leipzig 8W-0D-0L in casa vs Gladbach</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Leipzig)</b></td><td style='color:#fbbf24;'>1.57</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: 8W consecutivi home. Gladbach 0W in 8 away. Dati solidi.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Buona ma 1 @1.57 offre più valore puro.</td></tr><tr><td><b>Leipzig -0.5 AH</b></td><td style='color:#fbbf24;'>~1.68</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Alternativa con copertura pareggio.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>1.57</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Gladbach può segnare 1 ma Leipzig domina.</td></tr><tr><td><b>Leipzig 1ST</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Forte nella ripresa.</td></tr><tr><td><b>Leipzig 1PT</b></td><td style='color:#fbbf24;'>~2.10</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Possibile ma apre spesso dopo.</td></tr></tbody></table></div>
+  </div>
+  <div class="blocchi-row">A=Mkt(20/25) | B=H2H(18/20) | C=Forma(17/20) | D=Cal(14/20) | E=Disc(9/15)</div>
+  <div class="note-row">💡 FISSA del sistema. Leipzig 8W-0D-0L in casa vs Gladbach. Gladbach 0W in 8 trasferte BL.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 16:00</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">16:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">63/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Bournemouth <span class="vs">vs</span> Everton</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">1X</span>
+    <span class="odds-val">@~1.45</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC PGMOL</b> — GJ/g: ~3.40</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.4 xG (mid-table PL)</div><div>Osp: ~1.0 xG</div>
+      <div>SoT: ~12/g | ~10/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare</div>
+      <div><b>Osp:</b> Da verificare</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.05</b> / 3.50 / 3.60</div>
+      <div>O2.5: ~2.10 | U2.5: ~1.70</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Bournemouth solido mid-table PL</div>
+      <div><b>Away:</b> Everton lotta salvezza PL</div>
+      <div><b>H2H:</b> Equilibrio recente</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: Bournemouth casa non perde spesso. Copre pareggio.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.70</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Gara tattica PL = Under frequente.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.58</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Discretamente sicura.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quote alte = mercato vede difese solide.</td></tr><tr><td><b>2 (Everton)</b></td><td style='color:#fbbf24;'>3.60</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Possibile ma Everton fuori casa rischiosa.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Partita equilibrata. 1X @1.45 o Under 2.5 @1.70 le scelte più sensate.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">Championship 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">16:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">62/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Norwich City <span class="vs">vs</span> Burnley</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">X2</span>
+    <span class="odds-val">@~1.50</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC EFL</b> — GJ/g: ~3.60</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.3 xG (Norwich)</div><div>Osp: ~1.4 xG (Burnley se retrocessa PL)</div>
+      <div>SoT: ~11/g | ~13/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.20</b> / 3.70 / 3.00</div>
+      <div>O2.5: ~1.90 | U2.5: ~1.85</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Norwich mid-table Championship</div>
+      <div><b>Away:</b> Burnley: se retrocessa PL = top Championship</div>
+      <div><b>H2H:</b> Variabile</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>X2</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: Burnley (se ex-PL) non perde spesso fuori.</td></tr><tr><td><b>2 (Burnley)</b></td><td style='color:#fbbf24;'>3.00</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quota interessante se Burnley retrocessa.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Championship aperta. Possibile.</td></tr><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.62</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Norwich vantaggio campo.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 X2 @1.50 = più sicura. Burnley probabilmente di qualità superiore se retrocessa da PL.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">League One 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">16:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Sheffield Wed <span class="vs">vs</span> Bromley</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Sheffield Wed 1</span>
+    <span class="odds-val">@1.83</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC EFL</b> — GJ/g: ~3.70</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~10-12 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.7 xG (grande club L1)</div><div>Osp: ~0.6 xG (piccolo club)</div>
+      <div>SoT: ~13/g | ~7/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.83</b> / 3.60 / 4.10</div>
+      <div>O2.5: ~1.80 | U2.5: ~1.95</div>
+      <div>BTTS S/N: ~1.95 / ~1.80</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Sheffield Wed: grande club con infrastruttura ex-PL</div>
+      <div><b>Away:</b> Bromley: piccolo club, probabile neopromossa</div>
+      <div><b>H2H:</b> Sheffield Wed nettamente superiore</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Sheff.Wed)</b></td><td style='color:#fbbf24;'>1.83</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Grande club L1 vs piccolo club. Gap enorme.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.42</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Sheffield segna quasi sempre vs squadre piccole.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Sheffield attacca molto. Buona.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Bromley difficilmente segna vs big club.</td></tr><tr><td><b>Sheff.Wed 1PT</b></td><td style='color:#fbbf24;'>~2.20</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Apre spesso subito.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Sheffield Wed 1 @1.83 = ottimo valore in L1. Bromley outsider totale.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">16:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">52/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Grimsby Town <span class="vs">vs</span> Fleetwood</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC EFL</b> — GJ/g: ~4.10</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~7-9 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.85</b> / 3.50 / 4.10</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D</div>
+      <div><b>Away:</b> N/D</div>
+      <div><b>H2H:</b> N/D</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Grimsby)</b></td><td style='color:#fbbf24;'>1.85</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>League Two — alta varianza.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 League Two — evitare.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">League Two 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">16:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">52/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Oldham Athletic <span class="vs">vs</span> Swindon Town</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC EFL</b> — GJ/g: ~4.00</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~7-9 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.91</b> / 3.50 / 3.70</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D</div>
+      <div><b>Away:</b> N/D</div>
+      <div><b>H2H:</b> N/D</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.38</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Oldham lieve favorita in casa ma L2.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 League Two — evitare.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Sc. Premiership 🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+    <span class="time">16:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Hearts <span class="vs">vs</span> St. Johnstone</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Hearts 1</span>
+    <span class="odds-val">@1.73</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC SFA</b> — GJ/g: ~3.50</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.6 xG (top 4 Scotland)</div><div>Osp: ~0.8 xG (lotta salvezza)</div>
+      <div>SoT: ~13/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.73</b> / 3.75 / 4.50</div>
+      <div>O2.5: ~1.90 | U2.5: ~1.85</div>
+      <div>BTTS S/N: ~2.00 / ~1.75</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Hearts top 4 Scotland | Tynecastle = fortezza</div>
+      <div><b>Away:</b> St Johnstone lotta salvezza | 0W trasferta vs top4</div>
+      <div><b>H2H:</b> Hearts 7W-2D-1L casa vs St Johnstone</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Hearts)</b></td><td style='color:#fbbf24;'>1.73</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Top 4 vs lotta salvezza. Quota @1.73 buona.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>St Johnstone non segna fuori vs top team.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Hearts segna quasi sempre in casa.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Scottish Prem spesso tattica.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Hearts 1 @1.73 solida. BTTS No ~1.75 come alternativa (St Johnstone non segna in trasferta vs top club).</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">Scozia: L1 🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+    <span class="time">16:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">50/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Hamilton Acad. <span class="vs">vs</span> Cove Rangers</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC SFA</b> — GJ/g: ~3.80</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>N/D</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.53</b> / 3.80 / 5.00</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D</div>
+      <div><b>Away:</b> N/D</div>
+      <div><b>H2H:</b> N/D</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Hamilton)</b></td><td style='color:#fbbf24;'>1.53</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Scottish L1 — 3ª divisione. Evitare.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Scottish League One — evitare.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 17:30</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">Ekstraklasa 🇵🇱</span>
+    <span class="time">17:30</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">58/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Wisla Krakow <span class="vs">vs</span> Wieczysta Kr.</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC PZPN</b> — GJ/g: ~3.60</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~8-10 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.4 xG</div><div>Osp: ~0.9 xG</div>
+      <div>SoT: ~11/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.73</b> / 3.80 / 3.80</div>
+      <div>O2.5: ~1.90 | U2.5: ~1.85</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Wisla storico club Cracovia</div>
+      <div><b>Away:</b> Wieczysta outsider Cracovia</div>
+      <div><b>H2H:</b> Derby locale — alta varianza emotiva</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Derby polacchi spesso aperti.</td></tr><tr><td><b>1 (Wisla)</b></td><td style='color:#fbbf24;'>1.73</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Derby = imprevedibile.</td></tr><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.42</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Safe ma bassa.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Derby polacco — alta varianza. Quote equilibrate (1.73/3.80/3.80). SCARTA.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 18:30</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">2.Bundesliga 🇩🇪</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">74/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Borussia Dortmund <span class="vs">vs</span> Hamburger SV</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BVB 1PT</span>
+    <span class="odds-val">@~1.65</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC 2.BL</b> — GJ/g: N/D</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~10+ est. (BVB 7.24 FOR home)</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: 1.58 xG home | BVB favorito assoluto</div><div>Osp: Hamburg 3W-5D-9L away 2.BL</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Duranville, Meunier, Schlotterbeck, Can, Özcan</div>
+      <div><b>Osp:</b> Omari | Dubbio: Muheim</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.32</b> / 5.50 / 8.50</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: 1.91 / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> BVB campione — favorito per risalire</div>
+      <div><b>Away:</b> Hamburg 3W-5D-9L away storico</div>
+      <div><b>H2H:</b> BVB nettamente superiore</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>BVB 1PT</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: BVB domina il 1° tempo in casa. Quota migliore di 1 @1.32.</td></tr><tr><td><b>BVB -0.5 AH</b></td><td style='color:#fbbf24;'>~1.55</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>BVB vince quasi sempre. Buona.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.40</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>BVB attacca tantissimo.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>1.91</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Hamburg può segnare 1 per orgoglio.</td></tr><tr><td><b>BVB 1ST</b></td><td style='color:#fbbf24;'>~1.55</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Forte nella ripresa.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 BVB 1 @1.32 troppo bassa per sistema. BVB 1PT @1.65 = stessa certezza, più valore.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Fiorentina <span class="vs">vs</span> Frosinone</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Fiorentina 1</span>
+    <span class="odds-val">@1.62</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Giuseppe Collu</b> — GJ/g: N/D (21 pres.)</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9.17 tot | 51.7% Over 9.5</div>
+      <div class="pick-angoli">Over 9.5 ~1.84</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: 2.51 xG | L0-4 Roma MD1 = reazione</div><div>Osp: L0-1 Juve MD1</div>
+      <div>SoT: ~9/g | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Parisi (LCA — nov.)</div>
+      <div><b>Osp:</b> Nessuno</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.62</b> / 4.10 / 5.00</div>
+      <div>O2.5: ~1.82 | U2.5: ~2.05</div>
+      <div>BTTS S/N: ~1.75 / ~2.00</div>
+      <div>AH: Fiore -0.5 ~1.75</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> 7W-1D recenti in casa | L0-4 Roma MD1</div>
+      <div><b>Away:</b> L0-1 Juve MD1</div>
+      <div><b>H2H:</b> Fiorentina 2.8 gol/g ultimi 5 H2H</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Fiorentina)</b></td><td style='color:#fbbf24;'>1.62</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Casa vs neopromossa dopo umiliazione 0-4 = reazione.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.38</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quasi certezza. Viola attacca sempre.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Frosinone può segnare 1. H2H 2.8 gol/g.</td></tr><tr><td><b>Fiore -0.5 AH</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Alternativa valida.</td></tr><tr><td><b>Fiore 1PT</b></td><td style='color:#fbbf24;'>~2.00</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Viola aggressiva dopo ko 0-4.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Fiorentina 1 @1.62 solida. Reazione probabile dopo 0-4.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="time">18:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">73/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Tottenham <span class="vs">vs</span> Newcastle Utd</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BTTS Sì</span>
+    <span class="odds-val">@1.68</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Peter Bankes</b> — GJ/g: 4.16 GJ/g — ALTO (3 rossi 25-26)</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~11.53 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D MD2</div><div>Osp: N/D MD2</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Maddison, Kulusevski, van de Ven, Porro, Simons, Kudus, Odobert (7!)</div>
+      <div><b>Osp:</b> Joelinton, Tonali, Schar, Miley</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.37</b> / 3.80 / 2.95</div>
+      <div>O2.5: 1.65 | U2.5: N/D</div>
+      <div>BTTS S/N: 1.68 / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D MD2</div>
+      <div><b>Away:</b> N/D MD2</div>
+      <div><b>H2H:</b> BTTS 87% ultimi H2H | Over 2.5 in TUTTI ultimi 11</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>1.68</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>87% BTTS H2H. Entrambe segnano sempre. Bankes nervoso = gara aperta.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>1.65</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Over 2.5 in TUTTI gli ultimi 11 H2H!</td></tr><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.57</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Spurs decimati — pareggio possibile.</td></tr><tr><td><b>2 (Newcastle)</b></td><td style='color:#fbbf24;'>2.95</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Newcastle più completa attualmente.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 BTTS Sì @1.68 = stat H2H fortissima (87%). Bankes arbitro nervoso = gara aperta.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 19:00</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Serie B 🇮🇹</span>
+    <span class="time">19:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">65/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Sampdoria <span class="vs">vs</span> Juve Stabia</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Sampdoria 1</span>
+    <span class="odds-val">@1.85</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC Serie B</b> — GJ/g: ~3.70</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~8-10 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.5 xG (storico club in B)</div><div>Osp: ~0.9 xG</div>
+      <div>SoT: ~12/g | ~9/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare</div>
+      <div><b>Osp:</b> Da verificare</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.85</b> / 3.10 / 4.33</div>
+      <div>O2.5: ~1.85 | U2.5: ~1.90</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Sampdoria: grande club in B con budget superiore</div>
+      <div><b>Away:</b> Juve Stabia: tipicamente metà classifica B</div>
+      <div><b>H2H:</b> Sampdoria favorita per struttura</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Sampdoria)</b></td><td style='color:#fbbf24;'>1.85</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Grande club Serie B in casa vs mid-table. @1.85 = valore.</td></tr><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.40</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Sampdoria non perde spesso in casa.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Sampdoria segna quasi sempre.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Serie B tende ad aprirsi.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Juve Stabia può segnare 1.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Sampdoria 1 @1.85 = quota interessante per storico club in B.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">La Liga 🇪🇸</span>
+    <span class="time">19:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Real Sociedad <span class="vs">vs</span> Españyol</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Real Sociedad 1</span>
+    <span class="odds-val">@1.86</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC RFEF</b> — GJ/g: ~3.80</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.7 xG (top 6 La Liga)</div><div>Osp: ~0.9 xG (mid-lower La Liga)</div>
+      <div>SoT: ~14/g | ~10/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare</div>
+      <div><b>Osp:</b> Da verificare</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.86</b> / 3.60 / 4.20</div>
+      <div>O2.5: ~1.85 | U2.5: ~1.90</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: Soc.-0.5 ~1.90</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Real Sociedad top 6 | Reale Arena = fortezza</div>
+      <div><b>Away:</b> Españyol: se neopromossa = debole fuori</div>
+      <div><b>H2H:</b> Sociedad favorita in casa</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (R.Sociedad)</b></td><td style='color:#fbbf24;'>1.86</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: Top 6 La Liga in casa vs Españyol. @1.86 implica 54% vs reale 62%. Valore netto.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.42</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Sociedad segna quasi sempre in casa.</td></tr><tr><td><b>Soc. -0.5 AH</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quasi stesso pick con più valore.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Sociedad attacca molto.</td></tr><tr><td><b>Sociedad 1PT</b></td><td style='color:#fbbf24;'>~2.10</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Forte nel 1° tempo.</td></tr><tr><td><b>Sociedad 1ST</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Domina la ripresa.</td></tr></tbody></table></div>
+  </div>
+  <div class="blocchi-row">A=Mkt(16/25) | B=H2H(14/20) | C=Forma(14/20) | D=Cal(14/20) | E=Disc(10/15)</div>
+  <div class="note-row">💡 Real Sociedad 1 @1.86 = 2° miglior valore della giornata. Top 6 La Liga vs Españyol @54% implicita vs ~62% reale.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">La Liga 2 🇪🇸</span>
+    <span class="time">19:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">55/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Albacete <span class="vs">vs</span> Real Oviedo</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC RFEF</b> — GJ/g: ~3.60</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~8-10 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.45</b> / 3.20 / 2.90</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D</div>
+      <div><b>Away:</b> N/D</div>
+      <div><b>H2H:</b> N/D</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>X (pari)</b></td><td style='color:#fbbf24;'>3.20</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quote 2.45/3.20/2.90 = totale equilibrio. Evitare.</td></tr><tr><td><b>X2</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Oviedo lieve away favorite ma incertezza alta.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Quote 2.45/3.20/2.90 = mercato in totale equilibrio. SCARTA.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">La Liga 2 🇪🇸</span>
+    <span class="time">19:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">63/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Leganés <span class="vs">vs</span> Eldense</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Leganés 1</span>
+    <span class="odds-val">@1.90</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC RFEF</b> — GJ/g: ~3.50</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.4 xG (Liga 2 club strutturato)</div><div>Osp: ~0.7 xG (outsider)</div>
+      <div>SoT: ~12/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare</div>
+      <div><b>Osp:</b> Da verificare</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.90</b> / 3.50 / 3.90</div>
+      <div>O2.5: ~1.90 | U2.5: ~1.85</div>
+      <div>BTTS S/N: ~2.00 / ~1.75</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Leganés: struttura superiore Liga 2</div>
+      <div><b>Away:</b> Eldense: outsider, piccolo club</div>
+      <div><b>H2H:</b> Leganés favorita</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Leganés)</b></td><td style='color:#fbbf24;'>1.90</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quota buona per gap strutturale reale.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Leganés segna in casa.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Eldense fatica a segnare fuori.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Leganés 1 @1.90 = buona quota per differenza di struttura.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 20:30</div><div class="card" style="border-left:4px solid #22c55e;">
+  <div class="card-header">
+    <span class="league">Süper Lig 🇹🇷</span>
+    <span class="time">20:30</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">76/100</span>
+    <span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA</span>
+  </div>
+  <div class="teams">Galatasaray <span class="vs">vs</span> Göztepe SK</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Galatasaray 1PT</span>
+    <span class="odds-val">@~1.75</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC TFF</b> — GJ/g: ~4.20 GJ/g</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>λ≈0.6×(7.5+3.0)=6.3 → ~11-12 est.</div>
+      <div class="pick-angoli">Over 9.5 est.</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~2.2 xG (campione seriale)</div><div>Osp: ~0.8 xG (mid-lower Lig)</div>
+      <div>SoT: ~17/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare (rosa profonda)</div>
+      <div><b>Osp:</b> Da verificare</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.42</b> / 4.50 / 6.50</div>
+      <div>O2.5: ~1.65 | U2.5: ~2.20</div>
+      <div>BTTS S/N: ~2.00 / ~1.75</div>
+      <div>AH: Gala -1 ~1.85</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Galatasaray multi-campione Süper Lig | imbattuta lunga casa</div>
+      <div><b>Away:</b> Göztepe: 0W in grandi trasferte tipicamente</div>
+      <div><b>H2H:</b> Galatasaray 12W-3D-1L ultimi 16 vs Göztepe</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>Gala 1PT</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: Domina sempre il 1° tempo in casa. Quota superiore rispetto a 1 @1.42.</td></tr><tr><td><b>Gala -1 AH</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Vince di 2+ spesso. Eccellente valore vs quota.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Galatasaray segna 3-4 gol in casa vs Göztepe.</td></tr><tr><td><b>1 (Galatasaray)</b></td><td style='color:#fbbf24;'>1.42</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quasi certezza ma quota troppo bassa per sistema.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Göztepe difficilmente segna vs Galatasaray.</td></tr><tr><td><b>Gala 1ST</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Forte anche nella ripresa.</td></tr></tbody></table></div>
+  </div>
+  <div class="blocchi-row">A=Mkt(19/25) | B=H2H(16/20) | C=Forma(17/20) | D=Cal(14/20) | E=Disc(10/15)</div>
+  <div class="note-row">💡 Galatasaray 1PT @1.75 = MIGLIOR MERCATO. Stessa certezza della 1 @1.42, quota nettamente superiore. Gala -1 AH @1.85 come alternativa top.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 20:45</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Jupiler Pro 🇧🇪</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">67/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Cercle Brugge <span class="vs">vs</span> Lommel SK</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Cercle Brugge 1</span>
+    <span class="odds-val">@1.53</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC RBFA</b> — GJ/g: ~3.80</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.5 xG (top-half Pro League)</div><div>Osp: ~0.7 xG (bottom)</div>
+      <div>SoT: ~13/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare</div>
+      <div><b>Osp:</b> Da verificare</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.53</b> / 4.33 / 5.00</div>
+      <div>O2.5: ~1.85 | U2.5: ~1.90</div>
+      <div>BTTS S/N: ~1.95 / ~1.80</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Cercle Brugge solida realtà Pro League</div>
+      <div><b>Away:</b> Lommel: solitamente outsider</div>
+      <div><b>H2H:</b> Cercle favorita per struttura</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Cercle)</b></td><td style='color:#fbbf24;'>1.53</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Cercle in casa vs Lommel piccolo. Buona.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Cercle segna quasi sempre.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Lommel fatica in trasferta vs big Pro League.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Cercle Brugge 1 @1.53 ok. Gap qualitativo reale.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Ligue 1 🇫🇷</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">72/100</span>
+    <span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA</span>
+  </div>
+  <div class="teams">Olympique Lyon <span class="vs">vs</span> Le Havre AC</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Lyon 1PT</span>
+    <span class="odds-val">@~1.80</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC LFP</b> — GJ/g: ~3.20</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>λ≈0.6×(7.0+3.5)=6.3 → ~11-12 est.</div>
+      <div class="pick-angoli">Over 9.5 est.</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.8 xG (top 6 L1) | budget superiore</div><div>Osp: ~0.7 xG (lotta salvezza)</div>
+      <div>SoT: ~15/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Da verificare</div>
+      <div><b>Osp:</b> Da verificare (budget limitato)</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.46</b> / 4.50 / 7.00</div>
+      <div>O2.5: ~1.65 | U2.5: ~2.15</div>
+      <div>BTTS S/N: ~2.10 / ~1.68</div>
+      <div>AH: Lyon -1 ~1.85</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Lyon top Ligue 1 | Groupama = fortezza</div>
+      <div><b>Away:</b> Le Havre 0W vs top club L1 tipicamente</div>
+      <div><b>H2H:</b> Lyon 8W-1D-1L casa vs Le Havre</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>Lyon 1PT</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: Lyon domina il 1° tempo in casa vs Le Havre. @1.80 vs certezza ~72%.</td></tr><tr><td><b>Lyon -1 AH</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Vince di 2+ spesso. Ottimo valore.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Lyon attacca moltissimo. Buona.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.68</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Le Havre 0 gol vs top club L1. Frequente.</td></tr><tr><td><b>1 (Lyon)</b></td><td style='color:#fbbf24;'>1.46</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Certezza ma quota bassa per sistema.</td></tr><tr><td><b>Lyon 1ST</b></td><td style='color:#fbbf24;'>~1.70</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Forte anche nella ripresa.</td></tr></tbody></table></div>
+  </div>
+  <div class="blocchi-row">A=Mkt(18/25) | B=H2H(15/20) | C=Forma(15/20) | D=Cal(14/20) | E=Disc(10/15)</div>
+  <div class="note-row">💡 Lyon 1PT @1.80 = migliore di 1 @1.46 (stessa certezza, quota superiore). Lyon -1 AH @1.85 alternativa top.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">SV Elversberg <span class="vs">vs</span> Bayer Leverkusen</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Leverkusen 1</span>
+    <span class="odds-val">@1.55</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Robert Hartmann</b> — GJ/g: ~4.00</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>N/D (debutto BL Elversberg)</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D (debutto BL)</div><div>Osp: 19 gol pre-season in 6 gare</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Zimmerschied</div>
+      <div><b>Osp:</b> Ben Seghir, Culbreath, Andrich, Eichhorn, Terrier (5)</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>4.50</b> / 4.25 / 1.55</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: Lev. -0.5 ~1.65</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Debutto assoluto BL</div>
+      <div><b>Away:</b> 7W-1L in 8 gare | W4-0 Wehen</div>
+      <div><b>H2H:</b> 1° incontro BL</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>2 (Leverkusen)</b></td><td style='color:#fbbf24;'>1.55</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Nettamente superiore nonostante 5 assenti. Elversberg debutto BL.</td></tr><tr><td><b>Lev. -0.5 AH</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Alternativa con copertura pareggio.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Leverkusen segna ovunque.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Leverkusen 1 @1.55 ok nonostante 5 assenti. Elversberg al debutto assoluto in BL.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">70/100</span>
+    <span class="tag" style="background:#3b82f6;color:#fff;">ANGOLI</span>
+  </div>
+  <div class="teams">Union Berlin <span class="vs">vs</span> Eintracht Fr.</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Under 9.5 angoli</span>
+    <span class="odds-val">@~1.80</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Bastian Dankert</b> — GJ/g: ~4.20 GJ/g</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9 tot est.</div>
+      <div class="pick-angoli">Under 9.5 (predicted TotalCorner)</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: xGA 1.44 (25-26) | 65 gol subiti</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Burke, Nsoki, Skov</div>
+      <div><b>Osp:</b> Knauff, Doan, Uzun, Burkardt, Collins, Larsson, Batshuayi, Chandler (8!)</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.40</b> / 3.25 / 2.80</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> 1W-3D-1L ultimi 5</div>
+      <div><b>Away:</b> 0W-3D-2L ultimi 5</div>
+      <div><b>H2H:</b> Frankfurt 10W vs Union 5W</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>Under 9.5 ang.</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>TotalCorner prevede Under. Gara tattica, Frankfurt depleta.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.70</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Frankfurt 0W e 8 assenti = non segna.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Frankfurt decimata → partita tattica a basso punteggio.</td></tr><tr><td><b>1X (Union)</b></td><td style='color:#fbbf24;'>~1.62</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Union in casa con vantaggio.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Union-Frankfurt: gara tattica con Frankfurt a -8 giocatori. Under/BTTS No sono i mercati migliori.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">72/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Mainz 05 <span class="vs">vs</span> SC Paderborn</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Mainz 1</span>
+    <span class="odds-val">@1.68</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Tobias Stieler</b> — GJ/g: ~3.60</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>N/D (Paderborn debutto)</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: 2.2 gol/g | W9-0 in Pokal</div><div>Osp: N/D (debutto BL)</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Nebel, Martel, Silas</div>
+      <div><b>Osp:</b> Gayret, Klaas, Michel, Awortwie-Grant (4)</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.68</b> / 3.92 / 4.60</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: ~1.80 / ~2.10</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> 3W-1D-0L in casa vs Paderborn (BL)</div>
+      <div><b>Away:</b> Paderborn promossa via playoff</div>
+      <div><b>H2H:</b> Mainz 3W-1D-0L casa vs Paderborn</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Mainz)</b></td><td style='color:#fbbf24;'>1.68</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Mainz imbattuta (3W-1D) casa vs Paderborn. Debuttante BL + 4 assenti.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Mainz segna sempre vs debuttanti.</td></tr><tr><td><b>Mainz 1ST</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Forte nella ripresa.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Paderborn può segnare 1.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Mainz 1 @1.68 solida. H2H perfetto, Paderborn debutta in BL con 4 infortuni.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">62/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Monza <span class="vs">vs</span> Udinese</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Under 2.5</span>
+    <span class="odds-val">@1.60</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>C.G. Allegretta</b> — GJ/g: DEBUTTO SA</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~8-10 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: L1-4 Inter MD1</div><div>Osp: D1-1 Como MD1</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Pessina, Ciurria, Colombo, Tourè</div>
+      <div><b>Osp:</b> Zaniolo, Palma, Chakvetadze, Zanoli | SQUALIF.: Kabasele</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>3.20</b> / 3.15 / 2.38</div>
+      <div>O2.5: N/D | U2.5: 1.60</div>
+      <div>BTTS S/N: ~1.87 / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> L1-4 Inter MD1</div>
+      <div><b>Away:</b> D1-1 Como MD1</div>
+      <div><b>H2H:</b> Equilibrio (3W Monza / 2W Udinese su 8)</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>1.60</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Entrambe decimate. Arbitro debutto SA = variabile.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Entrambe faticano a segnare con assenti.</td></tr><tr><td><b>X2 (Udinese/pari)</b></td><td style='color:#fbbf24;'>~1.72</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Udinese lieve favorita fuori ma Kabasele squalificato.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Under 2.5 @1.60 = pick logico (entrambe decimate). Attenzione: arbitro al debutto SA.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">65/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Sassuolo <span class="vs">vs</span> Torino</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">BTTS Sì</span>
+    <span class="odds-val">@1.75</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Davide Di Marco</b> — GJ/g: N/D</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~7-9 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: 22 tiri/8 in porta (MD1)</div><div>Osp: 1.29 xG / 3.97 SoT (25-26)</div>
+      <div>SoT: 22/g | ~12/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Berardi, Konè, Candé, Pieragnolo, Walukiewicz, Boloca (6!)</div>
+      <div><b>Osp:</b> Israel, Adams, Anjorin, Pellegri</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>3.10</b> / 3.25 / 2.50</div>
+      <div>O2.5: 1.85 | U2.5: 1.90</div>
+      <div>BTTS S/N: 1.75 / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> L-L-L-W-L | L1-2 Atalanta MD1</div>
+      <div><b>Away:</b> L1-2 Milan MD1</div>
+      <div><b>H2H:</b> BTTS 66% in 32 H2H | Torino 15W / Sassuolo 6W</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>66% H2H BTTS in 32 precedenti. Sassuolo 22 tiri MD1.</td></tr><tr><td><b>2 (Torino)</b></td><td style='color:#fbbf24;'>2.50</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Torino 15W vs 6W Sassuolo nei precedenti.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.40</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>22 tiri Sassuolo + Torino attacca. Quasi certezza.</td></tr><tr><td><b>X2</b></td><td style='color:#fbbf24;'>~1.55</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Torino non perde spesso vs Sassuolo.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 BTTS Sì @1.75 supportato da H2H (66% in 32 gare). Sassuolo 22 tiri nonostante 6 assenti.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">La Liga 🇪🇸</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">66/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Sevilla <span class="vs">vs</span> Atlético Madrid</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">X2 (pari o Atlético)</span>
+    <span class="odds-val">@~1.40</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC RFEF</b> — GJ/g: N/D</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>N/D</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Vargas, González</div>
+      <div><b>Osp:</b> Le Normand (SQUALIF.), Sorloth (musc.), Álvarez (dubbio)</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>3.40</b> / 3.30 / 2.00</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: Atlético -0.5</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Sevilla @3.40 = mercato non si fida</div>
+      <div><b>Away:</b> Atlético senza CB titolare (Le Normand)</div>
+      <div><b>H2H:</b> Atlético forte pur depleta</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>X2</b></td><td style='color:#fbbf24;'>~1.40</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: Sevilla non batte Atlético facilmente. Copre pari+Atlético.</td></tr><tr><td><b>Atlético 1X</b></td><td style='color:#fbbf24;'>~1.38</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Simile a X2.</td></tr><tr><td><b>2 (Atlético)</b></td><td style='color:#fbbf24;'>2.00</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Atlético favorita nonostante Le Normand squalificato.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Atlético senza attaccante titolare Sorloth.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 X2 @~1.40 = selezione più sicura. Atlético depleta ma Sevilla @3.40 non convince nemmeno il mercato.</div>
+</div><div class="card" style="border-left:4px solid #22c55e;">
+  <div class="card-header">
+    <span class="league">Serie A 🇮🇹</span>
+    <span class="time">20:45</span>
+    <span class="score-badge" style="background:#22c55e;color:#000;">76/100</span>
+    <span class="tag" style="background:#22c55e;color:#000;">TOP PICK ⭐</span>
+  </div>
+  <div class="teams">Juventus <span class="vs">vs</span> Parma Calcio</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Juventus -1 AH</span>
+    <span class="odds-val">@1.73</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Francesco Fourneau</b> — GJ/g: 4.7 GJ/g | 7W Juve in 9 gare</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: 1.74 xG | 50% CS | 16 tiri/g</div><div>Osp: 0.39 xG away (!) | 0% CS away</div>
+      <div>SoT: 16/g | ~8/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Yildiz (piede — 3 mesi), Vicario (Pinsoglio in porta), Gatti | Dubbio: K.Thuram</div>
+      <div><b>Osp:</b> Nicolussi Caviglia, Idrissi, Balogh</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.35</b> / 4.60 / 9.50</div>
+      <div>O2.5: 1.61 | U2.5: 2.24</div>
+      <div>BTTS S/N: 2.00 / N/D</div>
+      <div>AH: Juve -1 @1.73</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> 10W-7D-2L casa 25-26 | W1-0 Frosinone MD1</div>
+      <div><b>Away:</b> 0% vittorie away | 0 GOL away | L0-1 Cagliari MD1</div>
+      <div><b>H2H:</b> Juve 25W in 36 H2H all'Allianz | Recente: 2-0, 4-1</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>Juve -1 AH</b></td><td style='color:#fbbf24;'>1.73</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>SECCA DEL GIORNO: @1.73 implica 58%, reale ~72%. Parma 0 gol in 5 away SA.</td></tr><tr><td><b>Juve 1PT</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>Juve apre subito. Parma non regge il pressing iniziale.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Parma 0 gol in 5 consecutive away SA. Eccellente stat.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>1.61</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Juve 1.74 xG home, Parma quasi 0 away = Juve spinge.</td></tr><tr><td><b>Juve CS</b></td><td style='color:#fbbf24;'>~2.10</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Parma 0 gol away → CS Juve possibile ma Yildiz fuori.</td></tr></tbody></table></div>
+  </div>
+  <div class="blocchi-row">A=Mkt(20/25) | B=H2H(18/20) | C=Forma(16/20) | D=Cal(14/20) | E=Disc(8/15)</div>
+  <div class="note-row">💡 🎯 SECCA DEL GIORNO. Juve -1 AH @1.73 = +18% EV stimato. Parma 0 gol in 5 trasferte SA. Fourneau favorisce Juve (7W in 9 gare).</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 21:00</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">Serie B 🇮🇹</span>
+    <span class="time">21:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">62/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Ascoli Calcio <span class="vs">vs</span> Carrarese</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">1X (Ascoli/pari)</span>
+    <span class="odds-val">@~1.50</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC Serie B</b> — GJ/g: ~3.80</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~7-9 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.3 xG (storico B)</div><div>Osp: ~0.9 xG</div>
+      <div>SoT: ~11/g | ~9/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.91</b> / 3.30 / 4.10</div>
+      <div>O2.5: ~1.90 | U2.5: ~1.85</div>
+      <div>BTTS S/N: ~1.95 / ~1.80</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Ascoli: storico B con vantaggio Del Duca</div>
+      <div><b>Away:</b> Carrarese: più debole strutturalmente</div>
+      <div><b>H2H:</b> Ascoli favorita in casa</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Ascoli non perde spesso in casa. Safe.</td></tr><tr><td><b>1 (Ascoli)</b></td><td style='color:#fbbf24;'>1.91</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Quota buona ma Serie B = varianza.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Entrambe segnano di solito in B.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Ascoli 1X @1.50 più safe. Ascoli 1 @1.91 = buona quota per chi accetta il rischio.</div>
+</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">Serie B 🇮🇹</span>
+    <span class="time">21:00</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">67/100</span>
+    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  </div>
+  <div class="teams">Padova <span class="vs">vs</span> Hellas Verona</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">X2 (pari o Verona)</span>
+    <span class="odds-val">@~1.55</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC Serie B</b> — GJ/g: ~3.70</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~8-10 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.1 xG (neopromossa da C)</div><div>Osp: ~1.6 xG (retrocessa SA = top Serie B)</div>
+      <div>SoT: ~10/g | ~14/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> Da verificare (mantiene rosa SA)</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.88</b> / 3.06 / 2.45</div>
+      <div>O2.5: ~1.90 | U2.5: ~1.85</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Padova: neopromossa da Serie C — prima stagione in B</div>
+      <div><b>Away:</b> Verona: retrocessa SA = top Serie B</div>
+      <div><b>H2H:</b> 1° incontro (se Padova neopromossa)</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>X2</b></td><td style='color:#fbbf24;'>~1.55</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.79rem;'>BEST: Copre pari+Verona. Padova neopromossa non batte retrocessa SA.</td></tr><tr><td><b>2 (Verona)</b></td><td style='color:#fbbf24;'>2.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Verona grande favorita in B con rosa SA. @2.45 = valore.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Verona attacca molto, Padova può segnare. Possibile.</td></tr><tr><td><b>Verona 1ST</b></td><td style='color:#fbbf24;'>~2.50</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Verona superiore nella ripresa.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Verona retrocessa SA = favorita assoluta Serie B. X2 @1.55 = pick chiaro. Verona 2 @2.45 per chi vuole più valore.</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">Bundesliga 🇩🇪</span>
+    <span class="time">21:00</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">63/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">FC Köln <span class="vs">vs</span> TSG Hoffenheim</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">SCARTA</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>Florian Badstübner</b> — GJ/g: ~3.50</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~10.58 tot/g (Hoffenheim 25-26)</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: N/D</div><div>Osp: N/D</div>
+      <div>SoT: N/D | N/D</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> Waldschmidt, Hübers</div>
+      <div><b>Osp:</b> Kramarić (dubbio)</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>2.81</b> / 3.63 / 2.28</div>
+      <div>O2.5: N/D | U2.5: N/D</div>
+      <div>BTTS S/N: N/D / N/D</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> N/D</div>
+      <div><b>Away:</b> 7W in 16 away vs Köln</div>
+      <div><b>H2H:</b> Hoffenheim 7W in 16 away all'EnergieStadion</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>X2</b></td><td style='color:#fbbf24;'>~1.58</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Hoffenheim lieve favorita se Kramarić disponibile.</td></tr><tr><td><b>2 (Hoffenheim)</b></td><td style='color:#fbbf24;'>2.28</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Possibile ma Kramarić incerto = rischio.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Score 63/100. Troppa incertezza (Kramarić dubbio, BL MD1). SCARTA.</div>
+</div><div class="hour-header" style="background:#1e3a5f;border-radius:7px;padding:7px 14px;margin-bottom:10px;margin-top:14px;font-size:0.84rem;font-weight:700;color:#93c5fd;">🕐 21:30</div><div class="card" style="border-left:4px solid #eab308;">
+  <div class="card-header">
+    <span class="league">La Liga 🇪🇸</span>
+    <span class="time">21:30</span>
+    <span class="score-badge" style="background:#eab308;color:#000;">66/100</span>
+    <span class="tag" style="background:#6b7280;color:#fff;">SCARTA</span>
+  </div>
+  <div class="teams">Sevilla <span class="vs">vs</span> Atlético Madrid</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">(vedi ore 20:45)</span>
+    <span class="odds-val">@—</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>—</b> — GJ/g: —</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>—</div>
+      <div class="pick-angoli">—</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: —</div><div>Osp: —</div>
+      <div>SoT: — | —</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> —</div>
+      <div><b>Osp:</b> —</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>3.40</b> / 3.30 / 2.00</div>
+      <div>O2.5: — | U2.5: —</div>
+      <div>BTTS S/N: — / —</div>
+      <div>AH: —</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> —</div>
+      <div><b>Away:</b> —</div>
+      <div><b>H2H:</b> —</div></div>
+    
+  </div>
+  
+  <div class="note-row">💡 Analisi disponibile nella card ore 20:45 (doppia voce per orario — usa card sopra).</div>
+</div><div class="card" style="border-left:4px solid #ef4444;">
+  <div class="card-header">
+    <span class="league">La Liga 2 🇪🇸</span>
+    <span class="time">21:30</span>
+    <span class="score-badge" style="background:#ef4444;color:#000;">62/100</span>
+    <span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span>
+  </div>
+  <div class="teams">Girona FC <span class="vs">vs</span> Las Palmas</div>
+  <div class="pick-row">
+    <span class="pick-label">Pick:</span>
+    <span class="pick-val">Girona 1X</span>
+    <span class="odds-val">@~1.45</span>
+  </div>
+  <div class="grid2">
+    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
+      <div><b>TBC RFEF</b> — GJ/g: ~3.60</div></div>
+    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
+      <div>~9-11 est.</div>
+      <div class="pick-angoli">N/D</div></div>
+    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
+      <div>Casa: ~1.7 xG (se ex-La Liga)</div><div>Osp: ~1.0 xG</div>
+      <div>SoT: ~14/g | ~10/g</div></div>
+    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
+      <div><b>Casa:</b> N/D</div>
+      <div><b>Osp:</b> N/D</div></div>
+    <div class="info-block"><div class="info-title">💰 Quote</div>
+      <div>1X2: <b>1.73</b> / ~3.50 / ~4.20</div>
+      <div>O2.5: ~1.80 | U2.5: ~1.95</div>
+      <div>BTTS S/N: ~1.90 / ~1.85</div>
+      <div>AH: N/D</div></div>
+    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
+      <div><b>Home:</b> Girona: se retrocessa La Liga = top Liga 2</div>
+      <div><b>Away:</b> Las Palmas: simile categoria</div>
+      <div><b>H2H:</b> N/D</div></div>
+    <div class="info-block full-width">
+  <div class="info-title">📊 Analisi tutti i mercati</div>
+  <table style='width:100%;border-collapse:collapse;font-size:0.8rem;'>
+  <thead><tr>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
+    <th style='padding:3px 7px;color:#64748b;'>Valore</th>
+    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
+  </tr></thead>
+  <tbody><tr><td><b>1 (Girona)</b></td><td style='color:#fbbf24;'>1.73</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Girona ex-La Liga in casa. Quota decente.</td></tr><tr><td><b>1X</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Più safe — Girona non perde spesso in casa.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.42</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Entrambe cercano risalita = partita aperta.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.79rem;'>Possibile con due squadre ex-La Liga motivate.</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="note-row">💡 Girona 1 @1.73 = ottima se ex-La Liga. 1X @1.45 come alternativa più conservativa.</div>
+</div>
+</div>
+
+<script>
+function show(id,tab){
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body></html>
