@@ -54,7 +54,46 @@ table.rev-table{width:100%;border-collapse:collapse;}
 table.rev-table thead th{background:#1e293b;padding:8px 10px;text-align:left;font-size:0.72rem;color:#64748b;text-transform:uppercase;border-bottom:2px solid #334155;}
 table.rev-table tbody td{padding:8px 10px;border-bottom:1px solid #1a2234;font-size:0.80rem;vertical-align:top;}
 table.rev-table tbody tr:hover td{background:rgba(255,255,255,.025);}
-.win-stat{display:inline-block;padding:3px 10px;border-radius:12px;font-weight:700;font-size:0.82rem;}</style></head>
+.win-stat{display:inline-block;padding:3px 10px;border-radius:12px;font-weight:700;font-size:0.82rem;}
+.deep-section{margin-bottom:22px;}
+.deep-h2{font-size:1.0rem;font-weight:800;color:#60a5fa;padding:9px 14px;background:#1e293b;border-radius:8px;margin-bottom:10px;border-left:4px solid #3b82f6;}
+.deep-h3{font-size:0.85rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 7px;}
+.deep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:14px;}
+.deep-box{background:#1e293b;border-radius:8px;padding:11px;border:1px solid #334155;}
+.deep-box-title{font-size:0.69rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px;}
+.timeline{position:relative;padding-left:16px;border-left:2px solid #334155;margin:8px 0;}
+.tl-event{margin-bottom:9px;position:relative;}
+.tl-dot{position:absolute;left:-20px;top:3px;width:8px;height:8px;border-radius:50%;background:#3b82f6;}
+.tl-dot.green{background:#22c55e;}
+.tl-dot.yellow{background:#eab308;}
+.tl-dot.red{background:#ef4444;}
+.tl-dot.gray{background:#6b7280;}
+.tl-min{color:#fbbf24;font-weight:700;font-size:0.80rem;margin-right:7px;}
+.tl-text{font-size:0.79rem;color:#cbd5e1;}
+.tl-sub{font-size:0.72rem;color:#64748b;margin-top:2px;}
+.pct-bar{height:7px;border-radius:4px;background:#334155;margin:4px 0 8px;}
+.pct-fill{height:7px;border-radius:4px;}
+.scorer-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #1e293b;}
+.scorer-row:last-child{border-bottom:none;}
+.scorer-num{color:#64748b;font-size:0.72rem;width:18px;}
+.scorer-name{font-weight:700;flex:1;}
+.scorer-odds{color:#fbbf24;font-weight:700;font-size:0.85rem;margin-left:auto;}
+.scorer-pct{font-size:0.72rem;color:#94a3b8;width:38px;text-align:right;}
+.match-history{width:100%;border-collapse:collapse;font-size:0.78rem;}
+.match-history th{padding:5px 8px;color:#64748b;font-size:0.68rem;text-transform:uppercase;background:#0f172a;}
+.match-history td{padding:5px 8px;border-bottom:1px solid #1a2234;}
+.score-pill{display:inline-block;padding:1px 6px;border-radius:4px;font-weight:700;font-size:0.75rem;}
+.w-pill{background:rgba(34,197,94,.15);color:#22c55e;}
+.d-pill{background:rgba(234,179,8,.15);color:#eab308;}
+.l-pill{background:rgba(239,68,68,.15);color:#ef4444;}
+.prob-table{width:100%;border-collapse:collapse;font-size:0.80rem;}
+.prob-table th{padding:6px 10px;background:#0f172a;color:#64748b;font-size:0.68rem;text-transform:uppercase;}
+.prob-table td{padding:7px 10px;border-bottom:1px solid #1a2234;}
+.flag-green{color:#22c55e;font-weight:700;}
+.flag-red{color:#ef4444;font-weight:700;}
+.flag-yellow{color:#eab308;font-weight:700;}
+
+</style></head>
 <body>
 <header>
   <h1>⚽ Analisi 30 Agosto 2026 — Revisione 29 ago + Analisi oggi</h1>
@@ -65,6 +104,7 @@ table.rev-table tbody tr:hover td{background:rgba(255,255,255,.025);}
   <div class="tab" onclick="show('rev',this)">📋 Revisione 29 ago</div>
   <div class="tab" onclick="show('tab30',this)">📋 Tabella 30 ago</div>
   <div class="tab" onclick="show('analisi30',this)">📊 Analisi completa 30 ago</div>
+  <div class="tab" onclick="show('interdeep',this)">🎯 Cagliari-Inter Deep</div>
 </div>
 
 <div id="home" class="content active">
@@ -838,6 +878,533 @@ table.rev-table tbody tr:hover td{background:rgba(255,255,255,.025);}
   <div class="note-row">💡 Partita equilibrata. Quota 2.10/3.40/3.40 = mercato vede parità. 1X @1.50 = unica scelta conservativa.</div>
 </div>
 </div>
+
+
+<div id="interdeep" class="content">
+
+<!-- HEADER -->
+<div style="background:linear-gradient(135deg,#1e3a5f,#1e293b);border-radius:12px;padding:16px 20px;margin-bottom:16px;border:1px solid #3b82f6;">
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+    <div>
+      <div style="font-size:1.2rem;font-weight:800;color:#f8fafc;">🔵 Cagliari <span style="color:#64748b;font-weight:400;">vs</span> Inter Milan ⚫</div>
+      <div style="color:#94a3b8;font-size:0.81rem;margin-top:3px;">Serie A MD2 · 30 Agosto 2026 · 20:45 · Unipol Domus · Arb. Michael Fabbri</div>
+    </div>
+    <div style="margin-left:auto;text-align:right;">
+      <div style="font-size:0.72rem;color:#64748b;">Score modello</div>
+      <div style="font-size:2.0rem;font-weight:900;color:#22c55e;">74<span style="font-size:1.0rem;">/100</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMAZIONI -->
+<div class="deep-section">
+<div class="deep-h2">📋 Formazioni Probabili</div>
+<div class="deep-grid">
+  <div class="deep-box">
+    <div class="deep-box-title">🔵 Cagliari — 4-3-2-1 (Pisacane)</div>
+    <div style="font-family:monospace;font-size:0.79rem;color:#cbd5e1;line-height:1.9;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Caprile</b><br/>
+      Zé Pedro &nbsp;<b style="color:#f87171;">Mina*</b>&nbsp; J.Rodriguez &nbsp;<b>Obert</b><br/>
+      &nbsp;&nbsp;<b>Romano</b> &nbsp;&nbsp;<b>Winks</b> &nbsp;&nbsp;<b>Fazzini</b><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Adopo</b> &nbsp;&nbsp;&nbsp;&nbsp;<b>Maldini</b><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Mendy</b>
+    </div>
+    <div style="font-size:0.71rem;color:#f87171;margin-top:8px;">* Mina: ballottaggio 51-49% con Deiola — non al 100%</div>
+  </div>
+  <div class="deep-box">
+    <div class="deep-box-title">⚫ Inter — 3-5-2 (Chivu)</div>
+    <div style="font-family:monospace;font-size:0.79rem;color:#cbd5e1;line-height:1.9;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Josep Martínez</b><br/>
+      <b>Bisseck</b> &nbsp;&nbsp;<b>Akanji</b> &nbsp;&nbsp;<b>Bastoni</b><br/>
+      <b>Diouf</b> <b>Barella</b> <b>Calhanoglu</b> <b>Zielinski</b> <b>Dimarco</b><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<b style="color:#22c55e;">Lautaro</b> — <b style="color:#22c55e;">Pio Esposito</b>
+    </div>
+    <div style="font-size:0.71rem;color:#eab308;margin-top:8px;">Thuram non in forma → Esposito titolare. Diouf WB dx (erede Dumfries).</div>
+  </div>
+</div>
+</div>
+
+<!-- INTER: TUTTE LE PARTITE (analisi gol) -->
+<div class="deep-section">
+<div class="deep-h2">📊 Inter 2026-27 — Tutte le Partite Analizzate</div>
+
+<div class="deep-h3">Preseason + Serie A MD1</div>
+<div style="overflow-x:auto;">
+<table class="match-history">
+  <thead><tr>
+    <th>Data</th><th>Comp.</th><th>Partita</th><th>Ris.</th><th>Gol Inter</th><th>Marcatori</th><th>Note</th>
+  </tr></thead>
+  <tbody>
+    <tr><td style="color:#64748b;">Lug 2026</td><td>Amichevole</td><td>Inter vs Karlsruher SC</td>
+      <td><span class="score-pill w-pill">W</span></td>
+      <td style="color:#22c55e;font-weight:700;">2+</td>
+      <td>Diouf ×2 (stoppage time)</td>
+      <td style="color:#64748b;font-size:0.72rem;">Prima prova Diouf: brace nel finale</td></tr>
+    <tr><td style="color:#64748b;">Ago 2026</td><td>Amichevole</td><td>Inter vs Man City (Hong Kong)</td>
+      <td><span class="score-pill w-pill">W pens</span></td>
+      <td style="color:#eab308;font-weight:700;">—</td>
+      <td>—</td>
+      <td style="color:#64748b;font-size:0.72rem;">Vinta ai rigori — formazioni miste</td></tr>
+    <tr><td style="color:#64748b;">Ago 2026</td><td>Amichevole</td><td>AC Milan vs Inter</td>
+      <td><span class="score-pill d-pill">D 1-1</span></td>
+      <td style="color:#eab308;font-weight:700;">1</td>
+      <td>N/D</td>
+      <td style="color:#64748b;font-size:0.72rem;">Nkunku pen. per Milan — derby amichevole</td></tr>
+    <tr><td style="color:#64748b;">Ago 2026</td><td>Amichevole</td><td>Inter vs Juventus (Australia)</td>
+      <td><span class="score-pill w-pill">W 2-1</span></td>
+      <td style="color:#22c55e;font-weight:700;">2</td>
+      <td>N/D</td>
+      <td style="color:#64748b;font-size:0.72rem;">Prima vittoria vs Juve amichevole estate</td></tr>
+    <tr><td style="color:#64748b;">Ago 2026</td><td>Amichevole</td><td>Inter vs Real Betis (Bari)</td>
+      <td><span class="score-pill w-pill">W 1-0</span></td>
+      <td style="color:#22c55e;font-weight:700;">1</td>
+      <td>John Stones (1° gol Inter)</td>
+      <td style="color:#64748b;font-size:0.72rem;">Stones segna al debutto — difensore gol!</td></tr>
+    <tr style="background:rgba(34,197,94,.05)"><td style="color:#fbbf24;font-weight:700;">22 Ago 2026</td>
+      <td><b>Serie A MD1</b></td><td><b>Inter vs Monza</b></td>
+      <td><span class="score-pill w-pill">W 4-1</span></td>
+      <td style="color:#22c55e;font-weight:800;font-size:1.0rem;">4</td>
+      <td><b>Calhanoglu 6' · Zielinski 48' · Esposito 55' · Bisseck 63'</b></td>
+      <td style="color:#94a3b8;font-size:0.72rem;">3 gol in 15 min (48'-63'). Diouf 2 assist. Lautaro 0 gol flat. Thuram sub.</td></tr>
+    <tr style="background:rgba(59,130,246,.08)"><td style="color:#60a5fa;font-weight:700;">30 Ago 2026</td>
+      <td><b>Serie A MD2</b></td><td><b>Cagliari vs Inter</b></td>
+      <td><span style="color:#60a5fa;font-weight:700;">OGGI</span></td>
+      <td style="color:#60a5fa;font-weight:800;">???</td>
+      <td>—</td>
+      <td style="color:#64748b;font-size:0.72rem;">Analisi → vedi sotto</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div style="margin-top:10px;padding:10px;background:#1e293b;border-radius:8px;font-size:0.80rem;">
+  <span style="color:#22c55e;font-weight:700;">📈 Stagione 2025-26 (per contesto): </span>
+  <span style="color:#cbd5e1;">Inter campione SA · <b>2.34 gol/g</b> · <b>119 gol totali</b> (record) · Lautaro <b>17 gol SA</b> · 7ª stagione consecutiva 100+ gol</span>
+</div>
+</div>
+
+<!-- PATTERN GOL INTER -->
+<div class="deep-section">
+<div class="deep-h2">⏱️ Pattern Gol Inter — Quando Segna?</div>
+<div class="deep-grid">
+  <div class="deep-box">
+    <div class="deep-box-title">Distribuzione per fascia oraria (da MD1 + storico)</div>
+    <div style="margin-top:5px;">
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:2px;"><span>1'-15'</span><span style="color:#eab308;">Calhanoglu tipo (6' vs Monza)</span></div>
+      <div class="pct-bar"><div class="pct-fill" style="width:35%;background:#eab308;"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:2px;"><span>16'-30'</span><span style="color:#64748b;">Basso (Inter studia)</span></div>
+      <div class="pct-bar"><div class="pct-fill" style="width:15%;background:#ef4444;"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:2px;"><span>31'-45'</span><span style="color:#eab308;">Medio (gestione 1T)</span></div>
+      <div class="pct-bar"><div class="pct-fill" style="width:20%;background:#eab308;"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:2px;"><span>46'-60'</span><span style="color:#22c55e;font-weight:700;">⚡ ESPLOSIONE (Zielinski 48', Esposito 55')</span></div>
+      <div class="pct-bar"><div class="pct-fill" style="width:80%;background:#22c55e;"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:2px;"><span>61'-75'</span><span style="color:#22c55e;font-weight:700;">🔥 PICCO (Bisseck 63', 2.34 gol/g SA)</span></div>
+      <div class="pct-bar"><div class="pct-fill" style="width:90%;background:#22c55e;"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:2px;"><span>76'-90'</span><span style="color:#eab308;">Gestione / Sostituti</span></div>
+      <div class="pct-bar"><div class="pct-fill" style="width:45%;background:#eab308;"></div></div>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin-top:6px;">⚡ Inter segna prevalentemente nel <b>2° tempo</b> — 3 gol in 15' vs Monza (48'-63'). Chivu accelera dopo l'intervallo con i wingback</div>
+  </div>
+
+  <div class="deep-box">
+    <div class="deep-box-title">Perché Inter segna tanto in trasferta a Cagliari</div>
+    <div class="timeline">
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">2.04</span><span class="tl-text">gol/gara media Inter away a Cagliari (23 trasferte)</span>
+        <div class="tl-sub">Statisticamente la 2ª migliore trasferta per Inter in SA</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">12/12</span><span class="tl-text">Lautaro con gol vs Cagliari in SA</span>
+        <div class="tl-sub">100% presenze con almeno 1 gol. Serie mai interrotta.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">6W-0D-0L</span><span class="tl-text">Ultime 6 trasferte Inter a Cagliari</span>
+        <div class="tl-sub">Striscia attiva. Cagliari non batte Inter in casa dal 2019.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot yellow"></div>
+        <span class="tl-min">3 CS</span><span class="tl-text">Ultimi 3 away Inter a Cagliari senza subire gol</span>
+        <div class="tl-sub">Ma Romano (Cagliari) può rompere la striscia da fuori area</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">+9</span><span class="tl-text">Differenza gol Inter in SA 2025-26 (campioni)</span>
+        <div class="tl-sub">Chivu ha mantenuto la miglior difesa e il miglior attacco SA</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SCENARI GOL -->
+<div class="deep-section">
+<div class="deep-h2">🎯 Scenari Gol Probabli — Come e Quando</div>
+<div class="deep-grid">
+
+  <div class="deep-box">
+    <div class="deep-box-title">Scenario A — "Lautaro Show" (più probabile)</div>
+    <div class="timeline">
+      <div class="tl-event">
+        <div class="tl-dot gray"></div>
+        <span class="tl-min">1'-25'</span><span class="tl-text">Cagliari blocco basso. Inter costruisce. Winks fa schermo.</span>
+        <div class="tl-sub">Diouf sfida Obert. Dimarco crossa ma Caprile sicuro.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~30'-40'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 1 — Lautaro su cross Dimarco</span>
+        <div class="tl-sub">Mina non al 100% sui duelli aerei → header o tap-in Lautaro. Classic H2H.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot gray"></div>
+        <span class="tl-min">HT</span><span class="tl-text">Inter 1-0. Chivu: "spingiamo subito nel 2T"</span>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~52'-60'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 2 — Pio Esposito / Calhanoglu</span>
+        <div class="tl-sub">Inter accelera come vs Monza. Esposito inserimento o Calhanoglu da fuori.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot yellow"></div>
+        <span class="tl-min">~70'-80'</span><span class="tl-text" style="color:#eab308;font-weight:700;">⚽ Romano (eventuale) o GOL 3 Inter</span>
+        <div class="tl-sub">Cagliari apre. Romano tira da fuori (stile MD1). Oppure Diouf o Zielinski chiude.</div>
+      </div>
+    </div>
+    <div style="font-size:0.71rem;color:#22c55e;margin-top:6px;font-weight:700;">Probabilità: ~35% → Risultato tipo: Inter 2-0 o 3-0</div>
+  </div>
+
+  <div class="deep-box">
+    <div class="deep-box-title">Scenario B — "Inter Domina ma Cagliari Segna" (prob. medio)</div>
+    <div class="timeline">
+      <div class="tl-event">
+        <div class="tl-dot gray"></div>
+        <span class="tl-min">1'-15'</span><span class="tl-text">Avvio cauto Inter. Cagliari chiuso.</span>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~20'-35'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 1 Inter — Calhanoglu corner / free kick</span>
+        <div class="tl-sub">Fabbri fischia molto → tanti falli → set piece. Calhanoglu batte diretto o Bisseck di testa.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot red"></div>
+        <span class="tl-min">~45'-65'</span><span class="tl-text" style="color:#ef4444;font-weight:700;">⚽ GOL CAGLIARI — Romano da fuori</span>
+        <div class="tl-sub">Romano specialista tiro da lontano (segnò vs Parma al 79'). Martínez esposto.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~70'-85'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 2 Inter — Lautaro o Zielinski da sub</span>
+        <div class="tl-sub">Inter risponde. Lautaro salta Cagliari stanca. Zielinski entra e verticalizza.</div>
+      </div>
+    </div>
+    <div style="font-size:0.71rem;color:#eab308;margin-top:6px;font-weight:700;">Probabilità: ~25% → Risultato tipo: Inter 2-1 (BTTS Sì + Over 2.5)</div>
+  </div>
+
+  <div class="deep-box">
+    <div class="deep-box-title">Scenario C — "Rigore + Gol" (frequente con Fabbri)</div>
+    <div class="timeline">
+      <div class="tl-event">
+        <div class="tl-dot gray"></div>
+        <span class="tl-min">1'-40'</span><span class="tl-text">Cagliari fa falli sistematici. Fabbri ammonisce.</span>
+        <div class="tl-sub">Mina o Obert entrano duri su Lautaro/Esposito in area.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~35'-50'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ RIGORE → Calhanoglu trasforma</span>
+        <div class="tl-sub">Fabbri 4.40 GJ/g + Cagliari che falla = rigore altamente probabile. Calhanoglu infallibile.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~60'-75'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 2 — Lautaro / Esposito / Diouf</span>
+        <div class="tl-sub">Cagliari aperto dopo rigore subito. Inter colpisce in profondità.</div>
+      </div>
+    </div>
+    <div style="font-size:0.71rem;color:#22c55e;margin-top:6px;font-weight:700;">Probabilità: ~20% → Risultato tipo: Inter 2-0 con rigore al 1° gol</div>
+  </div>
+
+  <div class="deep-box">
+    <div class="deep-box-title">Scenario D — "Inter 3 Gol" (possibile)</div>
+    <div class="timeline">
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~15'-25'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 1 — Avvio sprint Inter</span>
+        <div class="tl-sub">Come vs Monza (Calhanoglu al 6'), Inter parte forte e Cagliari sorpreso.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~48'-58'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 2 — Classica esplosione 2T</span>
+        <div class="tl-sub">Replica esatta del pattern vs Monza: 3 gol in 15 minuti dopo l'intervallo.</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot green"></div>
+        <span class="tl-min">~60'-70'</span><span class="tl-text" style="color:#22c55e;font-weight:700;">⚽ GOL 3 — Diouf / Zielinski / Lautaro</span>
+        <div class="tl-sub">Cagliari crollato. Diouf si inserisce, Zielinski entra fresco. Lautaro cerca la doppietta.</div>
+      </div>
+    </div>
+    <div style="font-size:0.71rem;color:#eab308;margin-top:6px;font-weight:700;">Probabilità: ~42-48% (per Inter ≥3 gol). Richiede: inizio dominante o esplosione 2T</div>
+  </div>
+
+</div>
+</div>
+
+<!-- PROBABILITÀ RISULTATI -->
+<div class="deep-section">
+<div class="deep-h2">📐 Probabilità Risultati Finali</div>
+<div style="overflow-x:auto;">
+<table class="prob-table">
+  <thead><tr>
+    <th>Risultato</th><th>Probabilità</th><th>Barra</th><th>Scenario</th><th>Mercato correlato</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td><b>Inter 2-0</b></td><td class="flag-green">~22%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:88%;background:#22c55e;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">CS Inter + 2 gol (Lautaro + 1)</td>
+      <td style="font-size:0.75rem;">BTTS No ✅ | Inter -1 AH ✅ | Over 1.5 ✅</td>
+    </tr>
+    <tr>
+      <td><b>Inter 1-0</b></td><td class="flag-green">~18%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:72%;background:#22c55e;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">Cagliari compatto, Inter fatica a chiudere</td>
+      <td style="font-size:0.75rem;">BTTS No ✅ | Inter 2 ✅ | Under 2.5 ✅</td>
+    </tr>
+    <tr>
+      <td><b>Inter 3-0</b></td><td class="flag-green">~13%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:52%;background:#22c55e;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">Esplosione 2T come vs Monza</td>
+      <td style="font-size:0.75rem;">Over 2.5 ✅ | Inter -2 AH ✅ | Inter -1 AH ✅</td>
+    </tr>
+    <tr>
+      <td><b>Inter 2-1</b></td><td class="flag-yellow">~15%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:60%;background:#eab308;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">Romano segna da fuori (stile MD1)</td>
+      <td style="font-size:0.75rem;">BTTS Sì ✅ | Over 2.5 ✅ | Inter -0.5 AH ✅</td>
+    </tr>
+    <tr>
+      <td><b>Inter 3-1</b></td><td class="flag-yellow">~8%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:32%;background:#eab308;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">Inter domina, Cagliari gol consolazione</td>
+      <td style="font-size:0.75font-size:0.75rem;">Over 3.5 ✅ | BTTS Sì ✅</td>
+    </tr>
+    <tr>
+      <td><b>Inter 1-1</b></td><td class="flag-red">~6%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:24%;background:#ef4444;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">Romano equalizza dopo gol Inter</td>
+      <td style="font-size:0.75rem;">BTTS Sì ✅ | Under 2.5 ✅</td>
+    </tr>
+    <tr>
+      <td><b>Cagliari 1-0</b></td><td class="flag-red">~4%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:16%;background:#ef4444;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">Shock! Romano gol su ripartenza</td>
+      <td style="font-size:0.75rem;">Cagliari 1 ✅</td>
+    </tr>
+    <tr>
+      <td><b>0-0</b></td><td class="flag-red">~3%</td>
+      <td><div class="pct-bar" style="width:120px;"><div class="pct-fill" style="width:12%;background:#ef4444;"></div></div></td>
+      <td style="color:#94a3b8;font-size:0.75rem;">Quasi impossibile con Inter che ha 2.34 gol/g SA</td>
+      <td style="font-size:0.75rem;">Under 1.5 ✅</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="padding:9px;background:#1e293b;border-radius:7px;margin-top:8px;font-size:0.79rem;color:#94a3b8;">
+  <b style="color:#22c55e;">Inter vince:</b> ~76% &nbsp;|&nbsp; <b style="color:#eab308;">Pari:</b> ~9% &nbsp;|&nbsp; <b style="color:#ef4444;">Cagliari vince:</b> ~15%
+  &nbsp;&nbsp;|&nbsp;&nbsp; <b style="color:#22c55e;">Inter ≥3 gol:</b> ~42% &nbsp;|&nbsp; <b style="color:#22c55e;">Over 2.5:</b> ~58%
+</div>
+</div>
+
+<!-- MARCATORI -->
+<div class="deep-section">
+<div class="deep-h2">🥅 Possibili Marcatori &amp; Assist</div>
+<div class="deep-grid">
+
+  <div class="deep-box">
+    <div class="deep-box-title">⚫ Marcatori Inter — Probabilità</div>
+    <div class="scorer-row">
+      <span class="scorer-num">1</span>
+      <span class="scorer-name">Lautaro Martínez <span style="color:#64748b;font-size:0.72rem;">CF</span></span>
+      <div>
+        <div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:78%;background:#22c55e;"></div></div>
+      </div>
+      <span class="scorer-pct">~72%</span>
+      <span class="scorer-odds">@~1.85</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">12/12 vs Cagliari. Motivazione massima. Vuole riscattare MD1.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">2</span>
+      <span class="scorer-name">Pio Esposito <span style="color:#64748b;font-size:0.72rem;">CF</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:52%;background:#22c55e;"></div></div></div>
+      <span class="scorer-pct">~48%</span>
+      <span class="scorer-odds">@~2.60</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">1G+1A vs Monza. 7 gol SA 25-26. Ottimo movimento. Titolare fisso.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">3</span>
+      <span class="scorer-name">Hakan Calhanoglu <span style="color:#64748b;font-size:0.72rem;">CM</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:38%;background:#eab308;"></div></div></div>
+      <span class="scorer-pct">~35%</span>
+      <span class="scorer-odds">@~3.50</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">Segnato MD1 (6'). Rigorista + tiri da fuori. Fabbri fischia → rigori probabili.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">4</span>
+      <span class="scorer-name">Andy Diouf <span style="color:#64748b;font-size:0.72rem;">WB dx</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:28%;background:#eab308;"></div></div></div>
+      <span class="scorer-pct">~25%</span>
+      <span class="scorer-odds">@~4.50</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">2 assist MD1 + brace in preseason. WB che si inserisce e tira. Pericolo da dx.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">5</span>
+      <span class="scorer-name">Piotr Zielinski <span style="color:#64748b;font-size:0.72rem;">CM/sub</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:22%;background:#eab308;"></div></div></div>
+      <span class="scorer-pct">~20%</span>
+      <span class="scorer-odds">@~5.00</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">Segnato MD1 (48'). Entra nella ripresa con giocatori stanchi. Impact sub.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">6</span>
+      <span class="scorer-name">Yann Bisseck <span style="color:#64748b;font-size:0.72rem;">CB</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:16%;background:#ef4444;"></div></div></div>
+      <span class="scorer-pct">~14%</span>
+      <span class="scorer-odds">@~6.50</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">Segnato MD1 (63') + in preseason. Si inserisce su corner. Mina è alto → duela.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">7</span>
+      <span class="scorer-name">Federico Dimarco <span style="color:#64748b;font-size:0.72rem;">WB sx</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:13%;background:#ef4444;"></div></div></div>
+      <span class="scorer-pct">~12%</span>
+      <span class="scorer-odds">@~7.00</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">Cross maestro. Rara ma possibile: tiro da fuori o tap-in su propria azione.</div>
+  </div>
+
+  <div class="deep-box">
+    <div class="deep-box-title">🔵 Marcatori Cagliari — Probabilità</div>
+    <div class="scorer-row">
+      <span class="scorer-num">1</span>
+      <span class="scorer-name">Alessandro Romano <span style="color:#64748b;font-size:0.72rem;">M/A</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:35%;background:#eab308;"></div></div></div>
+      <span class="scorer-pct">~32%</span>
+      <span class="scorer-odds">@~5.00</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">Segnato MD1 (79' eurogol da fuori). Specialista tiro lontano. Josep Martínez alla prova.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">2</span>
+      <span class="scorer-name">Daniel Maldini <span style="color:#64748b;font-size:0.72rem;">Trequartista</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:20%;background:#ef4444;"></div></div></div>
+      <span class="scorer-pct">~18%</span>
+      <span class="scorer-odds">@~7.00</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">Trequartista creativo. Calci piazzati pericolosi. Può creare o segnare su azione personale.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">3</span>
+      <span class="scorer-name">Mendy <span style="color:#64748b;font-size:0.72rem;">CF</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:15%;background:#ef4444;"></div></div></div>
+      <span class="scorer-pct">~14%</span>
+      <span class="scorer-odds">@~7.50</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">CF veloce. Sfrutta errori difensivi su ripartenza. Chiudersi e ripartire è il piano Pisacane.</div>
+    <div class="scorer-row">
+      <span class="scorer-num">4</span>
+      <span class="scorer-name">Yerry Mina <span style="color:#64748b;font-size:0.72rem;">CB (corner)</span></span>
+      <div><div class="pct-bar" style="width:100px;"><div class="pct-fill" style="width:10%;background:#ef4444;"></div></div></div>
+      <span class="scorer-pct">~9%</span>
+      <span class="scorer-odds">@~10.00</span>
+    </div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 6px 26px;">Segna su corner/punizione. Se Cagliari sotto, sale su corner disperato nel finale.</div>
+  </div>
+
+  <div class="deep-box" style="grid-column:1/-1;">
+    <div class="deep-box-title">🎯 Assist Probabili — Inter</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:6px;">
+      <div style="padding:7px;background:#0f172a;border-radius:6px;">
+        <div style="font-weight:700;color:#60a5fa;">① Andy Diouf <span style="font-size:0.70rem;color:#64748b;">WB dx</span></div>
+        <div style="font-size:0.75rem;color:#94a3b8;margin-top:3px;">2 assist MD1 vs Monza. Crosser + verticalizzatore da destra. Il più probabile.</div>
+        <div style="color:#fbbf24;font-size:0.80rem;font-weight:700;margin-top:4px;">P(assist): ~55%</div>
+      </div>
+      <div style="padding:7px;background:#0f172a;border-radius:6px;">
+        <div style="font-weight:700;color:#60a5fa;">② Federico Dimarco <span style="font-size:0.70rem;color:#64748b;">WB sx</span></div>
+        <div style="font-size:0.75rem;color:#94a3b8;margin-top:3px;">Cross dalla sinistra per Lautaro/Esposito. Entra in area spesso. Classico assist Inter.</div>
+        <div style="color:#fbbf24;font-size:0.80rem;font-weight:700;margin-top:4px;">P(assist): ~40%</div>
+      </div>
+      <div style="padding:7px;background:#0f172a;border-radius:6px;">
+        <div style="font-weight:700;color:#60a5fa;">③ Pio Esposito <span style="font-size:0.70rem;color:#64748b;">CF</span></div>
+        <div style="font-size:0.75rem;color:#94a3b8;margin-top:3px;">1 assist MD1 (set up Bisseck). Sponde per Lautaro. Coppia dinamica che si scambia assist.</div>
+        <div style="color:#fbbf24;font-size:0.80rem;font-weight:700;margin-top:4px;">P(assist): ~30%</div>
+      </div>
+      <div style="padding:7px;background:#0f172a;border-radius:6px;">
+        <div style="font-weight:700;color:#60a5fa;">④ Nicolo Barella <span style="font-size:0.70rem;color:#64748b;">CM</span></div>
+        <div style="font-size:0.75rem;color:#94a3b8;margin-top:3px;">Verticalizzazioni + inserimenti da mezzala. Classico "ultimo passaggio" di Barella.</div>
+        <div style="color:#fbbf24;font-size:0.80rem;font-weight:700;margin-top:4px;">P(assist): ~25%</div>
+      </div>
+      <div style="padding:7px;background:#0f172a;border-radius:6px;">
+        <div style="font-weight:700;color:#60a5fa;">⑤ Hakan Calhanoglu <span style="font-size:0.70rem;color:#64748b;">CM</span></div>
+        <div style="font-size:0.75rem;color:#94a3b8;margin-top:3px;">Filtrante da regista profondo. Corner + punizioni. Segnare O assist = quasi sicuro.</div>
+        <div style="color:#fbbf24;font-size:0.80rem;font-weight:700;margin-top:4px;">P(assist): ~20%</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- AMMONITI -->
+<div class="deep-section">
+<div class="deep-h2">🟨 Possibili Ammoniti — Fabbri 4.40 GJ/g</div>
+<div class="deep-grid">
+  <div class="deep-box">
+    <div class="deep-box-title">🔴 RISCHIO ALTO (p &gt;50%)</div>
+    <div class="scorer-row"><span class="scorer-name">⚫ Lautaro Martínez (Inter)</span><span class="scorer-odds" style="color:#ef4444;">~55%</span></div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 8px 0;">Già preso GJ vs Monza. Aggressivo. Protesta con Fabbri spesso. Cagliari lo ferma ruvido → lui risponde.</div>
+    <div class="scorer-row"><span class="scorer-name">🔵 Yerry Mina (Cagliari)</span><span class="scorer-odds" style="color:#ef4444;">~52%</span></div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 8px 0;">Non al 100%. Falli difensivi istintivi su Lautaro/Esposito. CB da ammonire con Fabbri severo.</div>
+    <div class="scorer-row"><span class="scorer-name">🔵 Obert (Cagliari)</span><span class="scorer-odds" style="color:#ef4444;">~50%</span></div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 4px 0;">Deve fermare Diouf. Entrate tardive su WB veloce = giallo quasi certo con Fabbri.</div>
+  </div>
+  <div class="deep-box">
+    <div class="deep-box-title">🟡 RISCHIO MEDIO (30-50%)</div>
+    <div class="scorer-row"><span class="scorer-name">🔵 Zé Pedro (Cagliari)</span><span class="scorer-odds" style="color:#eab308;">~40%</span></div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 8px 0;">Dimarco + Esposito da contenere sul lato sinistro Inter. Falli tattici.</div>
+    <div class="scorer-row"><span class="scorer-name">🔵 Harry Winks (Cagliari)</span><span class="scorer-odds" style="color:#eab308;">~38%</span></div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 8px 0;">Regista tecnico ma sotto pressione Barella. Falli tattici per spezzare il ritmo Inter.</div>
+    <div class="scorer-row"><span class="scorer-name">⚫ Barella (Inter)</span><span class="scorer-odds" style="color:#eab308;">~35%</span></div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 8px 0;">Intenso, recuperi forti. Fabbri lo ammonisce quando entra duro su Romano/Winks.</div>
+    <div class="scorer-row"><span class="scorer-name">⚫ Calhanoglu (Inter)</span><span class="scorer-odds" style="color:#eab308;">~32%</span></div>
+    <div style="font-size:0.71rem;color:#64748b;margin:-4px 0 4px 0;">Proteste ripetute su falli non fischiati. Fabbri non ha pazienza con le proteste.</div>
+  </div>
+</div>
+<div style="padding:8px 12px;background:#1e293b;border-radius:7px;font-size:0.78rem;color:#94a3b8;">
+  <b style="color:#eab308;">Previsione totale:</b> 5-6 gialli | 3 Cagliari (Mina/Obert + 1) | 2 Inter (Lautaro + 1) | Rosso improbabile (0.07/g Fabbri)
+</div>
+</div>
+
+<!-- RIEPILOGO MERCATI -->
+<div class="deep-section">
+<div class="deep-h2">💰 Mercati in Ordine di Valore</div>
+<div style="overflow-x:auto;">
+<table class="prob-table">
+  <thead><tr>
+    <th>#</th><th>Mercato</th><th>Quota est.</th><th>★★★★★</th><th>Ragionamento</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>1</td><td><b>Inter 2</b></td><td style="color:#fbbf24;">~1.65</td><td>★★★★★</td><td style="font-size:0.75rem;">9W-1D-0L H2H. Chivu full strength. No CL. 76% vittoria stimata.</td></tr>
+    <tr><td>2</td><td><b>Lautaro anytime scorer</b></td><td style="color:#fbbf24;">~1.85</td><td>★★★★★</td><td style="font-size:0.75rem;">12/12 vs Cagliari. A secco MD1. P(gol)≈72%. Quota implica 54% → EV +33%.</td></tr>
+    <tr><td>3</td><td><b>Inter -0.5 AH</b></td><td style="color:#fbbf24;">~1.75</td><td>★★★★★</td><td style="font-size:0.75rem;">Copre pareggio (solo 9% prob.). Valore puro vs quota implicita 57%.</td></tr>
+    <tr><td>4</td><td><b>Over 1.5</b></td><td style="color:#fbbf24;">~1.45</td><td>★★★★☆</td><td style="font-size:0.75rem;">22/23 away Inter a Cagliari con ≥1 gol. Quasi certezza storica.</td></tr>
+    <tr><td>5</td><td><b>Over 2.5</b></td><td style="color:#fbbf24;">~1.75</td><td>★★★★☆</td><td style="font-size:0.75rem;">P(≥3 gol totali)≈58%. Include gol Cagliari. λ=2.04 Inter solo + Romano pericoloso.</td></tr>
+    <tr><td>6</td><td><b>Cagliari giocatore ammonito (1°)</b></td><td style="color:#fbbf24;">~1.55</td><td>★★★★☆</td><td style="font-size:0.75rem;">Fabbri 4.40 GJ/g. Cagliari deve fermare Inter con falli. Mina/Obert prime vittime.</td></tr>
+    <tr><td>7</td><td><b>BTTS No (CS Inter)</b></td><td style="color:#fbbf24;">~1.90</td><td>★★★☆☆</td><td style="font-size:0.75rem;">3 CS consecutivi Inter a Cagliari. Ma Romano (specialista tiro da fuori) è variabile.</td></tr>
+    <tr><td>8</td><td><b>Inter -1 AH</b></td><td style="color:#fbbf24;">~2.00</td><td>★★★☆☆</td><td style="font-size:0.75rem;">P(Inter vince 2+)≈53%. Lautaro motivato, Mina non al 100%. Rischioso ma giustificabile.</td></tr>
+    <tr><td>9</td><td><b>Lautaro + Esposito doppia (entrambi marcatori)</b></td><td style="color:#fbbf24;">~5.50</td><td>★★★☆☆</td><td style="font-size:0.75rem;">P≈72%×48%=35%. Se Inter segna 3+, quasi certo che entrambi segnino.</td></tr>
+    <tr><td>10</td><td><b>Over 3.5</b></td><td style="color:#fbbf24;">~2.50</td><td>★★★☆☆</td><td style="font-size:0.75rem;">P(Inter ≥3)≈42-48%. Quota buona ma dipende dall'esplosione 2T di Chivu.</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div><!-- fine tab interdeep -->
 
 <script>
 function show(id,tab){
