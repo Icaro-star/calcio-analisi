@@ -93,6 +93,35 @@ table.rev-table tbody tr:hover td{background:rgba(255,255,255,.025);}
 .flag-red{color:#ef4444;font-weight:700;}
 .flag-yellow{color:#eab308;font-weight:700;}
 
+
+.match-deep{background:#0f172a;border-radius:12px;padding:16px;margin-bottom:20px;border:1px solid #1e293b;}
+.match-deep-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #1e293b;}
+.match-deep-title{font-size:1.1rem;font-weight:800;color:#f8fafc;}
+.match-deep-meta{color:#94a3b8;font-size:0.78rem;margin-top:2px;}
+.match-deep-score{font-size:1.8rem;font-weight:900;margin-left:auto;}
+.d2grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.d2grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;}
+.d2grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+.dbox{background:#1e293b;border-radius:8px;padding:10px;}
+.dbox-t{font-size:0.67rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.dbox-body{font-size:0.79rem;color:#cbd5e1;line-height:1.6;}
+.srow{display:flex;align-items:center;gap:7px;padding:4px 0;border-bottom:1px solid #1a2234;}
+.srow:last-child{border-bottom:none;}
+.sname{font-weight:700;flex:1;font-size:0.82rem;}
+.spct{font-size:0.75rem;color:#94a3b8;width:36px;text-align:right;}
+.sodds{color:#fbbf24;font-weight:700;font-size:0.82rem;margin-left:4px;}
+.sbar{height:5px;border-radius:3px;background:#334155;width:80px;}
+.sfill{height:5px;border-radius:3px;}
+.sn{color:#64748b;font-size:0.72rem;width:16px;}
+.scen-box{background:#1a2234;border-radius:7px;padding:9px 11px;margin-bottom:7px;}
+.scen-title{font-size:0.78rem;font-weight:700;color:#60a5fa;margin-bottom:4px;}
+.scen-body{font-size:0.76rem;color:#94a3b8;line-height:1.5;}
+.scen-prob{font-size:0.78rem;font-weight:700;color:#22c55e;margin-top:4px;}
+.mkt-mini{width:100%;border-collapse:collapse;font-size:0.77rem;}
+.mkt-mini th{padding:4px 7px;background:#0f172a;color:#64748b;font-size:0.67rem;text-transform:uppercase;}
+.mkt-mini td{padding:5px 7px;border-bottom:1px solid #1a2234;}
+.form-mono{font-family:monospace;font-size:0.77rem;color:#cbd5e1;line-height:1.8;}
+
 </style></head>
 <body>
 <header>
@@ -105,6 +134,7 @@ table.rev-table tbody tr:hover td{background:rgba(255,255,255,.025);}
   <div class="tab" onclick="show('tab30',this)">📋 Tabella 30 ago</div>
   <div class="tab" onclick="show('analisi30',this)">📊 Analisi completa 30 ago</div>
   <div class="tab" onclick="show('interdeep',this)">🎯 Cagliari-Inter Deep</div>
+  <div class="tab" onclick="show('deepall',this)">🔍 Deep — Tutte le Partite</div>
 </div>
 
 <div id="home" class="content active">
@@ -1405,6 +1435,1319 @@ table.rev-table tbody tr:hover td{background:rgba(255,255,255,.025);}
 </div>
 
 </div><!-- fine tab interdeep -->
+
+<div id="deepall" class="content">
+<div style="background:#1e293b;border-radius:9px;padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+  <div style="font-size:0.85rem;font-weight:700;color:#60a5fa;">🔍 Deep Analysis — Tutte le Partite 30 Agosto 2026</div>
+  <div style="font-size:0.78rem;color:#94a3b8;">Formazioni · Marcatori · Ammoniti · Scenari · Mercati per ogni match</div>
+  <div style="margin-left:auto;font-size:0.72rem;color:#64748b;">Ordinate per Score</div>
+</div>
+
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Real Madrid <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Málaga CF</div>
+      <div class="match-deep-meta">La Liga 🇪🇸 · MD3 · 30 Agosto 2026 · Bernabéu · 20:00 · Arb: Jesús Gil Manzano (est.) (~3.40 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#22c55e;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Real Madrid -1.5 AH @~1.72</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#22c55e;">77<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Real Madrid</div>
+      <div class="form-mono"><b>4-3-3 (Ancelotti)</b><br/>Lunin<br/>Carvajal · Rüdiger · Tchouaméni · Mendy<br/>Valverde · Camavinga · Bellingham<br/>Rodrygo · Mbappé · Vinicius Jr</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Málaga CF</div>
+      <div class="form-mono"><b>5-4-1 (Pellicer)</b><br/>Rubén<br/>Juanpe · Matos · Villar · Fraile · Héctor<br/>Iniesta(j) · Escassi · Febas · Ontiveros<br/>Weissman</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 2W-0D-0L (6/6 pt) | Bernabéu imbattuto | +3.2 gol/g in casa<br/>
+        <b style="color:#f87171;">Osp:</b> 0W-1D-1L (1/6 pt) | 16° posto | 0 gol in trasferta<br/>
+        <b style="color:#fbbf24;">H2H:</b> Real 5W-0D-0L ultimi 5 vs Málaga | media gol Real: +3.2
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Courtois rientro graduale (Lunin titolare stabile) | Alaba precauzionale<br/>
+        <b style="color:#f87171;">Osp:</b> Ramis (infortuni roster) | squadra ridotta per Liga
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Real Madrid</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Mbappé</span><div class="sbar"><div class="sfill" style="width:75%;background:#22c55e;"></div></div><span class="spct">~75%</span><span class="sodds">~1.75</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF assoluto top. Bernabéu = casa sua. Segna 0.82 gol/g SA.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Vinicius Jr</span><div class="sbar"><div class="sfill" style="width:65%;background:#22c55e;"></div></div><span class="spct">~65%</span><span class="sodds">~2.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala sinistra devastante. Dribbling + tiro. Málaga dx difende male.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Bellingham</span><div class="sbar"><div class="sfill" style="width:45%;background:#eab308;"></div></div><span class="spct">~45%</span><span class="sodds">~2.80</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Inserimenti da MC. Specialista gol + assist. 1G+1A media/g.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Rodrygo</span><div class="sbar"><div class="sfill" style="width:38%;background:#eab308;"></div></div><span class="spct">~38%</span><span class="sodds">~3.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala dx tecnica. Gol + assist su sviluppo azione. Segnato MD2.</div></div></div><div class="srow"><span class="sn">5</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Valverde</span><div class="sbar"><div class="sfill" style="width:22%;background:#ef4444;"></div></div><span class="spct">~22%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC box-to-box. Inserisce su calcio da fermo. Tira da fuori.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Málaga CF</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Weissman</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~7.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF principale Málaga. Pochi palloni ma può sorprendere.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Ontiveros</span><div class="sbar"><div class="sfill" style="width:12%;background:#ef4444;"></div></div><span class="spct">~12%</span><span class="sodds">~9.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala tecnica. Tiro potente su ripartenza. Shock se segna.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Jesús Gil Manzano (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Juanpe/Villar (Málaga CB)</span><div class="sbar"><div class="sfill" style="width:55%;background:#ef4444;"></div></div><span class="spct">~55%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Falli sistematici su Mbappé/Vinicius in area. Fabbri/Gil severo.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Escassi/Febas (Málaga MC)</span><div class="sbar"><div class="sfill" style="width:45%;background:#eab308;"></div></div><span class="spct">~45%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Falli tattici per fermare Bellingham. Classici gialli da centrocampo.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#94a3b8;">Tchouaméni (Real MC)</span><div class="sbar"><div class="sfill" style="width:25%;background:#94a3b8;"></div></div><span class="spct">~25%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Interventi duri in recupero palla. Intermittente.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Mbappé Show' (~40%)</div>
+          <div class="scen-body">Mbappé segna 1-2 gol nel 1T. Vinicius raddoppia. Real -1.5 AH passo in 45 min. Goleada 3-5 gol.</div>
+          <div class="scen-prob">→ Real 3-0 o 4-0 · -1.5 AH ✅ · Over 3.5 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Real gestisce' (~35%)</div>
+          <div class="scen-body">Real apre nel 1T con Bellingham o Rodrygo, raddoppia nel 2T. Málaga bassa senza chances. CS Real.</div>
+          <div class="scen-prob">→ Real 2-0 · -1.5 AH ✅ · BTTS No ✅ · Over 1.5 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Real lento ma vince' (~20%)</div>
+          <div class="scen-body">Real fatica nel 1T, Málaga compatta. Gol nel 2T (Mbappé da rigore o Vinicius). 1-0 o 2-0.</div>
+          <div class="scen-prob">→ Real 2-0 o 1-0 · -0.5 AH ✅ · -1.5 AH ❌ se 1-0</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Real 3-0</b> <span style='color:#94a3b8;'>~28%</span> &nbsp;|&nbsp; <b>Real 2-0</b> <span style='color:#94a3b8;'>~22%</span> &nbsp;|&nbsp; <b>Real 4-0</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Real 2-1</b> <span style='color:#94a3b8;'>~8%</span> &nbsp;|&nbsp; <b>Real 1-0</b> <span style='color:#94a3b8;'>~10%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Real Madrid -1.5 AH</b></td><td style='color:#fbbf24;'>~1.72</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>TOP: 5W-0D H2H, Málaga 16° senza gol away. Implica 58% vs reale ~72%</td></tr><tr><td><b>Over 3.5</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>Real vs Málaga = goleada storica. Mbappé+Vinicius+Bellingham. EV+</td></tr><tr><td><b>Mbappé anytime scorer</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>0.82 gol/g Real. Bernabéu = habitat. P~75% vs quota implica 57%.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.55</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Málaga 0 gol in trasferta. Real CS probabile. Buon valore.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Real segna sempre in casa. Casi su 5+ tiri. Safe.</td></tr><tr><td><b>Real -2.5 AH</b></td><td style='color:#fbbf24;'>~2.20</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Rischioso ma quota buona se Real inizia forte. Alternativa aggressiva.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Real Madrid -1.5 AH = pick principale. Málaga è la peggiore squadra in trasferta (0 gol). Il Bernabéu è implacabile.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Napoli <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Como</div>
+      <div class="match-deep-meta">Serie A 🇮🇹 · MD2 · 30 Agosto 2026 · Maradona · 18:30 · Arb: Daniele Orsato (est.) (~3.20 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#22c55e;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Napoli 1 @~1.58</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#22c55e;">76<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Napoli</div>
+      <div class="form-mono"><b>4-3-3 (Conte)</b><br/>Meret<br/>Di Lorenzo · Rrahmani · Buongiorno · Olivera<br/>Anguissa · Lobotka/Gilmour · McTominay<br/>Politano · Osimhen · Kvaratskhelia</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Como</div>
+      <div class="form-mono"><b>4-2-3-1 (Fabregas)</b><br/>Audero<br/>Iovine · Kempf · Dossena · Moreno<br/>Engelhardt · Da Cunha<br/>Strefezza · Paz · Fadera<br/>Belotti</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 1W-0D-0L (3/3 pt) | top contender SA | Maradona = fortezza<br/>
+        <b style="color:#f87171;">Osp:</b> 0W-1D-1L (1 pt) | mid-lower SA | 0W in 2 trasferte<br/>
+        <b style="color:#fbbf24;">H2H:</b> Napoli 4W-1D-0L ultimi 5 in casa vs Como | media 2.4 gol Napoli
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Nessun infortunio major | Lobotka in valutazione (flessore)<br/>
+        <b style="color:#f87171;">Osp:</b> Cutrone infortunato | Strefezza precauzionale
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Napoli</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Victor Osimhen</span><div class="sbar"><div class="sfill" style="width:70%;background:#22c55e;"></div></div><span class="spct">~70%</span><span class="sodds">~1.90</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Top scorer SA. Fisicità vs Dossena/Kempf. Maradona = casa. Gol quasi certo.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Kvaratskhelia</span><div class="sbar"><div class="sfill" style="width:55%;background:#22c55e;"></div></div><span class="spct">~55%</span><span class="sodds">~2.30</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Dribbling inarrestabile su sx. Fadera non regge. Gol+assist probabile.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">McTominay</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span><span class="sodds">~3.80</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Mezzala box-to-box. Inserimento da 2a linea. Già 3 gol nel 25-26.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Politano</span><div class="sbar"><div class="sfill" style="width:25%;background:#ef4444;"></div></div><span class="spct">~25%</span><span class="sodds">~4.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala dx. Tiro a giro. Può segnare su sviluppo azione destra.</div></div></div><div class="srow"><span class="sn">5</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Anguissa</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CM fisico. Tiro da fuori area su recupero. Raramente ma possibile.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Como</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Belotti</span><div class="sbar"><div class="sfill" style="width:20%;background:#ef4444;"></div></div><span class="spct">~20%</span><span class="sodds">~6.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ex-SA top scorer. Letale su calcio da fermo. Come gna rigore o corner.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Paz</span><div class="sbar"><div class="sfill" style="width:15%;background:#ef4444;"></div></div><span class="spct">~15%</span><span class="sodds">~8.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista creativo. Tiro potente da 20m. Il più pericoloso Como.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Fadera</span><div class="sbar"><div class="sfill" style="width:12%;background:#ef4444;"></div></div><span class="spct">~12%</span><span class="sodds">~9.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala veloce. Ripartenza veloce può sorprendere Meret.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Daniele Orsato (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Engelhardt/Da Cunha (Como MC)</span><div class="sbar"><div class="sfill" style="width:50%;background:#ef4444;"></div></div><span class="spct">~50%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Falli tattici per fermare Kvara/McTominay. Gialli inevitabili.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Kempf (Como CB)</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Deve fermare Osimhen fisicamente. Falli duri = giallo Orsato.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#94a3b8;">Osimhen (Napoli CF)</span><div class="sbar"><div class="sfill" style="width:30%;background:#94a3b8;"></div></div><span class="spct">~30%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Simula/protesta quando fermato. Orsato severo con le provocazioni.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Kvara + Osimhen' (~40%)</div>
+          <div class="scen-body">Kvara sfonda a sinistra, assist per Osimhen. Napoli apre nel 1T. Raddoppia McTominay nel 2T.</div>
+          <div class="scen-prob">→ Napoli 2-0 · Napoli 1 ✅ · BTTS No ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Napoli gestisce' (~35%)</div>
+          <div class="scen-body">Gol di Osimhen nel 1T. Napoli cala ritmo nel 2T. Como prova a rientrare ma Meret solido.</div>
+          <div class="scen-prob">→ Napoli 1-0 · Napoli 1 ✅ · Under 1.5 ❌ · Under 2.5 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Como risponde' (~20%)</div>
+          <div class="scen-body">Napoli avanti 1-0, Como pareggia con Belotti su corner. Napoli vince nel 2T con Kvara.</div>
+          <div class="scen-prob">→ Napoli 2-1 · BTTS Sì ✅ · Over 2.5 ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Napoli 2-0</b> <span style='color:#94a3b8;'>~28%</span> &nbsp;|&nbsp; <b>Napoli 1-0</b> <span style='color:#94a3b8;'>~22%</span> &nbsp;|&nbsp; <b>Napoli 2-1</b> <span style='color:#94a3b8;'>~18%</span> &nbsp;|&nbsp; <b>Napoli 3-0</b> <span style='color:#94a3b8;'>~12%</span> &nbsp;|&nbsp; <b>Napoli 3-1</b> <span style='color:#94a3b8;'>~7%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Napoli 1</b></td><td style='color:#fbbf24;'>~1.58</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>FISSA: 4W-1D H2H. Osimhen top form. P~72% vs implicita 63%. EV+</td></tr><tr><td><b>Napoli -0.5 AH</b></td><td style='color:#fbbf24;'>~1.72</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>Copre pareggio (Como non pareggia vs Napoli casa). Più valore.</td></tr><tr><td><b>Osimhen anytime scorer</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>~70% prob. Quota implica ~53%. EV +32%.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Napoli 2+ gol/g in casa + Belotti nel Como. Buon valore.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Como senza Cutrone = meno gol. CS Napoli probabile ~55%.</td></tr><tr><td><b>Napoli -1 AH</b></td><td style='color:#fbbf24;'>~2.10</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Rischiosa. Napoli vince di 2+ ~50%. Solo se aggiungi a sistema.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Napoli 1 @1.58 = FISSA del sistema. Osimhen in forma + Kvara inarrestabile vs Como senza Cutrone = match facile.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Cagliari <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Inter Milan</div>
+      <div class="match-deep-meta">Serie A 🇮🇹 · MD2 · 30 Agosto 2026 · Unipol Domus · 20:45 · Arb: Michael Fabbri (4.40 GJ/g (alta!))</div>
+      <div style="margin-top:5px;"><span style="background:#22c55e;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Inter 2 @~1.65</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#22c55e;">74<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Cagliari</div>
+      <div class="form-mono"><b>4-3-2-1 (Pisacane)</b><br/>Caprile<br/>Zé Pedro · Mina* · J.Rodriguez · Obert<br/>Romano · Winks · Fazzini<br/>Adopo · Maldini<br/>Mendy<br/>(*Mina ballottaggio: 51% vs Deiola)</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Inter Milan</div>
+      <div class="form-mono"><b>3-5-2 (Chivu)</b><br/>Josep Martínez<br/>Bisseck · Akanji · Bastoni<br/>Diouf · Barella · Calhanoglu · Zielinski · Dimarco<br/>Lautaro · Pio Esposito<br/>(Thuram panchina)</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 0W-1D-0L (1 pt) | lotta salvezza | 0W in 2 MD<br/>
+        <b style="color:#f87171;">Osp:</b> 1W-0D-0L (3 pt) | campioni SA | 4-1 vs Monza MD1<br/>
+        <b style="color:#fbbf24;">H2H:</b> Inter 8W-1D-1L ultimi 10 vs Cagliari | 6W-0D-0L ultimi 6 away
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Idrissi out fino nov. (infortuno mar.2025) | Mina 51-49% ballottaggio con Deiola<br/>
+        <b style="color:#f87171;">Osp:</b> Thuram non in forma titolare | Correa out | Josep Martínez nuovo GK
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Cagliari</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Alessandro Romano</span><div class="sbar"><div class="sfill" style="width:32%;background:#eab308;"></div></div><span class="spct">~32%</span><span class="sodds">~5.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Segnato MD1 da fuori area. Specialista tiro lontano. Martínez alla prova.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Daniel Maldini</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~7.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista creativo. Calci piazzati. Può creare o segnare.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Mendy</span><div class="sbar"><div class="sfill" style="width:14%;background:#ef4444;"></div></div><span class="spct">~14%</span><span class="sodds">~8.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF su ripartenza rapida. Se Cagliari sotto → lancia lungo.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Inter Milan</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Lautaro Martínez</span><div class="sbar"><div class="sfill" style="width:72%;background:#eab308;"></div></div><span class="spct">~72%</span><span class="sodds">~1.85</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">12/12 vs Cagliari in SA! A secco MD1. Motivazione massima.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Pio Esposito</span><div class="sbar"><div class="sfill" style="width:48%;background:#eab308;"></div></div><span class="spct">~48%</span><span class="sodds">~2.60</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">1G+1A vs Monza. Titolare fisso. 7 gol SA 25-26.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Calhanoglu</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span><span class="sodds">~3.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Rigorista + tiro da fuori. Fabbri = tanti rigori. Segnato MD1.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Diouf</span><div class="sbar"><div class="sfill" style="width:25%;background:#eab308;"></div></div><span class="spct">~25%</span><span class="sodds">~4.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">2 assist MD1. WB dx aggressivo. Brace preseason. Insert. pericoloso.</div></div></div><div class="srow"><span class="sn">5</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Zielinski</span><div class="sbar"><div class="sfill" style="width:20%;background:#ef4444;"></div></div><span class="spct">~20%</span><span class="sodds">~5.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Segnato MD1 (48'). Impact sub nel 2T.</div></div></div><div class="srow"><span class="sn">6</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Bisseck</span><div class="sbar"><div class="sfill" style="width:14%;background:#ef4444;"></div></div><span class="spct">~14%</span><span class="sodds">~6.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Segnato MD1 (63') su corner. Si inserisce da CB.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Michael Fabbri</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Lautaro Martínez (Inter)</span><div class="sbar"><div class="sfill" style="width:55%;background:#ef4444;"></div></div><span class="spct">~55%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">GJ MD1. Aggressivo. Fabbri 4.40 GJ/g = giallo certo.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Yerry Mina (Cagliari)</span><div class="sbar"><div class="sfill" style="width:52%;background:#ef4444;"></div></div><span class="spct">~52%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Non al 100%. Falli fisici su Lautaro/Esposito.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Obert (Cagliari)</span><div class="sbar"><div class="sfill" style="width:50%;background:#ef4444;"></div></div><span class="spct">~50%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Deve fermare Diouf veloce. Entrate tardive.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Zé Pedro (Cagliari)</span><div class="sbar"><div class="sfill" style="width:40%;background:#eab308;"></div></div><span class="spct">~40%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Dimarco+Esposito da contenere. Falli tattici.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Harry Winks (Cagliari)</span><div class="sbar"><div class="sfill" style="width:38%;background:#eab308;"></div></div><span class="spct">~38%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Schermo contro Barella. Falli tattici continui.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Lautaro + Esplosione 2T' (~35%)</div>
+          <div class="scen-body">Lautaro segna nel 1T (stile H2H 12/12). Inter accelera nel 2T come vs Monza (3 gol in 15 min). 2-0 o 3-0.</div>
+          <div class="scen-prob">→ Inter 2-0/3-0 · Inter 2 ✅ · BTTS No ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Romano risponde' (~25%)</div>
+          <div class="scen-body">Inter avanti su rigore Calhanoglu. Romano pareggia da fuori area (MD1 specialità). Inter vince nel 2T.</div>
+          <div class="scen-prob">→ Inter 2-1 · BTTS Sì ✅ · Over 2.5 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Inter domina, Fabbri decide' (~25%)</div>
+          <div class="scen-body">Fabbri fischia rigore su Lautaro (4.40 GJ/g = tanti falli). Calhanoglu trasforma. Inter chiude con Esposito.</div>
+          <div class="scen-prob">→ Inter 2-0 · Inter 2 ✅ · Calhanoglu marcatore ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Inter 2-0</b> <span style='color:#94a3b8;'>~22%</span> &nbsp;|&nbsp; <b>Inter 1-0</b> <span style='color:#94a3b8;'>~18%</span> &nbsp;|&nbsp; <b>Inter 3-0</b> <span style='color:#94a3b8;'>~13%</span> &nbsp;|&nbsp; <b>Inter 2-1</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Inter 3-1</b> <span style='color:#94a3b8;'>~8%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Inter 2</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>SISTEMA: 8W-1D-1L. Chivu full strength. P~76% vs implica 61%. EV+</td></tr><tr><td><b>Lautaro anytime scorer</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>12/12 vs Cagliari. A secco MD1 = fame di gol. EV+33%.</td></tr><tr><td><b>Inter -0.5 AH</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>Copre pareggio (solo 9% prob). Puro valore.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>λ=2.04 Inter + Romano pericoloso = P~58%.</td></tr><tr><td><b>Fabbri: giallo Cagliari</b></td><td style='color:#fbbf24;'>~1.55</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Cagliari deve foulare. Fabbri severo. Quasi certo.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>3 CS consecutivi Inter a Cagliari. Ma Romano può rompere.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 ⭐ Vedi tab '🎯 Cagliari-Inter Deep' per l'analisi ultra-dettagliata con tutti gli scenari minuto-per-minuto.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Lazio <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Genoa</div>
+      <div class="match-deep-meta">Serie A 🇮🇹 · MD2 · 30 Agosto 2026 · Olimpico Roma · 20:45 · Arb: Maurizio Mariani (est.) (~3.50 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#22c55e;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Lazio 1 @~1.72</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#22c55e;">72<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Lazio</div>
+      <div class="form-mono"><b>4-3-3 (Baroni)</b><br/>Provedel<br/>Hysaj · Gila · Romagnoli · Marusic<br/>Guendouzi · Rovella · Vecino/Cataldi<br/>Isaksen · Castellanos · Pedro</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Genoa</div>
+      <div class="form-mono"><b>3-5-2 (Vieira)</b><br/>Leali<br/>De Winter · Bani · Vasquez<br/>Sabelli · Frendrup · Badelj · Thorsby · Martin<br/>Gudmundsson<br/>Pinamonti</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 1W-0D-0L (3 pt) | top 5-6 SA | Olimpico = fortezza storica<br/>
+        <b style="color:#f87171;">Osp:</b> 0W-1D-1L (1 pt) | mid-lower SA | difficoltà in trasferta<br/>
+        <b style="color:#fbbf24;">H2H:</b> Lazio 6W-2D-2L ultimi 10 in casa vs Genoa | media +1.8 gol Lazio
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Lazzari in dubbio (coscia) | Matías Vecino out | Pedro 100%<br/>
+        <b style="color:#f87171;">Osp:</b> Retegui out (infortuno pre-season) | Ekuban precauzionale
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Lazio</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Taty Castellanos</span><div class="sbar"><div class="sfill" style="width:55%;background:#22c55e;"></div></div><span class="spct">~55%</span><span class="sodds">~2.30</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF argentino. Fisico e tecnica. Gila/Bani = CB solidi ma lui sfugge.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Pedro</span><div class="sbar"><div class="sfill" style="width:40%;background:#eab308;"></div></div><span class="spct">~40%</span><span class="sodds">~3.20</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Veterano SpA. Trequartista/ala. Tiro con entrambi i piedi. Set piece.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Ciro Immobile (sub)</span><div class="sbar"><div class="sfill" style="width:28%;background:#ef4444;"></div></div><span class="spct">~28%</span><span class="sodds">~4.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Se entra nel 2T = letale su ripartenza. Olimpico lo accoglie.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Guendouzi</span><div class="sbar"><div class="sfill" style="width:20%;background:#ef4444;"></div></div><span class="spct">~20%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC offensive. Inserimento da mezzala. Tiro potente da 20m.</div></div></div><div class="srow"><span class="sn">5</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Isaksen</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala dx. Velocità + cross. Può segnare su ripartenza.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Genoa</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Gudmundsson</span><div class="sbar"><div class="sfill" style="width:25%;background:#eab308;"></div></div><span class="spct">~25%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista islandese. Tiro+assist. Il più pericoloso del Genoa.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Pinamonti</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~7.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF ex-SA. Muove bene nello spazio. Ma senza Retegui = meno opzioni.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Frendrup</span><div class="sbar"><div class="sfill" style="width:12%;background:#ef4444;"></div></div><span class="spct">~12%</span><span class="sodds">~9.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC danese. Inserimento da mezzala. Gol da 2a linea.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Maurizio Mariani (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Badelj (Genoa MC)</span><div class="sbar"><div class="sfill" style="width:48%;background:#eab308;"></div></div><span class="spct">~48%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Regista anziano. Falli tattici per spezzare il ritmo Lazio.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">De Winter (Genoa CB)</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Deve fermare Castellanos fisicamente. Falli inevitabili.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Guendouzi (Lazio MC)</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Aggressivo in recupero. Mariani fischia tutto.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#94a3b8;">Romagnoli (Lazio CB)</span><div class="sbar"><div class="sfill" style="width:25%;background:#94a3b8;"></div></div><span class="spct">~25%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB leader. Falli tattici su Pinamonti in area.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Pedro+Castellanos Olimpico' (~40%)</div>
+          <div class="scen-body">Pedro segna da fuori area o su calcio piazzato. Castellanos raddoppia nel 2T. Genoa non rientra.</div>
+          <div class="scen-prob">→ Lazio 2-0 · Lazio 1 ✅ · BTTS No ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Gudmundsson risponde' (~30%)</div>
+          <div class="scen-body">Lazio avanti 1-0 con Castellanos. Gudmundsson pareggia su azione personale. Lazio vince nel 2T.</div>
+          <div class="scen-prob">→ Lazio 2-1 · BTTS Sì ✅ · Over 2.5 ✅ · Lazio 1 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Genoa compatto 0-0 a lungo' (~20%)</div>
+          <div class="scen-body">Genoa difende con 5 uomini. Lazio fatica fino al 70'. Poi Immobile cambia la gara da sub.</div>
+          <div class="scen-prob">→ Lazio 1-0 · Under 2.5 ✅ · Lazio 1 ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Lazio 2-0</b> <span style='color:#94a3b8;'>~25%</span> &nbsp;|&nbsp; <b>Lazio 1-0</b> <span style='color:#94a3b8;'>~20%</span> &nbsp;|&nbsp; <b>Lazio 2-1</b> <span style='color:#94a3b8;'>~18%</span> &nbsp;|&nbsp; <b>Lazio 3-0</b> <span style='color:#94a3b8;'>~10%</span> &nbsp;|&nbsp; <b>1-1</b> <span style='color:#94a3b8;'>~10%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Lazio 1</b></td><td style='color:#fbbf24;'>~1.72</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>6W-2D H2H. Top SA in casa vs mid-lower. P~65% vs implica 58%. Valore.</td></tr><tr><td><b>Lazio -0.5 AH</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Copre pareggio. Lazio raramente pareggia in casa vs Genoa.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Lazio segna sempre in casa. Quasi certezza storica.</td></tr><tr><td><b>Castellanos anytime</b></td><td style='color:#fbbf24;'>~2.30</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>CF fisico vs CB Genoa senza Retegui. P~55% vs implica 43%.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Gudmundsson è pericoloso. Se Genoa apre → 1+ gol away.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.95</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Genoa difende con 5. Lazio può vincere 1-0. Alternativa conservativa.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Lazio 1 @1.72 = pick solido. Senza Retegui il Genoa perde il suo CF più pericoloso. Olimpico + Castellanos = combo vincente.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Manchester United <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Ipswich Town</div>
+      <div class="match-deep-meta">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿 · MD3 · 30 Agosto 2026 · Old Trafford · 17:30 · Arb: Anthony Taylor (est.) (~3.30 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#22c55e;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Man United 1 @~1.68</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#22c55e;">71<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Manchester United</div>
+      <div class="form-mono"><b>4-2-3-1 (ten Hag/successore)</b><br/>Onana<br/>Wan-Bissaka · Maguire · Lisandro · Dalot<br/>Casemiro · Mainoo<br/>Sancho · Fernandes · Rashford<br/>Martial/Zirkzee</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Ipswich Town</div>
+      <div class="form-mono"><b>4-5-1 (McKenna)</b><br/>Walton<br/>Tuanzebe · Woolfenden · Burgess · Davis<br/>Hutchinson · Morsy/Field · Evans · Burns · Chaplin<br/>Delap</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 1W-1D-0L (4 pt) | ricostruito post-INEOS | Old Trafford = 70k tifosi<br/>
+        <b style="color:#f87171;">Osp:</b> 0W-0D-2L (0 pt) | lotta salvezza PL | 0 gol in trasferta<br/>
+        <b style="color:#fbbf24;">H2H:</b> Man Utd 7W-1D-2L vs Ipswich (tutti i precedenti PL) | ultima vittoria Ipswich: 1981
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Rasmus Hojlund out (ginocchio) | Shaw recupero graduale<br/>
+        <b style="color:#f87171;">Osp:</b> Chaplin out | Morsy squalificato | roster base disponibile
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Manchester United</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Bruno Fernandes</span><div class="sbar"><div class="sfill" style="width:55%;background:#22c55e;"></div></div><span class="spct">~55%</span><span class="sodds">~2.20</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Capitano e top scorer. Tiro + rigori. Old Trafford = casa sua.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Rashford</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span><span class="sodds">~2.90</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala sx veloce. Dopo MD mediocri, vorrà segnare vs Ipswich. Ripartenza.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Zirkzee/Martial</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span><span class="sodds">~3.80</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF titolare dopo Hojlund ko. Tecnico e letale da fuori area.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Mainoo</span><div class="sbar"><div class="sfill" style="width:20%;background:#ef4444;"></div></div><span class="spct">~20%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC giovane inglese. Inserimento. Ha segnato in precedenti PL.</div></div></div><div class="srow"><span class="sn">5</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Sancho</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala dx dopo rientro da Dortmund. Recuperato e motivato.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Ipswich Town</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Liam Delap</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~8.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF giovane inglese. Fisico e tecnico. Può sorprendere.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Wes Burns</span><div class="sbar"><div class="sfill" style="width:12%;background:#ef4444;"></div></div><span class="spct">~12%</span><span class="sodds">~10.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala che attacca la profondità. Ripartenza se Utd perde palla.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Anthony Taylor (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Casemiro (Man Utd MC)</span><div class="sbar"><div class="sfill" style="width:52%;background:#ef4444;"></div></div><span class="spct">~52%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CM difensivo. Falli tattici ripetuti. Taylor lo vede spesso.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Burgess (Ipswich CB)</span><div class="sbar"><div class="sfill" style="width:48%;background:#eab308;"></div></div><span class="spct">~48%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Deve fermare Rashford/Fernandes fisicamente. Falli inevitabili.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Woolfenden (Ipswich CB)</span><div class="sbar"><div class="sfill" style="width:40%;background:#eab308;"></div></div><span class="spct">~40%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Seconda difesa vs top club. Falli sistematici su area.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Evans (Ipswich MC)</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Regista che para i tiri di Mainoo/Fernandes. Falli tattici.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Fernandes Orchestra' (~42%)</div>
+          <div class="scen-body">Fernandes segna o assiste nel 1T. Rashford raddoppia. Old Trafford in festa. Ipswich 0 tiri in porta.</div>
+          <div class="scen-prob">→ Man Utd 2-0 · Man Utd 1 ✅ · BTTS No ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Man Utd lento ma vince' (~35%)</div>
+          <div class="scen-body">Ipswich difende bene fino al 60'. Man Utd sblocca con rigore Fernandes o Rashford. 1-0 finale.</div>
+          <div class="scen-prob">→ Man Utd 1-0 · Man Utd 1 ✅ · Under 1.5 ✅ · Under 2.5 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Delap risponde' (~15%)</div>
+          <div class="scen-body">Man Utd 1-0, Delap segna di testa su corner. Man Utd vince nel 2T con Fernandes.</div>
+          <div class="scen-prob">→ Man Utd 2-1 · BTTS Sì ✅ · Over 2.5 ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Man Utd 2-0</b> <span style='color:#94a3b8;'>~28%</span> &nbsp;|&nbsp; <b>Man Utd 1-0</b> <span style='color:#94a3b8;'>~25%</span> &nbsp;|&nbsp; <b>Man Utd 2-1</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Man Utd 3-0</b> <span style='color:#94a3b8;'>~10%</span> &nbsp;|&nbsp; <b>1-1</b> <span style='color:#94a3b8;'>~8%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Man United 1</b></td><td style='color:#fbbf24;'>~1.68</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.76rem;'>7W-1D H2H. Ipswich 0 gol away 2 MD. P~68% vs implica 60%. EV+</td></tr><tr><td><b>Man Utd -0.5 AH</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Copre pareggio (raro vs Ipswich). Più valore della 1 secca.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Ipswich senza Morsy e 0 gol away. CS Man Utd probabile ~58%.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.48</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Man Utd segna sempre in casa vs Ipswich. Quasi certezza.</td></tr><tr><td><b>Fernandes anytime</b></td><td style='color:#fbbf24;'>~2.20</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Capitano motivato. ~55% prob. Quota implica 45%.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.95</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Se Man Utd gestisce dopo 1-0 = possibile. Alternativa.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Man Utd 1 @1.68 = pick solido del sistema. 7W-1D H2H su tutti i precedenti PL. Old Trafford vs Ipswich senza Morsy.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Freiburg <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Werder Bremen</div>
+      <div class="match-deep-meta">Bundesliga 🇩🇪 · MD3 · 30 Agosto 2026 · Europa-Park Stadion · 15:30 · Arb: Felix Zwayer (est.) (~3.50 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#eab308;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Freiburg 1X @~1.48</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#eab308;">68<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Freiburg</div>
+      <div class="form-mono"><b>3-4-2-1 (Streich)</b><br/>Flekken<br/>Ginter · Lienhart · Schlotterbeck<br/>Kübler · Höfler/Eggestein · Weigl · Günter<br/>Sallai · Doan<br/>Gregoritsch</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Werder Bremen</div>
+      <div class="form-mono"><b>4-2-3-1 (Werner O.)</b><br/>Zetterer<br/>Pieper · Veljkovic · Friedl/Bjørkan · Agu<br/>Grüll · Weiser<br/>Stage · Ducksch/Füllkrug<br/>Marvin Ducksch</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 1W-1D-0L (4 pt) | top-half BL | Europa-Park imbattuto MD1-2<br/>
+        <b style="color:#f87171;">Osp:</b> 1W-1D-1L (4 pt) | 3W-5D-8L away 25-26 | record mediocre fuori casa<br/>
+        <b style="color:#fbbf24;">H2H:</b> Freiburg 7W-3D-4L vs Werder ultimi 14 | 5W-2D-1L in casa
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Höfler in valutazione | Günter leader difensivo disponibile<br/>
+        <b style="color:#f87171;">Osp:</b> Friedl fuori (squalifica) | Ducksch a rischio (coscia)
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Freiburg</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Gregoritsch</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span><span class="sodds">~3.20</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF austriaco. Fisico + tecnica. Europa-Park è casa. 3 gol MD1-2.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Sallai</span><div class="sbar"><div class="sfill" style="width:32%;background:#eab308;"></div></div><span class="spct">~32%</span><span class="sodds">~3.80</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala ungherese. Tiro + dribbling. Il più imprevedibile di Freiburg.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Doan</span><div class="sbar"><div class="sfill" style="width:25%;background:#ef4444;"></div></div><span class="spct">~25%</span><span class="sodds">~4.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala giapponese. Velocità + tiro. Segna spesso vs team simili.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Weigl</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC tedesco. Regia + tiro da fuori area. Esperienza Champions.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Werder Bremen</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Ducksch</span><div class="sbar"><div class="sfill" style="width:32%;background:#eab308;"></div></div><span class="spct">~32%</span><span class="sodds">~4.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Top scorer Werder. Se gioca (rischio coscia). Letale.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Stage</span><div class="sbar"><div class="sfill" style="width:22%;background:#ef4444;"></div></div><span class="spct">~22%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista danese. Assist + gol da 2a linea.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Grüll</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala tecnica. Ripartenza veloce su errore Freiburg.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Felix Zwayer (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Höfler/Eggestein (Freiburg MC)</span><div class="sbar"><div class="sfill" style="width:45%;background:#eab308;"></div></div><span class="spct">~45%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CM aggressivi. Zwayer punisce falli tattici.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Pieper (Werder CB)</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Deve fermare Gregoritsch fisico. Falli inevitabili.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Weiser (Werder MC)</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Mezzala box-to-box. Entra duro su Sallai/Doan.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#94a3b8;">Veljkovic (Werder CB)</span><div class="sbar"><div class="sfill" style="width:30%;background:#94a3b8;"></div></div><span class="spct">~30%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB veterano. Falli da CB su Gregoritsch area.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Gregoritsch decide' (~40%)</div>
+          <div class="scen-body">Gregoritsch segna nel 1T su cross da corner. Freiburg difende con 3 CB. Werder non penetra.</div>
+          <div class="scen-prob">→ Freiburg 1-0 · 1X ✅ · Freiburg 1 ✅ · BTTS No ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'BTTS equilibrato' (~35%)</div>
+          <div class="scen-body">Ducksch segna per Werder. Gregoritsch risponde. Gara aperta. Sallai chiude nel 2T.</div>
+          <div class="scen-prob">→ Freiburg 2-1 · 1X ✅ · BTTS Sì ✅ · Over 2.5 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Pari tattico' (~20%)</div>
+          <div class="scen-body">Entrambe difendono bene. Gol nel 2T. 1-1 finale. Freiburg non perde in casa.</div>
+          <div class="scen-prob">→ 1-1 · 1X ✅ · BTTS Sì ✅ · Under 2.5 ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Freiburg 1-0</b> <span style='color:#94a3b8;'>~25%</span> &nbsp;|&nbsp; <b>Freiburg 2-1</b> <span style='color:#94a3b8;'>~20%</span> &nbsp;|&nbsp; <b>1-1</b> <span style='color:#94a3b8;'>~18%</span> &nbsp;|&nbsp; <b>Freiburg 2-0</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Werder 1-0</b> <span style='color:#94a3b8;'>~10%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Freiburg 1X</b></td><td style='color:#fbbf24;'>~1.48</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Europa-Park = fortezza. Freiburg non perde in casa vs Werder (5W-2D). Safe.</td></tr><tr><td><b>Freiburg 1</b></td><td style='color:#fbbf24;'>~1.88</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Buona quota per club solido. 7W-3D-4L H2H. P~52%.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Entrambe segnano tipicamente. Ducksch vs Gregoritsch = gol bilanciati.</td></tr><tr><td><b>Gregoritsch anytime</b></td><td style='color:#fbbf24;'>~3.20</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>CF in forma. Europa-Park = casa. P~42% vs implica 31%.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Gara equilibrata aperta. Possibile se entrambe segnano.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Entrambe difendono con 3/4. Tattico = meno gol. Alternativa.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Freiburg 1X @1.48 = pick sicuro. Europa-Park è una fortezza vera. Se vuoi più valore: Freiburg 1 @1.88 o BTTS Sì @1.80.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Chelsea <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Brighton</div>
+      <div class="match-deep-meta">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿 · MD3 · 30 Agosto 2026 · Stamford Bridge · 15:00 · Arb: Craig Pawson (est.) (~3.40 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#eab308;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Chelsea 1X @~1.50</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#eab308;">67<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Chelsea</div>
+      <div class="form-mono"><b>4-3-3 (Maresca/Enzo)</b><br/>Sánchez<br/>James/Gusto · Badiashile · Silva · Cucurella<br/>Caicedo · Gallagher · Palmer<br/>Madueke · Jackson · Sterling</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Brighton</div>
+      <div class="form-mono"><b>4-2-3-1 (Hürzeler)</b><br/>Verbruggen<br/>Veltman · Dunk · van Hecke · Estupinan<br/>Gross · Baleba<br/>Buonanotte · March/Minteh · Adingra<br/>Welbeck/Ferguson</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 1W-1D-0L (4 pt) | investimenti top | Stamford Bridge = pubblico intenso<br/>
+        <b style="color:#f87171;">Osp:</b> 1W-1D-0L (4 pt) | sistema di gioco De Zerbi/successore | tecnica superiore al budget<br/>
+        <b style="color:#fbbf24;">H2H:</b> 3W Chelsea / 3W Brighton / 2D ultimi 8 — equilibrio totale
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Chilwell out (lungo degenza) | Reece James in dubbio<br/>
+        <b style="color:#f87171;">Osp:</b> Solly March out | Undav precauzionale
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Chelsea</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Cole Palmer</span><div class="sbar"><div class="sfill" style="width:55%;background:#22c55e;"></div></div><span class="spct">~55%</span><span class="sodds">~2.20</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista tecnico. Tiro + dribbling. Rigorista. Stamford Bridge = casa.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Nicolas Jackson</span><div class="sbar"><div class="sfill" style="width:40%;background:#eab308;"></div></div><span class="spct">~40%</span><span class="sodds">~3.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF senegalese veloce. Segna + assist. Motivato dopo 25-26 irregular.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Raheem Sterling</span><div class="sbar"><div class="sfill" style="width:30%;background:#eab308;"></div></div><span class="spct">~30%</span><span class="sodds">~4.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala sinistra veloce. Ripartenza + inserimento. Brighton attacca = apertura.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Gallagher</span><div class="sbar"><div class="sfill" style="width:20%;background:#ef4444;"></div></div><span class="spct">~20%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC box-to-box. Inserimento + tiro da 2a linea. Ha gol nel DNA.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Brighton</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Evan Ferguson</span><div class="sbar"><div class="sfill" style="width:28%;background:#eab308;"></div></div><span class="spct">~28%</span><span class="sodds">~4.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF irlandese giovane. Fisico + tecnica. Il più pericoloso Brighton.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Adingra</span><div class="sbar"><div class="sfill" style="width:22%;background:#ef4444;"></div></div><span class="spct">~22%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala Costa d'Avorio. Velocità + tiro. Può sfondare Badiashile.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Buonanotte</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista argentino (ex-Brighton accademy). Tiro + assist.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Gross</span><div class="sbar"><div class="sfill" style="width:15%;background:#ef4444;"></div></div><span class="spct">~15%</span><span class="sodds">~8.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC tedesco veterano. Tiro da 20m. Set piece specialist.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Craig Pawson (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Caicedo (Chelsea MC)</span><div class="sbar"><div class="sfill" style="width:50%;background:#ef4444;"></div></div><span class="spct">~50%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC difensivo ecuadoriano. Falli su Gross/Baleba. Pawson fischia.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Dunk (Brighton CB)</span><div class="sbar"><div class="sfill" style="width:45%;background:#eab308;"></div></div><span class="spct">~45%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Leader CB Brighton. Falli fisici su Jackson. Giallo classico.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">van Hecke (Brighton CB)</span><div class="sbar"><div class="sfill" style="width:40%;background:#eab308;"></div></div><span class="spct">~40%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB olandese. Falli su Palmer/Sterling in area. Rischio rosso.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Gallagher (Chelsea MC)</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Box-to-box aggressivo. Falli tattici su Gross.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Palmer Show' (~38%)</div>
+          <div class="scen-body">Palmer apre con tiro da fuori area. Brighton alza il baricentro. Jackson raddoppia in contropiede.</div>
+          <div class="scen-prob">→ Chelsea 2-0/2-1 · 1X ✅ · Palmer marcatore ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'BTTS Brighton risponde' (~35%)</div>
+          <div class="scen-body">Palmer segna per Chelsea. Ferguson risponde di testa. Gara aperta. 1-1 o 2-1.</div>
+          <div class="scen-prob">→ 1-1 o Chelsea 2-1 · 1X ✅ · BTTS Sì ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Brighton domina in trasferta' (~22%)</div>
+          <div class="scen-body">Brighton gioca meglio con sistema De Zerbi. Ferguson o Adingra segnano. 0-1 o 1-1.</div>
+          <div class="scen-prob">→ Brighton 1-0 o 1-1 · 1X ✅ o ❌ (se Brighton vince)</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>1-1</b> <span style='color:#94a3b8;'>~22%</span> &nbsp;|&nbsp; <b>Chelsea 2-1</b> <span style='color:#94a3b8;'>~18%</span> &nbsp;|&nbsp; <b>Chelsea 1-0</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Chelsea 2-0</b> <span style='color:#94a3b8;'>~12%</span> &nbsp;|&nbsp; <b>Brighton 1-0</b> <span style='color:#94a3b8;'>~12%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Chelsea 1X</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>H2H equilibrato ma Chelsea in casa non perde spesso. Safe ma bassa.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Brighton segna quasi sempre. Chelsea vs Brighton = gol bilanciati storicamente.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Entrambe offensive. Palmer + Ferguson = gol probabile da entrambe.</td></tr><tr><td><b>Palmer anytime</b></td><td style='color:#fbbf24;'>~2.20</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Rigorista + tiro da fuori. ~55% prob. Stamford Bridge = palcoscenico.</td></tr><tr><td><b>Chelsea 1</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Chelsea favorita ma Brighton può sorprendere. Solo se accetti rischio.</td></tr><tr><td><b>Ferguson anytime</b></td><td style='color:#fbbf24;'>~4.50</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>CF giovane ma gol già 2 quest'anno. Quota interessante se gioca.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Chelsea 1X @1.50 = pick più conservativo. H2H equilibrato. BTTS Sì @1.75 = mercato di valore se giochi i gol.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Augsburg <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Schalke 04</div>
+      <div class="match-deep-meta">Bundesliga 🇩🇪 · MD3 · 30 Agosto 2026 · WWK Arena · 17:30 · Arb: Daniel Siebert (est.) (~3.60 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#eab308;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 Augsburg 1 @~1.78</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#eab308;">66<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Augsburg</div>
+      <div class="form-mono"><b>4-3-3 (Weinzierl)</b><br/>Gikiewicz<br/>Iago · Bauer · Gouweleeuw · Pedersen<br/>Jensen · Dorsch · Caligiuri/Vargas<br/>Mbuku · Demirovic · Maier</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Schalke 04</div>
+      <div class="form-mono"><b>4-4-2 (Geraerts)</b><br/>Fährmann<br/>Brunner · Thiaw · Kaminski · Ouédraogo<br/>Aydin · Krauß · Zalazar · Drexler<br/>Terodde/Sylla · Bulter</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 1W-1D-0L (4 pt) | mid-table BL solido | WWK Arena = vantaggio casa<br/>
+        <b style="color:#f87171;">Osp:</b> 0W-1D-2L (1 pt) | primo anno BL (se promossa) o ritorno | difficoltà fuori<br/>
+        <b style="color:#fbbf24;">H2H:</b> Augsburg 5W-3D-3L vs Schalke (precedenti BL) | 3W-2D-0L in casa recenti
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Caligiuri (precauzionale) | Jensen disponibile<br/>
+        <b style="color:#f87171;">Osp:</b> Terodde out (infortuno) | Zalazar precauzionale | roster base
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Augsburg</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Demirovic</span><div class="sbar"><div class="sfill" style="width:50%;background:#22c55e;"></div></div><span class="spct">~50%</span><span class="sodds">~2.60</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF bosniaco. Top scorer Augsburg. Segna vs team simili costantemente.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Mbuku</span><div class="sbar"><div class="sfill" style="width:30%;background:#eab308;"></div></div><span class="spct">~30%</span><span class="sodds">~4.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala camerunese veloce. Dribbling + tiro. Schalke dx non tiene.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Jensen</span><div class="sbar"><div class="sfill" style="width:22%;background:#ef4444;"></div></div><span class="spct">~22%</span><span class="sodds">~5.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC danese. Box-to-box. Tiro da 20m. Già gol questa stagione.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Maier</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala sx tecnica. Segna su azione individuale. Schizzo su Kaminski.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Schalke 04</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Sylla/Bulter</span><div class="sbar"><div class="sfill" style="width:20%;background:#ef4444;"></div></div><span class="spct">~20%</span><span class="sodds">~6.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF sostituto Terodde. Fisico. Può segnare su calcio da fermo.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Drexler</span><div class="sbar"><div class="sfill" style="width:15%;background:#ef4444;"></div></div><span class="spct">~15%</span><span class="sodds">~8.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala tecnica. Ripartenza rapida. Il più pericolo Schalke.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Krauß</span><div class="sbar"><div class="sfill" style="width:12%;background:#ef4444;"></div></div><span class="spct">~12%</span><span class="sodds">~9.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC. Tiro da fuori area. Ha gol nel repertorio.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Daniel Siebert (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Kaminski (Schalke CB)</span><div class="sbar"><div class="sfill" style="width:52%;background:#ef4444;"></div></div><span class="spct">~52%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB deve fermare Demirovic fisico. Falli inevitabili. Siebert severo.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Krauß (Schalke MC)</span><div class="sbar"><div class="sfill" style="width:45%;background:#eab308;"></div></div><span class="spct">~45%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC aggressivo. Falli su Jensen/Dorsch. Regola spesso con il fisico.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Thiaw (Schalke CB)</span><div class="sbar"><div class="sfill" style="width:40%;background:#eab308;"></div></div><span class="spct">~40%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB. Mbuku troppo veloce per lui. Entrata tardiva = giallo.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#94a3b8;">Dorsch (Augsburg MC)</span><div class="sbar"><div class="sfill" style="width:30%;background:#94a3b8;"></div></div><span class="spct">~30%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Regista. Falli difensivi su Zalazar/Drexler.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Demirovic decide' (~45%)</div>
+          <div class="scen-body">Demirovic apre nel 1T su cross Mbuku o Maier. Schalke prova a rientrare ma Augsburg chiude.</div>
+          <div class="scen-prob">→ Augsburg 2-0 · Augsburg 1 ✅ · BTTS No ✅ · Demirovic marcatore ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Augsburg vince di misura' (~30%)</div>
+          <div class="scen-body">Gol di Demirovic nel 2T. Schalke cerca il pari ma Gikiewicz solido. 1-0 finale.</div>
+          <div class="scen-prob">→ Augsburg 1-0 · Augsburg 1 ✅ · Under 1.5 ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Schalke risponde' (~20%)</div>
+          <div class="scen-body">Augsburg 1-0, Sylla pareggia di testa su corner. Augsburg vince nel 2T con Jensen.</div>
+          <div class="scen-prob">→ Augsburg 2-1 · BTTS Sì ✅ · Over 2.5 ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Augsburg 2-0</b> <span style='color:#94a3b8;'>~28%</span> &nbsp;|&nbsp; <b>Augsburg 1-0</b> <span style='color:#94a3b8;'>~25%</span> &nbsp;|&nbsp; <b>Augsburg 2-1</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>1-1</b> <span style='color:#94a3b8;'>~12%</span> &nbsp;|&nbsp; <b>Schalke 1-0</b> <span style='color:#94a3b8;'>~10%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>Augsburg 1</b></td><td style='color:#fbbf24;'>~1.78</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>5W-3D H2H. Schalke 0 gol away. P~58% vs implica 56%. Discreto EV.</td></tr><tr><td><b>Augsburg 1X</b></td><td style='color:#fbbf24;'>~1.38</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Augsburg non perde quasi mai in casa BL. Safe se vuoi sicurezza.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Schalke senza Terodde = meno gol. CS Augsburg probabile ~55%.</td></tr><tr><td><b>Demirovic anytime</b></td><td style='color:#fbbf24;'>~2.60</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>CF in forma. 50% prob vs quota implica 38%. EV+.</td></tr><tr><td><b>Over 1.5</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Augsburg segna quasi sempre in casa. Safe.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Gara più tattica in BL. Schalke difende duro. Possibile.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Augsburg 1 @1.78 = pick solido. WWK Arena + Demirovic vs Schalke senza Terodde = match favorevole.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Sunderland <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Fulham</div>
+      <div class="match-deep-meta">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿 · MD3 · 30 Agosto 2026 · Stadium of Light · 15:00 · Arb: Stuart Attwell (est.) (~3.20 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#ef4444;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 X2 (Pari o Fulham) @~1.48</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#ef4444;">63<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Sunderland</div>
+      <div class="form-mono"><b>4-4-2 (Regis Le Bris)</b><br/>Patterson<br/>Hume · O'Nien · Ballard · Cirkin<br/>Coburn · Neil · Triantis · Clarke/Stewart<br/>Mayenda · Ekwah</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Fulham</div>
+      <div class="form-mono"><b>4-2-3-1 (Silva)</b><br/>Leno<br/>Tete · Diop · Ream · Robinson<br/>Reed · Lukic (senza Palhinha)<br/>Iwobi · Pereira · Harrison<br/>Muniz</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 0W-1D-1L (1 pt) | primo anno PL | Stadium of Light primo MD importante<br/>
+        <b style="color:#f87171;">Osp:</b> 1W-1D-0L (4 pt) | stabile PL mid-table | non perde vs neo-promosse<br/>
+        <b style="color:#fbbf24;">H2H:</b> 1° incontro PL significativo recente (Sunderland appena tornata) | Fulham 3W-1D ultimi 4 anni
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Pritchard out | Clarke precauzionale | roster limitato PL<br/>
+        <b style="color:#f87171;">Osp:</b> Palhinha squalificato MD3 | Muniz disponibile | Harrison ottima forma
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Sunderland</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Jewison Bennette</span><div class="sbar"><div class="sfill" style="width:22%;background:#ef4444;"></div></div><span class="spct">~22%</span><span class="sodds">~7.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala costaricana veloce. Può sorprendere sulla ripartenza.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Mayenda</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~8.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF giovane senegalese. Fisico + tecnica. Primo anno PL.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Ekwah</span><div class="sbar"><div class="sfill" style="width:15%;background:#ef4444;"></div></div><span class="spct">~15%</span><span class="sodds">~9.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC. Tiro da fuori area. Già gol nel Championship.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Fulham</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Muniz</span><div class="sbar"><div class="sfill" style="width:38%;background:#eab308;"></div></div><span class="spct">~38%</span><span class="sodds">~3.20</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF brasiliano. Top scorer Fulham. Fisico + tecnica. P~38% = buon valore.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Andreas Pereira</span><div class="sbar"><div class="sfill" style="width:28%;background:#eab308;"></div></div><span class="spct">~28%</span><span class="sodds">~4.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista brasiliano. Tiro + dribbling. Il più creativo Fulham.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Harrison</span><div class="sbar"><div class="sfill" style="width:22%;background:#ef4444;"></div></div><span class="spct">~22%</span><span class="sodds">~5.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala destra in ottima forma. Segna + assist. Sfida Clarke debole.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Iwobi</span><div class="sbar"><div class="sfill" style="width:15%;background:#ef4444;"></div></div><span class="spct">~15%</span><span class="sodds">~7.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC-ala nigeriano. Inserimento + tiro. Experience PL.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Stuart Attwell (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">O'Nien (Sunderland CB)</span><div class="sbar"><div class="sfill" style="width:50%;background:#ef4444;"></div></div><span class="spct">~50%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB deve fermare Muniz fisicamente. Falli duri inevitabili.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Neil (Sunderland MC)</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Regista che deve bloccare Pereira. Falli tattici frequenti.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Diop (Fulham CB)</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB vs Mayenda fisico. Falli difensivi su set piece Sunderland.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#94a3b8;">Reed (Fulham MC)</span><div class="sbar"><div class="sfill" style="width:30%;background:#94a3b8;"></div></div><span class="spct">~30%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC senza Palhinha = più lavoro. Falli tattici extra.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Fulham domina' (~42%)</div>
+          <div class="scen-body">Senza Palhinha Fulham ha meno controllo MC ma Harrison e Muniz segnano comunque. 0-1 o 0-2.</div>
+          <div class="scen-prob">→ Fulham 1-0 o 2-0 · X2 ✅ · BTTS No se CS Fulham</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Pari Stadium of Light' (~28%)</div>
+          <div class="scen-body">Sunderland segna su set piece (Ballard di testa). Fulham pareggia con Muniz nel 2T. 1-1 emozionante.</div>
+          <div class="scen-prob">→ 1-1 · X2 ✅ · BTTS Sì ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Sunderland vince!' (~22%)</div>
+          <div class="scen-body">Effetto casalingo. Stadium of Light tutto esaurito. Mayenda segna al 1° gol PL. Fulham stordita.</div>
+          <div class="scen-prob">→ Sunderland 1-0 · X2 ❌ · Under 1.5 ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Fulham 1-0</b> <span style='color:#94a3b8;'>~25%</span> &nbsp;|&nbsp; <b>1-1</b> <span style='color:#94a3b8;'>~22%</span> &nbsp;|&nbsp; <b>Fulham 2-0</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Sunderland 1-0</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Fulham 2-1</b> <span style='color:#94a3b8;'>~12%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>X2 (Pari o Fulham)</b></td><td style='color:#fbbf24;'>~1.48</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>BEST: Fulham non perde vs neo-promosse. Senza Palhinha = unico rischio. Safe.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Neo-promossa prudente + Fulham gestione. Gara tattica = meno gol.</td></tr><tr><td><b>Muniz anytime</b></td><td style='color:#fbbf24;'>~3.20</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>CF in forma. ~38% prob. Quota implica 31%. Buon EV.</td></tr><tr><td><b>Fulham 2</b></td><td style='color:#fbbf24;'>~2.60</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Fulham favoritissima ma fuori = rischio Sunderland crowd. Solo se accetti.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.90</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Sunderland può segnare su corner. Ma difficile vs Fulham difesa.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~2.00</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Entrambe caute = bassa probabilità. Evitare.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 X2 @1.48 = pick più sicuro. Fulham stabile PL vs primo anno Sunderland. Senza Palhinha = rischio MC. Muniz anytime @3.20 = valore.
+  </div>
+</div>
+<div class="match-deep">
+  <!-- HEADER -->
+  <div class="match-deep-header">
+    <div>
+      <div class="match-deep-title">Leeds United <span style="color:#64748b;font-weight:400;font-size:0.9rem;">vs</span> Brentford</div>
+      <div class="match-deep-meta">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿 · MD3 · 30 Agosto 2026 · Elland Road · 15:00 · Arb: Paul Tierney (est.) (~3.50 GJ/g)</div>
+      <div style="margin-top:5px;"><span style="background:#ef4444;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:0.82rem;">🎯 1X (Pari o Leeds) @~1.50</span></div>
+    </div>
+    <div class="match-deep-score" style="color:#ef4444;">60<span style="font-size:1.0rem;">/100</span></div>
+  </div>
+
+  <!-- FORMAZIONI + FORMA/H2H -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">📋 Leeds United</div>
+      <div class="form-mono"><b>4-2-3-1 (Farke)</b><br/>Meslier<br/>Kristensen · Rodon · Cooper · Firpo<br/>Adams · Grulich<br/>Gnonto · Rutter · Summerville/Gelhardt<br/>Rodriguez/Mateo</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📋 Brentford</div>
+      <div class="form-mono"><b>3-5-2 (Frank)</b><br/>Flekken<br/>Pinnock · Collins · Mee<br/>Roerslev · Nørgaard · Jensen · Janelt/Lewis-Potter · Ajer<br/>Mbeumo · Toney/Maupay</div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">📈 Forma & H2H</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> 1W-0D-1L (3 pt) | ritorno PL | Elland Road = atmosfera caldissima<br/>
+        <b style="color:#f87171;">Osp:</b> 1W-1D-0L (4 pt) | solido PL mid-table | equilibrato in trasferta<br/>
+        <b style="color:#fbbf24;">H2H:</b> 3W Leeds / 3W Brentford / 2D ultimi 8 PL — equilibrio assoluto
+      </div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">🏥 Infortuni Chiave</div>
+      <div class="dbox-body">
+        <b style="color:#60a5fa;">Casa:</b> Bamford out (lungo degenza) | Summerville precauzionale<br/>
+        <b style="color:#f87171;">Osp:</b> Wissa out (squalifica) | Mbeumo disponibile | Janelt precauzionale
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCATORI -->
+  <div class="d2grid">
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Leeds United</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Wilfried Gnonto</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span><span class="sodds">~4.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala italiano giovane veloce. Dribbling + tiro. Il più pericoloso Leeds.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Georginio Rutter</span><div class="sbar"><div class="sfill" style="width:30%;background:#eab308;"></div></div><span class="spct">~30%</span><span class="sodds">~4.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Trequartista francese. Tiro + assist. Letale su azione personale.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Patrick Bamford (sub)</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Se disponibile = impact sub. Ex-CF Leeds = cuore tifosi.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Adams</span><div class="sbar"><div class="sfill" style="width:15%;background:#ef4444;"></div></div><span class="spct">~15%</span><span class="sodds">~7.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC scozzese. Tiro da 20m. Set piece.</div></div></div>
+    </div>
+    <div class="dbox">
+      <div class="dbox-t">⚽ Marcatori Brentford</div>
+      <div class="srow"><span class="sn">1</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Bryan Mbeumo</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span><span class="sodds">~3.20</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">Ala camerunese. Il più pericoloso senza Wissa. Tiro + dribbling.</div></div></div><div class="srow"><span class="sn">2</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Ivan Toney</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span><span class="sodds">~3.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CF letale. Ex-EFL Golden Boot. Fisico + tecnica. Penalizzato Wissa out.</div></div></div><div class="srow"><span class="sn">3</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Jensen</span><div class="sbar"><div class="sfill" style="width:18%;background:#ef4444;"></div></div><span class="spct">~18%</span><span class="sodds">~6.50</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC danese. Box-to-box. Tiro da fuori area.</div></div></div><div class="srow"><span class="sn">4</span>
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname">Nørgaard</span><div class="sbar"><div class="sfill" style="width:12%;background:#ef4444;"></div></div><span class="spct">~12%</span><span class="sodds">~9.00</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC danese leader. Set piece specialist. Gol su corner.</div></div></div>
+    </div>
+  </div>
+
+  <!-- AMMONITI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🟨 Ammoniti Probabili — Paul Tierney (est.)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#ef4444;">Cooper (Leeds CB)</span><div class="sbar"><div class="sfill" style="width:52%;background:#ef4444;"></div></div><span class="spct">~52%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB veterano. Deve fermare Toney fisico. Falli duri = giallo Tierney.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Nørgaard (Brentford MC)</span><div class="sbar"><div class="sfill" style="width:48%;background:#eab308;"></div></div><span class="spct">~48%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC aggressivo. Falli su Adams/Grulich. Regola con il corpo.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Adams (Leeds MC)</span><div class="sbar"><div class="sfill" style="width:42%;background:#eab308;"></div></div><span class="spct">~42%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">MC scozzese fisico. Falli su Jensen/Nørgaard. Tierney severo.</div></div></div><div class="srow">
+          <div style="flex:1;"><div style="display:flex;align-items:center;gap:6px;">
+            <span class="sname" style="color:#eab308;">Pinnock (Brentford CB)</span><div class="sbar"><div class="sfill" style="width:35%;background:#eab308;"></div></div><span class="spct">~35%</span>
+          </div><div style="font-size:0.70rem;color:#64748b;margin-top:2px;">CB fisico. Falli su Gnonto veloce. Rischio giallo su ripartenza.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SCENARI -->
+  <div class="dbox" style="margin-bottom:10px;">
+    <div class="dbox-t">🎭 Scenari Gol</div>
+    <div class="scen-box">
+          <div class="scen-title">🎭 Scenario A — 'Elland Road decide' (~38%)</div>
+          <div class="scen-body">Leeds spinto da 37k tifosi. Gnonto sfonda. Rutter assiste. Leeds avanti nel 2T. Brentford meno brillante senza Wissa.</div>
+          <div class="scen-prob">→ Leeds 1-0 o 2-1 · 1X ✅</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario B — 'Mbeumo+Toney demoliscono' (~30%)</div>
+          <div class="scen-body">Mbeumo segna nel 1T. Toney raddoppia. Leeds cerca il pari ma Flekken solido.</div>
+          <div class="scen-prob">→ Brentford 2-0 o 2-1 · 1X ❌</div>
+        </div><div class="scen-box">
+          <div class="scen-title">🎭 Scenario C — 'Pari equilibrato' (~28%)</div>
+          <div class="scen-body">Gol per parte. Gnonto vs Mbeumo. 1-1 o 2-2. H2H dice equilibrio = pari frequente.</div>
+          <div class="scen-prob">→ 1-1 · 1X ✅ · BTTS Sì ✅</div>
+        </div>
+  </div>
+
+  <!-- RISULTATI PROBABILI -->
+  <div style="padding:8px 10px;background:#1e293b;border-radius:7px;font-size:0.78rem;margin-bottom:10px;">
+    <span style="color:#64748b;font-size:0.70rem;font-weight:700;text-transform:uppercase;">Risultati Probabili: </span><b>Brentford 1-0</b> <span style='color:#94a3b8;'>~18%</span> &nbsp;|&nbsp; <b>1-1</b> <span style='color:#94a3b8;'>~22%</span> &nbsp;|&nbsp; <b>Leeds 1-0</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Brentford 2-1</b> <span style='color:#94a3b8;'>~15%</span> &nbsp;|&nbsp; <b>Leeds 2-1</b> <span style='color:#94a3b8;'>~15%</span>
+  </div>
+
+  <!-- MERCATI -->
+  <div class="dbox">
+    <div class="dbox-t">💰 Mercati in Ordine di Valore</div>
+    <div style="overflow-x:auto;">
+    <table class="mkt-mini">
+      <thead><tr><th>Mercato</th><th>Quota</th><th>★</th><th>Ragionamento</th></tr></thead>
+      <tbody><tr><td><b>1X (Pari o Leeds)</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Leeds casa + Elland Road caldissimo. 1X copre il pari (frequente H2H).</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Entrambe attaccanti. Gnonto vs Mbeumo = gol probabile da entrambe.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>Gara aperta equilibrata = gol. H2H 6/8 partite over 2.5.</td></tr><tr><td><b>Mbeumo anytime</b></td><td style='color:#fbbf24;'>~3.20</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>~42% prob senza Wissa. Quota implica 31%. Buon EV se gioca Mbeumo.</td></tr><tr><td><b>Toney anytime</b></td><td style='color:#fbbf24;'>~3.50</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>CF letale. ~35% prob. Quota buona se Toney titolare.</td></tr><tr><td><b>X (pari)</b></td><td style='color:#fbbf24;'>~3.40</td><td style='color:#ef4444;'>★★☆☆☆</td><td style='color:#cbd5e1;font-size:0.76rem;'>H2H equilibrato. 3/8 pari. Alta varianza ma valore se giochi pari.</td></tr></tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;margin-top:8px;font-size:0.78rem;color:#94a3b8;">
+    💡 Gara equilibrata. 1X @1.50 = l'unica scelta conservativa. BTTS Sì @1.80 = mercato di valore alternativo. Evita Over 3.5.
+  </div>
+</div></div><!-- fine deepall -->
 
 <script>
 function show(id,tab){
