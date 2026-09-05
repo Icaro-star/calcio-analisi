@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Calcio Analisi — 31 Agosto 2026</title>
+<title>Calcio Analisi — Weekend 5-6 Settembre 2026</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: #0f172a; color: #e2e8f0; font-family: 'Inter', -apple-system, sans-serif; font-size: 14px; }
@@ -12,441 +12,831 @@ body { background: #0f172a; color: #e2e8f0; font-family: 'Inter', -apple-system,
        background: #1e293b; color: #94a3b8; transition: all .15s; }
 .tab:hover { background: #2d3f55; color: #e2e8f0; }
 .tab.active { background: #3b82f6; color: #fff; }
-.content { display: none; padding: 16px; max-width: 1400px; margin: 0 auto; }
+.content { display: none; padding: 16px; max-width: 1200px; margin: 0 auto; }
 .content.active { display: block; }
-.card { background: #1e293b; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
-.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-.league { font-size: 0.72rem; font-weight: 600; color: #64748b; text-transform: uppercase; }
-.time { font-size: 0.72rem; color: #475569; margin-left: auto; }
-.score-badge { padding: 2px 8px; border-radius: 5px; font-weight: 800; font-size: 0.80rem; }
-.tag { padding: 2px 8px; border-radius: 5px; font-size: 0.75rem; font-weight: 600; }
-.teams { font-size: 1.05rem; font-weight: 800; margin-bottom: 6px; }
-.vs { color: #475569; font-weight: 400; font-size: 0.85rem; margin: 0 6px; }
-.pick-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.pick-label { font-size: 0.72rem; color: #64748b; text-transform: uppercase; }
-.pick-val { font-weight: 700; color: #f8fafc; }
-.odds-val { color: #fbbf24; font-weight: 800; margin-left: auto; font-size: 1.0rem; }
-.grid2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
-.info-block { background: #0f172a; border-radius: 7px; padding: 9px; font-size: 0.79rem; }
-.info-block.full-width { grid-column: 1 / -1; }
-.info-title { font-size: 0.68rem; font-weight: 700; color: #64748b; text-transform: uppercase;
-               letter-spacing: .05em; margin-bottom: 5px; }
-.pick-angoli { color: #3b82f6; font-weight: 700; margin-top: 3px; font-size: 0.78rem; }
-.note-row { margin-top: 10px; padding: 8px 10px; background: #0f172a; border-radius: 6px;
-             font-size: 0.79rem; color: #94a3b8; }
-.group-title { font-size: 0.90rem; font-weight: 800; color: #60a5fa; padding: 10px 0 6px;
-               border-bottom: 1px solid #1e293b; margin-bottom: 10px; }
-
-/* Sistema box */
-.sistema-box { background: #1e293b; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
-.sistema-title { font-size: 0.90rem; font-weight: 800; color: #f8fafc; margin-bottom: 10px;
-                  border-bottom: 1px solid #334155; padding-bottom: 8px; }
-.sistema-row { display: flex; align-items: center; gap: 8px; padding: 5px 0;
-                border-bottom: 1px solid #1a2234; font-size: 0.82rem; }
-.sistema-row:last-child { border-bottom: none; }
-.sistema-label { color: #64748b; font-size: 0.72rem; width: 100px; flex-shrink: 0; }
-.sistema-pick { font-weight: 700; flex: 1; }
-.sistema-odds { color: #fbbf24; font-weight: 700; width: 55px; text-align: right; }
-.sistema-tag { padding: 1px 7px; border-radius: 4px; font-size: 0.71rem; font-weight: 600; }
-
-/* Revisione table */
-.rev-table { width: 100%; border-collapse: collapse; font-size: 0.80rem; }
-.rev-table th { padding: 7px 10px; background: #0f172a; color: #64748b; font-size: 0.70rem;
-                 text-transform: uppercase; letter-spacing: .04em; text-align: left; }
-.rev-table td { padding: 7px 10px; border-bottom: 1px solid #1a2234; }
-.win-badge { background: rgba(34,197,94,.15); color: #22c55e; padding: 2px 8px; border-radius: 4px;
-              font-weight: 700; font-size: 0.78rem; }
-.loss-badge { background: rgba(239,68,68,.15); color: #ef4444; padding: 2px 8px; border-radius: 4px;
-               font-weight: 700; font-size: 0.78rem; }
-
-/* Summary stats */
-.stats-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-.stat-box { background: #1e293b; border-radius: 8px; padding: 10px 16px; text-align: center; flex: 1; min-width: 80px; }
-.stat-val { font-size: 1.6rem; font-weight: 900; }
-.stat-label { font-size: 0.68rem; color: #64748b; text-transform: uppercase; margin-top: 2px; }
 </style>
 </head>
 <body>
 <div class="tabs">
-  <div class="tab active" onclick="show('sistema31',this)">🏠 Sistema &amp; Secca 31 ago</div>
-  <div class="tab" onclick="show('rev30',this)">📋 Revisione 30 ago</div>
-  <div class="tab" onclick="show('tabella31',this)">📋 Tabella 31 ago</div>
-  <div class="tab" onclick="show('analisi31',this)">📊 Analisi completa 31 ago</div>
-  <div class="tab" onclick="show('natleague',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 National League</div>
+  <div class="tab active" onclick="show('sistema',this)">🏠 Sistema Weekend</div>
+  <div class="tab" onclick="show('sab5',this)">⚽ Sabato 5 Set</div>
+  <div class="tab" onclick="show('dom6',this)">⚽ Domenica 6 Set</div>
+  <div class="tab" onclick="show('deep',this)">🔍 Deep Big Match</div>
+  <div class="tab" onclick="show('ven4',this)">📋 Venerdì 4 Set</div>
 </div>
 
-<div id="sistema31" class="content active">
-
-<div class="sistema-box" style="border-left:4px solid #22c55e;">
-  <div class="sistema-title">🎯 SECCA 31 Agosto 2026</div>
-  <div class="sistema-row">
-    <span class="sistema-label">Match</span>
-    <span class="sistema-pick">Lecce vs Roma — Via del Mare, 18:30</span>
-  </div>
-  <div class="sistema-row">
-    <span class="sistema-label">Pick</span>
-    <span class="sistema-pick" style="color:#22c55e;font-size:1.0rem;font-weight:900;">Roma 2</span>
-    <span class="sistema-odds" style="font-size:1.1rem;">@~1.50</span>
-  </div>
-  <div class="sistema-row">
-    <span class="sistema-label">Motivazione</span>
-    <span class="sistema-pick" style="color:#94a3b8;font-size:0.79rem;">Roma 3-0 MD1 (Malen HAT TRICK vs Fiorentina). Gasperini confermato. Lecce senza Berisha = 0 attacco. H2H Roma 5W-1D-1L vs Lecce.</span>
-  </div>
+<div id="sistema" class="content active">
+<div style="background:linear-gradient(135deg,#1a2840,#1e293b);border-radius:12px;padding:12px 16px;margin-bottom:14px;border:1px solid #3b82f6;">
+  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;">🏆 Sistema Weekend — 5-6 Settembre 2026</div>
+  <div style="color:#94a3b8;font-size:0.80rem;margin-top:3px;">Serie A 3ª giornata · Premier League 3ª giornata · 4 Big Match</div>
 </div>
 
-<div class="sistema-box" style="border-left:4px solid #8b5cf6;">
-  <div class="sistema-title">🔄 SISTEMA 2/3 — 31 Agosto 2026</div>
-  <div class="sistema-row">
-    <span class="sistema-label">FISSA (80%)</span>
-    <span class="sistema-pick"><b>Arsenal 2</b> <span style="color:#64748b;font-size:0.78rem;">vs Aston Villa, 21:00</span></span>
-    <span class="sistema-tag" style="background:#22c55e;color:#000;">FISSA</span>
-    <span class="sistema-odds">@~1.65</span>
-  </div>
-  <div class="sistema-row">
-    <span class="sistema-label">Doppia 1 (6.7%)</span>
-    <span class="sistema-pick"><b>Roma 2</b> @1.50 × <b>Atalanta 1</b> @1.75</span>
-    <span class="sistema-tag" style="background:#8b5cf6;color:#fff;">D1</span>
-    <span class="sistema-odds">= @2.625</span>
-  </div>
-  <div class="sistema-row">
-    <span class="sistema-label">Doppia 2 (6.7%)</span>
-    <span class="sistema-pick"><b>Roma -0.5 AH</b> @1.60 × <b>Arsenal -0.5 AH</b> @1.75</span>
-    <span class="sistema-tag" style="background:#8b5cf6;color:#fff;">D2</span>
-    <span class="sistema-odds">= @2.80</span>
-  </div>
-  <div class="sistema-row">
-    <span class="sistema-label">Doppia 3 (6.7%)</span>
-    <span class="sistema-pick"><b>Atalanta 1X</b> @1.45 × <b>Arsenal -0.5 AH</b> @1.75</span>
-    <span class="sistema-tag" style="background:#8b5cf6;color:#fff;">D3</span>
-    <span class="sistema-odds">= @2.538</span>
-  </div>
-  <div class="sistema-row" style="background:rgba(59,130,246,.07);border-radius:6px;padding:6px 8px;">
-    <span class="sistema-label" style="color:#60a5fa;">Win condition</span>
-    <span class="sistema-pick" style="color:#94a3b8;font-size:0.79rem;">
-      ✅ FISSA obbligatoria + almeno 2 doppie su 3 → sistema vinto
-    </span>
+<!-- SECCA -->
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #f59e0b;">
+  <div style="font-size:0.88rem;font-weight:800;color:#f59e0b;margin-bottom:10px;">⭐ SECCA DEL WEEKEND</div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div style="flex:1;">
+      <div style="font-size:1.05rem;font-weight:800;color:#f8fafc;">Inter 1 vs Napoli</div>
+      <div style="color:#94a3b8;font-size:0.80rem;">Sabato 5/9 · 18:00 · San Siro · Serie A</div>
+      <div style="margin-top:5px;font-size:0.80rem;color:#94a3b8;">Inter solidissima in casa · Napoli quota 5.90 = mercato non crede · Pio Esposito in forma</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:1.6rem;font-weight:900;color:#fbbf24;">@1.71</div>
+      <div style="background:#22c55e;color:#000;padding:2px 10px;border-radius:5px;font-size:0.78rem;font-weight:700;margin-top:4px;">SECCA ⭐</div>
+    </div>
   </div>
 </div>
 
-<div class="sistema-box" style="border-left:4px solid #eab308;background:#1a1d2e;">
-  <div class="sistema-title">⚠️ Nota: solo 3 partite oggi (lunedì)</div>
-  <div style="font-size:0.82rem;color:#94a3b8;line-height:1.7;">
-    31 agosto = giornata leggera. Solo Serie A posticipo + Arsenal. Le 3 partite sono <b>molto forti come qualità</b> ma con budget ridotto.<br/>
-    <span style="color:#eab308;">→ 18:30 Lecce-Roma (SA)</span> ·
-    <span style="color:#eab308;">→ 20:45 Atalanta-Bologna (SA)</span> ·
-    <span style="color:#22c55e;">→ 21:00 Aston Villa-Arsenal (PL)</span>
+<!-- SISTEMA 2/3 -->
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #8b5cf6;">
+  <div style="font-size:0.88rem;font-weight:800;color:#8b5cf6;margin-bottom:8px;">🔄 SISTEMA 2/3 (FISSA + 3 Doppie)</div>
+  <div style="font-size:0.76rem;color:#64748b;margin-bottom:10px;">Vince se passano almeno 2 doppie su 3 · FISSA = 80% budget</div>
+
+  <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:90px;flex-shrink:0;">FISSA (80%)</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Inter 1 <span style="color:#64748b;font-size:0.78rem;">vs Napoli · Sab 18:00</span></span>
+    <span style="background:#22c55e;color:#000;padding:1px 6px;border-radius:4px;font-size:0.70rem;font-weight:600;">FISSA</span>
+    <span style="color:#fbbf24;font-weight:700;width:45px;text-align:right;">@1.71</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:90px;flex-shrink:0;">Doppia 1</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Roma 1 @1.72 × Arsenal 1 @1.75</span>
+    <span style="color:#fbbf24;font-weight:700;width:45px;text-align:right;">@3.01</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:90px;flex-shrink:0;">Doppia 2</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Liverpool 2 @1.65 × Fiorentina 1 @1.94</span>
+    <span style="color:#fbbf24;font-weight:700;width:45px;text-align:right;">@3.20</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:7px 0;">
+    <span style="color:#64748b;font-size:0.72rem;width:90px;flex-shrink:0;">Doppia 3</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Juve-Milan No Gol @1.88 × Arsenal 1 @1.75</span>
+    <span style="color:#fbbf24;font-weight:700;width:45px;text-align:right;">@3.29</span>
   </div>
 </div>
 
-</div>
-<div id="rev30" class="content">
+<!-- MULTIPLA VALORE -->
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #22c55e;">
+  <div style="font-size:0.88rem;font-weight:800;color:#22c55e;margin-bottom:8px;">💥 MULTIPLA VALORE — 4-fold Alto Rendimento</div>
+  <div style="font-size:0.76rem;color:#64748b;margin-bottom:10px;">4 pick sicuri · quota totale ~@8.47 · €3 punta → ~€25</div>
 
-<div class="sistema-box" style="border-left:4px solid #22c55e;margin-bottom:14px;">
-  <div class="sistema-title">🏆 Sistema 30 Agosto — RISULTATO</div>
-  <div class="sistema-row"><span class="sistema-label">SECCA</span>
-    <span class="sistema-pick">Real Madrid -1.5 AH @1.72 → Real 4-0 Málaga</span>
-    <span class="win-badge">WIN ✅</span></div>
-  <div class="sistema-row"><span class="sistema-label">FISSA</span>
-    <span class="sistema-pick">Inter 2 @1.65 → Cagliari 0-1 Inter (Calhanoglu 9')</span>
-    <span class="win-badge">WIN ✅</span></div>
-  <div class="sistema-row"><span class="sistema-label">Doppia 1</span>
-    <span class="sistema-pick">Real -1.5 ✅ × Napoli 1 ❌ (Napoli 1-2 Como SHOCK)</span>
-    <span class="loss-badge">LOSS ❌</span></div>
-  <div class="sistema-row"><span class="sistema-label">Doppia 2</span>
-    <span class="sistema-pick">Man Utd 5-2 ✅ × Lazio 1-0 ✅ → @2.89</span>
-    <span class="win-badge">WIN ✅</span></div>
-  <div class="sistema-row"><span class="sistema-label">Doppia 3</span>
-    <span class="sistema-pick">Augsburg 1-0 ✅ × Freiburg 4-1 ✅ → @2.63</span>
-    <span class="win-badge">WIN ✅</span></div>
-  <div class="sistema-row" style="background:rgba(34,197,94,.1);border-radius:6px;padding:7px 10px;margin-top:5px;">
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">🏆 SISTEMA VINTO — 2 Doppie su 3 + FISSA ✅</span>
-    <span style="color:#94a3b8;font-size:0.80rem;margin-left:10px;">ROI stimato: +~45-50%</span>
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">1.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Inter 1 <span style="color:#64748b;font-size:0.78rem;">vs Napoli · Sab 18:00</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@1.71</span>
   </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">2.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Roma 1 <span style="color:#64748b;font-size:0.78rem;">vs Atalanta · Sab 20:45</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@1.72</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">3.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Arsenal 1 <span style="color:#64748b;font-size:0.78rem;">vs Chelsea · Dom 16:30</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@1.75</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">4.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Juve-Milan No Gol <span style="color:#64748b;font-size:0.78rem;">Dom 20:45</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@1.88</span>
+  </div>
+  <div style="margin-top:8px;padding:7px 10px;background:#0f172a;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:0.78rem;color:#64748b;">Quota totale stimata</span>
+    <span style="font-size:1.1rem;font-weight:900;color:#fbbf24;">1.71×1.72×1.75×1.88 ≈ @9.67</span>
+  </div>
+  <div style="margin-top:5px;font-size:0.75rem;color:#94a3b8;">€3 punta → ~€29 ritorno · 3 scommesse diverse per diversificare il rischio</div>
 </div>
 
-<div class="stats-row">
-  <div class="stat-box"><div class="stat-val" style="color:#22c55e;">8</div><div class="stat-label">WIN</div></div>
-  <div class="stat-box"><div class="stat-val" style="color:#ef4444;">2</div><div class="stat-label">LOSS</div></div>
-  <div class="stat-box"><div class="stat-val" style="color:#eab308;">10</div><div class="stat-label">TOTALE</div></div>
-  <div class="stat-box"><div class="stat-val" style="color:#22c55e;">8/10</div><div class="stat-label">HIT RATE</div></div>
-</div>
+<!-- MULTIPLA BASSO RISCHIO @1.30-1.40 -->
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #0ea5e9;">
+  <div style="font-size:0.88rem;font-weight:800;color:#0ea5e9;margin-bottom:8px;">🛡️ MULTIPLA BASSO RISCHIO — @1.30-1.40 a pick</div>
+  <div style="font-size:0.76rem;color:#64748b;margin-bottom:10px;">Double Chance / X2 per ridurre il rischio · quota totale ~@3.0-3.5 · €3 punta → ~€9-10</div>
 
-<div style="background:#1e293b;border-radius:10px;overflow:hidden;">
-<table class="rev-table">
-  <thead><tr>
-    <th>Tag</th><th>Pick / Quota</th><th>Partita</th><th>Risultato</th><th>Esito</th><th>Analisi</th>
-  </tr></thead>
-  <tbody><tr>
-      <td><span class="tag" style="background:#22c55e;color:#000;">SECCA ⭐</span></td>
-      <td><b>Real Madrid -1.5 AH</b> <span style="color:#fbbf24;">@1.72</span></td>
-      <td style="color:#94a3b8;">Real Madrid vs Málaga</td>
-      <td style="color:#f8fafc;font-weight:700;">Real Madrid 4-0 Málaga</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">Bellingham 19', OG Herrero 26', Mbappé 30', Arda Güler 91'. Dominata.</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#22c55e;color:#000;">FISSA ⭐</span></td>
-      <td><b>Inter 2</b> <span style="color:#fbbf24;">@1.65</span></td>
-      <td style="color:#94a3b8;">Cagliari vs Inter</td>
-      <td style="color:#f8fafc;font-weight:700;">Cagliari 0-1 Inter</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">Calhanoglu 9'. Inter 15-0 SoT nel 1T. Caprile para tutto. Lautaro ancora a secco.</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA (Doppia 1)</span></td>
-      <td><b>Napoli 1</b> <span style="color:#fbbf24;">@1.58</span></td>
-      <td style="color:#94a3b8;">Napoli vs Como</td>
-      <td style="color:#f8fafc;font-weight:700;">Napoli 1-2 Como</td>
-      <td><span class="loss-badge">❌ LOSS</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">SHOCK! Como espugna il Maradona. Baturina 17', Hojlund 30' (Napoli), Douvikas 34'. Sistema D1 persa.</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA (Doppia 2)</span></td>
-      <td><b>Man United 1</b> <span style="color:#fbbf24;">@1.68</span></td>
-      <td style="color:#94a3b8;">Man United vs Ipswich</td>
-      <td style="color:#f8fafc;font-weight:700;">Man United 5-2 Ipswich</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">Fernandes HAT TRICK + Maguire + Mbeumo. Ipswich Davis segna subito poi crollo. D2 vinta.</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA (Doppia 2)</span></td>
-      <td><b>Lazio 1</b> <span style="color:#fbbf24;">@1.72</span></td>
-      <td style="color:#94a3b8;">Lazio vs Genoa</td>
-      <td style="color:#f8fafc;font-weight:700;">Lazio 1-0 Genoa</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">Frattesi 25' (assist Tavares). Lazio solida. Genoa senza Retegui = pericolosa quanto 0. D2 ✅</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA (Doppia 3)</span></td>
-      <td><b>Augsburg 1</b> <span style="color:#fbbf24;">@1.78</span></td>
-      <td style="color:#94a3b8;">Augsburg vs Schalke</td>
-      <td style="color:#f8fafc;font-weight:700;">Augsburg 1-0 Schalke</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">1-0 pulito. Gregoritsch titolare. Dahmen para tutto. D3 vinta ✅</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#8b5cf6;color:#fff;">SISTEMA (Doppia 3)</span></td>
-      <td><b>Freiburg 1X</b> <span style="color:#fbbf24;">@1.48</span></td>
-      <td style="color:#94a3b8;">Freiburg vs Werder Bremen</td>
-      <td style="color:#f8fafc;font-weight:700;">Freiburg 4-1 Werder</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">GOLEADA! 4-1 netto. Matanović, Grifo e compagni demoliscono Werder nuovo allenatore. D3 ✅</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#6366f1;color:#fff;">BUONA</span></td>
-      <td><b>Chelsea 1X</b> <span style="color:#fbbf24;">@1.50</span></td>
-      <td style="color:#94a3b8;">Chelsea vs Brighton</td>
-      <td style="color:#f8fafc;font-weight:700;">Chelsea 4-3 Brighton</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">PAZZESCO! Lavia 4', Neto 14', João Pedro 32', Palmer 74'. Brighton risponde ma Chelsea tiene.</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span></td>
-      <td><b>Leeds 1X</b> <span style="color:#fbbf24;">@1.50</span></td>
-      <td style="color:#94a3b8;">Leeds vs Brentford</td>
-      <td style="color:#f8fafc;font-weight:700;">Leeds 1-1 Brentford</td>
-      <td><span class="win-badge">✅ WIN</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">Calvert-Lewin 79' / Schade 41'. Equilibrio totale come da H2H. 1X confermato.</td>
-    </tr><tr>
-      <td><span class="tag" style="background:#eab308;color:#000;">INTERESSANTE</span></td>
-      <td><b>X2 (Pari o Fulham)</b> <span style="color:#fbbf24;">@1.48</span></td>
-      <td style="color:#94a3b8;">Sunderland vs Fulham</td>
-      <td style="color:#f8fafc;font-weight:700;">Sunderland 1-0 Fulham</td>
-      <td><span class="loss-badge">❌ LOSS</span></td>
-      <td style="color:#94a3b8;font-size:0.78rem;">SHOCK! Isidor 75'. Sunderland vince al primo anno PL. Crowd Stadium of Light decide.</td>
-    </tr></tbody>
-</table>
-</div>
-
-<div style="margin-top:12px;padding:10px 14px;background:#1e293b;border-radius:8px;font-size:0.82rem;color:#94a3b8;">
-  <b style="color:#ef4444;">❌ Sorprese:</b>
-  <b style="color:#f87171;">Napoli 1-2 Como</b> (Baturina+Douvikas affondano Hojlund) ·
-  <b style="color:#f87171;">Sunderland 1-0 Fulham</b> (Isidor 75', Stadium of Light esplode al primo anno PL) ·
-  <b style="color:#22c55e;">Man Utd 5-2 Ipswich</b> (Fernandes HAT TRICK!) ·
-  <b style="color:#22c55e;">Chelsea 4-3 Brighton</b> (gara pazzesca)
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">1.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Arsenal 1X (DC) <span style="color:#64748b;font-size:0.78rem;">vs Chelsea · Dom</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@~1.28</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">2.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Roma 1X (DC) <span style="color:#64748b;font-size:0.78rem;">vs Atalanta · Sab</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@~1.30</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">3.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Liverpool X2 (DC) <span style="color:#64748b;font-size:0.78rem;">a Ipswich · Ven</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@~1.35</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;">
+    <span style="color:#64748b;font-size:0.72rem;width:20px;">4.</span>
+    <span style="font-weight:700;flex:1;color:#f8fafc;">Juve 1X (DC) <span style="color:#64748b;font-size:0.78rem;">vs Milan · Dom (4/5 recenti basso)</span></span>
+    <span style="color:#fbbf24;font-weight:700;">@~1.45</span>
+  </div>
+  <div style="margin-top:8px;padding:7px 10px;background:#0f172a;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:0.78rem;color:#64748b;">Quota totale stimata</span>
+    <span style="font-size:1.1rem;font-weight:900;color:#0ea5e9;">~1.28×1.30×1.35×1.45 ≈ @3.26</span>
+  </div>
+  <div style="margin-top:5px;font-size:0.75rem;color:#94a3b8;">€3 punta → ~€9.78 ritorno · rischio minimo</div>
 </div>
 
 </div>
-<div id="tabella31" class="content">
-<div style="background:#1e293b;border-radius:10px;overflow:hidden;">
-<table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
-  <thead><tr>
-    <th style="padding:8px 10px;background:#0f172a;color:#64748b;text-align:left;">Ora</th>
-    <th style="padding:8px 10px;background:#0f172a;color:#64748b;text-align:left;">Lega</th>
-    <th style="padding:8px 10px;background:#0f172a;color:#64748b;text-align:left;">Partita</th>
-    <th style="padding:8px 10px;background:#0f172a;color:#64748b;">Score</th>
-    <th style="padding:8px 10px;background:#0f172a;color:#64748b;text-align:left;">Pick</th>
-    <th style="padding:8px 10px;background:#0f172a;color:#64748b;">Quota</th>
-    <th style="padding:8px 10px;background:#0f172a;color:#64748b;text-align:left;">Tag</th>
-  </tr></thead>
-  <tbody><tr>
-      <td style="color:#94a3b8;">18:30</td>
-      <td><span style="font-size:0.70rem;color:#64748b;">Serie A 🇮🇹</span></td>
-      <td><b>Lecce</b> <span style="color:#475569;">vs</span> <b>Roma</b></td>
-      <td><span class="score-badge" style="background:#22c55e;color:#000;font-size:0.80rem;">75/100</span></td>
-      <td><b>Roma 2</b></td>
-      <td style="color:#fbbf24;font-weight:700;">~1.50</td>
-      <td><span class="tag" style="background:#22c55e;color:#000;">SECCA ⭐</span></td>
-    </tr><tr>
-      <td style="color:#94a3b8;">21:00</td>
-      <td><span style="font-size:0.70rem;color:#64748b;">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></td>
-      <td><b>Aston Villa</b> <span style="color:#475569;">vs</span> <b>Arsenal</b></td>
-      <td><span class="score-badge" style="background:#eab308;color:#000;font-size:0.80rem;">70/100</span></td>
-      <td><b>Arsenal 2</b></td>
-      <td style="color:#fbbf24;font-weight:700;">~1.65</td>
-      <td><span class="tag" style="background:#22c55e;color:#000;">FISSA ⭐</span></td>
-    </tr><tr>
-      <td style="color:#94a3b8;">20:45</td>
-      <td><span style="font-size:0.70rem;color:#64748b;">Serie A 🇮🇹</span></td>
-      <td><b>Atalanta</b> <span style="color:#475569;">vs</span> <b>Bologna</b></td>
-      <td><span class="score-badge" style="background:#eab308;color:#000;font-size:0.80rem;">68/100</span></td>
-      <td><b>Atalanta 1X</b></td>
-      <td style="color:#fbbf24;font-weight:700;">~1.45</td>
-      <td><span class="tag" style="background:#6366f1;color:#fff;">BUONA</span></td>
-    </tr></tbody>
-</table>
+<div id="sab5" class="content">
+<div style="background:linear-gradient(135deg,#1a3a2a,#1e293b);border-radius:12px;padding:10px 14px;margin-bottom:14px;border:1px solid #22c55e;">
+  <div style="font-size:0.90rem;font-weight:800;color:#f8fafc;">⚽ Sabato 5 Settembre 2026</div>
+  <div style="color:#94a3b8;font-size:0.78rem;">3 Serie A · 7 Premier League · Kick-off 13:30→20:45</div>
+</div>
+
+<div style="font-size:0.85rem;font-weight:800;color:#22c55e;padding:6px 0 9px;border-bottom:1px solid #1e293b;margin-bottom:11px;">🇮🇹 BIG MATCH Serie A — Da Non Perdere</div>
+
+<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #22c55e;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹 · 3ª Giornata</span>
+    <span style="color:#475569;font-size:0.72rem;">Sab 5/9 · 18:00</span>
+    <span style="background:#22c55e;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">FISSA ⭐</span>
+    <span style="margin-left:auto;background:#22c55e;color:#000;font-weight:800;font-size:0.80rem;padding:2px 8px;border-radius:5px;">⭐ 83/100</span>
+  </div>
+  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">Inter <span style="color:#475569;font-weight:400;font-size:0.82rem;">vs</span> Napoli</div>
+  <div style="font-size:0.72rem;color:#64748b;margin-bottom:6px;">🧑‍💼 Cristian Chivu (casa) · Massimiliano Allegri (ospiti)</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;font-size:1.0rem;">Inter 1 @1.71</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.71 X:4.00 2:5.90</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🏠 Casa</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#60a5fa;">58%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#60a5fa;width:58%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🤝 Pari</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#eab308;">25%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#eab308;width:25%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">✈️ Ospiti</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#f87171;">17%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#f87171;width:17%;height:5px;border-radius:3px;"></div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Casa</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 6pt / 2 vinte / 0 subiti finora in stagione</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Ospiti</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 6pt / 2 vinte · ma Napoli quota 5.90 = mercato non crede in trasferta</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🔄 H2H</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">Inter ha vinto 4 delle ultime 6 in casa vs Napoli · 1 pari · 1 vittoria Napoli</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🎯 Extra Pick</div>
+      <div style="font-size:0.76rem;color:#fbbf24;font-weight:600;">Multigol 2-3 @~1.90</div>
+    </div>
+  </div>
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.77rem;color:#94a3b8;">💡 Inter fortissima in casa a San Siro: 3-5-2 con Chivu offre solidità difensiva
+e qualità in mezzo con Barella+Çalhanoglu. Napoli quota 5.90 = quasi certezza
+che il mercato non veda chance. Pio Esposito titolare in grande forma.
+De Bruyne può creare pericoli ma Zielinski conosce bene il Napoli.
+Multigol 2-3 @1.90 come alternativa interessante.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #22c55e;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹 · 3ª Giornata</span>
+    <span style="color:#475569;font-size:0.72rem;">Sab 5/9 · 20:45</span>
+    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA</span>
+    <span style="margin-left:auto;background:#22c55e;color:#000;font-weight:800;font-size:0.80rem;padding:2px 8px;border-radius:5px;">⭐ 78/100</span>
+  </div>
+  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">Roma <span style="color:#475569;font-weight:400;font-size:0.82rem;">vs</span> Atalanta</div>
+  <div style="font-size:0.72rem;color:#64748b;margin-bottom:6px;">🧑‍💼 Gian Piero Gasperini (casa) · Maurizio Sarri (ospiti)</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;font-size:1.0rem;">Roma 1 @1.72</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.72 X:3.80 2:4.75</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🏠 Casa</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#60a5fa;">58%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#60a5fa;width:58%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🤝 Pari</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#eab308;">22%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#eab308;width:22%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">✈️ Ospiti</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#f87171;">20%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#f87171;width:20%;height:5px;border-radius:3px;"></div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Casa</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 6pt · ha battuto Lecce+Bologna · Dybala in forma</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Ospiti</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 6pt · Atalanta 2 su 2 ma con Sarri più propositiva</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🔄 H2H</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">Roma 3W-2D-2L vs Atalanta nelle ultime 7 in casa all'Olimpico</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🎯 Extra Pick</div>
+      <div style="font-size:0.76rem;color:#fbbf24;font-weight:600;">Under 2.5 @~1.80 (entrambe le panchine difensivamente solide)</div>
+    </div>
+  </div>
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.77rem;color:#94a3b8;">💡 Gasperini allena la Roma CONTRO la sua ex squadra (9 anni a Bergamo) =
+motivazione extra enorme. Sa tutto dell'Atalanta di Sarri. Roma in casa @1.72 =
+buon valore per una squadra a punteggio pieno con Dybala e Malen davanti.
+Atalanta senza Hien in difesa = vulnerabile.
+Sfida tattica ad alto livello ma Roma favorita in casa.</div>
+</div>
+
+<div style="font-size:0.85rem;font-weight:800;color:#60a5fa;padding:6px 0 9px;border-bottom:1px solid #1e293b;margin:14px 0 11px;">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Altre partite del giorno</div>
+
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #eab308;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹</span>
+    <span style="color:#475569;font-size:0.70rem;">15:00</span>
+    <span style="background:#6366f1;color:#fff;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">BUONA</span>
+    <span style="margin-left:auto;background:#eab308;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">68/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Fiorentina <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Torino</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Fiorentina 1 @1.94</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.94 X:3.30 2:4.30</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Fiorentina favorita in casa. Torino 4.30 = mercato crede poco. Firenze ottima partenza.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #eab308;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">13:30</span>
+    <span style="background:#eab308;color:#000;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">INTERESSANTE</span>
+    <span style="margin-left:auto;background:#eab308;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">60/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Newcastle <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Bournemouth</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Newcastle 1X @1.40</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.85 X:3.60 2:3.80</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Newcastle in casa solida. Bournemouth @3.80 = avversario rispettabile ma Newcastle fav.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #22c55e;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">15:00</span>
+    <span style="background:#6366f1;color:#fff;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">BUONA</span>
+    <span style="margin-left:auto;background:#22c55e;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">75/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Man City <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Coventry</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Man City 1 @1.25</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.25 X:6.50 2:9.00</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Man City dominante vs Coventry promossa. @1.25 = troppo corta per singola, utile in multipla.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #ef4444;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">15:00</span>
+    <span style="background:#eab308;color:#000;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">INTERESSANTE</span>
+    <span style="margin-left:auto;background:#ef4444;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">58/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Nottm Forest <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Tottenham</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Tottenham X2 @1.65</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:3.20 X:3.40 2:2.10</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Tottenham favorito in trasferta. Forest bene in casa ma Spurs hanno qualità superiore.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #eab308;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">15:00</span>
+    <span style="background:#6366f1;color:#fff;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">BUONA</span>
+    <span style="margin-left:auto;background:#eab308;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">62/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Brighton <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Leeds</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Brighton 1X @1.38</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.75 X:3.50 2:4.00</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Brighton solida in casa. Leeds appena tornato in PL, difficile in trasferta.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #ef4444;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">15:00</span>
+    <span style="background:#eab308;color:#000;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">INTERESSANTE</span>
+    <span style="margin-left:auto;background:#ef4444;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">55/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Brentford <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Sunderland</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">1X @1.45</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:2.10 X:3.20 2:3.50</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Brentford in casa vs Sunderland (Xhaka, Brobbey). Gara equilibrata, 1X sicuro.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #eab308;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">17:30</span>
+    <span style="background:#eab308;color:#000;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">INTERESSANTE</span>
+    <span style="margin-left:auto;background:#eab308;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">60/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Hull City <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Aston Villa</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Aston Villa X2 @1.70</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:3.50 X:3.40 2:2.00</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Aston Villa favorita in trasferta vs Hull. Hemmings + Goretzka = qualità superiore.</div>
 </div>
 </div>
-<div id="analisi31" class="content">
-<div class="group-title">📊 Analisi — 31 Agosto 2026</div><div class="card" style="border-left:4px solid #22c55e;">
-  <div class="card-header">
-    <span class="league">Serie A 🇮🇹</span>
-    <span class="time">18:30</span>
-    <span class="score-badge" style="background:#22c55e;color:#000;">75/100</span>
-    <span class="tag" style="background:#22c55e;color:#000;">SECCA ⭐</span>
+<div id="dom6" class="content">
+<div style="background:linear-gradient(135deg,#2a1a3a,#1e293b);border-radius:12px;padding:10px 14px;margin-bottom:14px;border:1px solid #8b5cf6;">
+  <div style="font-size:0.90rem;font-weight:800;color:#f8fafc;">⚽ Domenica 6 Settembre 2026</div>
+  <div style="color:#94a3b8;font-size:0.78rem;">Serie A + Premier League · Arsenal-Chelsea + Juventus-Milan</div>
+</div>
+
+<div style="font-size:0.85rem;font-weight:800;color:#8b5cf6;padding:6px 0 9px;border-bottom:1px solid #1e293b;margin-bottom:11px;">🔥 BIG MATCH — Arsenal-Chelsea + Juve-Milan</div>
+
+<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #22c55e;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿 · 3ª Giornata</span>
+    <span style="color:#475569;font-size:0.72rem;">Dom 6/9 · 16:30</span>
+    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA ⭐</span>
+    <span style="margin-left:auto;background:#22c55e;color:#000;font-weight:800;font-size:0.80rem;padding:2px 8px;border-radius:5px;">⭐ 81/100</span>
   </div>
-  <div class="teams">Lecce <span class="vs">vs</span> Roma</div>
-  <div class="pick-row">
-    <span class="pick-label">Pick:</span>
-    <span class="pick-val">Roma 2</span>
-    <span class="odds-val">@~1.50</span>
+  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">Arsenal <span style="color:#475569;font-weight:400;font-size:0.82rem;">vs</span> Chelsea</div>
+  <div style="font-size:0.72rem;color:#64748b;margin-bottom:6px;">🧑‍💼 Mikel Arteta (casa) · Xabi Alonso (ospiti)</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;font-size:1.0rem;">Arsenal 1 @1.75</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.75 X:4.00 2:5.58</span>
   </div>
-  <div class="grid2">
-    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
-      <div><b>TBC AIA</b> — GJ/g: ~3.50</div></div>
-    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
-      <div>λ≈0.6×(4.5+7.0)=6.9 → ~11 tot</div>
-      <div class="pick-angoli">Over 9.5 ~1.75</div></div>
-    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
-      <div>Casa: ~0.8 xG (Lecce lotta salvezza)</div><div>Osp: ~2.3 xG (Roma Gasperini)</div>
-      <div>SoT: ~9/g | ~17/g</div></div>
-    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
-      <div><b>Casa:</b> OUT: Berisha (infortuno) | Di Francesco conferma formazione stabile</div>
-      <div><b>Osp:</b> OUT: Pellegrini (infortuno) · Bah | Bobby Malen confermato titolare</div></div>
-    <div class="info-block"><div class="info-title">💰 Quote</div>
-      <div>1X2: <b>~4.50</b> / ~3.70 / ~1.50</div>
-      <div>O2.5: ~1.70 | U2.5: ~2.05</div>
-      <div>BTTS S/N: ~2.00 / ~1.75</div>
-      <div>AH: Roma -0.5 ~1.60 | Roma -1 ~2.00</div></div>
-    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
-      <div><b>Casa:</b> Lecce: lotta salvezza SA | Via del Mare = fortezza ma poco attacco</div>
-      <div><b>Away:</b> Roma: 3-0 vs Fiorentina MD1 (Malen hat trick!) | top 4 contender SA</div>
-      <div><b>H2H:</b> Roma 5W-1D-1L ultimi 7 vs Lecce SA | media +2.1 gol Roma in trasferta</div></div>
-    <div class="info-block"><div class="info-title">📋 Formazioni</div>
-      <div><b>Lecce:</b> 4-2-3-1 (Di Francesco): Falcone; Veiga, Tiago Gabriel, Gaspar, Gallo; Coulibaly, Gorter; Pierotti, Ngom, N'Dri; Geubbels</div>
-      <div style="margin-top:4px;"><b>Roma:</b> 3-4-2-1 (Gasperini): Svilar; Mancini, N'Dicka, Hermoso; Molina, Koné, Cristante, Wesley; Dybala, Mora; Bobby Malen</div></div>
-    <div class="info-block full-width">
-  <div class="info-title">📊 Tutti i mercati</div>
-  <table style='width:100%;border-collapse:collapse;font-size:0.79rem;'>
-  <thead><tr>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
-    <th style='padding:3px 7px;color:#64748b;'>★</th>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
-  </tr></thead>
-  <tbody><tr><td><b>Roma 2</b></td><td style='color:#fbbf24;'>~1.50</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.78rem;'>SECCA: 3-0 MD1. Malen HAT TRICK vs Fiorentina. Gasperini sistema rodato. P~72% vs implica 67%.</td></tr><tr><td><b>Roma -0.5 AH</b></td><td style='color:#fbbf24;'>~1.60</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.78rem;'>Copre pareggio. Lecce non pareggia spesso vs top SA. Più valore.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.70</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Roma 3 gol/g MD1 + Lecce attacco limitato = Over quasi certo.</td></tr><tr><td><b>Malen anytime scorer</b></td><td style='color:#fbbf24;'>~2.20</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Hat trick MD1. CF in forma eccezionale. P~60% vs implica 45%.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Lecce senza Berisha = poca punta. CS Roma probabile ~55%.</td></tr><tr><td><b>Roma -1 AH</b></td><td style='color:#fbbf24;'>~2.00</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Rischioso ma Roma domina Lecce storicamente. 3 gol MD1 = possibile.</td></tr></tbody></table></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🏠 Casa</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#60a5fa;">53%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#60a5fa;width:53%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🤝 Pari</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#eab308;">24%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#eab308;width:24%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">✈️ Ospiti</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#f87171;">23%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#f87171;width:23%;height:5px;border-radius:3px;"></div></div>
+    </div>
   </div>
-  <div class="note-row">💡 Roma 2 @1.50 = SECCA. Malen hat trick MD1, sistema Gasperini rodato. Lecce senza Berisha = meno gol. Via del Mare storicamente non ferma la Roma top.</div>
-</div><div class="card" style="border-left:4px solid #eab308;">
-  <div class="card-header">
-    <span class="league">Premier League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span class="time">21:00</span>
-    <span class="score-badge" style="background:#eab308;color:#000;">70/100</span>
-    <span class="tag" style="background:#22c55e;color:#000;">FISSA ⭐</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Casa</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 3 vittorie: Community Shield 3-0 Man City + Coventry + Aston Villa · 0 gol subiti</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Ospiti</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 3 vittorie con Xabi Alonso ma NO clean sheet in 18 gare consecutive di fila!</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🔄 H2H</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">Arsenal 4W-2D-1L vs Chelsea nelle ultime 7 all'Emirates</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🎯 Extra Pick</div>
+      <div style="font-size:0.76rem;color:#fbbf24;font-weight:600;">BTTS Sì @~1.65 (Chelsea segna quasi sempre, Arsenal attacca forte)</div>
+    </div>
   </div>
-  <div class="teams">Aston Villa <span class="vs">vs</span> Arsenal</div>
-  <div class="pick-row">
-    <span class="pick-label">Pick:</span>
-    <span class="pick-val">Arsenal 2</span>
-    <span class="odds-val">@~1.65</span>
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.77rem;color:#94a3b8;">💡 Arsenal perfetto in stagione: ha demolito Man City 3-0 nel Community Shield,
+Coventry e Aston Villa in PL. Gyökeres nuovo CF = letale. Chelsea, nonostante 3 vittorie
+con Xabi Alonso, non tiene clean sheet da 18 partite consecutive (record negativo dal 1960)!
+Arsenal all'Emirates = fortezza. 52.75% prob, @1.75 = valore corretto.
+BTTS @~1.65 alternativa dato che Chelsea segna sempre.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #eab308;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹 · 3ª Giornata</span>
+    <span style="color:#475569;font-size:0.72rem;">Dom 6/9 · 20:45</span>
+    <span style="background:#eab308;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">INTERESSANTE</span>
+    <span style="margin-left:auto;background:#eab308;color:#000;font-weight:800;font-size:0.80rem;padding:2px 8px;border-radius:5px;">⭐ 72/100</span>
   </div>
-  <div class="grid2">
-    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
-      <div><b>TBC PGMOL</b> — GJ/g: ~3.50</div></div>
-    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
-      <div>λ≈0.6×(5.5+7.0)=7.5 → ~12 tot</div>
-      <div class="pick-angoli">Over 10.5 ~1.75</div></div>
-    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
-      <div>Casa: ~0.7 xG (Villa 4-0 ko MD1)</div><div>Osp: ~2.1 xG (Arsenal 3-0 MD1)</div>
-      <div>SoT: ~10/g | ~16/g</div></div>
-    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
-      <div><b>Casa:</b> Aston Villa 20° con 0 punti dopo 4-0 vs Brighton | formazione Suzuki; Cash, Lindelöf, Torres, Maatsen; Kamara, Goretzka; McGinn, Buendía, Hemmings; N.Jackson</div>
-      <div><b>Osp:</b> Arsenal forma top | Raya; White, Mosquera, Gabriel, Calafiori; Rice, Lewis-Skelly; Saka, Odegaard, Tzolis; Havertz</div></div>
-    <div class="info-block"><div class="info-title">💰 Quote</div>
-      <div>1X2: <b>~4.00</b> / ~3.80 / ~1.65</div>
-      <div>O2.5: ~1.75 | U2.5: ~2.00</div>
-      <div>BTTS S/N: ~1.90 / ~1.85</div>
-      <div>AH: Arsenal -0.5 ~1.75 | Arsenal -1 ~2.10</div></div>
-    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
-      <div><b>Casa:</b> Aston Villa: 20° posto con 0 pt! Sconfitti 4-0 da Brighton MD1. Crisi.</div>
-      <div><b>Away:</b> Arsenal: 2° posto con 3 pt. 3-0 vs Coventry MD1. In forma.</div>
-      <div><b>H2H:</b> Arsenal 4W-2D-1L ultimi 7 vs Aston Villa | forma recente Arsenal dominante</div></div>
-    <div class="info-block"><div class="info-title">📋 Formazioni</div>
-      <div><b>Aston Villa:</b> 4-2-3-1: Zion Suzuki; Cash, Victor Lindelöf, Pau Torres, Maatsen; Kamara, Goretzka; McGinn, Buendía, Hemmings; Nicolas Jackson</div>
-      <div style="margin-top:4px;"><b>Arsenal:</b> 4-3-3: Raya; B.White, Mosquera, Gabriel, Calafiori; Rice, Lewis-Skelly; Saka, Odegaard, Tzolis; Havertz</div></div>
-    <div class="info-block full-width">
-  <div class="info-title">📊 Tutti i mercati</div>
-  <table style='width:100%;border-collapse:collapse;font-size:0.79rem;'>
-  <thead><tr>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
-    <th style='padding:3px 7px;color:#64748b;'>★</th>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
-  </tr></thead>
-  <tbody><tr><td><b>Arsenal 2</b></td><td style='color:#fbbf24;'>~1.65</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.78rem;'>FISSA: Villa 0 pt e 4-0 ko. Arsenal top form 3-0 MD1. Saka+Odegaard+Havertz vs Villa in crisi.</td></tr><tr><td><b>Arsenal -0.5 AH</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★★</td><td style='color:#cbd5e1;font-size:0.78rem;'>Copre pareggio. Villa Villa Park non basta vs Arsenal in forma. EV+</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Arsenal 3 gol/g MD1. Villa attacco debole. Over quasi certo.</td></tr><tr><td><b>Saka anytime scorer</b></td><td style='color:#fbbf24;'>~2.50</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Ala top Arsenal. Villa sx debole (Maatsen more defensive). P~45%.</td></tr><tr><td><b>BTTS No</b></td><td style='color:#fbbf24;'>~1.85</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Villa senza attacco vero vs Arsenal difesa top. CS Arsenal ~52%.</td></tr><tr><td><b>Arsenal -1 AH</b></td><td style='color:#fbbf24;'>~2.10</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Rischioso ma Arsenal può dominare. Villa Park crowd potrebbe non aiutare stavolta.</td></tr></tbody></table></div>
+  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">Juventus <span style="color:#475569;font-weight:400;font-size:0.82rem;">vs</span> Milan</div>
+  <div style="font-size:0.72rem;color:#64748b;margin-bottom:6px;">🧑‍💼 Luciano Spalletti (casa) · Ruben Amorim (ospiti)</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;font-size:1.0rem;">No Goal @1.88 / Under 2.5 @~1.60 @1.60-1.88</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:2.12 X:3.30 2:3.70</span>
   </div>
-  <div class="note-row">💡 Arsenal 2 @1.65 = FISSA del sistema. Villa 0 punti e umiliata 4-0 MD1. Arsenal in forma con 3-0. Saka+Odegaard = troppo per Villa.</div>
-</div><div class="card" style="border-left:4px solid #eab308;">
-  <div class="card-header">
-    <span class="league">Serie A 🇮🇹</span>
-    <span class="time">20:45</span>
-    <span class="score-badge" style="background:#eab308;color:#000;">68/100</span>
-    <span class="tag" style="background:#6366f1;color:#fff;">BUONA</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🏠 Casa</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#60a5fa;">47%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#60a5fa;width:47%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">🤝 Pari</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#eab308;">29%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#eab308;width:29%;height:5px;border-radius:3px;"></div></div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:6px;">
+      <div style="font-size:0.68rem;color:#64748b;margin-bottom:3px;">✈️ Ospiti</div>
+      <div style="font-size:1.0rem;font-weight:800;color:#f87171;">24%</div>
+      <div style="background:#334155;border-radius:3px;height:5px;"><div style="background:#f87171;width:24%;height:5px;border-radius:3px;"></div></div>
+    </div>
   </div>
-  <div class="teams">Atalanta <span class="vs">vs</span> Bologna</div>
-  <div class="pick-row">
-    <span class="pick-label">Pick:</span>
-    <span class="pick-val">Atalanta 1X</span>
-    <span class="odds-val">@~1.45</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Casa</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 6pt · 2W · 0 gol subiti · batt. Frosinone 0-1 e Parma 2-0</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">📈 Forma Ospiti</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">✅ 6pt · 2W · 4 gol fatti · batt. Torino 1-2 e Venezia 2-0</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🔄 H2H</div>
+      <div style="font-size:0.76rem;color:#cbd5e1;">4 delle ultime 5 sfide in Serie A terminate 0-0 · incluse le 2 più recenti</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:7px;">
+      <div style="font-size:0.67rem;color:#64748b;margin-bottom:2px;">🎯 Extra Pick</div>
+      <div style="font-size:0.76rem;color:#fbbf24;font-weight:600;">Pareggio @3.30 (29% storico, 4/5 recenti basso punteggio)</div>
+    </div>
   </div>
-  <div class="grid2">
-    <div class="info-block"><div class="info-title">⚖️ Arbitro</div>
-      <div><b>TBC AIA</b> — GJ/g: ~3.60</div></div>
-    <div class="info-block"><div class="info-title">📐 Angoli λ</div>
-      <div>λ≈0.6×(7.0+5.0)=7.2 → ~11 tot</div>
-      <div class="pick-angoli">Over 10.5 ~1.75</div></div>
-    <div class="info-block"><div class="info-title">📊 xG &amp; Tiri</div>
-      <div>Casa: ~1.8 xG (Atalanta Sarri offensiva)</div><div>Osp: ~1.4 xG (Bologna Tedesco solido)</div>
-      <div>SoT: ~14/g | ~11/g</div></div>
-    <div class="info-block"><div class="info-title">🏥 Infortuni</div>
-      <div><b>Casa:</b> OUT: Hien (infortuno) · Sulemana | Sarri conferma 4-3-3 Carnesecchi; Zappacosta, Kossounou, Scalvini, Bernasconi; Pasalic, Gaetano, Ederson; De Ketelaere, Krstovic, Raspadori</div>
-      <div><b>Osp:</b> OUT: El Azzouzi | Tedesco 4-3-3: Skorupski; Zortea, Heggem, Helland, Miranda; Odgaard, Moro, Ferguson; Orsolini, Piccoli, Cambiaghi</div></div>
-    <div class="info-block"><div class="info-title">💰 Quote</div>
-      <div>1X2: <b>~1.75</b> / ~3.40 / ~4.50</div>
-      <div>O2.5: ~1.70 | U2.5: ~2.05</div>
-      <div>BTTS S/N: ~1.70 / ~2.05</div>
-      <div>AH: Atalanta -0.5 ~1.90</div></div>
-    <div class="info-block"><div class="info-title">📈 Forma &amp; H2H</div>
-      <div><b>Casa:</b> Atalanta: top 6 SA | Gewiss Stadium = fortezza | Sarri nuovo coach (gioco offensivo)</div>
-      <div><b>Away:</b> Bologna: top 6 SA | Tedesco organizzato | solido in trasferta</div>
-      <div><b>H2H:</b> Atalanta 5W-3D-4L vs Bologna ultimi 12 | casa: 4W-2D-0L recenti</div></div>
-    <div class="info-block"><div class="info-title">📋 Formazioni</div>
-      <div><b>Atalanta:</b> 4-3-3 (Sarri): Carnesecchi; Zappacosta, Kossounou, Scalvini, Bernasconi; Pasalic, Gaetano, Ederson; De Ketelaere, Krstovic, Raspadori</div>
-      <div style="margin-top:4px;"><b>Bologna:</b> 4-3-3 (Tedesco): Skorupski; Zortea, Heggem, Helland, Miranda; Odgaard, Moro, Ferguson; Orsolini, Piccoli, Cambiaghi</div></div>
-    <div class="info-block full-width">
-  <div class="info-title">📊 Tutti i mercati</div>
-  <table style='width:100%;border-collapse:collapse;font-size:0.79rem;'>
-  <thead><tr>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Mercato</th>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Quota</th>
-    <th style='padding:3px 7px;color:#64748b;'>★</th>
-    <th style='text-align:left;padding:3px 7px;color:#64748b;'>Analisi</th>
-  </tr></thead>
-  <tbody><tr><td><b>Atalanta 1X</b></td><td style='color:#fbbf24;'>~1.45</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Gewiss Stadium = fortezza Atalanta. 4W-2D in casa vs Bologna recenti. Safe.</td></tr><tr><td><b>Atalanta 1</b></td><td style='color:#fbbf24;'>~1.75</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Sarri offensivo + De Ketelaere + Scamacca/Krstovic = pericolosi. P~52%.</td></tr><tr><td><b>Over 2.5</b></td><td style='color:#fbbf24;'>~1.70</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>BTTS probabile: Orsolini pericoloso + Atalanta 2+ gol. Sarri = pressing alto.</td></tr><tr><td><b>BTTS Sì</b></td><td style='color:#fbbf24;'>~1.70</td><td style='color:#22c55e;'>★★★★☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Orsolini/Cambiaghi vs Kossounou. Bologna segna quasi sempre. EV+</td></tr><tr><td><b>De Ketelaere anytime</b></td><td style='color:#fbbf24;'>~2.80</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>CDK in gran forma Atalanta. Trequartista creativo vs Heggem/Helland.</td></tr><tr><td><b>Under 2.5</b></td><td style='color:#fbbf24;'>~2.05</td><td style='color:#eab308;'>★★★☆☆</td><td style='color:#cbd5e1;font-size:0.78rem;'>Entrambe difendono bene in apertura stagione. Possibile tattico.</td></tr></tbody></table></div>
+  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.77rem;color:#94a3b8;">💡 STORICO: 4/5 recenti Juve-Milan = 0-0. Entrambe le squadre solidissime dietro:
+Juve 0 gol subiti in 2 gare, Milan solo 1 subito. Spalletti prudente tattico + Amorim
+ama il possesso. Kolo Muani vs Modric (sì, Modric è al Milan!) = spettacolo a centrocampo
+ma poco gol. No Gol @1.88 = EV+ rispetto alle probabilità storiche. Under 2.5 @1.60
+è la scelta più sicura come scommessa principale.</div>
+</div>
+
+<div style="font-size:0.85rem;font-weight:800;color:#60a5fa;padding:6px 0 9px;border-bottom:1px solid #1e293b;margin:14px 0 11px;">📅 Altre partite domenica</div>
+
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #ef4444;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">14:00</span>
+    <span style="background:#eab308;color:#000;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">INTERESSANTE</span>
+    <span style="margin-left:auto;background:#ef4444;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">55/100</span>
   </div>
-  <div class="note-row">💡 Atalanta 1X @1.45 = pick più sicuro. Sarri ha introdotto gioco più offensivo. Ma Bologna è solida con Tedesco. BTTS Sì @1.70 = mercato di valore alternativo.</div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Everton <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Man United</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Man United X2 @1.85</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:3.00 X:3.20 2:2.40</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Man United favorito ma Everton in casa pericolosa. Gara equilibrata.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #ef4444;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹</span>
+    <span style="color:#475569;font-size:0.70rem;">15:00</span>
+    <span style="background:#6b7280;color:#fff;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">SCARTA</span>
+    <span style="margin-left:auto;background:#ef4444;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">52/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Frosinone <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Venezia</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">1X @1.50</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:2.20 X:3.10 2:3.20</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Frosinone vs Venezia = scontro salvezza equilibrato. Alta varianza, nessun pick chiaro.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #ef4444;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹</span>
+    <span style="color:#475569;font-size:0.70rem;">15:00</span>
+    <span style="background:#6b7280;color:#fff;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">SCARTA</span>
+    <span style="margin-left:auto;background:#ef4444;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">50/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Parma <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Monza</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">1X @1.48</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:2.30 X:3.10 2:3.10</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Equilibrio totale. Parma vs Monza = nessun valore chiaro. SCARTA.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #eab308;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;font-weight:700;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹</span>
+    <span style="color:#475569;font-size:0.70rem;">18:00</span>
+    <span style="background:#6366f1;color:#fff;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">BUONA</span>
+    <span style="margin-left:auto;background:#eab308;color:#000;font-weight:800;font-size:0.75rem;padding:2px 7px;border-radius:4px;">65/100</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:5px;">Bologna <span style="color:#475569;font-weight:400;font-size:0.80rem;">vs</span> Sassuolo</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:800;color:#fbbf24;">Bologna 1 @1.80</span>
+    <span style="margin-left:auto;font-size:0.72rem;color:#64748b;">1:1.80 X:3.40 2:4.00</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Bologna solida in casa. Sassuolo promosso dalla Serie B, primo anno in A difficile.</div>
+</div>
+</div>
+<div id="deep" class="content">
+<div style="background:linear-gradient(135deg,#1a1a3a,#1e293b);border-radius:12px;padding:10px 14px;margin-bottom:14px;border:1px solid #6366f1;">
+  <div style="font-size:0.90rem;font-weight:800;color:#f8fafc;">🔍 Deep Analysis — Big 4 Weekend</div>
+  <div style="color:#94a3b8;font-size:0.78rem;">Formazioni complete · Infortuni · H2H · Analisi tattica</div>
+</div>
+
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:16px;border-left:4px solid #22c55e;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+    <span style="font-size:0.95rem;font-weight:800;color:#f8fafc;">Inter vs Napoli</span>
+    <span style="color:#64748b;font-size:0.75rem;">Sab 5/9 · 18:00</span>
+    <span style="background:#22c55e;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">FISSA ⭐</span>
+    <span style="margin-left:auto;background:#22c55e;color:#000;font-weight:900;padding:3px 10px;border-radius:5px;">83/100</span>
+  </div>
+
+  <!-- Formazioni -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">🏠 Inter</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>3-5-2 (Chivu)</b>
+Josep Martínez
+Bisseck · Akanji · A. Bastoni
+Andy Diouf · Barella · Çalhanoglu · Zielinski · Dimarco
+Lautaro Martínez · Pio Esposito</pre>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">✈️ Napoli</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>4-3-3 (Allegri)</b>
+Meret
+Di Lorenzo · Rrahmani · Rafa Marín · Spinazzola
+Anguissa · Lobotka · De Bruyne
+Politano · Hojlund · Alisson Santos</pre>
+    </div>
+  </div>
+
+  <!-- Analisi -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#22c55e;font-weight:700;margin-bottom:3px;">INFORTUNI CASA</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Nessuna assenza rilevante</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#f87171;font-weight:700;margin-bottom:3px;">INFORTUNI OSPITI</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Da verificare pre-partita</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">H2H</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Inter ha vinto 4 delle ultime 6 in casa vs Napoli · 1 pari · 1 vittoria Napoli</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">QUOTE 1·X·2</div>
+      <div style="font-size:0.87rem;color:#fbbf24;font-weight:700;">1.71 · 4.00 · 5.90</div>
+    </div>
+  </div>
+
+  <!-- Pick + motivazione -->
+  <div style="background:#0f172a;border-radius:7px;padding:9px 11px;">
+    <div style="font-size:0.70rem;color:#64748b;margin-bottom:4px;">PICK PRINCIPALE · EXTRA PICK</div>
+    <div style="font-size:0.90rem;font-weight:800;color:#fbbf24;">Inter 1 @1.71</div>
+    <div style="font-size:0.75rem;color:#6366f1;margin-top:2px;">Multigol 2-3 @~1.90</div>
+    <div style="margin-top:7px;font-size:0.77rem;color:#94a3b8;">Inter fortissima in casa a San Siro: 3-5-2 con Chivu offre solidità difensiva
+e qualità in mezzo con Barella+Çalhanoglu. Napoli quota 5.90 = quasi certezza
+che il mercato non veda chance. Pio Esposito titolare in grande forma.
+De Bruyne può creare pericoli ma Zielinski conosce bene il Napoli.
+Multigol 2-3 @1.90 come alternativa interessante.</div>
+  </div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:16px;border-left:4px solid #22c55e;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+    <span style="font-size:0.95rem;font-weight:800;color:#f8fafc;">Roma vs Atalanta</span>
+    <span style="color:#64748b;font-size:0.75rem;">Sab 5/9 · 20:45</span>
+    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA</span>
+    <span style="margin-left:auto;background:#22c55e;color:#000;font-weight:900;padding:3px 10px;border-radius:5px;">78/100</span>
+  </div>
+
+  <!-- Formazioni -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">🏠 Roma</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>3-4-1-2 (Gasperini)</b>
+Svilar
+Ghilardi · Mancini · Hermoso
+Molina · Cristante · Koné · Wesley
+Mora
+Dybala · Malen</pre>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">✈️ Atalanta</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>4-3-3 (Sarri)</b>
+Carnesecchi
+Zappacosta · Kossounou · Scalvini · Bernasconi
+Samardzic · Gaetano · Éderson
+De Ketelaere · Scamacca · Rowe</pre>
+    </div>
+  </div>
+
+  <!-- Analisi -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#22c55e;font-weight:700;margin-bottom:3px;">INFORTUNI CASA</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Pellegrini · N'Dicka (da valutare)</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#f87171;font-weight:700;margin-bottom:3px;">INFORTUNI OSPITI</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Sulemana · Hien</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">H2H</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Roma 3W-2D-2L vs Atalanta nelle ultime 7 in casa all'Olimpico</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">QUOTE 1·X·2</div>
+      <div style="font-size:0.87rem;color:#fbbf24;font-weight:700;">1.72 · 3.80 · 4.75</div>
+    </div>
+  </div>
+
+  <!-- Pick + motivazione -->
+  <div style="background:#0f172a;border-radius:7px;padding:9px 11px;">
+    <div style="font-size:0.70rem;color:#64748b;margin-bottom:4px;">PICK PRINCIPALE · EXTRA PICK</div>
+    <div style="font-size:0.90rem;font-weight:800;color:#fbbf24;">Roma 1 @1.72</div>
+    <div style="font-size:0.75rem;color:#6366f1;margin-top:2px;">Under 2.5 @~1.80 (entrambe le panchine difensivamente solide)</div>
+    <div style="margin-top:7px;font-size:0.77rem;color:#94a3b8;">Gasperini allena la Roma CONTRO la sua ex squadra (9 anni a Bergamo) =
+motivazione extra enorme. Sa tutto dell'Atalanta di Sarri. Roma in casa @1.72 =
+buon valore per una squadra a punteggio pieno con Dybala e Malen davanti.
+Atalanta senza Hien in difesa = vulnerabile.
+Sfida tattica ad alto livello ma Roma favorita in casa.</div>
+  </div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:16px;border-left:4px solid #22c55e;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+    <span style="font-size:0.95rem;font-weight:800;color:#f8fafc;">Arsenal vs Chelsea</span>
+    <span style="color:#64748b;font-size:0.75rem;">Dom 6/9 · 16:30</span>
+    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA ⭐</span>
+    <span style="margin-left:auto;background:#22c55e;color:#000;font-weight:900;padding:3px 10px;border-radius:5px;">81/100</span>
+  </div>
+
+  <!-- Formazioni -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">🏠 Arsenal</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>4-2-3-1 (Arteta)</b>
+Raya
+White · Gabriel · Konsa · Calafiori
+Rice · Havertz
+Saka · Ødegaard · Eze
+Gyökeres</pre>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">✈️ Chelsea</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>3-4-2-1 (Xabi Alonso)</b>
+Martínez
+Lacroix · Colwill · Acheampong
+Pedro Neto · James · Lavia · Hato
+Rogers · Palmer
+João Pedro</pre>
+    </div>
+  </div>
+
+  <!-- Analisi -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#22c55e;font-weight:700;margin-bottom:3px;">INFORTUNI CASA</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Nessuna assenza rilevante</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#f87171;font-weight:700;margin-bottom:3px;">INFORTUNI OSPITI</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Da verificare</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">H2H</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Arsenal 4W-2D-1L vs Chelsea nelle ultime 7 all'Emirates</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">QUOTE 1·X·2</div>
+      <div style="font-size:0.87rem;color:#fbbf24;font-weight:700;">1.75 · 4.00 · 5.58</div>
+    </div>
+  </div>
+
+  <!-- Pick + motivazione -->
+  <div style="background:#0f172a;border-radius:7px;padding:9px 11px;">
+    <div style="font-size:0.70rem;color:#64748b;margin-bottom:4px;">PICK PRINCIPALE · EXTRA PICK</div>
+    <div style="font-size:0.90rem;font-weight:800;color:#fbbf24;">Arsenal 1 @1.75</div>
+    <div style="font-size:0.75rem;color:#6366f1;margin-top:2px;">BTTS Sì @~1.65 (Chelsea segna quasi sempre, Arsenal attacca forte)</div>
+    <div style="margin-top:7px;font-size:0.77rem;color:#94a3b8;">Arsenal perfetto in stagione: ha demolito Man City 3-0 nel Community Shield,
+Coventry e Aston Villa in PL. Gyökeres nuovo CF = letale. Chelsea, nonostante 3 vittorie
+con Xabi Alonso, non tiene clean sheet da 18 partite consecutive (record negativo dal 1960)!
+Arsenal all'Emirates = fortezza. 52.75% prob, @1.75 = valore corretto.
+BTTS @~1.65 alternativa dato che Chelsea segna sempre.</div>
+  </div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:16px;border-left:4px solid #eab308;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+    <span style="font-size:0.95rem;font-weight:800;color:#f8fafc;">Juventus vs Milan</span>
+    <span style="color:#64748b;font-size:0.75rem;">Dom 6/9 · 20:45</span>
+    <span style="background:#eab308;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">INTERESSANTE</span>
+    <span style="margin-left:auto;background:#eab308;color:#000;font-weight:900;padding:3px 10px;border-radius:5px;">72/100</span>
+  </div>
+
+  <!-- Formazioni -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">🏠 Juventus</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>4-2-3-1 (Spalletti)</b>
+Vicario
+Kalulu · Bremer · Lucumi · Çelik
+Douglas Luiz · Locatelli
+F. Conceição · Nico González · Boga
+Kolo Muani</pre>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:10px;">
+      <div style="font-size:0.70rem;color:#64748b;margin-bottom:6px;text-transform:uppercase;">✈️ Milan</div>
+      <pre style="font-family:monospace;font-size:0.78rem;color:#e2e8f0;white-space:pre-wrap;margin:0;"><b>3-4-2-1 (Amorim)</b>
+Maignan
+Gila · De Winter · St. Pavlovic
+Chukwueze · Musah · Modric · Bartesaghi
+Rabiot · Aphadjo Cissé
+Gonçalo Ramos</pre>
+    </div>
+  </div>
+
+  <!-- Analisi -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#22c55e;font-weight:700;margin-bottom:3px;">INFORTUNI CASA</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Nessuna assenza rilevante</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#f87171;font-weight:700;margin-bottom:3px;">INFORTUNI OSPITI</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">Nessuna assenza rilevante</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">H2H</div>
+      <div style="font-size:0.77rem;color:#cbd5e1;">4 delle ultime 5 sfide in Serie A terminate 0-0 · incluse le 2 più recenti</div>
+    </div>
+    <div style="background:#0f172a;border-radius:6px;padding:8px;">
+      <div style="font-size:0.68rem;color:#64748b;font-weight:700;margin-bottom:3px;">QUOTE 1·X·2</div>
+      <div style="font-size:0.87rem;color:#fbbf24;font-weight:700;">2.12 · 3.30 · 3.70</div>
+    </div>
+  </div>
+
+  <!-- Pick + motivazione -->
+  <div style="background:#0f172a;border-radius:7px;padding:9px 11px;">
+    <div style="font-size:0.70rem;color:#64748b;margin-bottom:4px;">PICK PRINCIPALE · EXTRA PICK</div>
+    <div style="font-size:0.90rem;font-weight:800;color:#fbbf24;">No Goal @1.88 / Under 2.5 @~1.60 @1.60-1.88</div>
+    <div style="font-size:0.75rem;color:#6366f1;margin-top:2px;">Pareggio @3.30 (29% storico, 4/5 recenti basso punteggio)</div>
+    <div style="margin-top:7px;font-size:0.77rem;color:#94a3b8;">STORICO: 4/5 recenti Juve-Milan = 0-0. Entrambe le squadre solidissime dietro:
+Juve 0 gol subiti in 2 gare, Milan solo 1 subito. Spalletti prudente tattico + Amorim
+ama il possesso. Kolo Muani vs Modric (sì, Modric è al Milan!) = spettacolo a centrocampo
+ma poco gol. No Gol @1.88 = EV+ rispetto alle probabilità storiche. Under 2.5 @1.60
+è la scelta più sicura come scommessa principale.</div>
+  </div>
+</div>
+</div>
+<div id="ven4" class="content">
+<div style="background:linear-gradient(135deg,#1e1e1e,#1e293b);border-radius:12px;padding:10px 14px;margin-bottom:14px;border:1px solid #475569;">
+  <div style="font-size:0.90rem;font-weight:800;color:#f8fafc;">📅 Venerdì 4 Settembre — IERI</div>
+  <div style="color:#94a3b8;font-size:0.78rem;">Genoa-Como (Serie A) + Ipswich-Liverpool (PL) — verificare risultati</div>
+</div>
+
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #475569;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;padding:2px 6px;border-radius:4px;">Serie A 🇮🇹</span>
+    <span style="color:#475569;font-size:0.70rem;">20:45</span>
+    <span style="margin-left:auto;background:#334155;color:#94a3b8;padding:1px 7px;border-radius:4px;font-size:0.72rem;">IERI 4/9</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:4px;">Genoa vs Como</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:700;color:#fbbf24;">Genoa 1X</span>
+    <span style="margin-left:auto;background:#334155;color:#eab308;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">Da verificare</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Genoa in casa vs Como. Quota @~1.45 per non perdere. Partita già giocata ieri sera.</div>
+</div>
+<div style="background:#1e293b;border-radius:10px;padding:11px;margin-bottom:10px;border-left:4px solid #475569;">
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+    <span style="background:#0f172a;color:#64748b;font-size:0.68rem;padding:2px 6px;border-radius:4px;">PL 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span style="color:#475569;font-size:0.70rem;">21:00</span>
+    <span style="margin-left:auto;background:#334155;color:#94a3b8;padding:1px 7px;border-radius:4px;font-size:0.72rem;">IERI 4/9</span>
+  </div>
+  <div style="font-size:0.95rem;font-weight:800;color:#f8fafc;margin-bottom:4px;">Ipswich vs Liverpool</div>
+  <div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;">
+    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
+    <span style="font-weight:700;color:#fbbf24;">Liverpool 2 @~1.65</span>
+    <span style="margin-left:auto;background:#334155;color:#eab308;padding:1px 7px;border-radius:4px;font-size:0.72rem;font-weight:600;">Da verificare</span>
+  </div>
+  <div style="font-size:0.76rem;color:#94a3b8;">Liverpool dopo 2 pareggi vuole rimbalzare. Isak-Wirtz davanti, van Dijk dietro. Pronostico: 1-2 Liverpool.</div>
+</div>
+<div style="padding:10px;background:#1e293b;border-radius:8px;font-size:0.78rem;color:#64748b;text-align:center;">
+  Aggiorna la pagina o controlla il sito del bookmaker per i risultati finali delle partite di ieri.
 </div>
 </div>
 
@@ -458,1008 +848,5 @@ function show(id, el) {
   el.classList.add('active');
 }
 </script>
-<div id="natleague" class="content">
-
-<div style="background:linear-gradient(135deg,#1e3a5f,#1e293b);border-radius:12px;padding:12px 16px;margin-bottom:14px;border:1px solid #3b82f6;">
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;">🏴󠁧󠁢󠁥󠁮󠁧󠁿 National League 2026-27 — Bank Holiday Monday</div>
-  <div style="color:#94a3b8;font-size:0.80rem;margin-top:3px;">12 partite · Tutte alle 15:00 · 5ª serie inglese (Vanarama National League)</div>
-  <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap;font-size:0.78rem;">
-    <span style="color:#22c55e;"><b>Carlisle United</b> = favoriti campionato (5/2)</span>
-    <span style="color:#60a5fa;"><b>Harrogate Town</b> = 2° fav (6/1), retrocessi da League 2</span>
-    <span style="color:#eab308;"><b>Forest Green Rovers</b> = 10/1 per titolo</span>
-  </div>
-</div>
-
-
-<div style="background:#1e293b;border-radius:10px;padding:14px;margin-bottom:14px;border-left:4px solid #8b5cf6;">
-  <div style="font-size:0.90rem;font-weight:800;color:#f8fafc;margin-bottom:10px;border-bottom:1px solid #334155;padding-bottom:8px;">
-    🔄 SISTEMA National League — 31 Agosto 2026
-  </div>
-  <div style="font-size:0.79rem;color:#94a3b8;margin-bottom:10px;">
-    12 partite tutte alle 15:00. Selezione top 5 per sistema 2/3 + accumulator.
-  </div>
-
-  <!-- SECCA -->
-  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
-    <span style="color:#64748b;font-size:0.72rem;width:90px;">SECCA</span>
-    <span style="font-weight:700;flex:1;">Forest Green Rovers 1 <span style="color:#64748b;font-size:0.78rem;">vs Altrincham</span></span>
-    <span style="background:#22c55e;color:#000;padding:1px 7px;border-radius:4px;font-size:0.71rem;font-weight:600;">SECCA</span>
-    <span style="color:#fbbf24;font-weight:700;">@~1.55</span>
-  </div>
-
-  <!-- FISSA SISTEMA -->
-  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
-    <span style="color:#64748b;font-size:0.72rem;width:90px;">FISSA (80%)</span>
-    <span style="font-weight:700;flex:1;">AFC Fylde 2 <span style="color:#64748b;font-size:0.78rem;">vs Solihull Moors</span></span>
-    <span style="background:#22c55e;color:#000;padding:1px 7px;border-radius:4px;font-size:0.71sm;font-weight:600;">FISSA</span>
-    <span style="color:#fbbf24;font-weight:700;">@~1.30</span>
-  </div>
-
-  <!-- DOPPIE -->
-  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
-    <span style="color:#64748b;font-size:0.72rem;width:90px;">Doppia 1</span>
-    <span style="font-weight:700;flex:1;">Sutton United 1 @1.55 × Harrogate Town 1 @1.80</span>
-    <span style="color:#fbbf24;font-weight:700;">= @2.79</span>
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
-    <span style="color:#64748b;font-size:0.72rem;width:90px;">Doppia 2</span>
-    <span style="font-weight:700;flex:1;">Southend United 2 @1.65 × Forest Green 1 @1.55</span>
-    <span style="color:#fbbf24;font-weight:700;">= @2.56</span>
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
-    <span style="color:#64748b;font-size:0.72rem;width:90px;">Doppia 3</span>
-    <span style="font-weight:700;flex:1;">Carlisle United 1 @2.00 × Sutton United 1 @1.55</span>
-    <span style="color:#fbbf24;font-weight:700;">= @3.10</span>
-  </div>
-
-  <!-- ACCUMULATOR -->
-  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a2234;">
-    <span style="color:#64748b;font-size:0.72rem;width:90px;">ACCUM. 4-fold</span>
-    <span style="font-weight:700;flex:1;">FGR 1 × Sutton 1 × Harrogate 1 × Southend 2</span>
-    <span style="color:#fbbf24;font-weight:700;">~1.55×1.55×1.80×1.65 = @7.12</span>
-  </div>
-
-  <div style="margin-top:8px;padding:8px 10px;background:#0f172a;border-radius:7px;font-size:0.79rem;color:#94a3b8;">
-    ⚠️ <b>Attenzione:</b> NL = 5° serie inglese. Dati limitati, alta varianza. Budget ridotto consigliato.
-    La SECCA Forest Green @1.55 è la scelta più razionale come singola.
-    L'accumulator 4-fold @~7.12 = alto rischio/alto rendimento.
-  </div>
-</div>
-
-<!-- TABELLA TOP -->
-<div style="background:#1e293b;border-radius:10px;overflow:hidden;margin-bottom:16px;">
-  <div style="padding:8px 14px;background:#0f172a;font-size:0.72rem;font-weight:700;color:#64748b;text-transform:uppercase;">Classifica per Valore Pick</div>
-  <table style="width:100%;border-collapse:collapse;font-size:0.80rem;">
-    <thead><tr>
-      <th style="padding:6px 10px;background:#0f172a;color:#64748b;">#</th>
-      <th style="padding:6px 10px;background:#0f172a;color:#64748b;text-align:left;">Partita</th>
-      <th style="padding:6px 10px;background:#0f172a;color:#64748b;text-align:left;">Pick</th>
-      <th style="padding:6px 10px;background:#0f172a;color:#64748b;text-align:left;">Quote 1X2</th>
-      <th style="padding:6px 10px;background:#0f172a;color:#64748b;">P(pick)</th>
-      <th style="padding:6px 10px;background:#0f172a;color:#64748b;text-align:left;">Tag</th>
-    </tr></thead>
-    <tbody><tr>
-      <td style="color:#22c55e;font-weight:700;">#1</td>
-      <td><b>AFC Fylde</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Solihull Moors</b></td>
-      <td><b style="color:#fbbf24;">AFC Fylde 2 (Away)</b></td>
-      <td style="color:#fbbf24;">1:~6.50 X:~4.20 2:~1.30</td>
-      <td><span style="color:#22c55e;font-weight:800;">84%</span></td>
-      <td><span style="background:#22c55e;color:#000;padding:1px 6px;border-radius:4px;font-size:0.72rem;">TOP PICK ⭐</span></td>
-    </tr><tr>
-      <td style="color:#22c55e;font-weight:700;">#2</td>
-      <td><b>Forest Green Rovers</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Altrincham</b></td>
-      <td><b style="color:#fbbf24;">Forest Green Rovers 1 (Home)</b></td>
-      <td style="color:#fbbf24;">1:~1.55 X:~4.20 2:~4.75</td>
-      <td><span style="color:#22c55e;font-weight:800;">71%</span></td>
-      <td><span style="background:#22c55e;color:#000;padding:1px 6px;border-radius:4px;font-size:0.72rem;">SECCA ⭐</span></td>
-    </tr><tr>
-      <td style="color:#22c55e;font-weight:700;">#3</td>
-      <td><b>Sutton United</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Wealdstone</b></td>
-      <td><b style="color:#fbbf24;">Sutton United 1 (Home)</b></td>
-      <td style="color:#fbbf24;">1:~1.55 X:~3.80 2:~5.50</td>
-      <td><span style="color:#22c55e;font-weight:800;">66%</span></td>
-      <td><span style="background:#6366f1;color:#fff;padding:1px 6px;border-radius:4px;font-size:0.72rem;">BUONA</span></td>
-    </tr><tr>
-      <td style="color:#eab308;font-weight:700;">#4</td>
-      <td><b>Woking</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Southend United</b></td>
-      <td><b style="color:#fbbf24;">Southend United 2 (Away)</b></td>
-      <td style="color:#fbbf24;">1:~3.50 X:~4.00 2:~1.65</td>
-      <td><span style="color:#22c55e;font-weight:800;">70%</span></td>
-      <td><span style="background:#6366f1;color:#fff;padding:1px 6px;border-radius:4px;font-size:0.72rem;">BUONA</span></td>
-    </tr><tr>
-      <td style="color:#eab308;font-weight:700;">#5</td>
-      <td><b>Harrogate Town</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Gateshead</b></td>
-      <td><b style="color:#fbbf24;">Harrogate Town 1 (Home)</b></td>
-      <td style="color:#fbbf24;">1:~1.80 X:~3.40 2:~3.80</td>
-      <td><span style="color:#22c55e;font-weight:800;">61%</span></td>
-      <td><span style="background:#6366f1;color:#fff;padding:1px 6px;border-radius:4px;font-size:0.72rem;">BUONA</span></td>
-    </tr><tr>
-      <td style="color:#eab308;font-weight:700;">#6</td>
-      <td><b>Carlisle United</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Scunthorpe United</b></td>
-      <td><b style="color:#fbbf24;">Carlisle United 1 (Home)</b></td>
-      <td style="color:#fbbf24;">1:~2.00 X:~3.20 2:~3.60</td>
-      <td><span style="color:#22c55e;font-weight:800;">63%</span></td>
-      <td><span style="background:#6366f1;color:#fff;padding:1px 6px;border-radius:4px;font-size:0.72rem;">BUONA</span></td>
-    </tr><tr>
-      <td style="color:#6b7280;font-weight:700;">#7</td>
-      <td><b>Boston United</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Hornchurch</b></td>
-      <td><b style="color:#fbbf24;">Hornchurch 2 (Away)</b></td>
-      <td style="color:#fbbf24;">1:~2.10 X:~3.50 2:~1.85</td>
-      <td><span style="color:#eab308;font-weight:800;">55%</span></td>
-      <td><span style="background:#eab308;color:#000;padding:1px 6px;border-radius:4px;font-size:0.72rem;">INTERESSANTE</span></td>
-    </tr><tr>
-      <td style="color:#6b7280;font-weight:700;">#8</td>
-      <td><b>Yeovil Town</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Tamworth</b></td>
-      <td><b style="color:#fbbf24;">Yeovil 1X (Non perde)</b></td>
-      <td style="color:#fbbf24;">1:~2.75 X:~3.40 2:~2.20</td>
-      <td><span style="color:#22c55e;font-weight:800;">85%</span></td>
-      <td><span style="background:#eab308;color:#000;padding:1px 6px;border-radius:4px;font-size:0.72rem;">INTERESSANTE</span></td>
-    </tr><tr>
-      <td style="color:#6b7280;font-weight:700;">#9</td>
-      <td><b>Worthing</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Boreham Wood</b></td>
-      <td><b style="color:#fbbf24;">Boreham Wood 2 (Away)</b></td>
-      <td style="color:#fbbf24;">1:~2.80 X:~3.20 2:~2.20</td>
-      <td><span style="color:#ef4444;font-weight:800;">41%</span></td>
-      <td><span style="background:#eab308;color:#000;padding:1px 6px;border-radius:4px;font-size:0.72rem;">INTERESSANTE</span></td>
-    </tr><tr>
-      <td style="color:#6b7280;font-weight:700;">#10</td>
-      <td><b>Eastleigh</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Aldershot Town</b></td>
-      <td><b style="color:#fbbf24;">1X (Eastleigh non perde)</b></td>
-      <td style="color:#fbbf24;">1:~2.60 X:~3.20 2:~2.60</td>
-      <td><span style="color:#22c55e;font-weight:800;">67%</span></td>
-      <td><span style="background:#6b7280;color:#fff;padding:1px 6px;border-radius:4px;font-size:0.72rem;">SCARTA</span></td>
-    </tr><tr>
-      <td style="color:#6b7280;font-weight:700;">#11</td>
-      <td><b>Kidderminster Harriers</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Barrow</b></td>
-      <td><b style="color:#fbbf24;">1X (Kidderminster non perde)</b></td>
-      <td style="color:#fbbf24;">1:~2.60 X:~3.20 2:~2.60</td>
-      <td><span style="color:#22c55e;font-weight:800;">66%</span></td>
-      <td><span style="background:#6b7280;color:#fff;padding:1px 6px;border-radius:4px;font-size:0.72rem;">SCARTA</span></td>
-    </tr><tr>
-      <td style="color:#6b7280;font-weight:700;">#12</td>
-      <td><b>FC Halifax Town</b> <span style="color:#475569;font-size:0.78rem;">vs</span> <b>Hartlepool United</b></td>
-      <td><b style="color:#fbbf24;">Halifax 1X (Non perde)</b></td>
-      <td style="color:#fbbf24;">1:~2.20 X:~3.20 2:~3.20</td>
-      <td><span style="color:#22c55e;font-weight:800;">75%</span></td>
-      <td><span style="background:#eab308;color:#000;padding:1px 6px;border-radius:4px;font-size:0.72rem;">INTERESSANTE</span></td>
-    </tr></tbody>
-  </table>
-</div>
-
-<!-- CARDS DETTAGLIATE -->
-<div style="font-size:0.88rem;font-weight:800;color:#60a5fa;padding:8px 0 10px;border-bottom:1px solid #1e293b;margin-bottom:12px;">
-  📊 Analisi Dettagliata — Tutte le 12 Partite
-</div>
-
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #22c55e;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#22c55e;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#1</span>
-    <span style="background:#22c55e;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">TOP PICK ⭐</span>
-    <span style="margin-left:auto;color:#22c55e;font-weight:700;">★★★★★</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    AFC Fylde <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Solihull Moors
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#f87171;font-size:0.95rem;">AFC Fylde 2 (Away)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~6.50 / X: ~4.20 / 2: ~1.30</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (AFC)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">10%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:10%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">6%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:6%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Solihull)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">84%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:84%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:84%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">84%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Solihull: 10° NL, debole in casa questa stagione</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">AFC Fylde: in forma straordinaria, 84% prob away = dominante</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Fylde 4W-2D-2L vs Solihull storicamente</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 84% probabilità Fylde away. Quota ~1.30 implica 77% → EV+ netto. Il pick più solido del giorno.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #22c55e;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#22c55e;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#2</span>
-    <span style="background:#22c55e;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">SECCA ⭐</span>
-    <span style="margin-left:auto;color:#22c55e;font-weight:700;">★★★★★</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Forest Green Rovers <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Altrincham
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#60a5fa;font-size:0.95rem;">Forest Green Rovers 1 (Home)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~1.55 / X: ~4.20 / 2: ~4.75</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Forest)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">71%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:71%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">3%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:3%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Altrincham)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">26%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:26%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:71%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">71%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Forest Green: 2° nel NL, 71% prob casa = dominante in casa</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Altrincham: 250/1 title odds = tra le più deboli del campionato</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Forest Green 6W-1D-2L vs Altrincham in casa</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 71% prob vs implica 64.5% @1.55 → EV+ chiaro. Forest Green da promozione vs Altrincham da salvezza.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #22c55e;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#22c55e;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#3</span>
-    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA</span>
-    <span style="margin-left:auto;color:#22c55e;font-weight:700;">★★★★☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Sutton United <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Wealdstone
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#60a5fa;font-size:0.95rem;">Sutton United 1 (Home)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~1.55 / X: ~3.80 / 2: ~5.50</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Sutton)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">66%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:66%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">25%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:25%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Wealdstone)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">9%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:9%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:66%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">66%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Sutton United: top 4 NL, solido in casa Gander Green Lane</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Wealdstone: 9% prob away = molto debole in trasferta</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Sutton 5W-2D-1L vs Wealdstone recenti</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 66% prob. Wealdstone solo 9% fuori casa. @1.55 buon valore per questo livello.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #eab308;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#eab308;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#4</span>
-    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA</span>
-    <span style="margin-left:auto;color:#22c55e;font-weight:700;">★★★★☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Woking <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Southend United
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#f87171;font-size:0.95rem;">Southend United 2 (Away)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~3.50 / X: ~4.00 / 2: ~1.65</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Woking)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">23%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:23%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">5%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:5%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Southend)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">70%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:70%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:70%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">70%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Woking: fanalino di coda NL, 23% prob casa = debolissima</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Southend United: ex-Football League, in risalita, 70% prob away</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Southend 5W-1D-2L vs Woking storicamente</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 Southend United dominante (70%) vs Woking in crisi. @1.65 = valore interessante per ex-Football League.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #eab308;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#eab308;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#5</span>
-    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA</span>
-    <span style="margin-left:auto;color:#22c55e;font-weight:700;">★★★★☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Harrogate Town <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Gateshead
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#60a5fa;font-size:0.95rem;">Harrogate Town 1 (Home)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~1.80 / X: ~3.40 / 2: ~3.80</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Harrogate)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">61%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:61%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">22%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:22%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Gateshead)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">17%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:17%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:61%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">61%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Harrogate: 6/1 title odds (2° fav), appena retrocesso da League 2 = qualità superiore</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Gateshead: 200/1 title odds = tra le più deboli. 17% prob away.</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Harrogate 4W-2D-2L vs Gateshead (più forte in casa recentemente)</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 Harrogate retrocesso da League 2 = qualità superiore a NL. Gateshead 200/1 title odds. @1.80 = ottimo valore.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #eab308;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#eab308;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#6</span>
-    <span style="background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">BUONA</span>
-    <span style="margin-left:auto;color:#22c55e;font-weight:700;">★★★★☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Carlisle United <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Scunthorpe United
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#60a5fa;font-size:0.95rem;">Carlisle United 1 (Home)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~2.00 / X: ~3.20 / 2: ~3.60</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Carlisle)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">63%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:63%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">21%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:21%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Scunthorpe)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">16%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:16%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:63%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">63%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Carlisle: 5/2 title favorites = squadra più forte del campionato. Brunton Park fortezza.</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Scunthorpe: 16/1 title odds = buona squadra ma inferiore. 16% prob away.</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Carlisle 6W-3D-2L vs Scunthorpe (6W-2L-3D H2H, ultima 1-1)</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 63% prob. @2.00 = valore anomalo per la squadra favorita del campionato. Quota sovrastima Scunthorpe.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #6b7280;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#6b7280;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#7</span>
-    <span style="background:#eab308;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">INTERESSANTE</span>
-    <span style="margin-left:auto;color:#eab308;font-weight:700;">★★★☆☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Boston United <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Hornchurch
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#f87171;font-size:0.95rem;">Hornchurch 2 (Away)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~2.10 / X: ~3.50 / 2: ~1.85</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Boston)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">42%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:42%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">3%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:3%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Hornchurch)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">55%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:55%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:55%;background:#eab308;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#eab308;">55%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Boston United: mid-table NL, casa neutrale questa stagione</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Hornchurch: in buona forma in trasferta (55% prob away)</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Equilibrio recente tra le due</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 55% Hornchurch away @~1.85 = discreto valore. Attenzione: quota potrebbe essere più alta per il livello.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #6b7280;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#6b7280;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#8</span>
-    <span style="background:#eab308;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">INTERESSANTE</span>
-    <span style="margin-left:auto;color:#eab308;font-weight:700;">★★★☆☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Yeovil Town <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Tamworth
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#eab308;font-size:0.95rem;">Yeovil 1X (Non perde)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~2.75 / X: ~3.40 / 2: ~2.20</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Yeovil)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">41%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:41%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">44%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:44%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Tamworth)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">15%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:15%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:85%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">85%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Yeovil: 25/1 title odds, in casa stabile (41% win + 44% draw)</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Tamworth: 150/1 title odds, 15% prob away = debole fuori casa</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Equilibrio storico, Yeovil vantaggio in casa</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 85% prob 1X @~1.45. Bassa quota ma Tamworth non vince fuori (15%). Sicuro ma poco valore.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #6b7280;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#6b7280;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#9</span>
-    <span style="background:#eab308;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">INTERESSANTE</span>
-    <span style="margin-left:auto;color:#eab308;font-weight:700;">★★★☆☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Worthing <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Boreham Wood
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#f87171;font-size:0.95rem;">Boreham Wood 2 (Away)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~2.80 / X: ~3.20 / 2: ~2.20</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Worthing)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">28%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:28%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">31%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:31%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Boreham)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">41%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:41%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:41%;background:#ef4444;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#ef4444;">41%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Worthing: small NL club, 28% prob casa = mid-lower</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Boreham Wood: 41% prob = lieve vantaggio, esperienza NL</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">N/D</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 41% Boreham Wood away @2.20 = discreta quota ma gara molto equilibrata. Alta varianza.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #6b7280;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#6b7280;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#10</span>
-    <span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">SCARTA</span>
-    <span style="margin-left:auto;color:#6b7280;font-weight:700;">★★☆☆☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Eastleigh <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Aldershot Town
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#eab308;font-size:0.95rem;">1X (Eastleigh non perde)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~2.60 / X: ~3.20 / 2: ~2.60</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Eastleigh)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">36%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:36%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">31%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:31%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Aldershot)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">33%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:33%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:67%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">67%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Equilibrio totale: 36/31/33</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Aldershot: 33% prob = quasi uguale</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">3W Eastleigh / 3W Aldershot / 2D recenti — equilibrio assoluto</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 Quota 2.60/3.20/2.60 = mercato non vede differenza. Nessun valore chiaro. SCARTA.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #6b7280;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#6b7280;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#11</span>
-    <span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">SCARTA</span>
-    <span style="margin-left:auto;color:#6b7280;font-weight:700;">★★☆☆☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    Kidderminster Harriers <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Barrow
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#eab308;font-size:0.95rem;">1X (Kidderminster non perde)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~2.60 / X: ~3.20 / 2: ~2.60</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (Kidderminster)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">35%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:35%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">31%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:31%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Barrow)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">34%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:34%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:66%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">66%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">35/31/34 = praticamente uguale</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Barrow: 34% prob = quasi pari</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">N/D — bilanciata</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 35/31/34 = triplo quasi uguale. Nessun valore. SCARTA.
-  </div>
-</div>
-<div style="background:#1e293b;border-radius:10px;padding:13px;margin-bottom:12px;border-left:4px solid #6b7280;">
-  <!-- Header -->
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;">
-    <span style="background:#0f172a;color:#64748b;font-size:0.70rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;">National League 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-    <span style="color:#475569;font-size:0.72rem;">15:00</span>
-    <span style="background:#6b7280;color:#000;font-weight:800;font-size:0.78rem;padding:2px 7px;border-radius:4px;">#12</span>
-    <span style="background:#eab308;color:#000;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;">INTERESSANTE</span>
-    <span style="margin-left:auto;color:#eab308;font-weight:700;">★★★☆☆</span>
-  </div>
-
-  <!-- Teams + Pick -->
-  <div style="font-size:1.0rem;font-weight:800;color:#f8fafc;margin-bottom:6px;">
-    FC Halifax Town <span style="color:#475569;font-weight:400;font-size:0.85rem;">vs</span> Hartlepool United
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-    <span style="font-size:0.70rem;color:#64748b;">Pick:</span>
-    <span style="font-weight:800;color:#eab308;font-size:0.95rem;">Halifax 1X (Non perde)</span>
-    <span style="font-size:0.70rem;color:#64748b;margin-left:6px;">Odds:</span>
-    <span style="color:#fbbf24;font-weight:700;">1: ~2.20 / X: ~3.20 / 2: ~3.20</span>
-  </div>
-
-  <!-- Probabilità -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🏠 Casa (FC)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#60a5fa;">45%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:45%;background:#60a5fa;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">🤝 Pari</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#eab308;">30%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:30%;background:#eab308;"></div></div>
-    </div>
-    <div style="background:#0f172a;border-radius:7px;padding:8px;">
-      <div style="font-size:0.68rem;color:#64748b;margin-bottom:4px;">✈️ Trasferta (Hartlepool)</div>
-      <div style="font-size:1.1rem;font-weight:800;color:#f87171;">25%</div>
-      <div style="height:6px;border-radius:3px;background:#334155;"><div style="height:6px;border-radius:3px;width:25%;background:#f87171;"></div></div>
-    </div>
-  </div>
-
-  <!-- Pick probability highlight -->
-  <div style="background:#0f172a;border-radius:7px;padding:8px 10px;margin-bottom:9px;display:flex;align-items:center;gap:10px;">
-    <span style="font-size:0.72rem;color:#64748b;">P(pick):</span>
-    <div style="flex:1;height:8px;border-radius:4px;background:#334155;">
-      <div style="height:8px;border-radius:4px;width:75%;background:#22c55e;"></div>
-    </div>
-    <span style="font-size:1.0rem;font-weight:900;color:#22c55e;">75%</span>
-  </div>
-
-  <!-- Info grid -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;">
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Casa</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Halifax: solido in casa, 45% win prob</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">📈 Forma Ospiti</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Hartlepool: 25% prob away = deboluccio fuori</div>
-    </div>
-    <div style="background:#0f172a;border-radius:6px;padding:7px;grid-column:1/-1;">
-      <div style="font-size:0.67rem;color:#64748b;margin-bottom:3px;">🔄 H2H</div>
-      <div style="font-size:0.77rem;color:#cbd5e1;">Halifax 4W-3D-2L vs Hartlepool in casa</div>
-    </div>
-  </div>
-
-  <div style="padding:7px 10px;background:#0f172a;border-radius:6px;font-size:0.78rem;color:#94a3b8;">
-    💡 Halifax 1X @~1.48 per coprire pari. Hartlepool debole fuori. Opzione conservativa.
-  </div>
-</div>
-
-</div>
 </body>
 </html>
